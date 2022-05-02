@@ -2,7 +2,7 @@
   "name": "crosswordia",
   "version": "1.0.0",
   "description": "This is a fun website to create and share crosswords with your friends",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "test",
     "start": "cross-env NODE_ENV=production node server",

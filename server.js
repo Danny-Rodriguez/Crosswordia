@@ -15,6 +15,6 @@ app.set("view engine", ".hbs")
 
 app.use(express.static(path.join(__dirname + "/public")))
 app.use("/", require("./routes/index"))
-app.use("/create", require("./routes/create"))
+app.use("/solve", require("./routes/solve"))
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
