@@ -3,6 +3,8 @@ var clickMode = document.getElementById("clickMode")
 const dropdownContent = document.getElementsByClassName("dropdown-content")[0].children //get array of that div
 var selectedCell = undefined
 var size = undefined
+var hintMapper = {}
+var totalHints = 0
 // creates grid based on size
 function drawGrid() {
   var cellSize = 50
@@ -110,5 +112,43 @@ window.addEventListener("keydown", event => {
   }
   // Todo: Write code for selecting cell down. add a button. click functionality to change mode and text. Depending on mode it chooses which loop to run to select the next cell. Use if statements to determine which you're on
 })
-// think of how to assign a hint. Look at the NYT crossword puzzle for hints
-// add css
+
+var hintButton = document.getElementById("hints")
+hintButton.addEventListener("click", event => {
+  handleHints()
+  console.log(hintMapper)
+})
+
+function handleHints() {
+  for (let i = 1; i <= size * size; i++) {
+    let cell = document.getElementById(`${i}`)
+    // skipping black cells since they are not part of a word
+    if (cell.style.background === "black") {
+      continue
+    }
+    let cellAbove = i >= 1 && i <= size ? undefined : document.getElementById(`${i - size}`)
+    let cellBelow = i >= size * (size - 1) && i <= size * size ? undefined : document.getElementById(`${i + size}`) //this is bottom row bec 20 - 25
+    let cellRight = i % size == 0 ? undefined : document.getElementById(`${i + 1}`)
+    let cellLeft = i % size == 1 ? undefined : document.getElementById(`${i - 1}`)
+    // checking if new hint found
+    let newHint = {}
+    let isNewHint = false
+    // checking if word is down: must not have cell above, but must have cell below
+    if ((cellAbove === undefined || cellAbove.style.background === "black") && cellBelow !== undefined && cellBelow.style.background !== "black") {
+      isNewHint = true
+      newHint.cellId = i
+      newHint.isWordDown = true
+    }
+    // checking if word exists across: must not have cell to left, but must have cell to right
+    if ((cellLeft === undefined || cellLeft.style.background === "black") && cellRight !== undefined && cellRight.style.background !== "black") {
+      isNewHint = true
+      newHint.cellId = i
+      newHint.isWordAcross = true
+    }
+    // checking if current cell is a hint or not
+    if (isNewHint) {
+      totalHints++
+      hintMapper[totalHints] = newHint
+    }
+  }
+}
