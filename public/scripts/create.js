@@ -5,6 +5,8 @@ var selectedCell = undefined
 var size = undefined
 var hintMapper = {}
 var totalHints = 0
+var hintsForm = document.getElementById("hints")
+var isEditMode = true
 // creates grid based on size
 function drawGrid() {
   var cellSize = 50
@@ -31,6 +33,9 @@ function drawGrid() {
     // cell.innerText = cell.id
     //
     cell.addEventListener("click", event => {
+      if (!isEditMode) {
+        return
+      }
       if (clickMode.innerText === "box") {
         cell.style.background = "yellow"
 
@@ -113,10 +118,61 @@ window.addEventListener("keydown", event => {
   // Todo: Write code for selecting cell down. add a button. click functionality to change mode and text. Depending on mode it chooses which loop to run to select the next cell. Use if statements to determine which you're on
 })
 
-var hintButton = document.getElementById("hints")
+var hintButton = document.getElementById("hintBtn")
 hintButton.addEventListener("click", event => {
+  if (selectedCell !== undefined) {
+    selectedCell.style.background = "white"
+    selectedCell = undefined
+  }
+
   handleHints()
-  console.log(hintMapper)
+  // console.log(hintMapper)
+  // clickMode.removeEventListener("click")
+  // window.removeEventListener("keydown")
+  isEditMode = false
+  // hide unnecessary buttons
+  clickMode.style.display = "none"
+  let sizeBox = document.getElementsByClassName("dropdown")[0]
+  sizeBox.style.display = "none"
+  hintButton.style.display = "none"
+  // iterating over each hint and updating page
+  for (var i = 1; i <= totalHints; i++) {
+    let hintObj = hintMapper[i]
+    // update cell with hint Number
+    let cell = document.getElementById(`${hintObj.cellId}`)
+    let pElement = document.createElement("p")
+    pElement.style.position = "relative"
+    pElement.style.left = "-50"
+    pElement.style.top = "-30"
+    pElement.style.fontSize = 20
+    pElement.innerText = `${i}`
+    cell.appendChild(pElement)
+    // add a hint for submission
+    if (hintObj.isWordAcross) {
+      let hintInput = document.createElement("input")
+      hintInput.setAttribute("type", "text")
+      hintInput.setAttribute("name", `${hintObj.cellId}:across`)
+      hintInput.setAttribute("placeholder", `${hintObj.cellId} Across`)
+      hintsForm.appendChild(hintInput)
+    }
+    if (hintObj.isWordDown) {
+      let hintInput = document.createElement("input")
+      hintInput.setAttribute("type", "text")
+      hintInput.setAttribute("name", `${hintObj.cellId}:down`)
+      hintInput.setAttribute("placeholder", `${hintObj.cellId} Down`)
+      hintsForm.appendChild(hintInput)
+    }
+  }
+  // adding submit button to form
+  let submitBtn = document.createElement("input")
+  submitBtn.setAttribute("type", "submit")
+  submitBtn.setAttribute("value", "Submit")
+  submitBtn.id = "hintSubmit"
+  submitBtn.addEventListener("click", () => {
+    console.log("submitted")
+    // add code for making post requests to server
+  })
+  hintsForm.appendChild(submitBtn)
 })
 
 function handleHints() {
