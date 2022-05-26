@@ -1,7 +1,9 @@
 var clickMode = document.getElementById("clickMode")
+// create a type mode for across and down
 const dropdownContent = document.getElementsByClassName("dropdown-content")[0].children //get array of that div
 var selectedCell = undefined
 var size = undefined
+// creates grid based on size
 function drawGrid() {
   var cellSize = 50
   if (size === 5) {
@@ -27,8 +29,11 @@ function drawGrid() {
     // cell.innerText = cell.id
     cell.addEventListener("click", event => {
       if (clickMode.innerText === "box") {
-        cell.style.background = "white"
+        cell.style.background = "yellow"
         cell.innerText = ""
+        if (selectedCell != undefined) {
+          selectedCell.style.background = "white"
+        }
         selectedCell = cell
       } else if (clickMode.innerText === "type") {
         cell.style.background = "black"
@@ -68,12 +73,17 @@ window.addEventListener("keydown", event => {
     return
   }
   selectedCell.innerText = event.key
-  // let nextCell = undefined
+  // This for loop selects the next cell across
   for (var i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
-    let currentCell = document.getElementById(`${i}`)
-    if (currentCell.style.background === "white" || currentCell.style.background === "") {
-      selectedCell = currentCell
+    let nextCell = document.getElementById(`${i}`)
+    if (nextCell.style.background === "white" || nextCell.style.background === "") {
+      selectedCell.style.background = "white"
+      selectedCell = nextCell
+      selectedCell.style.background = "yellow"
       break
     }
   }
+  // Todo: Write code for selecting cell down. add a button. click functionality to change mode and text. Depending on mode it chooses which loop to run to select the next cell. Use if statements to determine which you're on
 })
+// think of how to assign a hint. Look at the NYT crossword puzzle for hints
+// add css
