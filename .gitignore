@@ -1,7 +1,8 @@
 /node_modules
 *.env
-
-
+.env
 config.env
+
+*config.env
 
 server_old.js
