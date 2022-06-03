@@ -40,7 +40,7 @@ app.use(express.json())
 //   app.use(morgan("dev"))
 // }
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 //Handbars Helpers
 // const { formatDate, stripTags, truncate, editIcon, select } = require("./helpers/hbs")
