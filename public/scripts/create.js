@@ -1,4 +1,13 @@
+// import Confirmation from "../../models/Confirmation"
+// const mongoose = require("mongoose")
+// const conn = await mongoose.connect(process.env.MONGO_URI, {})
+// const connectDB = require("./config/db")
+// console.log(connectDB)
+
+// const { json } = require("express")
+
 var clickMode = document.getElementById("clickMode")
+
 // create a type mode for across and down
 const dropdownContent = document.getElementsByClassName("dropdown-content")[0].children //get array of that div
 var selectedCell = undefined
@@ -7,6 +16,7 @@ var hintMapper = {}
 var totalHints = 0
 var hintsForm = document.getElementById("hints")
 var isEditMode = true
+
 // creates grid based on size
 function drawGrid() {
   var cellSize = 50
@@ -168,10 +178,39 @@ hintButton.addEventListener("click", event => {
   submitBtn.setAttribute("type", "submit")
   submitBtn.setAttribute("value", "Submit")
   submitBtn.id = "hintSubmit"
-  submitBtn.addEventListener("click", () => {
-    console.log("submitted")
+  submitBtn.addEventListener("click", async () => {
+    // console.log("submitted")
+    // alert("Anime!")
+    // console.log(conn.connection.host)
     // add code for making post requests to server
+    // try {
+    //   const response = await fetch(`${conn.connection.host}`, {
+    //     method: "post",
+    //     Confirmation: {
+    //       Confirmation: Confirmation
+    //     }
+    //   })
+    //   console.log("Completed!", response)
+    // } catch (err) {
+    //   console.error(`Error: ${err}`)
+
+    const example = { test: "test" }
+    const test = await fetch("/crossword", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(example)
+    })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error(err)
+      })
   })
+
   hintsForm.appendChild(submitBtn)
 })
 

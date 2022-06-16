@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 
 // @desc Logged in Page
 // @route GET /userLoggedIn
-router.get("/userLoggedIn", (req, res) => {
+router.get("/", (req, res) => {
   res.render("userLoggedIn", {
     layout: "main"
   })

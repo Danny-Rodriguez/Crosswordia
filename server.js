@@ -9,6 +9,10 @@ const passport = require("passport")
 const session = require("express-session")
 const MongoStore = require("connect-mongo")
 const connectDB = require("./config/db")
+const router = express.Router()
+const crosswordRouter = require("./routes/userLoggedIn")
+const bodyParser = require("body-parser")
+const Confirmation = require("./models/Confirmation")
 
 // Load config
 dotenv.config({ path: "./config/config.env" })
@@ -21,8 +25,27 @@ connectDB()
 const app = express()
 
 // Body Parser
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+// app.use(express.urlencoded({ extended: false }))
+// app.use(express.json())
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+// app.use("/userLoggedIn", crosswordRouter)
+
+// Creating a crossword end point
+app.post("/crossword", (req, res, next) => {
+  console.log(req.body)
+  const confirmation = new Confirmation({
+    test: req.body.test
+  })
+  confirmation.save(function (err, post) {
+    if (err) {
+      return next(err)
+    }
+    res.json(201, post)
+  })
+})
 
 // //Method override
 // app.use(
@@ -42,24 +65,13 @@ app.use(express.json())
 
 const PORT = process.env.PORT || 3000
 
-//Handbars Helpers
-// const { formatDate, stripTags, truncate, editIcon, select } = require("./helpers/hbs")
+router.post("/crossword", (req, res) => {
+  console.log(req.body)
+  res.send(req.body)
+})
 
-//Handelbars
-// app.engine(
-//   ".hbs",
-//   exphbs.engine({
-//     helpers: {
-//       formatDate,
-//       stripTags,
-//       truncate,
-//       editIcon,
-//       select
-//     },
-//     defaultLayout: "main",
-//     extname: ".hbs"
-//   })
-// )
+app.use("/crossword", router)
+
 app.engine(".hbs", exphbs.engine({ defaultLayout: "main", extname: "hbs" }))
 app.set("view engine", ".hbs")
 
@@ -90,5 +102,6 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/solve", require("./routes/solve"))
+app.use("/UserLoggedIn", require("./routes/userLoggedIn"))
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
