@@ -10,7 +10,7 @@ const session = require("express-session")
 const MongoStore = require("connect-mongo")
 const connectDB = require("./config/db")
 const router = express.Router()
-const crosswordRouter = require("./routes/userLoggedIn")
+
 const bodyParser = require("body-parser")
 const Confirmation = require("./models/Confirmation")
 
@@ -31,21 +31,19 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// app.use("/userLoggedIn", crosswordRouter)
-
 // Creating a crossword end point
-app.post("/crossword", (req, res, next) => {
-  console.log(req.body)
-  const confirmation = new Confirmation({
-    test: req.body.test
-  })
-  confirmation.save(function (err, post) {
-    if (err) {
-      return next(err)
-    }
-    res.json(201, post)
-  })
-})
+// app.post("/crossword", (req, res, next) => {
+//   console.log(req.body)
+//   const confirmation = new Confirmation({
+//     test: req.body.test
+//   })
+//   confirmation.save(function (err, post) {
+//     if (err) {
+//       return next(err)
+//     }
+//     res.json(201, post)
+//   })
+// })
 
 // //Method override
 // app.use(
@@ -102,6 +100,5 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/solve", require("./routes/solve"))
-app.use("/UserLoggedIn", require("./routes/userLoggedIn"))
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))

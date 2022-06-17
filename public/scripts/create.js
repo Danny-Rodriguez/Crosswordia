@@ -161,40 +161,51 @@ hintButton.addEventListener("click", event => {
     if (hintObj.isWordAcross) {
       let hintInput = document.createElement("input")
       hintInput.setAttribute("type", "text")
-      hintInput.setAttribute("name", `${hintObj.cellId}:across`)
-      hintInput.setAttribute("placeholder", `${hintObj.cellId} Across`)
+      hintInput.setAttribute("name", `${i}:across`)
+      hintInput.setAttribute("placeholder", `${i} Across`)
       hintsForm.appendChild(hintInput)
     }
     if (hintObj.isWordDown) {
       let hintInput = document.createElement("input")
       hintInput.setAttribute("type", "text")
-      hintInput.setAttribute("name", `${hintObj.cellId}:down`)
-      hintInput.setAttribute("placeholder", `${hintObj.cellId} Down`)
+      hintInput.setAttribute("name", `${i}:down`)
+      hintInput.setAttribute("placeholder", `${i} Down`)
       hintsForm.appendChild(hintInput)
     }
   }
   // adding submit button to form
-  let submitBtn = document.createElement("input")
-  submitBtn.setAttribute("type", "submit")
-  submitBtn.setAttribute("value", "Submit")
+  let submitBtn = document.createElement("button")
+  // submitBtn.setAttribute("type", "submit")
+  // submitBtn.setAttribute("value", "Submit")
   submitBtn.id = "hintSubmit"
+  submitBtn.innerText = "submit"
   submitBtn.addEventListener("click", async () => {
-    // console.log("submitted")
-    // alert("Anime!")
-    // console.log(conn.connection.host)
-    // add code for making post requests to server
-    // try {
-    //   const response = await fetch(`${conn.connection.host}`, {
-    //     method: "post",
-    //     Confirmation: {
-    //       Confirmation: Confirmation
-    //     }
-    //   })
-    //   console.log("Completed!", response)
-    // } catch (err) {
-    //   console.error(`Error: ${err}`)
-
-    const example = { test: "test" }
+    let hintValues = hintsForm.children
+    for (var j = 0; j < hintValues.length; j++) {
+      let hintValue = hintValues[j]
+      let hintInfo = hintValue.name.split(":")
+      let hintNumber = parseInt(hintInfo[0])
+      if (hintInfo[1] === "across") {
+        hintMapper[hintNumber].acrossHint = hintValue.value
+      }
+      if (hintInfo[1] === "down") {
+        hintMapper[hintNumber].downHint = hintValue.value
+      }
+    }
+    let solutionStr = ""
+    for (var k = 1; k <= size * size; k++) {
+      let tempCell = document.getElementById(`${k}`)
+      if (tempCell.style.background === "black") {
+        solutionStr += "!"
+      } else {
+        solutionStr += tempCell.innerText.charAt(0)
+      }
+    }
+    const example = {
+      size: size,
+      solution: solutionStr,
+      hints: hintMapper
+    }
     const test = await fetch("/crossword", {
       method: "POST",
       headers: {

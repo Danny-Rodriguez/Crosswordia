@@ -1,20 +1,29 @@
 const express = require("express")
 const router = express.Router()
+const { ensureAuth } = require("../middleware/auth")
+const Crossword = require("../models/Crossword")
 
 // @desc Login/Landing page
 // @route Get /
-router.get("/", (req, res) => {
+router.get("/", ensureAuth, async (req, res) => {
   res.render("login", {
     layout: "main"
   })
 })
 
-// @desc Logged in Page
-// @route GET /userLoggedIn
-router.get("/", (req, res) => {
-  res.render("userLoggedIn", {
-    layout: "main"
-  })
+router.post("/crossword", ensureAuth, async (req, res) => {
+  console.log(req.body)
+
+  try {
+    let toPost = {
+      googleId: req.user.googleId,
+      size: req.body.size,
+      solution: req.body.solution,
+      hints: req.body.hints
+    }
+    let newCrossword = await Crossword.create(toPost)
+    res.redirect(`/solve/` + newCrossword._id)
+  } catch (error) {}
 })
 
 module.exports = router
