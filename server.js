@@ -100,5 +100,6 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/solve", require("./routes/solve"))
+app.use("/login", require("./routes/index"))
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))

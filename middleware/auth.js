@@ -9,14 +9,14 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next()
     } else {
-      res.redirect("/auth/google")
+      res.redirect("/login")
     }
   },
   ensureGuest: function (req, res, next) {
     // avoid entering the page before login
     //some change
-    if (req.isAuthenticated()) {
-      res.redirect("/")
+    if (!req.isAuthenticated()) {
+      res.redirect("/login")
     } else {
       return next()
     }

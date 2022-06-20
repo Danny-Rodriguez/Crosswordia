@@ -1,11 +1,19 @@
 const express = require("express")
 const router = express.Router()
-const { ensureAuth } = require("../middleware/auth")
+const { ensureAuth, ensureGuest } = require("../middleware/auth")
 const Crossword = require("../models/Crossword")
 
 // @desc Login/Landing page
 // @route Get /
 router.get("/", ensureAuth, async (req, res) => {
+  res.render("home", {
+    layout: "main"
+  })
+})
+
+// @desc login page
+// @ Route Get /login
+router.get("/login", async (req, res) => {
   res.render("login", {
     layout: "main"
   })
