@@ -6,3 +6,5 @@ config.env
 *config.env
 
 server_old.js
+
+.DS_Store
