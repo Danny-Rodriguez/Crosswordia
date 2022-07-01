@@ -1,11 +1,3 @@
-// import Confirmation from "../../models/Confirmation"
-// const mongoose = require("mongoose")
-// const conn = await mongoose.connect(process.env.MONGO_URI, {})
-// const connectDB = require("./config/db")
-// console.log(connectDB)
-
-// const { json } = require("express")
-
 var clickMode = document.getElementById("clickMode")
 
 // create a type mode for across and down
@@ -16,6 +8,7 @@ var hintMapper = {}
 var totalHints = 0
 var hintsForm = document.getElementById("hints")
 var isEditMode = true
+var theUrl
 
 // creates grid based on size
 function drawGrid() {
@@ -40,8 +33,6 @@ function drawGrid() {
     let cell = document.createElement("div")
     cell.className = "cell"
     cell.id = `${i + 1}`
-    // cell.innerText = cell.id
-    //
     cell.addEventListener("click", event => {
       if (!isEditMode) {
         return
@@ -125,7 +116,6 @@ window.addEventListener("keydown", event => {
       selectedCell.innerText = ""
     }
   }
-  // Todo: Write code for selecting cell down. add a button. click functionality to change mode and text. Depending on mode it chooses which loop to run to select the next cell. Use if statements to determine which you're on
 })
 
 var hintButton = document.getElementById("hintBtn")
@@ -136,9 +126,6 @@ hintButton.addEventListener("click", event => {
   }
 
   handleHints()
-  // console.log(hintMapper)
-  // clickMode.removeEventListener("click")
-  // window.removeEventListener("keydown")
   isEditMode = false
   // hide unnecessary buttons
   clickMode.style.display = "none"
@@ -173,10 +160,9 @@ hintButton.addEventListener("click", event => {
       hintsForm.appendChild(hintInput)
     }
   }
-  // adding submit button to form
+
   let submitBtn = document.createElement("button")
-  // submitBtn.setAttribute("type", "submit")
-  // submitBtn.setAttribute("value", "Submit")
+
   submitBtn.id = "hintSubmit"
   submitBtn.innerText = "submit"
   submitBtn.addEventListener("click", async () => {
@@ -215,13 +201,14 @@ hintButton.addEventListener("click", event => {
       body: JSON.stringify(example)
     })
       .then(res => {
-        console.log(res)
+        console.log(res.url)
+        theUrl = res.url
       })
       .catch(err => {
         console.error(err)
       })
+    document.location = `${theUrl}`
   })
-
   hintsForm.appendChild(submitBtn)
 })
 

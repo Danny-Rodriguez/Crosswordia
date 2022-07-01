@@ -20,18 +20,19 @@ router.get("/login", async (req, res) => {
 })
 
 router.post("/crossword", ensureAuth, async (req, res) => {
-  console.log(req.body)
-
   try {
-    let toPost = {
+    var toPost = {
       googleId: req.user.googleId,
       size: req.body.size,
       solution: req.body.solution,
       hints: req.body.hints
     }
-    let newCrossword = await Crossword.create(toPost)
+    var newCrossword = await Crossword.create(toPost)
+
     res.redirect(`/solve/` + newCrossword._id)
-  } catch (error) {}
+  } catch (error) {
+    console.error(error)
+  }
 })
 
 module.exports = router
