@@ -19,7 +19,7 @@ router.get("/login", async (req, res) => {
   })
 })
 
-router.post("/crossword", ensureAuth, async (req, res) => {
+router.post("/crossword", async (req, res) => {
   try {
     var toPost = {
       googleId: req.user.googleId,

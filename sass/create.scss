@@ -1,3 +1,7 @@
+// import bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Custom variables
 html,
 body {
   margin: 0;
@@ -16,6 +20,10 @@ body {
   display: flex;
   align-items: center;
 }
+
+// .body {
+//   display: flex;
+// }
 
 .banner-text {
   text-align: center;
@@ -73,22 +81,30 @@ body {
 
 .container {
   background: black;
-  display: inline-block;
+  // display: inline-block;
+  display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
+  // align-content: flex-start;
+  width: min-content;
   // border: 5px solid black;
+  padding: 0;
 }
 
 #crossGrid {
   // border: 5px solid black;
   width: auto !important;
+  // padding: 0;
 }
 
 .grid {
   display: grid;
   grid-gap: 5px;
+  // padding: 0;
 }
 
 .cell {
-  /* center the cell content */
+  /* center the celll content */
   justify-content: center;
   align-items: center;
   display: flex;
@@ -97,3 +113,32 @@ body {
   font-weight: bold;
   background: white;
 }
+
+.solve {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  // margin-left: 50em;
+  margin-right: 25em;
+  // padding-left: 50em;
+  padding-left: 25em;
+  margin-top: 5em;
+}
+
+// .hints {
+//   display: inline-block;
+//   width: auto !important;
+//   // width: min-content;
+//   position: absolute;
+//   text-align: center;
+//   justify-content: center !important;
+//   align-items: center !important;
+// }
+
+// .viewarea {
+//   position: relative;
+//   justify-content: center !important;
+//   align-items: center !important;
+//   max-width: min-content;
+// }

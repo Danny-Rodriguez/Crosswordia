@@ -1,12 +1,19 @@
-<div class="container">
-  <div class="grid" id="crossGrid"></div>
+<div class="solve d-sm-flex align-items-center">
+  <div class="container">
+    <div class="grid" id="crossGrid"></div>
+
+  </div>
+  <div class="hints align-items-center" id="hints">
+    <div id="hints-across"></div>
+    <div id="hints-down"></div>
+
+    <button id="check">Check my Answer</button>
+
+  </div>
 
 </div>
-<div id="hints">
-  <div id="hints-across"></div>
-  <div id="hints-down"></div>
-</div>
-<button id="check">Check my Answer</button>
 
 <script src="/scripts/solve.js" type="module"></script>
-<link rel="stylesheet" href="/css/create.css" />
+
+{{! align-items-center justify-content-between }}
+<link rel="stylesheet" type="text/css" href="/css/create.css" />

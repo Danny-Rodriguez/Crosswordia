@@ -23,6 +23,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
 
     crossGrid.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`
     crossGrid.style.gridTemplateRows = `repeat(${size}, ${cellSize}px)`
+    crossGrid.style.border = `5px solid black`
 
     for (var i = 0; i < size * size; i++) {
       let cell = document.createElement("div")
