@@ -97,6 +97,19 @@ body {
   // padding: 0;
 }
 
+.toolbelt {
+  // align-items: center;
+  // display: flex;
+  // align-items: center;
+  // align-content: center;
+  // justify-items: center;
+  // justify-self: center;
+  // flex-wrap: wrap;
+  width: max-content;
+  padding: 1em;
+  margin: auto;
+}
+
 #crossGrid {
   // border: 5px solid black;
   width: auto !important;
@@ -125,19 +138,9 @@ body {
 //   margin-left: 5em;
 // }
 
-// .solve {
-//   display: flex;
-//   // flex-direction: row;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   align-content: flex-start;
-//   // margin-left: 50em;
-//   margin-right: 15em;
-//   // padding-left: 50em;
-//   padding-left: 15em;
-//   margin-top: 5em;
-//   // flex: 1;
-// }
+.solve {
+  margin: 1.5em;
+}
 
 .hints {
   // display: flex;

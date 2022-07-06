@@ -11358,6 +11358,14 @@ body {
   flex-direction: column;
 }
 
+.toolbelt {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 1em;
+  margin: auto;
+}
+
 #crossGrid {
   width: auto !important;
 }
@@ -11377,6 +11385,10 @@ body {
   font-size: 3rem;
   font-weight: bold;
   background: white;
+}
+
+.solve {
+  margin: 1.5em;
 }
 
 .hints {
