@@ -11291,8 +11291,9 @@ body {
   padding: 16px;
   max-width: 500px;
   margin: 0 auto;
-  display: flex;
+  align-self: center;
   align-items: center;
+  justify-content: center;
 }
 
 .banner-text {
@@ -11350,12 +11351,11 @@ body {
 }
 
 .container {
-  background: black;
   display: flex;
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
-  padding: 0;
+  flex-direction: column;
 }
 
 #crossGrid {
@@ -11365,6 +11365,7 @@ body {
 .grid {
   display: grid;
   grid-gap: 5px;
+  background: black;
 }
 
 .cell {
@@ -11378,12 +11379,12 @@ body {
   background: white;
 }
 
-.solve {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: flex-start;
-  margin-right: 25em;
-  padding-left: 25em;
-  margin-top: 5em;
+.hints {
+  margin-left: 2em;
+}
+
+.onlyHints {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }/*# sourceMappingURL=create.css.map */

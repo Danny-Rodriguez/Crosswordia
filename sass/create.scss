@@ -16,9 +16,14 @@ body {
   // left: 0;
   padding: 16px;
   max-width: 500px;
+  // flex-direction: column;
   margin: 0 auto;
-  display: flex;
+  // display: flex;
+  // flex-wrap: wrap;
+  align-self: center;
   align-items: center;
+  // text-align: center;
+  justify-content: center;
 }
 
 // .body {
@@ -80,15 +85,16 @@ body {
 }
 
 .container {
-  background: black;
+  // background: black;
   // display: inline-block;
   display: flex;
   // flex-wrap: wrap;
   // justify-content: center;
   // align-content: flex-start;
   width: min-content;
+  flex-direction: column;
   // border: 5px solid black;
-  padding: 0;
+  // padding: 0;
 }
 
 #crossGrid {
@@ -100,6 +106,7 @@ body {
 .grid {
   display: grid;
   grid-gap: 5px;
+  background: black;
   // padding: 0;
 }
 
@@ -114,27 +121,43 @@ body {
   background: white;
 }
 
-.solve {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: flex-start;
-  // margin-left: 50em;
-  margin-right: 25em;
-  // padding-left: 50em;
-  padding-left: 25em;
-  margin-top: 5em;
+// #hints-down {
+//   margin-left: 5em;
+// }
+
+// .solve {
+//   display: flex;
+//   // flex-direction: row;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   align-content: flex-start;
+//   // margin-left: 50em;
+//   margin-right: 15em;
+//   // padding-left: 50em;
+//   padding-left: 15em;
+//   margin-top: 5em;
+//   // flex: 1;
+// }
+
+.hints {
+  // display: flex;
+  // width: auto !important;
+  // // width: min-content;
+  // position: absolute;
+  // text-align: center;
+  // justify-content: center !important;
+  // align-items: center !important;
+  // flex: 0 0 640px;
+  // flex-wrap: wrap;
+  // flex-direction: row;
+  // margin: 50px;
+  margin-left: 2em;
 }
 
-// .hints {
-//   display: inline-block;
-//   width: auto !important;
-//   // width: min-content;
-//   position: absolute;
-//   text-align: center;
-//   justify-content: center !important;
-//   align-items: center !important;
-// }
+.onlyHints {
+  // display: flex;
+  width: max-content;
+}
 
 // .viewarea {
 //   position: relative;
@@ -142,3 +165,5 @@ body {
 //   align-items: center !important;
 //   max-width: min-content;
 // }
+
+// hi

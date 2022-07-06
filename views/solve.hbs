@@ -1,12 +1,14 @@
-<div class="solve d-sm-flex align-items-center">
+<div class="solve d-sm-flex justify-content-between">
+  <!-- d-sm-flex-->
   <div class="container">
     <div class="grid" id="crossGrid"></div>
 
   </div>
-  <div class="hints align-items-center" id="hints">
-    <div id="hints-across"></div>
-    <div id="hints-down"></div>
-
+  <div class="hints" id="hints">
+    <div class="onlyHints">
+      <div id="hints-across"></div>
+      <div id="hints-down"></div>
+    </div>
     <button id="check">Check my Answer</button>
 
   </div>
@@ -15,5 +17,5 @@
 
 <script src="/scripts/solve.js" type="module"></script>
 
-{{! align-items-center justify-content-between }}
+{{! align-items-center justify-content-between  align-items-center }}
 <link rel="stylesheet" type="text/css" href="/css/create.css" />
