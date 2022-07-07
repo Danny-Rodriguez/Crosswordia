@@ -34,6 +34,14 @@ router.post("/crossword", (req, res) => {
 
 app.use("/crossword", router)
 
+//test
+router.post("/user", (req, res) => {
+  console.log(req.body)
+  res.send(req.body)
+})
+
+app.use("/user", router)
+
 app.engine(".hbs", exphbs.engine({ defaultLayout: "main", extname: "hbs" }))
 app.set("view engine", ".hbs")
 
@@ -65,6 +73,7 @@ app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/solve", require("./routes/solve"))
 app.use("/login", require("./routes/index"))
+app.use("/user", require("./routes/user"))
 app.use("/crossword", require("./routes/index"))
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))

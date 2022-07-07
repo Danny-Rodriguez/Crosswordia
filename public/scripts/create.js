@@ -9,6 +9,8 @@ var totalHints = 0
 var hintsForm = document.getElementById("hints")
 var isEditMode = true
 var theUrl
+var userUrl
+// var theRes
 
 // creates grid based on size
 function drawGrid() {
@@ -69,6 +71,35 @@ for (var i = 0; i < dropdownContent.length; i++) {
     drawGrid()
   })
 }
+
+// Adds user's profile page
+var userPageBtn = document.getElementById("userPageBtn")
+userPageBtn.addEventListener("click", async () => {
+  let googleId
+  const example = {
+    // googleId: req.user.googleId
+    googleId: googleId
+  }
+  const test = await fetch("/user", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(example)
+  })
+    .then(res => {
+      // console.log(res)
+      // console.log(res.url)
+      // theRes = res
+      userUrl = res.url
+      console.log(res)
+    })
+    .catch(err => {
+      console.error(err)
+    })
+  document.location = `${userUrl}`
+})
 
 clickMode.addEventListener("click", event => {
   // changing modes
@@ -202,7 +233,9 @@ hintButton.addEventListener("click", event => {
       body: JSON.stringify(example)
     })
       .then(res => {
-        console.log(res.url)
+        // console.log(res)
+        // console.log(res.url)
+        // theRes = res
         theUrl = res.url
       })
       .catch(err => {

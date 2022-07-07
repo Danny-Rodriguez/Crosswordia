@@ -35,4 +35,27 @@ router.post("/crossword", ensureAuth, async (req, res) => {
   }
 })
 
+router.post("/user", async (req, res) => {
+  try {
+    // let crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
+    // var userPage = document.getElementById("userPage")
+    // let crosswordEntry2 = await Crossword.find({ googleId: req.user.googleId }, { _id: 1 }).lean()
+    // var idArr = []
+
+    // // res.json(crosswordEntry2)
+    // // console.log(req.params.id)
+    // // console.log(crosswordEntry2[0]._id.toJSON())
+
+    // for (var i = 0; i < crosswordEntry2.length; i++) {
+    //   idArr.push(crosswordEntry2[i]._id.toJSON())
+
+    // }
+    // console.log(idArr)
+    // // res.json(idArr)
+    res.redirect(`/user/` + req.user.googleId)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
 module.exports = router
