@@ -11399,4 +11399,26 @@ body {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-}/*# sourceMappingURL=create.css.map */
+}
+
+.trUserCrossword {
+  width: 50% !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-responsive {
+  display: table-caption;
+  padding: 1em;
+}
+
+.tdSolution {
+  max-width: 1em;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* max-width: 50; *//*# sourceMappingURL=create.css.map */

@@ -162,6 +162,37 @@ body {
   width: max-content;
 }
 
+.trUserCrossword {
+  width: 50% !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-responsive {
+  display: table-caption;
+  padding: 1em;
+}
+
+.tdSolution {
+  max-width: 1em;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* max-width: 50; */
+// max-width: 1em;
+// overflow: hidden;
+// white-space: nowrap;
+// text-overflow: ellipsis;
+// text-align: center;
+// align-content: center;
+// align-items: center;
+// justify-content: center;
+// margin: 0 auto;
+
 // .viewarea {
 //   position: relative;
 //   justify-content: center !important;

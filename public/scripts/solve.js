@@ -5,6 +5,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
   .then(response => response.json())
   .then(crossword => {
     console.log(crossword)
+    console.log(crossword._id)
+    console.log(Date(crossword.createdAt))
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution
