@@ -1,5 +1,6 @@
 // import bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
+// @import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 // Custom variables
 html,
@@ -134,26 +135,11 @@ body {
   background: white;
 }
 
-// #hints-down {
-//   margin-left: 5em;
-// }
-
 .solve {
   margin: 1.5em;
 }
 
 .hints {
-  // display: flex;
-  // width: auto !important;
-  // // width: min-content;
-  // position: absolute;
-  // text-align: center;
-  // justify-content: center !important;
-  // align-items: center !important;
-  // flex: 0 0 640px;
-  // flex-wrap: wrap;
-  // flex-direction: row;
-  // margin: 50px;
   margin-left: 2em;
 }
 
@@ -162,42 +148,43 @@ body {
   width: max-content;
 }
 
-.trUserCrossword {
-  width: 50% !important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+// .table-responsive {
+//   display: table-caption;
+//   padding: 1em;
+// }
+
+.table > :not(:first-child) {
+  border-top: none;
 }
 
-.table-responsive {
-  display: table-caption;
+.table-sm > :not(caption) > * > * {
+  // padding: 0.25rem 0.25rem;
   padding: 1em;
 }
 
-.tdSolution {
-  max-width: 1em;
-  text-align: center;
+.tdDate {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-/* max-width: 50; */
-// max-width: 1em;
-// overflow: hidden;
-// white-space: nowrap;
-// text-overflow: ellipsis;
-// text-align: center;
-// align-content: center;
-// align-items: center;
-// justify-content: center;
-// margin: 0 auto;
+.tdSolution {
+  max-width: 11em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
-// .viewarea {
-//   position: relative;
-//   justify-content: center !important;
-//   align-items: center !important;
-//   max-width: min-content;
-// }
+.tdLink {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
-// hi
+a {
+  text-decoration: none;
+}
+
+.tdLinkIcon {
+  font-size: 1rem;
+}

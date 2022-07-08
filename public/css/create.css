@@ -11401,24 +11401,37 @@ body {
   width: max-content;
 }
 
-.trUserCrossword {
-  width: 50% !important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.table > :not(:first-child) {
+  border-top: none;
 }
 
-.table-responsive {
-  display: table-caption;
+.table-sm > :not(caption) > * > * {
   padding: 1em;
 }
 
-.tdSolution {
-  max-width: 1em;
-  text-align: center;
+.tdDate {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-/* max-width: 50; *//*# sourceMappingURL=create.css.map */
+.tdSolution {
+  max-width: 11em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tdLink {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+a {
+  text-decoration: none;
+}
+
+.tdLinkIcon {
+  font-size: 1rem;
+}/*# sourceMappingURL=create.css.map */
