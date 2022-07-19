@@ -55,7 +55,11 @@
     {{! <div id="footer" class="d-flex justify-content-center">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny Rodriguez All Rights Reserved</div> }}
     {{! <div class="container"> }}
     {{! <div id="footerInitial"> <p> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny Rodriguez All Rights Reserved </p></div> }}
-    <div id="footerCrossword"> <p> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny Rodriguez All Rights Reserved </p></div>
+    {{! <div id="footerCrossword"> <p> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny A Rodriguez All Rights Reserved </p></div> }}
+
+    {{#if crossGrid}}
+      <div id="footerCrossword"> <p> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny Alfredo Rodriguez All Rights Reserved </p></div>
+    {{/if}}
     {{! </div> }}
     {{! </footer> }}
 

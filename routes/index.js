@@ -12,10 +12,22 @@ router.get("/", ensureAuth, async (req, res) => {
 })
 
 // @desc login page
-// @ Route Get /login
+// @route Get /login
 router.get("/login", async (req, res) => {
   res.render("login", {
     layout: "mainGuest"
+  })
+})
+
+// @desc Delete function
+// @route Get /delete(:id)
+router.get("/delete/:id", ensureAuth, async (req, res) => {
+  Crossword.findByIdAndDelete(req.params.id, (err, doc) => {
+    if (!err) {
+      res.redirect("/user/" + req.user.googleId)
+    } else {
+      console.log("Failed to Delete user Details: " + err)
+    }
   })
 })
 
@@ -35,7 +47,7 @@ router.post("/crossword", ensureAuth, async (req, res) => {
   }
 })
 
-router.post("/user", async (req, res) => {
+router.post("/user", ensureAuth, async (req, res) => {
   try {
     // let crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
     // var userPage = document.getElementById("userPage")

@@ -21,6 +21,14 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
       }
       DateF()
 
+      function SizeF() {
+        let tdUserCrossword = document.createElement("td")
+        tdUserCrossword.innerText = `${userIdArr[i].size}x${userIdArr[i].size}`
+        tdUserCrossword.className = "tdSize"
+        trUserCrossword.appendChild(tdUserCrossword)
+      }
+      SizeF()
+
       function SolutionF() {
         let tdUserCrossword = document.createElement("td")
         tdUserCrossword.innerText = userIdArr[i].solution
