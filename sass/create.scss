@@ -8,6 +8,10 @@ body {
   margin: 0;
 }
 
+// body {
+//   min-height: 150vh;
+// }
+
 .banner {
   background-color: beige;
   // padding: 0;
@@ -98,6 +102,19 @@ body {
   // padding: 0;
 }
 
+.containerF {
+  display: flex;
+  // margin: 0 auto;
+  // display: block;
+}
+
+#hintSubmit {
+  // display: flex;
+  // margin: 0 auto;
+  display: block;
+  margin-left: 9.5em !important;
+}
+
 .toolbelt {
   // align-items: center;
   // display: flex;
@@ -141,11 +158,21 @@ body {
 
 .hints {
   margin-left: 2em;
+  // margin: 0 auto;
+  // display: block;
+  // margin-left: 5.7em;
 }
+
+// #hints {
+//   // margin-left: 5.7em;
+//   position: relative;
+// }
 
 .onlyHints {
   // display: flex;
   width: max-content;
+  // margin: 0 auto;
+  // display: block;
 }
 
 // .table-responsive {
@@ -188,3 +215,90 @@ a {
 .tdLinkIcon {
   font-size: 1rem;
 }
+
+.theBody {
+  margin-top: 3em;
+}
+
+.navbar-brandMain {
+  // padding-top: 0.3125rem;
+  // padding-bottom: 0.3125rem;
+  // margin-right: 48rem;
+  margin-left: 5em;
+  // font-size: 1.25rem;
+  // text-decoration: none;
+  // white-space: nowrap;
+}
+
+.navbar-toggler {
+  // padding: 0.25rem 0.75rem;
+  margin-right: 5em;
+  // font-size: 1.25rem;
+  // line-height: 1;
+  // background-color: transparent;
+  // border: 1px solid transparent;
+  // border-radius: 0.25rem;
+  // transition: box-shadow 0.15s ease-in-out;
+}
+
+.navbar-collapse {
+  // flex-basis: 100%;
+  // flex-grow: 1;
+  // align-items: center;
+  margin-right: 5em;
+}
+
+// #footer {
+//   position: fixed;
+//   padding: 10px 10px 0px 10px;
+//   bottom: 0;
+//   width: 100%;
+//   /* Height of the footer*/
+//   height: 40px;
+//   background: grey;
+// }
+
+// .footerC {
+//   margin-top: 15em;
+// }
+
+// #page-container {
+//   position: relative;
+//   min-height: 150vh;
+// }
+
+// #content-wrap {
+//   padding-bottom: 10.5rem; /* Footer height */
+// }
+
+#footerInitial {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+#footerCrossword {
+  position: relative;
+  text-align: center;
+  // margin-top: 1em;
+}
+
+#clickMode {
+  // width: 50px;
+  width: 3em;
+}
+
+#check {
+  // width: 5em;
+  // margin: auto;
+  // text-align: center;
+  // margin-left: 25em;
+  padding: inherit;
+}
+// border: 5px solid #ffff00;
+
+// #navbarSolve {
+//   display: flex;
+//   justify-content: space-between;
+// }

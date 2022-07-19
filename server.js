@@ -42,7 +42,20 @@ router.post("/user", (req, res) => {
 
 app.use("/user", router)
 
-app.engine(".hbs", exphbs.engine({ defaultLayout: "main", extname: "hbs" }))
+const { formatName, checkIf, ifCond } = require("./helpers/hbs")
+
+app.engine(
+  ".hbs",
+  exphbs.engine({
+    helpers: {
+      formatName,
+      checkIf,
+      ifCond
+    },
+    defaultLayout: "main",
+    extname: "hbs"
+  })
+)
 app.set("view engine", ".hbs")
 
 // Sessions

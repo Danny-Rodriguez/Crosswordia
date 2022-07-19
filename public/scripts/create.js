@@ -10,6 +10,28 @@ var hintsForm = document.getElementById("hints")
 var isEditMode = true
 var theUrl
 var userUrl
+let footerR = document.getElementById("footer")
+// footerR.remove()
+var viewarea = document.getElementById("viewarea")
+var footerArea = document.getElementById("footerArea")
+
+// var footerC = document.createElement("div")
+// footerC.innerText = "Hello There"
+// footerC.appendChild(footerArea)
+
+// function footerAdder() {
+//   let footer = document.createElement("div")
+//   footer.id = "footer"
+//   footer.innerText = "Hello There"
+//   footer.append(footerArea)
+// }
+// footerAdder()
+
+// let footer = document.createElement("div")
+// footer.id = "footer"
+// footer.innerText = "Hello There"
+// footer.append(viewarea)
+
 // var theRes
 
 // creates grid based on size
@@ -68,6 +90,14 @@ for (var i = 0; i < dropdownContent.length; i++) {
     if (child.innerText === "15x15") {
       size = 15
     }
+    // function footerAdder() {
+    //   let footer = document.createElement("div")
+    //   footer.id = "footer"
+    //   footer.innerText = "Hello There"
+    //   footer.append(viewarea)
+    // }
+    // footerAdder()
+    console.log("Excuse me, I want this to work!")
     drawGrid()
   })
 }

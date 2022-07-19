@@ -4,7 +4,7 @@ const Crossword = require("../models/Crossword")
 
 router.get("/:id", async (req, res) => {
   res.render("solve", {
-    layout: "main"
+    layout: "mainSolve"
   })
 })
 

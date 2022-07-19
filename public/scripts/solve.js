@@ -1,4 +1,5 @@
 // console.log("solve.js is running")
+var userUrl
 var selectedCell = undefined
 
 await fetch(document.location.origin + document.location.pathname + "/fetch")
@@ -47,6 +48,35 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
       })
       crossGrid.append(cell)
     }
+
+    // Adds user's profile page
+    var userPageBtn = document.getElementById("userPageBtn")
+    userPageBtn.addEventListener("click", async () => {
+      let googleId
+      const example = {
+        // googleId: req.user.googleId
+        googleId: googleId
+      }
+      const test = await fetch("/user", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(example)
+      })
+        .then(res => {
+          // console.log(res)
+          // console.log(res.url)
+          // theRes = res
+          userUrl = res.url
+          console.log(res)
+        })
+        .catch(err => {
+          console.error(err)
+        })
+      document.location = `${userUrl}`
+    })
 
     window.addEventListener("keydown", event => {
       if (selectedCell === undefined) {

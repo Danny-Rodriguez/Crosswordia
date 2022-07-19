@@ -15,7 +15,7 @@ router.get("/", ensureAuth, async (req, res) => {
 // @ Route Get /login
 router.get("/login", async (req, res) => {
   res.render("login", {
-    layout: "main"
+    layout: "mainGuest"
   })
 })
 
