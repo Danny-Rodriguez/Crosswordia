@@ -47,6 +47,14 @@ router.post("/crossword", ensureAuth, async (req, res) => {
   }
 })
 
+router.get("/profile", ensureAuth, async (req, res) => {
+  var firstName = req.user.firstName
+  var image = req.user.image
+  var profileObj = { firstName, image }
+  console.log(profileObj)
+  res.json(profileObj)
+})
+
 router.post("/user", ensureAuth, async (req, res) => {
   try {
     // let crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()

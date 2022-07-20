@@ -94,7 +94,7 @@ body {
   // display: inline-block;
   display: flex;
   // flex-wrap: wrap;
-  // justify-content: center;
+  justify-content: center;
   // align-content: flex-start;
   width: min-content;
   flex-direction: column;
@@ -152,6 +152,10 @@ body {
   background: white;
 }
 
+.pCell {
+  padding-left: 5;
+}
+
 .solve {
   margin: 1.5em;
 }
@@ -168,8 +172,12 @@ body {
 //   position: relative;
 // }
 
+#hints-down {
+  margin-left: 2em;
+}
+
 .onlyHints {
-  // display: flex;
+  display: flex;
   width: max-content;
   // margin: 0 auto;
   // display: block;
@@ -216,6 +224,14 @@ a {
   font-size: 1rem;
 }
 
+// .deleteIcon {
+//   font-size: 1rem;
+// }
+
+.tdDeleteAnchor {
+  display: inline;
+}
+
 .theBody {
   margin-top: 3em;
 }
@@ -247,6 +263,10 @@ a {
   // align-items: center;
   margin-right: 5em;
 }
+
+// #dropdownUser {
+//   margin-right: 5em;
+// }
 
 // #footer {
 //   position: fixed;
@@ -302,3 +322,67 @@ a {
 //   display: flex;
 //   justify-content: space-between;
 // }
+
+// <button class="button-19" role="button">Button 19</button>
+
+/* CSS */
+.button-19 {
+  max-width: fit-content;
+  appearance: button;
+  background-color: #1899d6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px !important;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.button-19:after {
+  background-clip: padding-box;
+  background-color: #1cb0f6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.button-19:main,
+.button-19:focus {
+  user-select: auto;
+}
+
+.button-19:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.button-19:disabled {
+  cursor: auto;
+}

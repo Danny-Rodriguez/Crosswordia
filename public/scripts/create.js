@@ -34,6 +34,16 @@ var footerArea = document.getElementById("footerArea")
 
 // var theRes
 
+// fetch("/profile")
+//   .then(response => response.json())
+//   .then(profileObj => {
+//     console.log(profileObj)
+//     let profilePic = document.getElementById("profilePic")
+//     // let image = document.createElement("img")
+//     profilePic.src = profileObj.image
+//     // profilePic.appendChild(image)
+//   })
+
 // creates grid based on size
 function drawGrid() {
   var cellSize = 50
@@ -97,10 +107,35 @@ for (var i = 0; i < dropdownContent.length; i++) {
     //   footer.append(viewarea)
     // }
     // footerAdder()
-    console.log("Excuse me, I want this to work!")
+    console.log(`Excuse me, I want this to work!`)
     drawGrid()
   })
 }
+
+// var profilePic = document.getElementById("profilePic")
+// function addPic() {
+//   let firstName
+//   let image
+//   const example2 = {
+//     firstName,
+//     image
+//   }
+//   const test2 = fetch("/profile", {
+//     method: "POST",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(example2)
+//   })
+//     .then(res => {
+//       console.log("This is profilePic " + res.image)
+//     })
+//     .catch(err => {
+//       console.error(err)
+//     })
+// }
+// addPic()
 
 // Adds user's profile page
 var userPageBtn = document.getElementById("userPageBtn")
@@ -117,6 +152,7 @@ userPageBtn.addEventListener("click", async () => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(example)
+    // console.log("This is body " + body)
   })
     .then(res => {
       // console.log(res)

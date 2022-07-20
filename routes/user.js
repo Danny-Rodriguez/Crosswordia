@@ -21,11 +21,14 @@ router.get("/:googleId", ensureAuth, async (req, res) => {
 
 // router.get("/:id/fetch", async (req, res) => {
 router.get("/:googleId/fetch", ensureAuth, async (req, res) => {
-  console.log("this is routes/user.js /fetch")
+  // console.log("this is routes/user.js /fetch " + req.user.firstName + " " + req.user.image)
   let crosswordEntry = await Crossword.findOne({ googleId: req.user.googleId }).lean()
   // let crosswordEntry2 = await Crossword.find({ googleId: req.user.googleId }, { _id: 1 }).lean()
   let crosswordEntry2 = await Crossword.find({ googleId: req.user.googleId }).lean()
-  var idArr = []
+  var firstName = req.user.firstName
+  var image = req.user.image
+  var idArr = [crosswordEntry2, firstName, image]
+  console.log(idArr)
   var idObj = {}
 
   // res.json(crosswordEntry2)
@@ -37,10 +40,10 @@ router.get("/:googleId/fetch", ensureAuth, async (req, res) => {
     // idObj[i] = crosswordEntry2[i]._id.toJSON()
     // console.log(crosswordEntry2[i]._id.toJSON())
   }
-  console.log(crosswordEntry2)
-  console.log(idArr)
-  // res.json(idArr)
-  res.json(crosswordEntry2)
+  // console.log(crosswordEntry2)
+  // console.log(idArr)
+  res.json(idArr)
+  // res.json(crosswordEntry2)
 })
 
 module.exports = router

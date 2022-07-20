@@ -30,7 +30,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
 
     for (var i = 0; i < size * size; i++) {
       let cell = document.createElement("div")
-      cell.className = "cell"
+      cell.className = "cell position-relative"
       cell.id = `${i + 1}`
       if (solution.charAt(i) === "!") {
         cell.style.background = "black"
@@ -95,6 +95,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
               pElement.style.top = "-30"
               pElement.style.fontSize = 20
               pElement.innerText = `${key}`
+              console.log("line 98")
+              // position: relative;
+              // left: -50px;
+              // top: -20px;
+              // font-size: 17px;
               selectedCell.appendChild(pElement)
             }
           }
@@ -124,11 +129,29 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
                 if (value.cellId === parseInt(selectedCell.id)) {
                   let pElement = document.createElement("p")
                   pElement.style.position = "relative"
-                  pElement.style.left = "-50"
+                  // pElement.className = "position-absolute top-0 start-0 pCell"
+                  pElement.style.left = "-30"
                   pElement.style.top = "-30"
                   pElement.style.fontSize = 20
                   pElement.innerText = `${key}`
+                  console.log("line 132")
                   selectedCell.appendChild(pElement)
+
+                  if (size === 10) {
+                    let pElement = document.createElement("p")
+                    pElement.className = "position-absolute top-0 start-0 pCell"
+                    // pElement.style.right = "30"
+                    // pElement.style.top = "-20"
+                    pElement.style.fontSize = 20
+                    pElement.innerText = `${key}`
+                    console.log("line 183")
+                    selectedCell.appendChild(pElement)
+                    /* right: 30px; */
+                    // top: -20px;
+                    // font-size: 20px;
+                    // margin-right: 50;
+                  }
+
                   break
                 }
               }
@@ -155,6 +178,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
                 pElement.style.fontSize = 20
                 pElement.innerText = `${key}`
                 selectedCell.appendChild(pElement)
+                console.log("line 161")
                 break
               }
             }
@@ -171,22 +195,58 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     for (var key in hints) {
       let value = hints[key]
       let cell = document.getElementById(`${value.cellId}`)
-      let pElement = document.createElement("p")
-      pElement.style.position = "relative"
-      pElement.style.left = "-50"
-      pElement.style.top = "-30"
-      pElement.style.fontSize = 20
-      pElement.innerText = `${key}`
-      cell.appendChild(pElement)
+      if (size === 5) {
+        let pElement = document.createElement("p")
+        pElement.className = "position-relative"
+        pElement.style.right = "30"
+        pElement.style.top = "-30"
+        pElement.style.fontSize = 20
+        pElement.innerText = `${key}`
+        console.log("line 183")
+        cell.appendChild(pElement)
+      }
+      if (size === 10) {
+        let pElement = document.createElement("p")
+        pElement.className = "position-absolute top-0 start-0 pCell"
+        // pElement.style.right = "30"
+        // pElement.style.top = "-20"
+        pElement.style.fontSize = 20
+        pElement.innerText = `${key}`
+        console.log("line 183")
+        cell.appendChild(pElement)
+        /* right: 30px; */
+        // top: -20px;
+        // font-size: 20px;
+        // margin-right: 50;
+      }
+      if (size === 15) {
+        let pElement = document.createElement("p")
+        pElement.className = "position-relative"
+        pElement.style.right = "30"
+        pElement.style.top = "-30"
+        pElement.style.fontSize = 20
+        pElement.innerText = `${key}`
+        console.log("line 183")
+        cell.appendChild(pElement)
+      }
+      // console.log("size: " + size)
+      // let pElement = document.createElement("p")
+      // pElement.className = "position-relative"
+      // pElement.style.right = "30"
+      // pElement.style.top = "-30"
+      // pElement.style.fontSize = 20
+      // pElement.innerText = `${key}`
+      // console.log("line 183")
+      // cell.appendChild(pElement)
 
       if (value.isWordAcross) {
         let pAcross = document.createElement("p")
-        pAcross.innerText = `${key} Across: ${value.acrossHint}`
+        pAcross.innerText = `${key} - ${value.acrossHint}`
         hintAcross.appendChild(pAcross)
       }
       if (value.isWordDown) {
         let pDown = document.createElement("p")
-        pDown.innerText = `${key} Down: ${value.downHint}`
+        pDown.innerText = `${key} - ${value.downHint}`
         hintDown.appendChild(pDown)
       }
     }

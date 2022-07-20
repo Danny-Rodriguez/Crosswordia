@@ -10337,6 +10337,7 @@ body {
 
 .container {
   display: flex;
+  justify-content: center;
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
@@ -10381,6 +10382,10 @@ body {
   background: white;
 }
 
+.pCell {
+  padding-left: 5;
+}
+
 .solve {
   margin: 1.5em;
 }
@@ -10389,7 +10394,12 @@ body {
   margin-left: 2em;
 }
 
+#hints-down {
+  margin-left: 2em;
+}
+
 .onlyHints {
+  display: flex;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
@@ -10430,6 +10440,10 @@ a {
   font-size: 1rem;
 }
 
+.tdDeleteAnchor {
+  display: inline;
+}
+
 .theBody {
   margin-top: 3em;
 }
@@ -10464,4 +10478,75 @@ a {
 
 #check {
   padding: inherit;
+}
+
+/* CSS */
+.button-19 {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  -webkit-appearance: button;
+     -moz-appearance: button;
+          appearance: button;
+  background-color: #1899d6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px !important;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.button-19:after {
+  background-clip: padding-box;
+  background-color: #1cb0f6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.button-19:main,
+.button-19:focus {
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
+}
+
+.button-19:hover:not(:disabled) {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+}
+
+.button-19:disabled {
+  cursor: auto;
 }/*# sourceMappingURL=create.css.map */
