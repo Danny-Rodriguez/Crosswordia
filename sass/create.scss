@@ -6,6 +6,8 @@
 html,
 body {
   margin: 0;
+  // font-family: Roboto, sans-serif;
+  // font-family: var(--bs-body-font-family);
 }
 
 // body {
@@ -50,11 +52,17 @@ body {
 
 .dropbtn {
   background-color: #04aa6d;
+  // background-color: linear-gradient(40deg, #45cafc, #303f9f) !important;
+  // background: linear-gradient(40deg, #45cafc, #303f9f) !important;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
 }
+
+// .blue-gradient {
+//   background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+// }
 
 .dropdown {
   position: relative;
@@ -286,11 +294,20 @@ a {
   margin-top: 3em;
 }
 
+.navbar {
+  background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+}
+
+.navbar-brand {
+  color: rgba(255, 255, 255, 0.55);
+}
+
 .navbar-brandMain {
   // padding-top: 0.3125rem;
   // padding-bottom: 0.3125rem;
   // margin-right: 48rem;
   margin-left: 5em;
+  color: rgba(255, 255, 255, 0.55);
   // font-size: 1.25rem;
   // text-decoration: none;
   // white-space: nowrap;
@@ -341,14 +358,14 @@ a {
 //   padding-bottom: 10.5rem; /* Footer height */
 // }
 
-#footerInitial {
+.footerInitial {
   position: absolute;
   bottom: 0;
   width: 100%;
   text-align: center;
 }
 
-#footerCrossword {
+.footerCrossword {
   position: relative;
   text-align: center;
   // margin-top: 1em;

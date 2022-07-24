@@ -6,14 +6,14 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
     // console.log(userIdArr)
     var tBodyUser = document.getElementById("tBodyUser")
 
-    function UserInfo() {
-      let userArea = document.getElementById("userArea")
-      let userImage = document.createElement("img")
-      userImage.src = `${userIdArr[2]}`
-      userArea.innerText = `Hello ${userIdArr[1]}`
-      userArea.appendChild(userImage)
-    }
-    UserInfo()
+    // function UserInfo() {
+    //   let userArea = document.getElementById("userArea")
+    //   let userImage = document.createElement("img")
+    //   userImage.src = `${userIdArr[2]}`
+    //   userArea.innerText = `Hello ${userIdArr[1]}`
+    //   userArea.appendChild(userImage)
+    // }
+    // UserInfo()
 
     // for (let i = userIdArr.length - 1; i >= 0; i--) {
     for (let i = userIdArr[0].length - 1; i >= 0; i--) {

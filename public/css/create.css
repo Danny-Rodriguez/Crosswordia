@@ -10487,8 +10487,17 @@ a {
   margin-top: 3em;
 }
 
+.navbar {
+  background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+}
+
+.navbar-brand {
+  color: rgba(255, 255, 255, 0.55);
+}
+
 .navbar-brandMain {
   margin-left: 5em;
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .navbar-toggler {
@@ -10499,14 +10508,14 @@ a {
   margin-right: 5em;
 }
 
-#footerInitial {
+.footerInitial {
   position: absolute;
   bottom: 0;
   width: 100%;
   text-align: center;
 }
 
-#footerCrossword {
+.footerCrossword {
   position: relative;
   text-align: center;
 }

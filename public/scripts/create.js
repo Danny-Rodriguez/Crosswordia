@@ -53,9 +53,13 @@ function drawGrid() {
   }
   if (size === 10) {
     cellSize = 80
+    let footer = document.getElementById("footer")
+    footer.className = "footerCrossword"
   }
   if (size === 15) {
     cellSize = 50
+    let footer = document.getElementById("footer")
+    footer.className = "footerCrossword"
   }
   var crossGrid = document.getElementById("crossGrid")
   while (crossGrid.firstChild) {
