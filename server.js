@@ -42,16 +42,16 @@ router.post("/user", (req, res) => {
 
 app.use("/user", router)
 
-const { formatName, checkIf, ifCond } = require("./helpers/hbs")
+// const { formatName, checkIf, ifCond } = require("./helpers/hbs")
 
 app.engine(
   ".hbs",
   exphbs.engine({
-    helpers: {
-      formatName,
-      checkIf,
-      ifCond
-    },
+    // helpers: {
+    //   formatName,
+    //   checkIf,
+    //   ifCond
+    // },
     defaultLayout: "main",
     extname: "hbs"
   })

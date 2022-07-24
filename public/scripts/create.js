@@ -11,39 +11,6 @@ var hintsForm = document.getElementById("hints")
 var isEditMode = true
 var theUrl
 var userUrl
-let footerR = document.getElementById("footer")
-// footerR.remove()
-var viewarea = document.getElementById("viewarea")
-var footerArea = document.getElementById("footerArea")
-
-// var footerC = document.createElement("div")
-// footerC.innerText = "Hello There"
-// footerC.appendChild(footerArea)
-
-// function footerAdder() {
-//   let footer = document.createElement("div")
-//   footer.id = "footer"
-//   footer.innerText = "Hello There"
-//   footer.append(footerArea)
-// }
-// footerAdder()
-
-// let footer = document.createElement("div")
-// footer.id = "footer"
-// footer.innerText = "Hello There"
-// footer.append(viewarea)
-
-// var theRes
-
-// fetch("/profile")
-//   .then(response => response.json())
-//   .then(profileObj => {
-//     console.log(profileObj)
-//     let profilePic = document.getElementById("profilePic")
-//     // let image = document.createElement("img")
-//     profilePic.src = profileObj.image
-//     // profilePic.appendChild(image)
-//   })
 
 // creates grid based on size
 function drawGrid() {
@@ -105,72 +72,11 @@ for (var i = 0; i < dropdownContent.length; i++) {
     if (child.innerText === "15x15") {
       size = 15
     }
-    // function footerAdder() {
-    //   let footer = document.createElement("div")
-    //   footer.id = "footer"
-    //   footer.innerText = "Hello There"
-    //   footer.append(viewarea)
-    // }
-    // footerAdder()
+
     console.log(`Excuse me, I want this to work!`)
     drawGrid()
   })
 }
-
-// var profilePic = document.getElementById("profilePic")
-// function addPic() {
-//   let firstName
-//   let image
-//   const example2 = {
-//     firstName,
-//     image
-//   }
-//   const test2 = fetch("/profile", {
-//     method: "POST",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(example2)
-//   })
-//     .then(res => {
-//       console.log("This is profilePic " + res.image)
-//     })
-//     .catch(err => {
-//       console.error(err)
-//     })
-// }
-// addPic()
-
-// Adds user's profile page
-var userPageBtn = document.getElementById("userPageBtn")
-userPageBtn.addEventListener("click", async () => {
-  let googleId
-  const example = {
-    // googleId: req.user.googleId
-    googleId: googleId
-  }
-  const test = await fetch("/user", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(example)
-    // console.log("This is body " + body)
-  })
-    .then(res => {
-      // console.log(res)
-      // console.log(res.url)
-      // theRes = res
-      userUrl = res.url
-      console.log(res)
-    })
-    .catch(err => {
-      console.error(err)
-    })
-  document.location = `${userUrl}`
-})
 
 clickMode.addEventListener("click", event => {
   // changing modes
@@ -306,8 +212,6 @@ hintButton.addEventListener("click", event => {
     })
       .then(res => {
         // console.log(res)
-        // console.log(res.url)
-        // theRes = res
         theUrl = res.url
       })
       .catch(err => {

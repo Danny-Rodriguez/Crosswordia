@@ -1,11 +1,14 @@
 const express = require("express")
+const { ensureAuth, ensureAuth2 } = require("../middleware/auth")
 const router = express.Router()
 const Crossword = require("../models/Crossword")
 
-router.get("/:id", async (req, res) => {
-  res.render("solve", {
-    layout: "main"
-  })
+router.get("/:id", ensureAuth2, async (req, res) => {
+  if (ensureAuth2) {
+    res.render("solve", {
+      layout: "main"
+    })
+  }
 })
 
 router.get("/:id/fetch", async (req, res) => {
