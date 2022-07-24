@@ -1,6 +1,7 @@
 // console.log("solve.js is running")
 var userUrl
 var selectedCell = undefined
+var alphabet = /^[a-z]*$/i
 
 await fetch(document.location.origin + document.location.pathname + "/fetch")
   .then(response => response.json())
@@ -30,7 +31,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
 
     for (var i = 0; i < size * size; i++) {
       let cell = document.createElement("div")
-      cell.className = "cell position-relative"
+      // if (size === 5) {
+      //   cell.className = "cell5 position-relative"
+      // }
+      cell.className = `cell${size} position-relative`
+      // cell.className = `cell5 position-relative`
       cell.id = `${i + 1}`
       if (solution.charAt(i) === "!") {
         cell.style.background = "black"
@@ -78,33 +83,34 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
       document.location = `${userUrl}`
     })
 
+    //* Adds letter to box with hint number
     window.addEventListener("keydown", event => {
       if (selectedCell === undefined) {
         return
       }
-      if (event.key.charCodeAt(0) >= 65 && event.key.charCodeAt(0) <= 122 && event.key.length === 1) {
+      // if (event.key.charCodeAt(0) >= 65 && event.key.charCodeAt(0) <= 122 && event.key.length === 1) {
+      if (event.key.match(alphabet) && event.key.length === 1) {
         //talk about this
-        if (selectedCell.innerText !== "") {
-          selectedCell.innerText = event.key.toUpperCase()
+        // if (selectedCell.innerText !== "") {
+        if (selectedCell.innerHTML !== "") {
+          // selectedCell.innerText = event.key.toUpperCase()
+          selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
           for (let key in hints) {
             let value = hints[key]
             if (value.cellId === parseInt(selectedCell.id)) {
               let pElement = document.createElement("p")
-              pElement.style.position = "relative"
-              pElement.style.left = "-50"
-              pElement.style.top = "-30"
-              pElement.style.fontSize = 20
+              pElement.style.position = "absolute"
+              pElement.className = `pNumber${size} pCell`
+              // pElement.style.left = "10%"
+              // pElement.style.top = "0%"
+              // pElement.style.fontSize = 20
               pElement.innerText = `${key}`
               console.log("line 98")
-              // position: relative;
-              // left: -50px;
-              // top: -20px;
-              // font-size: 17px;
               selectedCell.appendChild(pElement)
             }
           }
         } else {
-          selectedCell.innerText = event.key.toUpperCase()
+          selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
         }
         // This for loop selects the next cell across
         for (var i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
@@ -116,6 +122,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
             break
           }
         }
+        //* Preserves hint number if letter is erased
       } else if (event.key === "Backspace") {
         let foundPrev = false
         for (var i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
@@ -128,29 +135,30 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
                 let value = hints[key]
                 if (value.cellId === parseInt(selectedCell.id)) {
                   let pElement = document.createElement("p")
-                  pElement.style.position = "relative"
-                  // pElement.className = "position-absolute top-0 start-0 pCell"
-                  pElement.style.left = "-30"
-                  pElement.style.top = "-30"
-                  pElement.style.fontSize = 20
+                  pElement.style.position = "absolute"
+                  pElement.className = `pNumber${size} pCell`
+                  // pElement.style.left = "10%"
+                  // pElement.style.top = "0%"
+                  // pElement.style.fontSize = 20
                   pElement.innerText = `${key}`
-                  console.log("line 132")
+                  console.log("line 140")
                   selectedCell.appendChild(pElement)
 
-                  if (size === 10) {
-                    let pElement = document.createElement("p")
-                    pElement.className = "position-absolute top-0 start-0 pCell"
-                    // pElement.style.right = "30"
-                    // pElement.style.top = "-20"
-                    pElement.style.fontSize = 20
-                    pElement.innerText = `${key}`
-                    console.log("line 183")
-                    selectedCell.appendChild(pElement)
-                    /* right: 30px; */
-                    // top: -20px;
-                    // font-size: 20px;
-                    // margin-right: 50;
-                  }
+                  // if (size === 10) {
+                  //   let pElement = document.createElement("p")
+                  //   pElement.style.position = "absolute"
+                  //   pElement.className = `pNumber${size}`
+                  //   // pElement.style.right = "30"
+                  //   // pElement.style.top = "-20"
+                  //   // pElement.style.fontSize = 20
+                  //   pElement.innerText = `${key}`
+                  //   console.log("line 183")
+                  //   selectedCell.appendChild(pElement)
+                  //   /* right: 30px; */
+                  //   // top: -20px;
+                  //   // font-size: 20px;
+                  //   // margin-right: 50;
+                  // }
 
                   break
                 }
@@ -172,10 +180,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
               let value = hints[key]
               if (value.cellId === parseInt(selectedCell.id)) {
                 let pElement = document.createElement("p")
-                pElement.style.position = "relative"
-                pElement.style.left = "-50"
-                pElement.style.top = "-30"
-                pElement.style.fontSize = 20
+                pElement.style.position = "absolute"
+                pElement.className = `pNumber${size} pCell`
+                // pElement.style.left = "10%"
+                // pElement.style.top = "0%"
+                // pElement.style.fontSize = 20
                 pElement.innerText = `${key}`
                 selectedCell.appendChild(pElement)
                 console.log("line 161")
@@ -188,6 +197,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
         }
       }
     })
+
     // Adding hints
     var hintDiv = document.getElementById("hints")
     var hintAcross = document.getElementById("hints-across")
@@ -195,49 +205,46 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     for (var key in hints) {
       let value = hints[key]
       let cell = document.getElementById(`${value.cellId}`)
-      if (size === 5) {
-        let pElement = document.createElement("p")
-        pElement.className = "position-relative"
-        pElement.style.right = "30"
-        pElement.style.top = "-30"
-        pElement.style.fontSize = 20
-        pElement.innerText = `${key}`
-        console.log("line 183")
-        cell.appendChild(pElement)
-      }
-      if (size === 10) {
-        let pElement = document.createElement("p")
-        pElement.className = "position-absolute top-0 start-0 pCell"
-        // pElement.style.right = "30"
-        // pElement.style.top = "-20"
-        pElement.style.fontSize = 20
-        pElement.innerText = `${key}`
-        console.log("line 183")
-        cell.appendChild(pElement)
-        /* right: 30px; */
-        // top: -20px;
-        // font-size: 20px;
-        // margin-right: 50;
-      }
-      if (size === 15) {
-        let pElement = document.createElement("p")
-        pElement.className = "position-relative"
-        pElement.style.right = "30"
-        pElement.style.top = "-30"
-        pElement.style.fontSize = 20
-        pElement.innerText = `${key}`
-        console.log("line 183")
-        cell.appendChild(pElement)
-      }
-      // console.log("size: " + size)
-      // let pElement = document.createElement("p")
-      // pElement.className = "position-relative"
-      // pElement.style.right = "30"
-      // pElement.style.top = "-30"
-      // pElement.style.fontSize = 20
-      // pElement.innerText = `${key}`
-      // console.log("line 183")
-      // cell.appendChild(pElement)
+
+      //* Constructs initial Hint Numbers
+      let pElement = document.createElement("p")
+      pElement.style.position = "absolute"
+      pElement.className = `pNumber${size} pCell`
+      pElement.innerText = key
+      cell.appendChild(pElement)
+
+      // if (size === 5) {
+      //   let pElement = document.createElement("p")
+      //   pElement.style.position = "absolute"
+      //   pElement.className = `pNumber${size} pCell`
+      //   //position-relative
+      //   // pElement.style.fontSize = 20
+      //   pElement.innerText = key
+      //   // console.log("line 183")
+      //   cell.appendChild(pElement)
+      // }
+      // if (size === 10) {
+      //   let pElement = document.createElement("p")
+      //   pElement.style.position = "absolute"
+      //   pElement.className = `pNumber${size} pCell`
+      //   //! pElement.className = "position-absolute top-0 start-0 pCell"
+      //   // pElement.style.fontSize = 20
+      //   pElement.innerText = `${key}`
+      //   // let pLetter = document.getElementsByClassName("pLetter")
+      //   // pLetter.style.fontSize = 2
+      //   console.log("line 183")
+      //   cell.appendChild(pElement)
+      // }
+      // if (size === 15) {
+      //   let pElement = document.createElement("p")
+      //   pElement.className = "position-relative"
+      //   pElement.style.right = "30"
+      //   pElement.style.top = "-30"
+      //   pElement.style.fontSize = 20
+      //   pElement.innerText = `${key}`
+      //   console.log("line 183")
+      //   cell.appendChild(pElement)
+      // }
 
       if (value.isWordAcross) {
         let pAcross = document.createElement("p")
