@@ -1,12 +1,26 @@
-<div class="container">
-  <div class="grid" id="crossGrid"></div>
+<div class="solve d-sm-flex justify-content-between">
+  <!-- d-sm-flex-->
+  <div class="container">
+    <text>Hi There</text>
+    <div class="grid" id="crossGrid"></div>
+
+  </div>
+  <div class="hints d-flex align-items-start flex-column" id="hints">
+    <h1 class="end-0">Hints</h1>
+    <div class="onlyHints">
+      {{! <div id="hints-across"></div>
+      <div id="hints-down"></div> }}
+      {{! <div class="d-flex justify-content-start" id="hints-across"><h3>Across</h3></div> }}
+      <div id="hints-across"><h3>Across</h3></div>
+      <div id="hints-down"><h3>Down</h3></div>
+    </div>
+    {{! <button id="check">Check my Answer</button> }}
+    <button id="check" class="button-19" role="button">Check my Answer</button>
+  </div>
 
 </div>
-<div id="hints">
-  <div id="hints-across"></div>
-  <div id="hints-down"></div>
-</div>
-<button id="check">Check my Answer</button>
 
 <script src="/scripts/solve.js" type="module"></script>
-<link rel="stylesheet" href="/css/create.css" />
+
+{{! align-items-center justify-content-between  align-items-center }}
+<link rel="stylesheet" type="text/css" href="/css/create.css" />

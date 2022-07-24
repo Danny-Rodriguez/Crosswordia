@@ -15,6 +15,10 @@ const Crossword = new mongoose.Schema({
   },
   hints: {
     type: Object
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 })
 
