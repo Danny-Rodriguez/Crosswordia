@@ -20,9 +20,13 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     }
     if (size === 10) {
       cellSize = 80
+      let footer = document.getElementById("footer")
+      footer.className = "footerCrossword"
     }
     if (size === 15) {
       cellSize = 50
+      let footer = document.getElementById("footer")
+      footer.className = "footerCrossword"
     }
 
     crossGrid.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`

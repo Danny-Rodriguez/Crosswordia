@@ -15,16 +15,16 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
     // }
     // UserInfo()
 
-    // for (let i = userIdArr.length - 1; i >= 0; i--) {
-    for (let i = userIdArr[0].length - 1; i >= 0; i--) {
+    for (let i = userIdArr.length - 1; i >= 0; i--) {
+      // for (let i = userIdArr[0].length - 1; i >= 0; i--) {
       var trUserCrossword = document.createElement("tr")
       trUserCrossword.className = "trUserCrossword"
       trUserCrossword.id = `${i + 1}`
 
       function DateF() {
         let tdUserCrossword = document.createElement("td")
-        // let dateC = new Date(userIdArr[i].createdAt)
-        let dateC = new Date(userIdArr[0][i].createdAt)
+        let dateC = new Date(userIdArr[i].createdAt)
+        // let dateC = new Date(userIdArr[0][i].createdAt)
         let options = { year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric" }
         tdUserCrossword.innerText = new Intl.DateTimeFormat("en-US", options).format(dateC)
         tdUserCrossword.className = "tdDate"
@@ -34,8 +34,8 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
 
       function SizeF() {
         let tdUserCrossword = document.createElement("td")
-        // tdUserCrossword.innerText = `${userIdArr[i].size}x${userIdArr[i].size}`
-        tdUserCrossword.innerText = `${userIdArr[0][i].size}x${userIdArr[0][i].size}`
+        tdUserCrossword.innerText = `${userIdArr[i].size}x${userIdArr[i].size}`
+        // tdUserCrossword.innerText = `${userIdArr[0][i].size}x${userIdArr[0][i].size}`
         tdUserCrossword.className = "tdSize"
         trUserCrossword.appendChild(tdUserCrossword)
       }
@@ -43,8 +43,8 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
 
       function SolutionF() {
         let tdUserCrossword = document.createElement("td")
-        // tdUserCrossword.innerText = userIdArr[i].solution
-        tdUserCrossword.innerText = userIdArr[0][i].solution
+        tdUserCrossword.innerText = userIdArr[i].solution
+        // tdUserCrossword.innerText = userIdArr[0][i].solution
         tdUserCrossword.className = "tdSolution"
         trUserCrossword.appendChild(tdUserCrossword)
       }
@@ -56,8 +56,8 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
         let tdAnchor = document.createElement("a")
         let linkIcon = document.createElement("i")
         linkIcon.className = "bi bi-link-45deg tdLinkIcon"
-        tdAnchor.href = `${document.location.origin + "/solve/" + userIdArr[0][i]._id}`
-        // tdAnchor.href = `${document.location.origin + "/solve/" + userIdArr[i]._id}`
+        // tdAnchor.href = `${document.location.origin + "/solve/" + userIdArr[0][i]._id}`
+        tdAnchor.href = `${document.location.origin + "/solve/" + userIdArr[i]._id}`
         tdAnchor.innerText = "Go to Crossword"
         tdAnchor.appendChild(linkIcon)
         tdUserCrossword.appendChild(tdAnchor)
@@ -73,8 +73,8 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
         deleteIcon.className = "bi bi-trash deleteIcon"
         tdDeleteAnchor.className = "btn btn-outline-danger tdDeleteAnchor"
         // tdDeleteAnchor.style.display: "inline"
-        tdDeleteAnchor.href = `${document.location.origin + "/delete/" + userIdArr[0][i]._id}`
-        // tdDeleteAnchor.href = `${document.location.origin + "/delete/" + userIdArr[i]._id}`
+        // tdDeleteAnchor.href = `${document.location.origin + "/delete/" + userIdArr[0][i]._id}`
+        tdDeleteAnchor.href = `${document.location.origin + "/delete/" + userIdArr[i]._id}`
         // tdDeleteAnchor.innerText = "Delete"
         tdDeleteAnchor.appendChild(deleteIcon)
         tdUserCrossword.appendChild(tdDeleteAnchor)

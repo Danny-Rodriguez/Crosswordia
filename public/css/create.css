@@ -10431,10 +10431,16 @@ body {
 
 .hints {
   margin-left: 2em;
+  max-width: 30%;
+  align-items: center;
+  text-align: center;
 }
 
 #hints-down {
   margin-left: 2em;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
 .onlyHints {

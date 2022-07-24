@@ -220,6 +220,9 @@ body {
 
 .hints {
   margin-left: 2em;
+  max-width: 30%;
+  align-items: center;
+  text-align: center;
   // margin: 0 auto;
   // display: block;
   // margin-left: 5.7em;
@@ -232,11 +235,13 @@ body {
 
 #hints-down {
   margin-left: 2em;
+  max-width: fit-content;
 }
 
 .onlyHints {
   display: flex;
   width: max-content;
+  // margin-left: 2em;
   // margin: 0 auto;
   // display: block;
 }
@@ -382,6 +387,7 @@ a {
   // text-align: center;
   // margin-left: 25em;
   padding: inherit;
+  // margin-left: 20%;
 }
 // border: 5px solid #ffff00;
 
