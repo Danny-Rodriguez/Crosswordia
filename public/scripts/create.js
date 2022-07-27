@@ -44,16 +44,19 @@ function drawGrid() {
       if (!isEditMode) {
         return
       }
-      if (clickMode.innerText === "box") {
+      //* Did not change button color
+      if (clickMode.innerText === "Add a Box") {
         cell.style.background = "yellow"
+        // clickMode.className = "button-50"
 
         if (selectedCell != undefined && selectedCell !== cell) {
           selectedCell.style.background = "white"
         }
         selectedCell = cell
-      } else if (clickMode.innerText === "type") {
+      } else if (clickMode.innerText === "Start Typing") {
         cell.style.background = "black"
         cell.innerText = ""
+        // clickMode.className = "button-50-w"
       }
     })
     crossGrid.append(cell)
@@ -77,15 +80,17 @@ for (var i = 0; i < dropdownContent.length; i++) {
     drawGrid()
   })
 }
-
+//* This changed the color
 clickMode.addEventListener("click", event => {
   // changing modes
-  if (clickMode.innerText === "box") {
-    clickMode.innerText = "type"
+  if (clickMode.innerText === "Add a Box") {
+    clickMode.innerText = "Start Typing"
+    clickMode.className = "button-50-w"
     // unselecting the cell
     selectedCell.style.background = "white"
-  } else if (clickMode.innerText === "type") {
-    clickMode.innerText = "box"
+  } else if (clickMode.innerText === "Start Typing") {
+    clickMode.innerText = "Add a Box"
+    clickMode.className = "button-50"
   }
   selectedCell = undefined
 })

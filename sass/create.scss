@@ -17,6 +17,8 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: #f1f1f1;
+  -webkit-font-smoothing: antialiased;
   // font-family: Roboto, sans-serif;
   // font-family: var(--bs-body-font-family);
 }
@@ -62,13 +64,19 @@ body {
 }
 
 .dropbtn {
-  background-color: #04aa6d;
+  // background-color: hsl(158, 95%, 34%);
+  background-color: hsl(216, 100%, 50%);
   // background-color: linear-gradient(40deg, #45cafc, #303f9f) !important;
   // background: linear-gradient(40deg, #45cafc, #303f9f) !important;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
+}
+
+.dropdown:hover .dropbtn {
+  // background-color: hsl(122, 39%, 40%);
+  background-color: hsl(216, 74%, 41%);
 }
 
 // .blue-gradient {
@@ -104,10 +112,6 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
 }
 
 .container {
@@ -359,6 +363,7 @@ a {
 .dropdown-menu.show {
   min-width: auto;
   width: -webkit-fill-available;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
 }
 
 a.profile-drop,
@@ -458,7 +463,7 @@ a.profile-drop:active {
 
 #clickMode {
   // width: 50px;
-  width: 3em;
+  width: 12em;
 }
 
 #check {
@@ -623,3 +628,221 @@ a.profile-drop:active {
 .button-22:hover {
   background-color: #1c84ff;
 }
+
+// <!-- HTML !-->
+// <button class="button-58" role="button">Button 58</button>
+
+/* CSS */
+.button-58 {
+  align-items: center;
+  background-color: hsl(216, 100%, 50%);
+  border: 2px solid hsl(216, 100%, 50%);
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-58:focus {
+  color: #171e29;
+}
+
+.button-58:hover {
+  background-color: #3385ff;
+  border-color: #3385ff;
+  fill: #06f;
+}
+
+.button-58:active {
+  background-color: #3385ff;
+  border-color: #3385ff;
+  fill: #06f;
+}
+
+@media (min-width: 768px) {
+  .button-58 {
+    min-width: 170px;
+  }
+}
+
+// <!-- HTML !-->
+// <button class="button-66" role="button">Button 66</button>
+
+/* CSS */
+.button-66 {
+  background-color: hsl(216, 100%, 52%);
+  border-radius: 4px;
+  border: 0;
+  box-shadow: rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset, rgba(0, 44, 97, 0.1) 0 3px 6px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inherit;
+  font-family: "Space Grotesk", -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+  min-height: 56px;
+  min-width: 120px;
+  padding: 16px 20px;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  transition: all 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.button-66:hover {
+  background-color: #065dd8;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-66 {
+    padding: 16px 44px;
+    min-width: 150px;
+  }
+}
+
+// <!-- HTML !-->
+// <button class="button-50" role="button">Button 50</button>
+
+/* CSS */
+.button-50 {
+  appearance: button;
+  background-color: hsl(0, 0%, 0%);
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: hsl(0, 0%, 100%) 4px 4px 0 0, hsl(0, 0%, 0%) 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  display: inline-block;
+  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-50-w {
+  appearance: button;
+  background-color: hsl(0, 0%, 100%);
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: hsl(0, 0%, 0%) 4px 4px 0 0, hsl(0, 0%, 100%) 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: hsl(0, 0%, 0%);
+  cursor: pointer;
+  display: inline-block;
+  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-50:focus {
+  text-decoration: none;
+  // background-color: pink;
+}
+
+.button-50:hover {
+  text-decoration: none;
+  // background-color: pink;
+}
+
+// .button-50:active {
+//   box-shadow: hsla(0, 0%, 0%, 0.125) 0 3px 5px inset;
+//   outline: 0;
+//   // background-color: #000;
+//   // background-color: pink;
+// }
+
+.button-50:not([disabled]):active {
+  box-shadow: hsl(0, 0%, 100%) 2px 2px 0 0, hsl(0, 0%, 0%) 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+.button-50-w:not([disabled]):active {
+  box-shadow: hsl(0, 0%, 0%) 2px 2px 0 0, hsl(0, 0%, 100%) 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-50 {
+    padding: 12px 50px;
+  }
+}
+
+// <!-- HTML !-->
+// <button class="button-43" role="button">Button 43</button>
+
+/* CSS */
+.button-43 {
+  background-image: linear-gradient(-180deg, #37aee2 0%, #1e96c8 100%);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #ffffff;
+  width: auto !important;
+  font-size: 16px;
+  justify-content: center;
+  padding: 16;
+  text-decoration: none;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-43:hover {
+  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
+}
+
+// @media (min-width: 768px) {
+//   .button-43 {
+//     padding: 1rem 2rem;
+//   }
+// }
