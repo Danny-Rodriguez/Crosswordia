@@ -10275,6 +10275,7 @@ html,
 body {
   margin: 0;
   display: flex;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -10524,6 +10525,10 @@ a {
   color: rgb(0, 105, 255) !important;
 }
 
+.profile-drop {
+  margin-bottom: 2;
+}
+
 .dropdown-menu.show {
   min-width: auto;
   width: -webkit-fill-available;
@@ -10548,17 +10553,7 @@ a.profile-drop:active {
   color: hsl(0deg, 0%, 75%);
 }
 
-#navbar-dropdown {
-  padding: 5px;
-  /* max-width: min-content; */
-}
-
 .dropdown-toggle::after {
-  vertical-align: baseline;
-}
-
-.dropdown-toggle::after {
-  /* vertical-align: 0.255em; */
   vertical-align: baseline;
 }
 
@@ -10583,7 +10578,8 @@ a.profile-drop:active {
 }
 
 .footerInitial {
-  position: absolute;
+  position: -webkit-sticky;
+  position: sticky;
   bottom: 0;
   text-align: center;
 }
