@@ -1,21 +1,33 @@
 // This file will run on every single webpage
 
 var userUrl
+// var profileName = document.getElementById("profileName")
 
 fetch("/profile")
   .then(response => response.json())
   .then(profileObj => {
     console.log("Main.js profileObj: " + profileObj.firstName)
+    // let profileName = document.getElementById("profileName")
+    let profileName = document.getElementsByClassName("profileName")
+    Array.from(profileName).forEach(element => {
+      element.innerText = "Danny"
+    })
+    // profileName.innerText = profileObj.firstName
     let profilePic = document.getElementById("profilePic")
+    profilePic.src = `${profileObj.image}`
     // let image = document.createElement("img")
-    localStorage.setItem("profilePic", `${profileObj.image}`)
+    // localStorage.setItem("profilePic", `${profileObj.image}`)
+    // localStorage.setItem("profileName", `${profileObj.firstName}`)
     // profilePic.src = profileObj.image
     // if (profilePic.src === "") {
     // }
-    profilePic.src = localStorage.getItem("profilePic")
-    console.log(profilePic.src)
-    let profileName = document.getElementById("profileName")
-    profileName.innerText = profileObj.firstName
+    // profilePic.src = localStorage.getItem("profilePic")
+    // console.log(profilePic.src)
+
+    // profileName.innerText = `${profileObj.firstName}`
+
+    // profileName.innerText = localStorage.getItem("profileName")
+    console.log("profileName: " + profileName)
     // profilePic.appendChild(image)
   })
 
