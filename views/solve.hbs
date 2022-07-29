@@ -1,23 +1,26 @@
-{{! <div class="solve d-sm-flex justify-content-between"> }}
 <div class="solve d-flex justify-content-center wrap1000">
-  {{! <div class="solve container justify-content-btween"> }}
-  <!-- d-sm-flex-->
+
   <div class="container">
-    <text>Hi There</text>
+    <text class="text-center lead" style="margin-bottom: 1em;">Can You Solve This Crossword? Good Luck!</text>
     <div class="grid" id="crossGrid"></div>
 
   </div>
   <div class="hints container" id="hints">
     <h1 class="h1Hints text-center">Hints</h1>
     <div class="onlyHints">
-      {{! <div id="hints-across"></div>
-      <div id="hints-down"></div> }}
-      {{! <div class="d-flex justify-content-start" id="hints-across"><h3>Across</h3></div> }}
       <div id="hints-across"><h3>Across</h3></div>
       <div id="hints-down"><h3>Down</h3></div>
     </div>
     {{! <button id="check">Check my Answer</button> }}
     <button id="check" class="button-19" role="button">Check my Answer</button>
+    {{! <button id="check" class="button-82-pushable" role="button">Check my Answer</button> }}
+    {{! <button id="check" class="button-82-pushable" role="button" style="display:none">
+      <span class="button-82-shadow"></span>
+      <span class="button-82-edge"></span>
+      <span class="button-82-front text">
+        Check my Answer
+      </span>
+    </button> }}
   </div>
 
 </div>

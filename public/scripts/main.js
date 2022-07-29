@@ -54,7 +54,6 @@ userPageBtn.addEventListener("click", async () => {
       userUrl = res.url
       let copyUrl = document.getElementById("copyUrl")
       copyUrl.innerText = `${userUrl}`
-      // console.log("This is solve.js res: " + res)
     })
     .catch(err => {
       console.error(err)

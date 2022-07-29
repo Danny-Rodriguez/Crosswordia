@@ -1,6 +1,6 @@
 <div class="toolbelt">
   <div class="dropdown">
-    <button class="dropbtn">Crossword Puzzle Size</button>
+    <button class="dropbtn dropdown-toggle">Crossword Puzzle Size</button>
     <div class="dropdown-content">
       <a href="#">5x5</a>
       <a href="#">10x10</a>
@@ -20,8 +20,29 @@
 
   </div>
 
-  <div id="hints"></div>
+  <div id="hints" class="hintsCreate">
+    <div id="hints-input-across"><h3 id="h3-across" class="text-center"></h3></div>
+    <div id="hints-input-down"><h3 id="h3-down" class="text-center"></h3></div>
+    <button id="hintSubmit" class="button-82-pushable" role="button" style="display:none">
+      <span class="button-82-shadow"></span>
+      <span class="button-82-edge"></span>
+      <span class="button-82-front text">
+        Submit
+      </span>
+    </button>
+  </div>
+
+  {{! <div id="hints">
+    <button id="hintSubmit" class="button-82-pushable" role="button" style="display:none">
+      <span class="button-82-shadow"></span>
+      <span class="button-82-edge"></span>
+      <span class="button-82-front text">
+        Submit
+      </span>
+    </button>
+  </div> }}
 </div>
+<div id="hintsHidden" style="display: none"></div>
 
 <script src="/scripts/create.js" type="module"></script>
 <link rel="stylesheet" href="/css/create.css" />

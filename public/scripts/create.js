@@ -7,6 +7,7 @@ var selectedCell = undefined
 var size = undefined
 var hintMapper = {}
 var totalHints = 0
+var hintsHidden = document.getElementById("hintsHidden")
 var hintsForm = document.getElementById("hints")
 var isEditMode = true
 var theUrl
@@ -53,7 +54,7 @@ function drawGrid() {
           selectedCell.style.background = "white"
         }
         selectedCell = cell
-      } else if (clickMode.innerText === "Start Typing") {
+      } else if (clickMode.innerText === "Activate Typing") {
         cell.style.background = "black"
         cell.innerText = ""
         // clickMode.className = "button-50-w"
@@ -84,11 +85,11 @@ for (var i = 0; i < dropdownContent.length; i++) {
 clickMode.addEventListener("click", event => {
   // changing modes
   if (clickMode.innerText === "Add a Box") {
-    clickMode.innerText = "Start Typing"
+    clickMode.innerText = "Activate Typing"
     clickMode.className = "button-50-w"
     // unselecting the cell
     selectedCell.style.background = "white"
-  } else if (clickMode.innerText === "Start Typing") {
+  } else if (clickMode.innerText === "Activate Typing") {
     clickMode.innerText = "Add a Box"
     clickMode.className = "button-50"
   }
@@ -139,6 +140,17 @@ hintButton.addEventListener("click", event => {
     selectedCell = undefined
   }
 
+  let crossGrid = document.getElementById("crossGrid")
+  for (let i = 0; i < crossGrid.childNodes.length; i++) {
+    if (crossGrid.childNodes[i].innerText === "") {
+      alert("Hey you forgot to fill out the whole crossword!")
+      return
+    }
+  }
+
+  var hintsAcross = document.getElementById("hints-input-across")
+  var hintsDown = document.getElementById("hints-input-down")
+
   handleHints()
   isEditMode = false
   // hide unnecessary buttons
@@ -154,9 +166,6 @@ hintButton.addEventListener("click", event => {
     let pElement = document.createElement("p")
     pElement.style.position = "absolute"
     pElement.className = `pNumber${size} pCell`
-    // pElement.style.left = "-50"
-    // pElement.style.top = "-30"
-    // pElement.style.fontSize = 20
     pElement.innerText = `${i}`
     cell.appendChild(pElement)
     // add a hint for submission
@@ -165,34 +174,75 @@ hintButton.addEventListener("click", event => {
       hintInput.setAttribute("type", "text")
       hintInput.setAttribute("name", `${i}:across`)
       hintInput.setAttribute("placeholder", `${i} Across`)
-      hintsForm.appendChild(hintInput)
+      // hintsAcross.appendChild("<h3>Across</h3>")
+      let h3across = document.getElementById("h3-across")
+      h3across.innerText = "Across"
+      hintsAcross.appendChild(hintInput)
+      hintsHidden.appendChild(hintInput.cloneNode(true))
+      // hintsForm.appendChild(hintInput)
     }
     if (hintObj.isWordDown) {
       let hintInput = document.createElement("input")
       hintInput.setAttribute("type", "text")
       hintInput.setAttribute("name", `${i}:down`)
       hintInput.setAttribute("placeholder", `${i} Down`)
-      hintsForm.appendChild(hintInput)
+      // hintsDown.innerHTML = "<h3>Down</h3>"
+      let h3down = document.getElementById("h3-down")
+      h3down.innerText = "Down"
+      hintsDown.appendChild(hintInput)
+      hintsHidden.appendChild(hintInput.cloneNode(true))
+      // hintsForm.appendChild(hintInput)
     }
   }
 
-  let submitBtn = document.createElement("button")
-
-  submitBtn.id = "hintSubmit"
-  submitBtn.innerText = "submit"
+  // let submitBtn = document.createElement("button")
+  let submitBtn = document.getElementById("hintSubmit")
+  submitBtn.style.display = "block"
+  // submitBtn.id = "hintSubmit"
+  // // submitBtn.className = "button-82-pushable"
+  // submitBtn.innerText = "submit"
   submitBtn.addEventListener("click", async () => {
-    let hintValues = hintsForm.children
-    for (var j = 0; j < hintValues.length; j++) {
-      let hintValue = hintValues[j]
+    // let hintValues = hintsForm.children
+    // let hintValues = hintsHidden.children
+    // for (var j = 0; j < hintValues.length; j++) {
+    //   let hintValue = hintValues[j]
+    //   let hintInfo = hintValue.name.split(":")
+    //   let hintNumber = parseInt(hintInfo[0])
+    //   if (hintInfo[1] === "across") {
+    //     hintMapper[hintNumber].acrossHint = hintValue.value
+    //   }
+    //   if (hintInfo[1] === "down") {
+    //     hintMapper[hintNumber].downHint = hintValue.value
+    //   }
+    // }
+
+    let hintValuesAcross = hintsAcross.children
+    for (let g = 1; g < hintValuesAcross.length; g++) {
+      let hintValue = hintValuesAcross[g]
       let hintInfo = hintValue.name.split(":")
       let hintNumber = parseInt(hintInfo[0])
       if (hintInfo[1] === "across") {
         hintMapper[hintNumber].acrossHint = hintValue.value
       }
+    }
+
+    let hintValuesDown = hintsDown.children
+    for (let n = 1; n < hintValuesDown.length; n++) {
+      let hintValue = hintValuesDown[n]
+      let hintInfo = hintValue.name.split(":")
+      let hintNumber = parseInt(hintInfo[0])
       if (hintInfo[1] === "down") {
         hintMapper[hintNumber].downHint = hintValue.value
       }
     }
+
+    for (const key in hintMapper) {
+      if (hintMapper[key].acrossHint === "" || hintMapper[key].downHint === "") {
+        alert("Oops! You forgot to fill out all the hints!")
+        return
+      }
+    }
+
     let solutionStr = ""
     for (var k = 1; k <= size * size; k++) {
       let tempCell = document.getElementById(`${k}`)
@@ -207,6 +257,7 @@ hintButton.addEventListener("click", event => {
       solution: solutionStr,
       hints: hintMapper
     }
+    console.log(example)
     const test = await fetch("/crossword", {
       method: "POST",
       headers: {
@@ -224,6 +275,7 @@ hintButton.addEventListener("click", event => {
       })
     document.location = `${theUrl}`
   })
+  // hintsHidden.appendChild(submitBtn)
   hintsForm.appendChild(submitBtn)
 })
 

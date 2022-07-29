@@ -20,6 +20,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     var cellSize = 50
     if (size === 5) {
       cellSize = 100
+      let footer = document.getElementById("footer")
+      footer.className = "footerCrossword"
     }
     if (size === 10) {
       cellSize = 80
@@ -213,6 +215,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     var hintDown = document.getElementById("hints-down")
     for (var key in hints) {
       let value = hints[key]
+      // console.log(value)
       let cell = document.getElementById(`${value.cellId}`)
 
       //* Constructs initial Hint Numbers
