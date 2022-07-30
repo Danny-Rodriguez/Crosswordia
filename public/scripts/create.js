@@ -141,6 +141,10 @@ hintButton.addEventListener("click", event => {
   }
 
   let crossGrid = document.getElementById("crossGrid")
+  if (crossGrid.children.length === 0) {
+    alert("Hey you gotta choose a Crossword size first!")
+    return
+  }
   for (let i = 0; i < crossGrid.childNodes.length; i++) {
     if (crossGrid.childNodes[i].innerText === "") {
       alert("Hey you forgot to fill out the whole crossword!")

@@ -3,30 +3,42 @@ const { ensureAuth, ensureAuth2 } = require("../middleware/auth")
 const router = express.Router()
 const Crossword = require("../models/Crossword")
 
-router.get("/:id", ensureAuth2, async (req, res) => {
+router.get("/:id", ensureAuth2, async (req, res, next) => {
+  try {
+    let crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
+  } catch (error) {
+    console.log("Get /:id")
+    res.status(404)
+    return res.render("error/404", {
+      layout: "mainGuest"
+    })
+    // next("")
+  }
   if (ensureAuth2) {
-    res.render("solve", {
+    return res.render("solve", {
       layout: "main"
     })
   }
 })
 
 router.get("/:id/fetch", async (req, res) => {
-  // let size
-  // let googleId = req.user.googleId
-  // let _id = req.params.id
-  // console.log("This is routes/solve.js /:id/fetch")
-  let crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
-  // let crosswordEntry2 = await Crossword.find({ googleId: req.user.googleId }, { _id: 1 }).lean()
-  // console.log(crosswordEntry)
-  res.json(crosswordEntry)
-  // console.log(req.params.id)
-  // console.log(crosswordEntry2[0]._id.toJSON())
-  // for (var i = 0; i < crosswordEntry2.length; i++) {
-  //   console.log(crosswordEntry2[i]._id.toJSON())
-  // }
+  try {
+    var crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
+  } catch (error) {
+    console.log("Get /:id/fetch")
+    res.status(404)
+    return res.render("error/404", {
+      layout: "mainGuest"
+    })
+  }
+  return res.json(crosswordEntry)
+})
 
-  // res.json(crosswordEntry2)
+router.all("*", (req, res) => {
+  res.status(404)
+  return res.render("error/404", {
+    layout: "mainGuest"
+  })
 })
 
 module.exports = router

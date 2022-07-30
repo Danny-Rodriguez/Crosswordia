@@ -10276,17 +10276,23 @@ textarea.form-control-lg {
     bottom: 0;
     text-align: center;
   }
+  .hintsCreate {
+    flex-direction: row !important;
+  }
 }
 html,
 body {
   margin: 0;
+  background-color: #f1f1f1;
+  -webkit-font-smoothing: antialiased;
+}
+
+#bodyId {
   display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #f1f1f1;
-  -webkit-font-smoothing: antialiased;
 }
 
 .banner {
@@ -10594,8 +10600,7 @@ a.profile-drop:active {
 }
 
 .footerInitial {
-  position: -webkit-sticky;
-  position: sticky;
+  position: absolute;
   bottom: 0;
   text-align: center;
 }

@@ -51,7 +51,7 @@ router.get("/profile", ensureAuth, async (req, res) => {
   var firstName = req.user.firstName
   var image = req.user.image
   var profileObj = { firstName, image }
-  console.log(profileObj)
+  // console.log('index.js profileObj: ' + profileObj)
   res.json(profileObj)
 })
 
@@ -62,5 +62,19 @@ router.post("/user", ensureAuth, async (req, res) => {
     console.error(error)
   }
 })
+
+// router.post("/solve", async (req, res) => {
+//   try {
+//     res.redirect(`/solve/` + req.params.id)
+//     // res.redirect(`/user/` + req.user.googleId)
+//   } catch (error) {
+//     console.error(error)
+//   }
+// })
+
+// router.all("*", (req, res) => {
+//   res.status(404)
+//   res.render("error/404")
+// })
 
 module.exports = router
