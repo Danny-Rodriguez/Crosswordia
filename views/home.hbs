@@ -13,11 +13,23 @@
 
 </div>
 
-<div class="d-flex wrap1000">
+<div class="solveArea wrap1000">
   <div class="container">
 
-    <div class="grid" id="crossGrid"></div>
+    <div class="wrapper">
+      <div id="thesaurus" class="thesaurusI">
+        <h1 class="text-center">Online Thesaurus</h1>
+        {{! <form id="word-form" onsubmit="dict(event)"> }}
+        <form id="word-form">
+          <label for="word">Input a Word</label>
+          <input id="word" type="text" />
+          <button id="dictSubmit">Search</button>
+        </form>
+        <ul id="listDict"></ul>
+      </div>
+      <div class="grid" id="crossGrid"></div>
 
+    </div>
   </div>
 
   <div id="hints" class="hintsCreate">
@@ -32,15 +44,6 @@
     </button>
   </div>
 
-  {{! <div id="hints">
-    <button id="hintSubmit" class="button-82-pushable" role="button" style="display:none">
-      <span class="button-82-shadow"></span>
-      <span class="button-82-edge"></span>
-      <span class="button-82-front text">
-        Submit
-      </span>
-    </button>
-  </div> }}
 </div>
 <div id="hintsHidden" style="display: none"></div>
 

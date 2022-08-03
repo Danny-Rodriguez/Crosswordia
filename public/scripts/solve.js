@@ -1,4 +1,3 @@
-// console.log("solve.js is running")
 var userUrl
 var selectedCell = undefined
 var alphabet = /^[a-z]*$/i
@@ -40,11 +39,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
 
     for (var i = 0; i < size * size; i++) {
       let cell = document.createElement("div")
-      // if (size === 5) {
-      //   cell.className = "cell5 position-relative"
-      // }
       cell.className = `cell${size} position-relative`
-      // cell.className = `cell5 position-relative`
       cell.id = `${i + 1}`
       if (solution.charAt(i) === "!") {
         cell.style.background = "black"
@@ -63,65 +58,45 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
       crossGrid.append(cell)
     }
 
-    // // Adds user's profile page
-    // var userPageBtn = document.getElementById("userPageBtn")
-    // userPageBtn.addEventListener("click", async () => {
-    //   let googleId
-    //   const example = {
-    //     // googleId: req.user.googleId
-    //     googleId: googleId
-    //   }
-    //   const test = await fetch("/user", {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify(example)
-    //   })
-    //     .then(res => {
-    //       // console.log(res)
-    //       // console.log(res.url)
-    //       // theRes = res
-    //       userUrl = res.url
-    //       let copyUrl = document.getElementById("copyUrl")
-    //       copyUrl.innerText = userUrl
-    //       console.log("This is solve.js res: " + res)
-    //     })
-    //     .catch(err => {
-    //       console.error(err)
-    //     })
-    //   document.location = `${userUrl}`
-    // })
-
     //* Adds letter to box with hint number
     window.addEventListener("keydown", event => {
       if (selectedCell === undefined) {
         return
       }
-      // if (event.key.charCodeAt(0) >= 65 && event.key.charCodeAt(0) <= 122 && event.key.length === 1) {
       if (event.key.match(alphabet) && event.key.length === 1) {
-        //talk about this
-        // if (selectedCell.innerText !== "") {
         if (selectedCell.innerHTML !== "") {
-          // selectedCell.innerText = event.key.toUpperCase()
-          selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
+          // selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
+          if (size === 5) {
+            selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
+          }
+          if (size === 10) {
+            selectedCell.innerHTML = `<p class="position-absolute pLetter10">${event.key.toUpperCase()}</p>`
+          }
+          if (size === 15) {
+            selectedCell.innerHTML = `<p class="position-absolute pLetter15">${event.key.toUpperCase()}</p>`
+          }
           for (let key in hints) {
             let value = hints[key]
             if (value.cellId === parseInt(selectedCell.id)) {
               let pElement = document.createElement("p")
               pElement.style.position = "absolute"
               pElement.className = `pNumber${size} pCell`
-              // pElement.style.left = "10%"
-              // pElement.style.top = "0%"
-              // pElement.style.fontSize = 20
               pElement.innerText = `${key}`
               console.log("line 98")
               selectedCell.appendChild(pElement)
             }
           }
         } else {
-          selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
+          // selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
+          if (size === 5) {
+            selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
+          }
+          if (size === 10) {
+            selectedCell.innerHTML = `<p class="position-absolute pLetter10">${event.key.toUpperCase()}</p>`
+          }
+          if (size === 15) {
+            selectedCell.innerHTML = `<p class="position-absolute pLetter15">${event.key.toUpperCase()}</p>`
+          }
         }
         // This for loop selects the next cell across
         for (var i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
@@ -148,29 +123,9 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
                   let pElement = document.createElement("p")
                   pElement.style.position = "absolute"
                   pElement.className = `pNumber${size} pCell`
-                  // pElement.style.left = "10%"
-                  // pElement.style.top = "0%"
-                  // pElement.style.fontSize = 20
                   pElement.innerText = `${key}`
                   console.log("line 140")
                   selectedCell.appendChild(pElement)
-
-                  // if (size === 10) {
-                  //   let pElement = document.createElement("p")
-                  //   pElement.style.position = "absolute"
-                  //   pElement.className = `pNumber${size}`
-                  //   // pElement.style.right = "30"
-                  //   // pElement.style.top = "-20"
-                  //   // pElement.style.fontSize = 20
-                  //   pElement.innerText = `${key}`
-                  //   console.log("line 183")
-                  //   selectedCell.appendChild(pElement)
-                  //   /* right: 30px; */
-                  //   // top: -20px;
-                  //   // font-size: 20px;
-                  //   // margin-right: 50;
-                  // }
-
                   break
                 }
               }
@@ -193,9 +148,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
                 let pElement = document.createElement("p")
                 pElement.style.position = "absolute"
                 pElement.className = `pNumber${size} pCell`
-                // pElement.style.left = "10%"
-                // pElement.style.top = "0%"
-                // pElement.style.fontSize = 20
                 pElement.innerText = `${key}`
                 selectedCell.appendChild(pElement)
                 console.log("line 161")

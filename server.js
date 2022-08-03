@@ -93,6 +93,7 @@ app.use("/solve", require("./routes/solve"))
 app.use("/login", require("./routes/index"))
 app.use("/user", require("./routes/user"))
 app.use("/crossword", require("./routes/index"))
+app.use("/dictionary", require("./routes/index"))
 // app.use("/:id", require("./routes/solve"))
 // app.use("/:id/fetch", require("./routes/solve"))
 app.all("*", (req, res) => {

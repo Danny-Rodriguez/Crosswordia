@@ -12,6 +12,9 @@ var hintsForm = document.getElementById("hints")
 var isEditMode = true
 var theUrl
 var userUrl
+var dictSubmit = document.getElementById("dictSubmit")
+var wordInput = document.getElementById("word")
+var listDict = document.getElementById("listDict")
 
 // creates grid based on size
 function drawGrid() {
@@ -20,7 +23,7 @@ function drawGrid() {
     cellSize = 100
   }
   if (size === 10) {
-    cellSize = 80
+    cellSize = 75
     let footer = document.getElementById("footer")
     footer.className = "footerCrossword"
   }
@@ -76,11 +79,13 @@ for (var i = 0; i < dropdownContent.length; i++) {
     if (child.innerText === "15x15") {
       size = 15
     }
+    const thesaurus = document.getElementById("thesaurus")
+    thesaurus.className = "thesaurusC"
 
-    console.log(`Excuse me, I want this to work!`)
     drawGrid()
   })
 }
+
 //* This changed the color
 clickMode.addEventListener("click", event => {
   // changing modes
@@ -100,9 +105,17 @@ window.addEventListener("keydown", event => {
   if (selectedCell === undefined) {
     return
   }
-  if (event.key.match(alphabet) && event.key.length === 1) {
-    //talk about this
-    selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
+  // let crossGrid = document.getElementById("crossGrid")
+  if (wordInput !== document.activeElement && event.key.match(alphabet) && event.key.length === 1) {
+    if (size === 5) {
+      selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
+    }
+    if (size === 10) {
+      selectedCell.innerHTML = `<p class="position-absolute pLetter10">${event.key.toUpperCase()}</p>`
+    }
+    if (size === 15) {
+      selectedCell.innerHTML = `<p class="position-absolute pLetter15">${event.key.toUpperCase()}</p>`
+    }
     // This for loop selects the next cell across
     for (var i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
       let nextCell = document.getElementById(`${i}`)
@@ -113,7 +126,7 @@ window.addEventListener("keydown", event => {
         break
       }
     }
-  } else if (event.key === "Backspace") {
+  } else if (wordInput !== document.activeElement && event.key === "Backspace") {
     let foundPrev = false
     for (var i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
       let prevCell = document.getElementById(`${i}`)
@@ -133,8 +146,48 @@ window.addEventListener("keydown", event => {
   }
 })
 
+dictSubmit.addEventListener("click", async event => {
+  event.preventDefault()
+  const word = document.getElementById("word")
+
+  const toFetch = await fetch(`/dictionary`, {
+    method: "POST",
+    body: JSON.stringify({
+      word: word.value
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json()
+      }
+      return Promise.reject(response)
+    })
+    .then(function (data) {
+      let dataArr = data[0].meta.syns.flat().slice(0, 10)
+      listDict.innerHTML = dataArr.map(i => `<li>${i}</li>`).join("")
+    })
+    // .then(result => {
+    //   let resultsArr = result[0].meta.syns[0].flat().slice(0, 10)
+    //   listDict.innerHTML = resultsArr.map(i => `<li>${i}</li>`).join("")
+    // })
+    .catch(function (error) {
+      console.warn("Something went wrong.", error)
+      // .then(response => response.json())
+      // .then(result => {
+      //   // let resultsArr = result[0].meta.syns.flat()
+      //   console.log(result)
+      //   // let resultsArr = result[0].meta.syns[0].flat().slice(0, 10)
+      //   // listDict.innerHTML = resultsArr.map(i => `<li>${i}</li>`).join("")
+    })
+})
+
 var hintButton = document.getElementById("hintBtn")
 hintButton.addEventListener("click", event => {
+  const thesaurus = document.getElementById("thesaurus")
+  thesaurus.className = "thesaurusI"
   if (selectedCell !== undefined) {
     selectedCell.style.background = "white"
     selectedCell = undefined
@@ -199,27 +252,9 @@ hintButton.addEventListener("click", event => {
     }
   }
 
-  // let submitBtn = document.createElement("button")
   let submitBtn = document.getElementById("hintSubmit")
   submitBtn.style.display = "block"
-  // submitBtn.id = "hintSubmit"
-  // // submitBtn.className = "button-82-pushable"
-  // submitBtn.innerText = "submit"
   submitBtn.addEventListener("click", async () => {
-    // let hintValues = hintsForm.children
-    // let hintValues = hintsHidden.children
-    // for (var j = 0; j < hintValues.length; j++) {
-    //   let hintValue = hintValues[j]
-    //   let hintInfo = hintValue.name.split(":")
-    //   let hintNumber = parseInt(hintInfo[0])
-    //   if (hintInfo[1] === "across") {
-    //     hintMapper[hintNumber].acrossHint = hintValue.value
-    //   }
-    //   if (hintInfo[1] === "down") {
-    //     hintMapper[hintNumber].downHint = hintValue.value
-    //   }
-    // }
-
     let hintValuesAcross = hintsAcross.children
     for (let g = 1; g < hintValuesAcross.length; g++) {
       let hintValue = hintValuesAcross[g]

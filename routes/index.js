@@ -2,11 +2,12 @@ const express = require("express")
 const router = express.Router()
 const { ensureAuth, ensureGuest } = require("../middleware/auth")
 const Crossword = require("../models/Crossword")
+const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args))
 
 // @desc Login/Landing page
 // @route Get /
 router.get("/", ensureAuth, async (req, res) => {
-  res.render("home", {
+  return res.render("home", {
     layout: "main"
   })
 })
@@ -14,7 +15,7 @@ router.get("/", ensureAuth, async (req, res) => {
 // @desc login page
 // @route Get /login
 router.get("/login", async (req, res) => {
-  res.render("login", {
+  return res.render("login", {
     layout: "mainGuest"
   })
 })
@@ -24,9 +25,9 @@ router.get("/login", async (req, res) => {
 router.get("/delete/:id", ensureAuth, async (req, res) => {
   Crossword.findByIdAndDelete(req.params.id, (err, doc) => {
     if (!err) {
-      res.redirect("/user/" + req.user.googleId)
+      return res.redirect("/user/" + req.user.googleId)
     } else {
-      console.log("Failed to Delete user Details: " + err)
+      return console.log("Failed to Delete user Details: " + err)
     }
   })
 })
@@ -41,9 +42,9 @@ router.post("/crossword", ensureAuth, async (req, res) => {
     }
     var newCrossword = await Crossword.create(toPost)
 
-    res.redirect(`/solve/` + newCrossword._id)
+    return res.redirect(`/solve/` + newCrossword._id)
   } catch (error) {
-    console.error(error)
+    return console.error(error)
   }
 })
 
@@ -52,14 +53,32 @@ router.get("/profile", ensureAuth, async (req, res) => {
   var image = req.user.image
   var profileObj = { firstName, image }
   // console.log('index.js profileObj: ' + profileObj)
-  res.json(profileObj)
+  return res.json(profileObj)
 })
 
 router.post("/user", ensureAuth, async (req, res) => {
   try {
-    res.redirect(`/user/` + req.user.googleId)
+    return res.redirect(`/user/` + req.user.googleId)
   } catch (error) {
-    console.error(error)
+    return console.error(error)
+  }
+})
+
+router.post("/dictionary", async (req, res) => {
+  // let word = req.word
+  // console.log("req: " + JSON.stringify(req.body.word))
+  let word = JSON.stringify(req.body.word)
+  let dictApi = process.env.DICTIONARYAPI_KEY
+  try {
+    const toFetch = await fetch(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${dictApi}`)
+      .then(res => res.json())
+      .then(result => {
+        return res.json(result)
+      })
+    // console.log(toFetch)
+    // res.json(toFetch)
+  } catch (error) {
+    return console.error("/dictionary error: " + error)
   }
 })
 

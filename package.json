@@ -28,10 +28,10 @@
     "handlebars": "^4.7.7",
     "mongodb": "^4.6.0",
     "mongoose": "^6.3.4",
+    "node-fetch": "^3.2.10",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "path": "^0.12.7",
-    "request": "^2.88.2"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
