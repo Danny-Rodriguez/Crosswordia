@@ -11,7 +11,6 @@ router.get("/:googleId", ensureAuth, async (req, res) => {
 
 router.get("/:googleId/fetch", ensureAuth, async (req, res) => {
   let crosswordEntry = await Crossword.find({ googleId: req.user.googleId }).lean()
-
   return res.json(crosswordEntry)
 })
 

@@ -7,20 +7,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     <title id="titlePage">Crosswordia</title>
-    {{! <title id="titlePage">Crosswordia</title> }}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="/css/create.css" />
+    <link rel="stylesheet" type="text/css" href="/css/colored-theme.min.css" />
+    <script src="/css/growl-notification.min.js" type="module"></script>
   </head>
-  {{! <body class="container"> }}
   <body id="bodyId">
-
     <nav class="navbar navbar-light bg-light justify-content-between py-2 fixed-top">
       <a href="/" class="navbar-brand">Welcome to Crosswordia!</a>
-      {{! <div class="d-flex"> }}
-      {{! <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success" type="submit">Search</button> }}
-
-      <!-- mx-4 -->
 
       <div class="navbar-links" style="margin-right: 5em">
         <a id="userPageBtn" class="nav-link justify-content-between box-shadow" role="button" style="cursor: pointer;"><div>My Crosswords</div>
@@ -32,8 +26,6 @@
             <img src="" alt="" referrerpolicy="no-referrer" id="profilePic" class="rounded-circle" style="width:25;" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
-            {{! <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>}}
             <li><a class="dropdown-item" href="#">About Us</a></li>
             <li><a href="/auth/logout" class="dropdown-item">Logout <i class="bi bi-box-arrow-right"></i></a></li>
           </ul>
@@ -42,7 +34,6 @@
 
     </nav>
 
-    {{! d-flex flex-column min-vh-100 }}
     <section class="viewarea" id="viewarea" style="flex: 1;">
       <div class="container theBody">
 
@@ -54,5 +45,3 @@
     <div id="footer" class="footerInitial"> <p> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny Alfredo Rodriguez All Rights Reserved </p></div>
   </body>
 </html>
-
-{{! top: 50%; left: 50%; transform: translate(-50%, -50%); }}

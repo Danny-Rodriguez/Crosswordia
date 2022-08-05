@@ -1,32 +1,27 @@
-<div class="solve d-flex justify-content-center wrap1000">
+{{! <div id="correct" class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1.5em; display:none">
+  <strong>Correct!</strong>
+  You solved the crossword, good job!
+  <button type="button" id="btn-close" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> }}
+
+<div class="solve d-flex justify-content-center wrap1000 loader">
 
   <div class="container">
     <text class="text-center lead" style="margin-bottom: 1em;">Can You Solve This Crossword? Good Luck!</text>
     <div class="grid" id="crossGrid"></div>
 
   </div>
-  <div class="hints container" id="hints">
+  <div class="hints" id="hints">
     <h1 class="h1Hints text-center">Hints</h1>
     <div class="onlyHints">
       <div id="hints-across"><h3>Across</h3></div>
       <div id="hints-down"><h3>Down</h3></div>
     </div>
-    {{! <button id="check">Check my Answer</button> }}
     <button id="check" class="button-19" role="button">Check my Answer</button>
-    {{! <button id="check" class="button-82-pushable" role="button">Check my Answer</button> }}
-    {{! <button id="check" class="button-82-pushable" role="button" style="display:none">
-      <span class="button-82-shadow"></span>
-      <span class="button-82-edge"></span>
-      <span class="button-82-front text">
-        Check my Answer
-      </span>
-    </button> }}
   </div>
 
 </div>
-{{! <div id="hello" class="text-center">Hello there, this is text <p id="copyUrl"></p></div> }}
 <div id="hello" class="text-center lead mb-3">Share Your Crossword!</div>
-<!-- AddToAny BEGIN -->
 <div class="a2a_kit a2a_kit_size_32 a2a_default_style mb-3">
   <a class="a2a_button_copy_link"></a>
   <a class="a2a_button_facebook"></a>
@@ -37,8 +32,7 @@
   <a class="a2a_button_sms"></a>
 </div>
 <script async src="https://static.addtoany.com/menu/page.js"></script>
-<!-- AddToAny END -->
 <script src="/scripts/solve.js" type="module"></script>
-
-{{! align-items-center justify-content-between  align-items-center }}
 <link rel="stylesheet" type="text/css" href="/css/create.css" />
+{{! <link rel="stylesheet" type="text/css" href="/css/colored-theme.min.css" />
+<script src="/css/growl-notification.min.js" type="module"></script> }}

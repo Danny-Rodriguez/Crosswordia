@@ -7,14 +7,17 @@ var selectedCell = undefined
 var size = undefined
 var hintMapper = {}
 var totalHints = 0
-var hintsHidden = document.getElementById("hintsHidden")
-var hintsForm = document.getElementById("hints")
+const hintsHidden = document.getElementById("hintsHidden")
+const hintsForm = document.getElementById("hints")
 var isEditMode = true
 var theUrl
 var userUrl
-var dictSubmit = document.getElementById("dictSubmit")
-var wordInput = document.getElementById("word")
-var listDict = document.getElementById("listDict")
+const dictSubmit = document.getElementById("dictSubmit")
+const wordInput = document.getElementById("word")
+const listDict = document.getElementById("listDict")
+const footer = document.getElementById("footer")
+const thesaurus = document.getElementById("thesaurus")
+const boxAndFinish = document.getElementById("boxAndFinish")
 
 // creates grid based on size
 function drawGrid() {
@@ -24,12 +27,10 @@ function drawGrid() {
   }
   if (size === 10) {
     cellSize = 75
-    let footer = document.getElementById("footer")
     footer.className = "footerCrossword"
   }
   if (size === 15) {
     cellSize = 50
-    let footer = document.getElementById("footer")
     footer.className = "footerCrossword"
   }
   var crossGrid = document.getElementById("crossGrid")
@@ -51,7 +52,6 @@ function drawGrid() {
       //* Did not change button color
       if (clickMode.innerText === "Add a Box") {
         cell.style.background = "yellow"
-        // clickMode.className = "button-50"
 
         if (selectedCell != undefined && selectedCell !== cell) {
           selectedCell.style.background = "white"
@@ -60,7 +60,6 @@ function drawGrid() {
       } else if (clickMode.innerText === "Activate Typing") {
         cell.style.background = "black"
         cell.innerText = ""
-        // clickMode.className = "button-50-w"
       }
     })
     crossGrid.append(cell)
@@ -79,8 +78,9 @@ for (var i = 0; i < dropdownContent.length; i++) {
     if (child.innerText === "15x15") {
       size = 15
     }
-    const thesaurus = document.getElementById("thesaurus")
-    thesaurus.className = "thesaurusC"
+
+    thesaurus.style.display = "block"
+    boxAndFinish.style.display = "block"
 
     drawGrid()
   })
@@ -105,7 +105,6 @@ window.addEventListener("keydown", event => {
   if (selectedCell === undefined) {
     return
   }
-  // let crossGrid = document.getElementById("crossGrid")
   if (wordInput !== document.activeElement && event.key.match(alphabet) && event.key.length === 1) {
     if (size === 5) {
       selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
@@ -169,25 +168,13 @@ dictSubmit.addEventListener("click", async event => {
       let dataArr = data[0].meta.syns.flat().slice(0, 10)
       listDict.innerHTML = dataArr.map(i => `<li>${i}</li>`).join("")
     })
-    // .then(result => {
-    //   let resultsArr = result[0].meta.syns[0].flat().slice(0, 10)
-    //   listDict.innerHTML = resultsArr.map(i => `<li>${i}</li>`).join("")
-    // })
     .catch(function (error) {
       console.warn("Something went wrong.", error)
-      // .then(response => response.json())
-      // .then(result => {
-      //   // let resultsArr = result[0].meta.syns.flat()
-      //   console.log(result)
-      //   // let resultsArr = result[0].meta.syns[0].flat().slice(0, 10)
-      //   // listDict.innerHTML = resultsArr.map(i => `<li>${i}</li>`).join("")
     })
 })
 
 var hintButton = document.getElementById("hintBtn")
 hintButton.addEventListener("click", event => {
-  const thesaurus = document.getElementById("thesaurus")
-  thesaurus.className = "thesaurusI"
   if (selectedCell !== undefined) {
     selectedCell.style.background = "white"
     selectedCell = undefined
@@ -195,12 +182,25 @@ hintButton.addEventListener("click", event => {
 
   let crossGrid = document.getElementById("crossGrid")
   if (crossGrid.children.length === 0) {
-    alert("Hey you gotta choose a Crossword size first!")
+    // alert("Hey you gotta choose a Crossword size first!")
+    GrowlNotification.notify({
+      title: "Whoops!",
+      description: "You gotta choose a crossword size first!",
+      type: "warning",
+      position: "top-center",
+      closeTimeout: 3000
+    })
     return
   }
   for (let i = 0; i < crossGrid.childNodes.length; i++) {
     if (crossGrid.childNodes[i].innerText === "") {
-      alert("Hey you forgot to fill out the whole crossword!")
+      GrowlNotification.notify({
+        title: "Whoops!",
+        description: "You forgot to fill out the whole crossword!",
+        type: "warning",
+        position: "top-center",
+        closeTimeout: 3000
+      })
       return
     }
   }
@@ -277,7 +277,13 @@ hintButton.addEventListener("click", event => {
 
     for (const key in hintMapper) {
       if (hintMapper[key].acrossHint === "" || hintMapper[key].downHint === "") {
-        alert("Oops! You forgot to fill out all the hints!")
+        GrowlNotification.notify({
+          title: "Whoops!",
+          description: "You forgot to fill out all the hints!",
+          type: "warning",
+          position: "top-center",
+          closeTimeout: 3000
+        })
         return
       }
     }

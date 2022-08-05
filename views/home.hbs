@@ -8,8 +8,8 @@
     </div>
   </div>
 
-  <button id="clickMode" class="button-50" role="button">Add a Box</button>
-  <button id="hintBtn" class="button-43">Finish and Create Hints</button>
+  {{! <button id="clickMode" class="button-50" role="button">Add a Box</button> }}
+  {{! <button id="hintBtn" class="button-43">Finish and Create Hints</button> }}
 
 </div>
 
@@ -17,9 +17,8 @@
   <div class="container">
 
     <div class="wrapper">
-      <div id="thesaurus" class="thesaurusI">
+      <div id="thesaurus" class="thesaurusI" style="display: none">
         <h1 class="text-center">Online Thesaurus</h1>
-        {{! <form id="word-form" onsubmit="dict(event)"> }}
         <form id="word-form">
           <label for="word">Input a Word</label>
           <input id="word" type="text" />
@@ -28,7 +27,11 @@
         <ul id="listDict"></ul>
       </div>
       <div class="grid" id="crossGrid"></div>
-
+      <div id="boxAndFinish" style="display: none">
+        <button id="clickMode" class="button-50" role="button" style="width: 11.94em;">Add a Box</button>
+        {{! <button id="hintBtn" class="button-43" style="margin: 0 auto;">Finish and Create Hints</button> }}
+        <button id="hintBtn" class="button-50-b box" role="button" style="margin-top: 0.5em;">Finish and Create Hints</button>
+      </div>
     </div>
   </div>
 
@@ -49,15 +52,3 @@
 
 <script src="/scripts/create.js" type="module"></script>
 <link rel="stylesheet" href="/css/create.css" />
-
-{{!
-
-<flex-column
-<flex-row
-hints-across
-hints-down
-/>
-Submit Button
-/>
-
- }}

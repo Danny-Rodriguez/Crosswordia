@@ -40,12 +40,6 @@ router.post("/user", (req, res) => {
   res.send(req.body)
 })
 
-// router.post("/solve", (req, res) => {
-//   res.send(req.body)
-// })
-
-// app.use("/user", router)
-
 // const { formatName, checkIf, ifCond } = require("./helpers/hbs")
 
 app.engine(
@@ -89,13 +83,10 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/solve", require("./routes/solve"))
-// app.use("/solve", require("./routes/index"))
 app.use("/login", require("./routes/index"))
 app.use("/user", require("./routes/user"))
 app.use("/crossword", require("./routes/index"))
 app.use("/dictionary", require("./routes/index"))
-// app.use("/:id", require("./routes/solve"))
-// app.use("/:id/fetch", require("./routes/solve"))
 app.all("*", (req, res) => {
   res.status(404)
   res.render("error/404", {

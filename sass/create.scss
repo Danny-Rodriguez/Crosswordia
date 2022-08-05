@@ -12,35 +12,34 @@
     // width: 100%;
     text-align: center;
   }
-  // .footerInitial {
-  //   position: absolute;
-  //   bottom: 0;
-  //   // width: 100%;
-  //   text-align: center;
-  // }
   .hintsCreate {
     flex-direction: row !important;
   }
+  .solveArea {
+    grid-auto-flow: dense !important;
+  }
 }
 
-.thesaurusI {
-  display: none;
-}
+// .thesaurusI {
+//   display: none;
+// }
 
-.thesaurusC {
-  display: block;
-}
+// .thesaurusC {
+//   display: block;
+//   // display: flex;
+//   // flex-direction: column;
+// }
 
-#thesaurus {
-  margin-right: 1em;
-}
+// #thesaurus {
+//   margin-right: 1em;
+// }
 
 .wrapper {
   display: grid;
   // grid-template-columns: 33.334% 66.667%;
   // grid-template-columns: 25% 75%;
   // grid-template-columns: 25% 71%;
-  column-gap: 150px;
+  column-gap: 1em;
   grid-auto-flow: column;
 }
 
@@ -62,43 +61,13 @@ body {
   flex-direction: column;
 }
 
-.banner {
-  background-color: beige;
-  // padding: 0;
-  // margin: 0;
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  padding: 16px;
-  max-width: 500px;
-  // flex-direction: column;
-  margin: 0 auto;
-  // display: flex;
-  // flex-wrap: wrap;
-  align-self: center;
-  align-items: center;
-  // text-align: center;
-  justify-content: center;
-}
-
-.banner-text {
-  text-align: center;
-  position: relative;
-  flex-grow: 1;
-  line-height: 1.4;
-  font-family: "Quicksand", sans-serif;
-}
-
 .login-page {
   text-align: center;
   padding: 30px;
 }
 
 .dropbtn {
-  // background-color: hsl(158, 95%, 34%);
   background-color: hsl(216, 100%, 50%);
-  // background-color: linear-gradient(40deg, #45cafc, #303f9f) !important;
-  // background: linear-gradient(40deg, #45cafc, #303f9f) !important;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -106,13 +75,8 @@ body {
 }
 
 .dropdown:hover .dropbtn {
-  // background-color: hsl(122, 39%, 40%);
   background-color: hsl(216, 74%, 41%);
 }
-
-// .blue-gradient {
-//   background: linear-gradient(40deg, #45cafc, #303f9f) !important;
-// }
 
 .dropdown {
   position: relative;
@@ -158,19 +122,6 @@ body {
   // padding: 0;
 }
 
-.containerF {
-  display: flex;
-  // margin: 0 auto;
-  // display: block;
-}
-
-// #hintSubmit {
-//   // display: flex;
-//   // margin: 0 auto;
-//   display: block;
-//   margin-left: 9.5em !important;
-// }
-
 .toolbelt {
   // align-items: center;
   // display: flex;
@@ -182,36 +133,18 @@ body {
   width: max-content;
   padding: 1em;
   margin: auto;
+  margin-top: initial;
 }
 
 #crossGrid {
-  // border: 5px solid black;
   width: auto !important;
-  // padding: 0;
 }
 
 .grid {
   display: grid;
   grid-gap: 1px;
   background: black;
-  // padding: 0;
 }
-
-// #crossGrid {
-//   display: inline-grid;
-//   grid-template-columns: 50px 50px 50px 50px;
-//   border: 1px solid black;
-//   grid-gap: 1px;
-//   background-color: black;
-//   justify-content: center;
-// }
-
-// #crossGrid > div {
-//   background-color: white;
-//   padding: 15px;
-//   text-align: center;
-//   justify-content: center;
-// }
 
 .solveArea {
   display: flex !important;
@@ -222,11 +155,8 @@ body {
 }
 
 .cell5 {
-  /* center the celll content */
   justify-content: center;
   align-items: center;
-  // text-align: center;
-  // display: flex;
   font-family: Arial;
   font-size: 3rem;
   font-weight: bold;
@@ -234,11 +164,8 @@ body {
 }
 
 .cell10 {
-  /* center the celll content */
   justify-content: center;
   align-items: center;
-  // text-align: center;
-  // display: flex;
   font-family: Arial;
   font-size: 2rem;
   font-weight: bold;
@@ -246,11 +173,8 @@ body {
 }
 
 .cell15 {
-  /* center the celll content */
   justify-content: center;
   align-items: center;
-  // text-align: center;
-  // display: flex;
   font-family: Arial;
   font-size: 1rem;
   font-weight: bold;
@@ -258,7 +182,6 @@ body {
 }
 
 .pCell {
-  // padding-left: 5;
   left: 10% !important;
   top: 0% !important;
   position: absolute;
@@ -299,13 +222,8 @@ body {
 }
 
 .hints {
-  // margin-left: 2em;
-  // max-width: 30%;
   align-items: center;
   text-align: center;
-  // margin: 0 auto;
-  // display: block;
-  // margin-left: 5.7em;
 }
 
 .hintsCreate {
@@ -331,15 +249,7 @@ body {
 .onlyHints {
   display: flex;
   width: max-content;
-  // margin-left: 2em;
-  // margin: 0 auto;
-  // display: block;
 }
-
-// .table-responsive {
-//   display: table-caption;
-//   padding: 1em;
-// }
 
 #userArea {
   margin-bottom: 0.5em;
@@ -351,7 +261,6 @@ body {
 }
 
 .table-sm > :not(caption) > * > * {
-  // padding: 0.25rem 0.25rem;
   padding: 1em;
 }
 
@@ -404,26 +313,13 @@ a {
 }
 
 .navbar-brand {
-  // color: rgba(255, 255, 255, 0.55);
   color: hsl(0, 0%, 100%) !important;
   margin-left: 5em;
   font-weight: 300;
-  // -webkit-tap-highlight-color: rgba(130, 170, 255, 0.5) !important;
-  // background-color: hsl(212, 100%, 50%);
-  // border-radius: 8px;
 }
 
 .navbar-brand:hover {
-  // color: hsl(0, 0%, 50%) !important;
-  // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  // background-color: hsl(212, 100%, 50%);
-  // border-radius: 8px;
-  // -webkit-tap-highlight-color: rgba(130, 170, 255, 0.5) !important;
   color: rgb(0, 105, 255) !important;
-  // webkit-filter: blur(4px); /* Chrome, Safari, Opera */
-  // filter: blur(4px);
-  // -webkit-backdrop-filter: blur(4px) !important;
-  // backdrop-filter: blur(4px) !important;
 }
 
 .profile-drop {
@@ -438,15 +334,12 @@ a {
 
 a.profile-drop,
 a.profile-drop:focus {
-  // color: #fff;
   color: hsl(0, 0%, 100%);
 }
 
 a.profile-drop:hover,
 a.profile-drop:active {
-  // color: green;
   color: hsl(0, 0%, 75%);
-  // box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
 #userPageBtn {
@@ -467,20 +360,10 @@ a.profile-drop:active {
 }
 
 .navbar-toggler {
-  // padding: 0.25rem 0.75rem;
   margin-right: 5em;
-  // font-size: 1.25rem;
-  // line-height: 1;
-  // background-color: transparent;
-  // border: 1px solid transparent;
-  // border-radius: 0.25rem;
-  // transition: box-shadow 0.15s ease-in-out;
 }
 
 .navbar-collapse {
-  // flex-basis: 100%;
-  // flex-grow: 1;
-  // align-items: center;
   margin-right: 5em;
 }
 
@@ -493,39 +376,22 @@ a.profile-drop:active {
 }
 
 .footerInitial {
-  position: absolute;
+  position: relative;
   bottom: 0;
-  // width: 100%;
   text-align: center;
 }
 
 .footerCrossword {
   position: relative;
   text-align: center;
-  // margin-top: 1em;
-}
-
-#clickMode {
-  // width: 50px;
-  width: 12em;
 }
 
 #check {
-  // width: 5em;
-  // margin: auto;
-  // text-align: center;
-  // margin-left: 25em;
   padding: inherit;
-  // margin-left: 20%;
 }
 
 #word-form {
-  /* display: flex; */
   width: max-content;
-  /* flex-wrap: wrap; */
-  /* align-content: start; */
-  /* justify-content: center; */
-  align-items: baseline;
 }
 
 #listDict {
@@ -538,10 +404,7 @@ a.profile-drop:active {
   justify-content: center;
 }
 
-// <!-- HTML !-->
-// <button class="button-28" role="button">Button 28</button>
-
-/* CSS */
+/* button 28 */
 .button-28 {
   appearance: none;
   background-color: transparent;
@@ -586,7 +449,7 @@ a.profile-drop:active {
   transform: translateY(0);
 }
 
-/* CSS */
+/* button 19 */
 .button-19 {
   max-width: fit-content;
   appearance: button;
@@ -648,10 +511,7 @@ a.profile-drop:active {
   cursor: auto;
 }
 
-// <!-- HTML !-->
-// <button class="button-22" role="button">Button 22</button>
-
-/* CSS */
+/* button 22 */
 .button-22 {
   align-items: center;
   appearance: button;
@@ -686,10 +546,7 @@ a.profile-drop:active {
   background-color: #1c84ff;
 }
 
-// <!-- HTML !-->
-// <button class="button-58" role="button">Button 58</button>
-
-/* CSS */
+/* button 58 */
 .button-58 {
   align-items: center;
   background-color: hsl(216, 100%, 50%);
@@ -739,10 +596,7 @@ a.profile-drop:active {
   }
 }
 
-// <!-- HTML !-->
-// <button class="button-66" role="button">Button 66</button>
-
-/* CSS */
+/* button 66 */
 .button-66 {
   background-color: hsl(216, 100%, 52%);
   border-radius: 4px;
@@ -781,10 +635,7 @@ a.profile-drop:active {
   }
 }
 
-// <!-- HTML !-->
-// <button class="button-50" role="button">Button 50</button>
-
-/* CSS */
+/* button 50 */
 .button-50 {
   appearance: button;
   background-color: hsl(0, 0%, 0%);
@@ -839,22 +690,10 @@ a.profile-drop:active {
   white-space: nowrap;
 }
 
-.button-50:focus {
-  text-decoration: none;
-  // background-color: pink;
-}
-
+.button-50:focus,
 .button-50:hover {
   text-decoration: none;
-  // background-color: pink;
 }
-
-// .button-50:active {
-//   box-shadow: hsla(0, 0%, 0%, 0.125) 0 3px 5px inset;
-//   outline: 0;
-//   // background-color: #000;
-//   // background-color: pink;
-// }
 
 .button-50:not([disabled]):active {
   box-shadow: hsl(0, 0%, 100%) 2px 2px 0 0, hsl(0, 0%, 0%) 2px 2px 0 1px;
@@ -872,10 +711,7 @@ a.profile-drop:active {
   }
 }
 
-// <!-- HTML !-->
-// <button class="button-43" role="button">Button 43</button>
-
-/* CSS */
+/* button 43 */
 .button-43 {
   background-image: linear-gradient(-180deg, #37aee2 0%, #1e96c8 100%);
   border-radius: 0.5rem;
@@ -898,22 +734,7 @@ a.profile-drop:active {
   background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
 }
 
-// @media (min-width: 768px) {
-//   .button-43 {
-//     padding: 1rem 2rem;
-//   }
-// }
-
-// <!-- HTML !-->
-// <button class="button-82-pushable" role="button">
-//   <span class="button-82-shadow"></span>
-//   <span class="button-82-edge"></span>
-//   <span class="button-82-front text">
-//     Button 82
-//   </span>
-// </button>
-
-/* CSS */
+/* button 82 */
 .button-82-pushable {
   position: relative;
   border: none;
@@ -947,15 +768,7 @@ a.profile-drop:active {
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  // background: linear-gradient(to left, hsl(340deg 100% 16%) 0%, hsl(340deg 100% 32%) 8%, hsl(340deg 100% 32%) 92%, hsl(340deg 100% 16%) 100%);
-
-  // background: linear-gradient(to left, hsl(210deg, 90%, 40%) 0%, hsl(210deg, 100%, 20%) 8%, hsl(210deg, 100%, 20%) 92%, hsl(210deg, 90%, 40%) 100%);
-
-  // background: linear-gradient(to left, hsl(210deg, 100%, 20%) 0%, hsl(210deg, 100%, 40%) 8%, hsl(210deg, 100%, 40%) 92%), hsl(210deg, 100%, 20%) 100%;
-
   background: linear-gradient(to left, hsl(210deg, 90%, 20%) 0%, hsl(210deg, 100%, 40%) 8%, hsl(210deg, 100%, 40%) 92%, hsl(210deg, 90%, 20%) 100%);
-
-  // background-color: hsl(210, 90%, 40%);
 }
 
 .button-82-front {
@@ -965,9 +778,6 @@ a.profile-drop:active {
   border-radius: 12px;
   font-size: 1.1rem;
   color: white;
-  // background: hsl(345deg 100% 47%);
-  // background: hsl(199, 92%, 54%);
-  // background: hsl(210, 90%, 20%);
   background: hsl(210, 100%, 55%);
   will-change: transform;
   transform: translateY(-4px);
@@ -1008,4 +818,88 @@ a.profile-drop:active {
 
 .button-82-pushable:focus:not(:focus-visible) {
   outline: none;
+}
+
+.loader {
+  // position: fixed;
+  // background-color: #fff;
+  // opacity: 1;
+  // height: 100%;
+  // width: 100%;
+  // top: 0;
+  // left: 0;
+  // z-index: 10;
+  -webkit-animation: load-out 5s;
+  animation: load-out 5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes load-out {
+  from {
+    top: 100%;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes load-out {
+  from {
+    top: 100%;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* button 50 */
+.button-50-b {
+  appearance: button;
+  background-color: hsl(216deg, 100%, 50%);
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 9.5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-50-b:focus,
+.button-50-b:hover {
+  text-decoration: none;
+}
+
+.button-50-b:active {
+  box-shadow: rgba(0, 0, 0, 0.125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.button-50-b:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
 }

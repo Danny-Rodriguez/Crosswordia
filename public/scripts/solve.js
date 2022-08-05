@@ -1,6 +1,11 @@
 var userUrl
 var selectedCell = undefined
-var alphabet = /^[a-z]*$/i
+const alphabet = /^[a-z]*$/i
+const crossGrid = document.getElementById("crossGrid")
+const footer = document.getElementById("footer")
+const titlePage = document.getElementById("titlePage")
+titlePage.innerText = "Solve my Crossword!"
+const correct = document.getElementById("correct")
 
 await fetch(document.location.origin + document.location.pathname + "/fetch")
   .then(response => response.json())
@@ -11,25 +16,21 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution
-    var crossGrid = document.getElementById("crossGrid")
-
-    var titlePage = document.getElementById("titlePage")
-    titlePage.innerText = "Solve my Crossword!"
 
     var cellSize = 50
     if (size === 5) {
       cellSize = 100
-      let footer = document.getElementById("footer")
+      // let footer = document.getElementById("footer")
       footer.className = "footerCrossword"
     }
     if (size === 10) {
       cellSize = 80
-      let footer = document.getElementById("footer")
+      // let footer = document.getElementById("footer")
       footer.className = "footerCrossword"
     }
     if (size === 15) {
       cellSize = 50
-      let footer = document.getElementById("footer")
+      // let footer = document.getElementById("footer")
       footer.className = "footerCrossword"
     }
 
@@ -65,7 +66,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
       }
       if (event.key.match(alphabet) && event.key.length === 1) {
         if (selectedCell.innerHTML !== "") {
-          // selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
           if (size === 5) {
             selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
           }
@@ -87,7 +87,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
             }
           }
         } else {
-          // selectedCell.innerHTML = `<p class="position-absolute pLetter">${event.key.toUpperCase()}</p>`
           if (size === 5) {
             selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
           }
@@ -200,10 +199,36 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
           solutionStr += tempCell.innerText.charAt(0)
         }
       }
+
+      for (let i = 0; i < crossGrid.childNodes.length; i++) {
+        if (crossGrid.childNodes[i].innerText === "" && crossGrid.childNodes[i].style.background !== "black") {
+          GrowlNotification.notify({
+            title: "Whoops!",
+            description: "You forgot to fill out the whole crossword!",
+            type: "warning",
+            position: "top-center",
+            closeTimeout: 3000
+          })
+          return
+        }
+      }
+
       if (solution === solutionStr) {
-        alert("Congratulations, you have solved the crossword!")
+        GrowlNotification.notify({
+          title: "Well Done!",
+          description: "You have solved the crossword!",
+          type: "success",
+          position: "top-center",
+          closeTimeout: 3000
+        })
       } else {
-        alert("Sorry, that's not correct")
+        GrowlNotification.notify({
+          title: "Sorry!",
+          description: "That wasn't the solution, try again!",
+          type: "error",
+          position: "top-center",
+          closeTimeout: 3000
+        })
       }
     })
   })
