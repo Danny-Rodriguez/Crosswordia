@@ -1,3 +1,9 @@
+const bodyId = document.getElementById("bodyId")
+bodyId.style.background = "#f1f1f1"
+const userPage = document.getElementById("userPage")
+const table = document.querySelector("div.table-responsive")
+const userArea = document.getElementById("userArea")
+
 fetch(document.location.origin + document.location.pathname + "/fetch")
   .then(response => response.json())
   .then(userIdArr => {
@@ -56,6 +62,9 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
         deleteIcon.className = "bi bi-trash deleteIcon"
         tdDeleteAnchor.className = "btn btn-outline-danger tdDeleteAnchor"
         tdDeleteAnchor.href = `${document.location.origin + "/delete/" + userIdArr[i]._id}`
+        tdDeleteAnchor.onclick = function () {
+          growl()
+        }
         tdDeleteAnchor.appendChild(deleteIcon)
         tdUserCrossword.appendChild(tdDeleteAnchor)
         trUserCrossword.appendChild(tdUserCrossword)
@@ -63,5 +72,20 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
       DeleteF()
 
       tBodyUser.append(trUserCrossword)
+
+      if (tBodyUser.childElementCount === 0) {
+        table.style.display = "none"
+        userArea.style.width = "max-content"
+        userArea.innerHTML = `Hello <p class="profileName" id="profileNameUser" referrerpolicy="no-referrer" style="display: inline"></p>! You haven't made any crosswords so far...`
+      }
     }
   })
+
+function growl() {
+  GrowlNotification.notify({
+    title: "Deleted Sucessfully!",
+    type: "info",
+    position: "top-center",
+    closeTimeout: 3000
+  })
+}

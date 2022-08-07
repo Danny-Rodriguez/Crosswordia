@@ -11,7 +11,6 @@ const hintsHidden = document.getElementById("hintsHidden")
 const hintsForm = document.getElementById("hints")
 var isEditMode = true
 var theUrl
-var userUrl
 const dictSubmit = document.getElementById("dictSubmit")
 const wordInput = document.getElementById("word")
 const listDict = document.getElementById("listDict")
@@ -81,6 +80,7 @@ for (var i = 0; i < dropdownContent.length; i++) {
 
     thesaurus.style.display = "block"
     boxAndFinish.style.display = "block"
+    crossGrid.style.display = "grid"
 
     drawGrid()
   })
@@ -193,7 +193,7 @@ hintButton.addEventListener("click", event => {
     return
   }
   for (let i = 0; i < crossGrid.childNodes.length; i++) {
-    if (crossGrid.childNodes[i].innerText === "") {
+    if (crossGrid.childNodes[i].innerText === "" && crossGrid.childNodes[i].style.background !== "black") {
       GrowlNotification.notify({
         title: "Whoops!",
         description: "You forgot to fill out the whole crossword!",

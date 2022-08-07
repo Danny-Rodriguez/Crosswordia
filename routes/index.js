@@ -23,10 +23,8 @@ router.get("/login", async (req, res) => {
 // @desc Delete function
 // @route Get /delete(:id)
 router.get("/delete/:id", ensureAuth, async (req, res) => {
-  // const growl = 'GrowlNotification.notify({title: "Whoops!", description: "You forgot to fill out the whole crossword!", type: "warning", position: "top-center", closeTimeout: 3000})'
   Crossword.findByIdAndDelete(req.params.id, (err, doc) => {
     if (!err) {
-      // res.json(growl)
       return res.redirect("/user/" + req.user.googleId)
     } else {
       return console.log("Failed to Delete user Details: " + err)

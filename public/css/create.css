@@ -10129,6 +10129,7 @@ html,
 body {
   margin: 0;
   background-color: #f1f1f1;
+  -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -10142,7 +10143,7 @@ body {
 
 .login-page {
   text-align: center;
-  padding: 30px;
+  padding: 1.9em;
 }
 
 .dropbtn {
@@ -10373,6 +10374,18 @@ a {
   display: -webkit-inline-box;
 }
 
+#gButtonText {
+  background: url("/img/btn_google_dark_normal_ios.svg");
+}
+
+#gButtonText:hover {
+  background: url("/img/btn_google_dark_focus_ios.svg");
+}
+
+#gButtonText:focus {
+  background: url("/img/btn_google_dark_focus_ios.svg");
+}
+
 #profileName {
   padding-right: inherit;
 }
@@ -10409,6 +10422,7 @@ a.profile-drop:active {
 
 #userPageBtn {
   padding: 5px;
+  padding-right: initial;
 }
 
 #userPageBtn:hover,
@@ -10733,6 +10747,7 @@ a.profile-drop:active {
   border: 1px solid #000;
   border-radius: 4px;
   box-shadow: hsl(0deg, 0%, 0%) 4px 4px 0 0, hsl(0deg, 0%, 100%) 4px 4px 0 1px;
+  box-shadow: hsl(0deg, 0%, 0%) 4px 4px 0 0, hsl(0deg, 0%, 0%) 4px 4px 0 1px;
   box-sizing: border-box;
   color: hsl(0deg, 0%, 0%);
   cursor: pointer;
