@@ -1,7 +1,8 @@
 const bodyId = document.getElementById("bodyId")
 bodyId.style.background = "#f1f1f1"
 const userPage = document.getElementById("userPage")
-const table = document.querySelector("div.table-responsive")
+// const table = document.querySelector("div.table-responsive")
+const table = document.getElementById("table")
 const userArea = document.getElementById("userArea")
 
 fetch(document.location.origin + document.location.pathname + "/fetch")
@@ -72,18 +73,23 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
       DeleteF()
 
       tBodyUser.append(trUserCrossword)
-
-      if (tBodyUser.childElementCount === 0) {
-        table.style.display = "none"
-        userArea.style.width = "max-content"
-        userArea.innerHTML = `Hello <p class="profileName" id="profileNameUser" referrerpolicy="no-referrer" style="display: inline"></p>! You haven't made any crosswords so far...`
-      }
+    }
+    if (tBodyUser.childElementCount === 0) {
+      table.style.display = "none"
+      userArea.style.width = "max-content"
+      userArea.innerHTML = `Hello <p class="profileName" id="profileNameUser" referrerpolicy="no-referrer" style="display: inline"></p>! You haven't made any crosswords so far...`
+      const profileNameUser = document.getElementById("profileNameUser")
+      profileNameUser.innerText = sessionStorage.getItem("firstName")
     }
   })
 
 function growl() {
   GrowlNotification.notify({
     title: "Deleted Sucessfully!",
+    image: {
+      visible: true,
+      customImage: "../img/info-outline.svg"
+    },
     type: "info",
     position: "top-center",
     closeTimeout: 3000

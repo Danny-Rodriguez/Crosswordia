@@ -1,14 +1,12 @@
 /node_modules
+/helpers
 *.env
 .env
 config.env
-
 *config.env
-
-server_old.js
 
 .DS_Store
 
 Todo.md
 Errors.md
-/helpers
+Challenges.md

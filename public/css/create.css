@@ -10160,17 +10160,33 @@ body {
 
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
   background-color: #f1f1f1;
-  min-width: -webkit-fill-available;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  visibility: hidden; /* hides sub-menu */
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
   text-align: center;
+  z-index: -1;
+  transform: translateY(-2em);
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+}
+
+.toolbelt:hover ~ .solveArea {
+  z-index: -2;
+}
+
+.dropdown:hover .dropdown-content {
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
 }
 
 .dropdown-content a {
@@ -10186,6 +10202,51 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.dropdownM {
+  position: relative;
+  display: inline-block;
+  background: "";
+}
+
+.dropdownM:hover {
+  background-color: hsl(216deg, 74%, 41%);
+}
+
+.dropdown-contentM {
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  visibility: hidden; /* hides sub-menu */
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: -1;
+  transform: translateY(-2em);
+  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+  text-align: center;
+}
+
+.dropdown-contentM a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-contentM a:hover {
+  background-color: #ddd;
+}
+
+.dropdownM:hover .dropdown-contentM {
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(0%);
+  transition-delay: 0s, 0s, 0.3s;
 }
 
 .container {
@@ -10371,23 +10432,8 @@ a {
 
 .nav-link {
   color: #fff;
-  display: -webkit-inline-box;
-}
-
-#gButtonText {
-  background: url("/img/btn_google_dark_normal_ios.svg");
-}
-
-#gButtonText:hover {
-  background: url("/img/btn_google_dark_focus_ios.svg");
-}
-
-#gButtonText:focus {
-  background: url("/img/btn_google_dark_focus_ios.svg");
-}
-
-#profileName {
-  padding-right: inherit;
+  display: inline-flex;
+  align-items: center;
 }
 
 .navbar-brand {
@@ -10400,38 +10446,42 @@ a {
   color: rgb(0, 105, 255) !important;
 }
 
-.profile-drop {
-  margin-bottom: 2;
-}
-
 .dropdown-menu.show {
   min-width: auto;
+  width: -moz-available;
   width: -webkit-fill-available;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 a.profile-drop,
 a.profile-drop:focus {
-  color: hsl(0deg, 0%, 100%);
+  color: hsl(0deg, 0%, 100%) !important;
+  background-color: "";
+  transition: 2s;
 }
 
 a.profile-drop:hover,
 a.profile-drop:active {
-  color: hsl(0deg, 0%, 75%);
+  background-color: hsl(216deg, 74%, 41%);
+  transition: background-color -1s;
 }
 
-#userPageBtn {
+#gallery {
+  color: hsl(0deg, 0%, 100%) !important;
   padding: 5px;
   padding-right: initial;
+  background-color: "";
+  transition: 2s;
 }
 
-#userPageBtn:hover,
-#userPageBtn:active {
-  color: hsl(0deg, 0%, 75%);
+#gallery:hover,
+#gallery:active {
+  background-color: hsl(216deg, 74%, 41%);
+  transition: background-color -1s;
 }
 
 .dropdown-toggle::after {
-  vertical-align: baseline;
+  vertical-align: middle;
 }
 
 .box-shadow {

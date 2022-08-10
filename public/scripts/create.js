@@ -1,16 +1,16 @@
-var clickMode = document.getElementById("clickMode")
-var alphabet = /^[a-z]*$/i
+let clickMode = document.getElementById("clickMode")
+let alphabet = /^[a-z]*$/i
 
 // create a type mode for across and down
 const dropdownContent = document.getElementsByClassName("dropdown-content")[0].children //get array of that div
-var selectedCell = undefined
-var size = undefined
-var hintMapper = {}
-var totalHints = 0
+let selectedCell = undefined
+let size = undefined
+let hintMapper = {}
+let totalHints = 0
 const hintsHidden = document.getElementById("hintsHidden")
 const hintsForm = document.getElementById("hints")
-var isEditMode = true
-var theUrl
+let isEditMode = true
+let theUrl
 const dictSubmit = document.getElementById("dictSubmit")
 const wordInput = document.getElementById("word")
 const listDict = document.getElementById("listDict")
@@ -20,7 +20,7 @@ const boxAndFinish = document.getElementById("boxAndFinish")
 
 // creates grid based on size
 function drawGrid() {
-  var cellSize = 50
+  let cellSize = 50
   if (size === 5) {
     cellSize = 100
   }
@@ -40,7 +40,7 @@ function drawGrid() {
   crossGrid.style.gridTemplateRows = `repeat(${size}, ${cellSize}px)`
   crossGrid.style.border = `5px solid black`
 
-  for (var i = 0; i < size * size; i++) {
+  for (let i = 0; i < size * size; i++) {
     let cell = document.createElement("div")
     cell.className = `cell${size} position-relative`
     cell.id = `${i + 1}`
@@ -65,7 +65,7 @@ function drawGrid() {
   }
 }
 
-for (var i = 0; i < dropdownContent.length; i++) {
+for (let i = 0; i < dropdownContent.length; i++) {
   let child = dropdownContent[i]
   child.addEventListener("click", event => {
     if (child.innerText === "5x5") {
@@ -186,6 +186,10 @@ hintButton.addEventListener("click", event => {
     GrowlNotification.notify({
       title: "Whoops!",
       description: "You gotta choose a crossword size first!",
+      image: {
+        visible: true,
+        customImage: "../img/warning-outline.svg"
+      },
       type: "warning",
       position: "top-center",
       closeTimeout: 3000
@@ -197,6 +201,10 @@ hintButton.addEventListener("click", event => {
       GrowlNotification.notify({
         title: "Whoops!",
         description: "You forgot to fill out the whole crossword!",
+        image: {
+          visible: true,
+          customImage: "../img/warning-outline.svg"
+        },
         type: "warning",
         position: "top-center",
         closeTimeout: 3000
@@ -216,7 +224,7 @@ hintButton.addEventListener("click", event => {
   sizeBox.style.display = "none"
   hintButton.style.display = "none"
   // iterating over each hint and updating page
-  for (var i = 1; i <= totalHints; i++) {
+  for (let i = 1; i <= totalHints; i++) {
     let hintObj = hintMapper[i]
     // update cell with hint Number
     let cell = document.getElementById(`${hintObj.cellId}`)
@@ -280,6 +288,10 @@ hintButton.addEventListener("click", event => {
         GrowlNotification.notify({
           title: "Whoops!",
           description: "You forgot to fill out all the hints!",
+          image: {
+            visible: true,
+            customImage: "../img/warning-outline.svg"
+          },
           type: "warning",
           position: "top-center",
           closeTimeout: 3000
@@ -288,8 +300,19 @@ hintButton.addEventListener("click", event => {
       }
     }
 
+    GrowlNotification.notify({
+      title: "Submitted Sucessfully!",
+      image: {
+        visible: true,
+        customImage: "../img/info-outline.svg"
+      },
+      type: "info",
+      position: "top-center",
+      closeTimeout: 3000
+    })
+
     let solutionStr = ""
-    for (var k = 1; k <= size * size; k++) {
+    for (let k = 1; k <= size * size; k++) {
       let tempCell = document.getElementById(`${k}`)
       if (tempCell.style.background === "black") {
         solutionStr += "!"
@@ -302,7 +325,6 @@ hintButton.addEventListener("click", event => {
       solution: solutionStr,
       hints: hintMapper
     }
-    console.log(example)
     const test = await fetch("/crossword", {
       method: "POST",
       headers: {
@@ -312,7 +334,6 @@ hintButton.addEventListener("click", event => {
       body: JSON.stringify(example)
     })
       .then(res => {
-        // console.log(res)
         theUrl = res.url
       })
       .catch(err => {
@@ -320,7 +341,6 @@ hintButton.addEventListener("click", event => {
       })
     document.location = `${theUrl}`
   })
-  // hintsHidden.appendChild(submitBtn)
   hintsForm.appendChild(submitBtn)
 })
 

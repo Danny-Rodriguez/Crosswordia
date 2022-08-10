@@ -52,7 +52,6 @@ router.get("/profile", ensureAuth, async (req, res) => {
   var firstName = req.user.firstName
   var image = req.user.image
   var profileObj = { firstName, image }
-  // console.log('index.js profileObj: ' + profileObj)
   return res.json(profileObj)
 })
 
@@ -65,8 +64,6 @@ router.post("/user", ensureAuth, async (req, res) => {
 })
 
 router.post("/dictionary", async (req, res) => {
-  // let word = req.word
-  // console.log("req: " + JSON.stringify(req.body.word))
   let word = JSON.stringify(req.body.word)
   let dictApi = process.env.DICTIONARYAPI_KEY
   try {
@@ -75,25 +72,9 @@ router.post("/dictionary", async (req, res) => {
       .then(result => {
         return res.json(result)
       })
-    // console.log(toFetch)
-    // res.json(toFetch)
   } catch (error) {
     return console.error("/dictionary error: " + error)
   }
 })
-
-// router.post("/solve", async (req, res) => {
-//   try {
-//     res.redirect(`/solve/` + req.params.id)
-//     // res.redirect(`/user/` + req.user.googleId)
-//   } catch (error) {
-//     console.error(error)
-//   }
-// })
-
-// router.all("*", (req, res) => {
-//   res.status(404)
-//   res.render("error/404")
-// })
 
 module.exports = router

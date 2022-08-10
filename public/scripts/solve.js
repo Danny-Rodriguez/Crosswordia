@@ -10,9 +10,6 @@ const correct = document.getElementById("correct")
 await fetch(document.location.origin + document.location.pathname + "/fetch")
   .then(response => response.json())
   .then(crossword => {
-    console.log(crossword)
-    console.log(crossword._id)
-    console.log(Date(crossword.createdAt))
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution
@@ -82,7 +79,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
               pElement.style.position = "absolute"
               pElement.className = `pNumber${size} pCell`
               pElement.innerText = `${key}`
-              console.log("line 98")
+              // console.log("line 82")
               selectedCell.appendChild(pElement)
             }
           }
@@ -123,7 +120,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
                   pElement.style.position = "absolute"
                   pElement.className = `pNumber${size} pCell`
                   pElement.innerText = `${key}`
-                  console.log("line 140")
+                  // console.log("line 123")
                   selectedCell.appendChild(pElement)
                   break
                 }
@@ -149,7 +146,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
                 pElement.className = `pNumber${size} pCell`
                 pElement.innerText = `${key}`
                 selectedCell.appendChild(pElement)
-                console.log("line 161")
+                // console.log("line 149")
                 break
               }
             }
@@ -166,7 +163,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     var hintDown = document.getElementById("hints-down")
     for (var key in hints) {
       let value = hints[key]
-      // console.log(value)
       let cell = document.getElementById(`${value.cellId}`)
 
       //* Constructs initial Hint Numbers
@@ -205,6 +201,10 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
           GrowlNotification.notify({
             title: "Whoops!",
             description: "You forgot to fill out the whole crossword!",
+            image: {
+              visible: true,
+              customImage: "../img/warning-outline.svg"
+            },
             type: "warning",
             position: "top-center",
             closeTimeout: 3000
@@ -217,6 +217,10 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
         GrowlNotification.notify({
           title: "Well Done!",
           description: "You have solved the crossword!",
+          image: {
+            visible: true,
+            customImage: "../img/success-outline.svg"
+          },
           type: "success",
           position: "top-center",
           closeTimeout: 3000
@@ -225,6 +229,10 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
         GrowlNotification.notify({
           title: "Sorry!",
           description: "That wasn't the solution, try again!",
+          image: {
+            visible: true,
+            customImage: "../img/danger-outline.svg"
+          },
           type: "error",
           position: "top-center",
           closeTimeout: 3000

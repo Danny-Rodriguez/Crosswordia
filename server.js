@@ -28,7 +28,7 @@ app.use(bodyParser.json())
 const PORT = process.env.PORT || 3000
 
 router.post("/crossword", (req, res) => {
-  console.log(req.body)
+  console.log("server.js line 31: " + req.body)
   res.send(req.body)
 })
 
@@ -36,20 +36,13 @@ app.use("/crossword", router)
 
 //test
 router.post("/user", (req, res) => {
-  console.log(req.body)
+  console.log("server.js line 39: " + req.body)
   res.send(req.body)
 })
-
-// const { formatName, checkIf, ifCond } = require("./helpers/hbs")
 
 app.engine(
   ".hbs",
   exphbs.engine({
-    // helpers: {
-    //   formatName,
-    //   checkIf,
-    //   ifCond
-    // },
     defaultLayout: "main",
     extname: "hbs"
   })

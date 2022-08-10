@@ -23,7 +23,6 @@ router.get("/:id/fetch", async (req, res) => {
   try {
     var crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
   } catch (error) {
-    console.log("Get /:id/fetch")
     res.status(404)
     return res.render("error/404", {
       layout: "mainGuest"
