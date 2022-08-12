@@ -3,19 +3,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{! <script src="/scripts/main.js" type="module"></script> }}
     <title>Login</title>
-    {{! <link rel="stylesheet" href="/css/create.css" /> }}
 
   </head>
   <body>
     <div class="login-page">
 
-      <div class="lead" style="width: max-content; margin-bottom: 1em;">
-        <p><img src="/img/create-crossword.svg" style="width:205;" alt="" />Build your own crosswords</p>
-        <p>Save them, share them with friends<img src="/img/crossword-save.svg" alt="" style="width:205;" /></p>
-        <p><img src="/img/crossword-thinking.svg" style="width:205;" />Challenge yourself with other's crosswords</p>
-        <p>Let's get started</p>
+      <div id="leadText" class="lead" style="width: max-content; margin-bottom: 1em;">
+        <p id="build" draggable="false"><img src="/img/create-crossword.svg" draggable="false" style="width:205;" alt="" />Build your own crosswords</p>
+        <p id="save" draggable="false">Save them, share them with friends<img src="/img/crossword-save.svg" draggable="false" alt="" style="width:205;" /></p>
+        <p id="challenge" draggable="false"><img src="/img/crossword-thinking.svg" draggable="false" style="width:205;" />Challenge yourself with other's crosswords</p>
+        <p draggable="false">Let's get started</p>
       </div>
 
       <a class="btn btn-primary" href="/auth/google" role="button" style="display: flex; width: max-content; border:0; padding:0; align-items:center; margin: auto;"><img src="/img/btn_google_dark_normal_ios.svg" alt="" style="width: 45px;" /><div style="padding-right: 0.2em;">Sign In With Google </div></a>
@@ -24,5 +22,3 @@
 
   </body>
 </html>
-
-{{! box-shadow: rgb(0 0 0 / 20%) 0px 12px 28px 0px, rgb(0 0 0 / 10%) 0px 2px 4px 0px, rgb(255 255 255 / 5%) 0px 0px 0px 1px inset; }}

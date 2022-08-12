@@ -27,12 +27,12 @@ app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 3000
 
-router.post("/crossword", (req, res) => {
-  console.log("server.js line 31: " + req.body)
-  res.send(req.body)
-})
+// router.post("/crossword", (req, res) => {
+//   console.log("server.js line 31: " + req.body)
+//   res.send(req.body)
+// })
 
-app.use("/crossword", router)
+// app.use("/crossword", router)
 
 //test
 router.post("/user", (req, res) => {

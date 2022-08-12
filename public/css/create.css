@@ -10946,33 +10946,76 @@ a.profile-drop:active {
   outline: none;
 }
 
-.loader {
-  -webkit-animation: load-out 5s;
-  animation: load-out 5s;
-  -webkit-animation-fill-mode: forwards;
+#build {
+  animation: fade-in 4s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+#save {
+  animation: fade-in 4s;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+#challenge {
+  animation: fade-in 4s;
+  animation-delay: 3.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+#solveCheer {
+  animation: fade-in 4s;
+  animation-delay: 2.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.fade-in {
+  animation: fade-in 4s;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.slideDown {
+  animation: slideDown 2.5s;
   animation-fill-mode: forwards;
 }
 
-@-webkit-keyframes load-out {
+@keyframes slideDown {
   from {
-    top: 100%;
     opacity: 0;
+    transform: translateY(-100%);
+    transition-timing-function: ease-out;
   }
   to {
-    top: 0;
     opacity: 1;
   }
 }
-@keyframes load-out {
-  from {
-    top: 100%;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
+#leadText p {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
 }
+#leadText p img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 /* button 50 */
 .button-50-b {
   appearance: button;
