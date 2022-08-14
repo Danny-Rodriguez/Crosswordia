@@ -1,16 +1,16 @@
-var userUrl
+let userUrl
 
 fetch("/profile")
   .then(response => response.json())
   .then(profileObj => {
-    var profileName = document.getElementsByClassName("profileName")
+    let profileName = document.getElementsByClassName("profileName")
     Array.from(profileName).forEach(element => {
       // element.innerText = "Danny"
-      if (sessionStorage.length === 0) {
-        sessionStorage.setItem("firstName", `${profileObj.firstName}`)
-      }
-      // element.innerText = `${profileObj.firstName}`
-      element.innerText = sessionStorage.getItem("firstName")
+      // if (sessionStorage.length === 0) {
+      //   sessionStorage.setItem("firstName", `${profileObj.firstName}`)
+      // }
+      element.innerText = `${profileObj.firstName}`
+      // element.innerText = sessionStorage.getItem("firstName")
     })
     // profileName.innerText = profileObj.firstName
     let profilePic = document.getElementById("profilePic")
@@ -18,11 +18,11 @@ fetch("/profile")
   })
 
 // Adds user's profile page
-var userPageBtn = document.getElementById("userPageBtn")
+let userPageBtn = document.getElementById("userPageBtn")
 userPageBtn.addEventListener("click", async () => {
-  let googleId
+  let user
   const example = {
-    googleId: googleId
+    user
   }
   const test = await fetch("/user", {
     method: "POST",
@@ -34,8 +34,8 @@ userPageBtn.addEventListener("click", async () => {
   })
     .then(res => {
       userUrl = res.url
-      let copyUrl = document.getElementById("copyUrl")
-      copyUrl.innerText = `${userUrl}`
+      // let copyUrl = document.getElementById("copyUrl")
+      // copyUrl.innerText = `${userUrl}`
     })
     .catch(err => {
       console.error(err)

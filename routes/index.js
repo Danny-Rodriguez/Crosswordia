@@ -4,7 +4,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth")
 const Crossword = require("../models/Crossword")
 const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args))
 
-// @desc Login/Landing page
+// @desc home page
 // @route Get /
 router.get("/", ensureAuth, async (req, res) => {
   return res.render("home", {
@@ -25,17 +25,24 @@ router.get("/login", async (req, res) => {
 router.get("/delete/:id", ensureAuth, async (req, res) => {
   Crossword.findByIdAndDelete(req.params.id, (err, doc) => {
     if (!err) {
-      return res.redirect("/user/" + req.user.googleId)
+      return res.redirect("/user/" + req.user.id)
     } else {
       return console.log("Failed to Delete user Details: " + err)
     }
   })
 })
 
+// @desc gallery page
+// @route Get /gallery
+router.get("/gallery", async (req, res) => {
+  return res.render("gallery")
+})
+
 router.post("/crossword", ensureAuth, async (req, res) => {
   try {
     var toPost = {
-      googleId: req.user.googleId,
+      // googleId: req.user.googleId,
+      user: req.user.id,
       size: req.body.size,
       solution: req.body.solution,
       hints: req.body.hints
@@ -57,7 +64,7 @@ router.get("/profile", ensureAuth, async (req, res) => {
 
 router.post("/user", ensureAuth, async (req, res) => {
   try {
-    return res.redirect(`/user/` + req.user.googleId)
+    return res.redirect(`/user/` + req.user.id)
   } catch (error) {
     return console.error(error)
   }

@@ -1,25 +1,15 @@
 let clickMode = document.getElementById("clickMode")
 let alphabet = /^[a-z]*$/i
-
-// create a type mode for across and down
-const dropdownContent = document.getElementsByClassName("dropdown-content")[0].children //get array of that div
 let selectedCell = undefined
 let size = undefined
 let hintMapper = {}
 let totalHints = 0
-const hintsHidden = document.getElementById("hintsHidden")
-const hintsForm = document.getElementById("hints")
 let isEditMode = true
 let theUrl
-const dictSubmit = document.getElementById("dictSubmit")
-const wordInput = document.getElementById("word")
-const listDict = document.getElementById("listDict")
-const footer = document.getElementById("footer")
-const thesaurus = document.getElementById("thesaurus")
-const boxAndFinish = document.getElementById("boxAndFinish")
 
 // creates grid based on size
 function drawGrid() {
+  const footer = document.getElementById("footer")
   let cellSize = 50
   if (size === 5) {
     cellSize = 100
@@ -32,7 +22,7 @@ function drawGrid() {
     cellSize = 50
     footer.className = "footerCrossword"
   }
-  var crossGrid = document.getElementById("crossGrid")
+  let crossGrid = document.getElementById("crossGrid")
   while (crossGrid.firstChild) {
     crossGrid.removeChild(crossGrid.firstChild)
   }
@@ -65,26 +55,61 @@ function drawGrid() {
   }
 }
 
-for (let i = 0; i < dropdownContent.length; i++) {
-  let child = dropdownContent[i]
+const sizeButtons = document.getElementsByClassName("sizeButtons")[0].children
+const chooseH1 = document.getElementById("chooseH1")
+// const preSize = document.getElementById("preSize")
+// const editorSize = document.getElementById("editorSize")
+for (let i = 0; i < sizeButtons.length; i++) {
+  let child = sizeButtons[i]
   child.addEventListener("click", event => {
     if (child.innerText === "5x5") {
       size = 5
+      chooseH1.style.display = "none"
+      // preSize.style.display = "none"
     }
     if (child.innerText === "10x10") {
       size = 10
+      chooseH1.style.display = "none"
+      // preSize.style.display = "none"
     }
     if (child.innerText === "15x15") {
       size = 15
+      chooseH1.style.display = "none"
+      // preSize.style.display = "none"
     }
-
+    const thesaurus = document.getElementById("thesaurus")
     thesaurus.style.display = "block"
-    boxAndFinish.style.display = "block"
+    const boxAndFinish = document.getElementById("boxAndFinish")
+    boxAndFinish.style.display = "flex"
+    // editorSize.style.display = "flex"
     crossGrid.style.display = "grid"
 
     drawGrid()
   })
 }
+
+// const dropdownContent = document.getElementsByClassName("dropdown-content")[0].children
+// for (let i = 0; i < dropdownContent.length; i++) {
+//   let child = dropdownContent[i]
+//   child.addEventListener("click", event => {
+//     if (child.innerText === "5x5") {
+//       size = 5
+//     }
+//     if (child.innerText === "10x10") {
+//       size = 10
+//     }
+//     if (child.innerText === "15x15") {
+//       size = 15
+//     }
+//     const thesaurus = document.getElementById("thesaurus")
+//     thesaurus.style.display = "block"
+//     const boxAndFinish = document.getElementById("boxAndFinish")
+//     boxAndFinish.style.display = "block"
+//     crossGrid.style.display = "grid"
+
+//     drawGrid()
+//   })
+// }
 
 //* This changed the color
 clickMode.addEventListener("click", event => {
@@ -102,6 +127,7 @@ clickMode.addEventListener("click", event => {
 })
 
 window.addEventListener("keydown", event => {
+  const wordInput = document.getElementById("word")
   if (selectedCell === undefined) {
     return
   }
@@ -116,7 +142,7 @@ window.addEventListener("keydown", event => {
       selectedCell.innerHTML = `<p class="position-absolute pLetter15">${event.key.toUpperCase()}</p>`
     }
     // This for loop selects the next cell across
-    for (var i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
+    for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
       let nextCell = document.getElementById(`${i}`)
       if (nextCell.style.background === "white" || nextCell.style.background === "") {
         selectedCell.style.background = "white"
@@ -125,9 +151,11 @@ window.addEventListener("keydown", event => {
         break
       }
     }
-  } else if (wordInput !== document.activeElement && event.key === "Backspace") {
+  } else if (wordInput !== document.activeElement) {
+    // } else if (wordInput !== document.activeElement && event.code === "Backspace") {
+    // console.log(event.repeat)
     let foundPrev = false
-    for (var i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
+    for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
       let prevCell = document.getElementById(`${i}`)
       if (prevCell.style.background === "white" || prevCell.style.background === "") {
         selectedCell.style.background = "white"
@@ -138,13 +166,14 @@ window.addEventListener("keydown", event => {
         break
       }
     }
-    // could not find previous cell
+    // This is for the first cell
     if (!foundPrev) {
       selectedCell.innerText = ""
     }
   }
 })
 
+const dictSubmit = document.getElementById("dictSubmit")
 dictSubmit.addEventListener("click", async event => {
   event.preventDefault()
   const word = document.getElementById("word")
@@ -166,6 +195,7 @@ dictSubmit.addEventListener("click", async event => {
     })
     .then(function (data) {
       let dataArr = data[0].meta.syns.flat().slice(0, 10)
+      const listDict = document.getElementById("listDict")
       listDict.innerHTML = dataArr.map(i => `<li>${i}</li>`).join("")
     })
     .catch(function (error) {
@@ -173,7 +203,7 @@ dictSubmit.addEventListener("click", async event => {
     })
 })
 
-var hintButton = document.getElementById("hintBtn")
+let hintButton = document.getElementById("hintBtn")
 hintButton.addEventListener("click", event => {
   if (selectedCell !== undefined) {
     selectedCell.style.background = "white"
@@ -213,15 +243,15 @@ hintButton.addEventListener("click", event => {
     }
   }
 
-  var hintsAcross = document.getElementById("hints-input-across")
-  var hintsDown = document.getElementById("hints-input-down")
+  let hintsAcross = document.getElementById("hints-input-across")
+  let hintsDown = document.getElementById("hints-input-down")
 
   handleHints()
   isEditMode = false
   // hide unnecessary buttons
   clickMode.style.display = "none"
-  let sizeBox = document.getElementsByClassName("dropdown")[0]
-  sizeBox.style.display = "none"
+  // let sizeBox = document.getElementsByClassName("dropdown")[0]
+  // sizeBox.style.display = "none"
   hintButton.style.display = "none"
   // iterating over each hint and updating page
   for (let i = 1; i <= totalHints; i++) {
@@ -243,8 +273,6 @@ hintButton.addEventListener("click", event => {
       let h3across = document.getElementById("h3-across")
       h3across.innerText = "Across"
       hintsAcross.appendChild(hintInput)
-      hintsHidden.appendChild(hintInput.cloneNode(true))
-      // hintsForm.appendChild(hintInput)
     }
     if (hintObj.isWordDown) {
       let hintInput = document.createElement("input")
@@ -255,8 +283,6 @@ hintButton.addEventListener("click", event => {
       let h3down = document.getElementById("h3-down")
       h3down.innerText = "Down"
       hintsDown.appendChild(hintInput)
-      hintsHidden.appendChild(hintInput.cloneNode(true))
-      // hintsForm.appendChild(hintInput)
     }
   }
 
@@ -341,6 +367,7 @@ hintButton.addEventListener("click", event => {
       })
     document.location = `${theUrl}`
   })
+  const hintsForm = document.getElementById("hints")
   hintsForm.appendChild(submitBtn)
 })
 

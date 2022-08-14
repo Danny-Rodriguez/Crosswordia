@@ -8,8 +8,8 @@ const userArea = document.getElementById("userArea")
 fetch(document.location.origin + document.location.pathname + "/fetch")
   .then(response => response.json())
   .then(userIdArr => {
-    var tBodyUser = document.getElementById("tBodyUser")
-
+    let tBodyUser = document.getElementById("tBodyUser")
+    console.log(userIdArr)
     for (let i = userIdArr.length - 1; i >= 0; i--) {
       var trUserCrossword = document.createElement("tr")
       trUserCrossword.className = "trUserCrossword"
@@ -18,7 +18,13 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
       function DateF() {
         let tdUserCrossword = document.createElement("td")
         let dateC = new Date(userIdArr[i].createdAt)
-        let options = { year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric" }
+        let options = {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit"
+        }
         tdUserCrossword.innerText = new Intl.DateTimeFormat("en-US", options).format(dateC)
         tdUserCrossword.className = "tdDate"
         trUserCrossword.appendChild(tdUserCrossword)
@@ -79,7 +85,7 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
       userArea.style.width = "max-content"
       userArea.innerHTML = `Hello <p class="profileName" id="profileNameUser" referrerpolicy="no-referrer" style="display: inline"></p>! You haven't made any crosswords so far...`
       const profileNameUser = document.getElementById("profileNameUser")
-      profileNameUser.innerText = sessionStorage.getItem("firstName")
+      // profileNameUser.innerText = sessionStorage.getItem("firstName")
     }
   })
 

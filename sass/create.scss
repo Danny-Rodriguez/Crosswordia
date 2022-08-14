@@ -25,8 +25,14 @@
   // grid-template-columns: 33.334% 66.667%;
   // grid-template-columns: 25% 75%;
   // grid-template-columns: 25% 71%;
-  column-gap: 1em;
+  // column-gap: 1em;
   grid-auto-flow: column;
+}
+
+#thesaurus {
+  flex-direction: column;
+  width: min-content;
+  display: flex;
 }
 
 // Custom variables
@@ -38,6 +44,20 @@ body {
   -webkit-font-smoothing: antialiased;
   // font-family: Roboto, sans-serif;
   // font-family: var(--bs-body-font-family);
+}
+
+// .banner {
+//   background: #a770ef;
+//   background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+//   background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+// }
+
+.banner {
+  background: linear-gradient(to right, hsl(210, 96%, 40%), hsl(210, 49%, 42%));
+}
+
+.bi-arrow-up-circle:hover {
+  color: #495057;
 }
 
 #bodyId {
@@ -192,7 +212,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  width: min-content;
+  // width: min-content;
   flex-direction: column;
 }
 
@@ -216,7 +236,7 @@ body {
 .solveArea {
   display: flex !important;
   display: grid !important;
-  grid-auto-flow: column;
+  // grid-auto-flow: column;
   column-gap: 60px;
   align-content: space-around !important;
 }
@@ -470,14 +490,6 @@ a.profile-drop:active {
 
 #check {
   padding: inherit;
-}
-
-#word-form {
-  width: max-content;
-}
-
-#listDict {
-  margin-left: 1em;
 }
 
 .a2a_kit {
@@ -924,9 +936,23 @@ a.profile-drop:active {
   opacity: 0;
 }
 
+#getStarted {
+  animation: fade-in 4s;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
 #solveCheer {
   animation: fade-in 4s;
   animation-delay: 2.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.login-page > a.btn.btn-primary {
+  animation: fade-in 4s;
+  animation-delay: 6s;
   animation-fill-mode: forwards;
   opacity: 0;
 }
@@ -1020,4 +1046,52 @@ a.profile-drop:active {
 .button-50-b:not([disabled]):active {
   box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
   transform: translate(2px, 2px);
+}
+
+// <!-- HTML !-->
+// <button class="button-28" role="button">Button 28</button>
+
+/* CSS */
+.button-28 {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1a1a1a;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3b3b3b;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0.5em;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  color: #fff;
+  background-color: #1a1a1a;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
 }

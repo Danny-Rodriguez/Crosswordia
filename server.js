@@ -80,6 +80,7 @@ app.use("/login", require("./routes/index"))
 app.use("/user", require("./routes/user"))
 app.use("/crossword", require("./routes/index"))
 app.use("/dictionary", require("./routes/index"))
+app.use("/gallery", require("./routes/index"))
 app.all("*", (req, res) => {
   res.status(404)
   res.render("error/404", {

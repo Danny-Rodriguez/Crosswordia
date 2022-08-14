@@ -9,16 +9,19 @@ const Crossword = new mongoose.Schema({
     type: String,
     required: true
   },
-  googleId: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
     required: true
   },
   hints: {
-    type: Object
+    type: Object,
+    required: true
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: true
   }
 })
 
