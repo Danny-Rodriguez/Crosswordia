@@ -1,23 +1,21 @@
-<div class="solve d-flex justify-content-center wrap1000">
-
-  {{! <div class="loader"> }}
-  <div class="container slideDown">
+<div class="solve d-flex justify-content-center wrap1000" style="width: auto;">
+  <div class="container slideDown" style="width: auto">
     <text id="solveCheer" class="text-center lead" style="margin-bottom: 1em;">Can You Solve This Crossword? Good Luck!</text>
     <div class="grid" id="crossGrid"></div>
 
   </div>
-  <div class="hints slideDown" id="hints">
+
+  <div class="hints slideDown" id="hints" style="width: 100%; display: flex; justify-content:space-evenly; flex-direction: column; align-items: center;">
     <h1 class="h1Hints text-center">Hints</h1>
-    <div class="onlyHints">
-      <div id="hints-across"><h3>Across</h3></div>
-      <div id="hints-down"><h3>Down</h3></div>
+    <div class="onlyHints" style="display: flex; max-width: 50vh;">
+      <div id="hints-across" style="width: 50%; margin: 0 1em 0 1em;"><h3 class="text-center">Across</h3></div>
+      <div id="hints-down" style="width: 50%; margin: 0 1em 0 1em;"><h3 class="text-center">Down</h3></div>
     </div>
     <button id="check" class="button-19" role="button">Check my Answer</button>
   </div>
-  {{! </div> }}
 
 </div>
-<div id="hello" class="text-center lead mb-3 mt-3 fade-in">Share Your Crossword!</div>
+<div class="text-center lead mb-3 mt-3 fade-in">Share Your Crossword!</div>
 <div class="a2a_kit a2a_kit_size_32 a2a_default_style mb-3 fade-in">
   <a class="a2a_button_copy_link"></a>
   <a class="a2a_button_facebook"></a>

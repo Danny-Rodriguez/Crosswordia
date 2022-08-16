@@ -83,9 +83,7 @@ fetch(document.location.origin + document.location.pathname + "/fetch")
     if (tBodyUser.childElementCount === 0) {
       table.style.display = "none"
       userArea.style.width = "max-content"
-      userArea.innerHTML = `Hello <p class="profileName" id="profileNameUser" referrerpolicy="no-referrer" style="display: inline"></p>! You haven't made any crosswords so far...`
-      const profileNameUser = document.getElementById("profileNameUser")
-      // profileNameUser.innerText = sessionStorage.getItem("firstName")
+      userArea.innerHTML = `Hello <p class="profileName" referrerpolicy="no-referrer" style="display: inline"></p>! You haven't made any crosswords so far...`
     }
   })
 

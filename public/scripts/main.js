@@ -1,5 +1,7 @@
 let userUrl
 
+//if not cache or localStorage, fetch
+
 fetch("/profile")
   .then(response => response.json())
   .then(profileObj => {

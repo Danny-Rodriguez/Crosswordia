@@ -81,35 +81,11 @@ for (let i = 0; i < sizeButtons.length; i++) {
     thesaurus.style.display = "block"
     const boxAndFinish = document.getElementById("boxAndFinish")
     boxAndFinish.style.display = "flex"
-    // editorSize.style.display = "flex"
     crossGrid.style.display = "grid"
 
     drawGrid()
   })
 }
-
-// const dropdownContent = document.getElementsByClassName("dropdown-content")[0].children
-// for (let i = 0; i < dropdownContent.length; i++) {
-//   let child = dropdownContent[i]
-//   child.addEventListener("click", event => {
-//     if (child.innerText === "5x5") {
-//       size = 5
-//     }
-//     if (child.innerText === "10x10") {
-//       size = 10
-//     }
-//     if (child.innerText === "15x15") {
-//       size = 15
-//     }
-//     const thesaurus = document.getElementById("thesaurus")
-//     thesaurus.style.display = "block"
-//     const boxAndFinish = document.getElementById("boxAndFinish")
-//     boxAndFinish.style.display = "block"
-//     crossGrid.style.display = "grid"
-
-//     drawGrid()
-//   })
-// }
 
 //* This changed the color
 clickMode.addEventListener("click", event => {
@@ -212,7 +188,6 @@ hintButton.addEventListener("click", event => {
 
   let crossGrid = document.getElementById("crossGrid")
   if (crossGrid.children.length === 0) {
-    // alert("Hey you gotta choose a Crossword size first!")
     GrowlNotification.notify({
       title: "Whoops!",
       description: "You gotta choose a crossword size first!",
@@ -243,15 +218,15 @@ hintButton.addEventListener("click", event => {
     }
   }
 
-  let hintsAcross = document.getElementById("hints-input-across")
-  let hintsDown = document.getElementById("hints-input-down")
+  const hintsAcross = document.getElementById("hints-input-across")
+  const hintsDown = document.getElementById("hints-input-down")
 
   handleHints()
   isEditMode = false
   // hide unnecessary buttons
   clickMode.style.display = "none"
-  // let sizeBox = document.getElementsByClassName("dropdown")[0]
-  // sizeBox.style.display = "none"
+  document.querySelector(".sizeButtons").style.display = "none"
+  document.querySelector(".wrapper").style.marginTop = "inherit"
   hintButton.style.display = "none"
   // iterating over each hint and updating page
   for (let i = 1; i <= totalHints; i++) {
