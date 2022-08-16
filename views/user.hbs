@@ -1,11 +1,16 @@
-<div class="loader" id="userPage">
+<div class="loader">
 
-  <h2 id="userArea" class="lead text-center">
+  <h2 id="userArea" class="lead text-center" style="display: none;">
     Hello
-    <p class="profileName" id="profileNameUser" referrerpolicy="no-referrer" style="display: inline"></p>! Here's all the crosswords you've made so far...
+    {{name}}! Here's all the crosswords you've made so far...
   </h2>
 
-  <div id="table" class="table-responsive" style="background: white;">
+  <h2 id="userAreaEmpty" class="lead text-center" style="display: none; margin-top: 1em;">
+    Hello
+    {{name}}! You haven't made any crosswords so far...
+  </h2>
+
+  <div id="table" class="table-responsive" style="display: none">
     <table class="table table-striped table-sm" style="margin-bottom:0;">
       <thead>
         <tr>

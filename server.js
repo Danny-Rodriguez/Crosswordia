@@ -27,13 +27,6 @@ app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 3000
 
-// router.post("/crossword", (req, res) => {
-//   console.log("server.js line 31: " + req.body)
-//   res.send(req.body)
-// })
-
-// app.use("/crossword", router)
-
 //test
 router.post("/user", (req, res) => {
   console.log("server.js line 39: " + req.body)
@@ -66,6 +59,10 @@ app.use(passport.session())
 // Set Global Var
 app.use(function (req, res, next) {
   res.locals.user = req.user || null
+  app.locals.footer = new Date().getFullYear()
+  if (req.isAuthenticated()) {
+    app.locals.image = req.user.image
+  }
   next()
 })
 

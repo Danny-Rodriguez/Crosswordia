@@ -3,9 +3,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/scripts/main.js" type="module"></script>
+    <style type="text/css">#thinking{width: 150px;}</style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     {{! <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> }}
+    <link rel="preload" href="/img/crossword.svg" as="image" />
+    {{! <link rel="preload" href="/img/crossword-thinking.svg" as="image" /> }}
     <link rel="shortcut icon" href="/img/crossword.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
     <link rel="shortcut icon" href="/img/crossword-darkmode.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
     <link rel="mask-icon" href="/img/crossword.svg" color="black" />
@@ -27,10 +29,10 @@
         <div class="dropdownM dropReturn">
           <a class="profile-drop nav-link dropdown-toggle justify-content-between box-shadow" href="#" id="navbar-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div style="padding-right: inherit;">My Dashboard</div>
-            <img src="" alt="" referrerpolicy="no-referrer" id="profilePic" class="rounded-circle" style="width:25;" />
+            <img src="{{image}}" alt="" referrerpolicy="no-referrer" class="rounded-circle" style="width:25;" />
           </a>
           <div class="dropdown-contentM">
-            <a id="userPageBtn" class="dropdown-item" role="button" style="cursor: pointer; font-size: small; display: inline-flex; align-items: center;"><div>My Crosswords</div>
+            <a href="/user" class="dropdown-item d-inline-flex align-items-center" role="button" style="font-size: small;"><div>My Crosswords</div>
               <img src="/img/myCrosswords-b.svg" alt="" style="width:33.5;" />
             </a>
             <a href="/auth/logout" class="dropdown-item" style="font-size: small;">Logout <i class="bi bi-box-arrow-right"></i></a>
@@ -62,6 +64,7 @@
       <li> <img src="/img/crossword.svg" alt="" draggable="false" style="width: -moz-available; width: -webkit-fill-available" ; /></li>
     </ul>
 
-    <div id="footer" class="footerInitial" style="z-index: 1; left: 3px;"> <p> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny Alfredo Rodriguez All Rights Reserved </p></div>
+    {{!-- <div id="footer" class="footerInitial" style="z-index: 1; left: 3px;"> <p> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny Alfredo Rodriguez All Rights Reserved </p></div> --}}
+    <div id="footer" class="footerInitial" style="z-index: 1; left: 3px;"> <p> Copyright &copy; {{footer}} Danny Alfredo Rodriguez All Rights Reserved </p></div>
   </body>
 </html>

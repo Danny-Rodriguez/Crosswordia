@@ -15,9 +15,6 @@
   .hintsCreate {
     flex-direction: row !important;
   }
-  .solveArea {
-    grid-auto-flow: dense !important;
-  }
 }
 
 .wrapper {
@@ -45,6 +42,12 @@ body {
 .banner {
   background: linear-gradient(to right, hsl(210, 96%, 40%), hsl(210, 49%, 42%));
 }
+
+// .text-white.p-5.shadow-sm.rounded.banner.d-flex.justify-content-center {
+//   img {
+//     width: 100px;
+//   }
+// }
 
 .bi-arrow-up-circle:hover {
   color: #495057;
@@ -95,10 +98,6 @@ body {
   transform: translateY(-2em);
   transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
 }
-
-// .toolbelt:hover ~ .solveArea {
-//   z-index: -2;
-// }
 
 .dropdown:hover .dropdown-content {
   visibility: visible; /* shows sub-menu */
@@ -176,13 +175,6 @@ body {
   flex-direction: column;
 }
 
-.toolbelt {
-  width: max-content;
-  padding: 1em;
-  margin: auto;
-  margin-top: initial;
-}
-
 #crossGrid {
   width: auto !important;
 }
@@ -191,14 +183,6 @@ body {
   display: grid;
   grid-gap: 1px;
   background: black;
-}
-
-.solveArea {
-  display: flex !important;
-  display: grid !important;
-  // grid-auto-flow: column;
-  column-gap: 60px;
-  align-content: space-around !important;
 }
 
 .cell5 {
@@ -860,6 +844,13 @@ a.profile-drop:active {
 .fade-in {
   animation: fade-in 4s;
   animation-delay: 4s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.loader {
+  animation: fade-in 6s;
+  animation-delay: -2s;
   animation-fill-mode: forwards;
   opacity: 0;
 }

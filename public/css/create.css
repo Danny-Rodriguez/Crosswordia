@@ -10115,9 +10115,6 @@ textarea.form-control-lg {
   .hintsCreate {
     flex-direction: row !important;
   }
-  .solveArea {
-    grid-auto-flow: dense !important;
-  }
 }
 .wrapper {
   display: grid;
@@ -10248,13 +10245,6 @@ body {
   flex-direction: column;
 }
 
-.toolbelt {
-  width: max-content;
-  padding: 1em;
-  margin: auto;
-  margin-top: initial;
-}
-
 #crossGrid {
   width: auto !important;
 }
@@ -10263,13 +10253,6 @@ body {
   display: grid;
   grid-gap: 1px;
   background: black;
-}
-
-.solveArea {
-  display: flex !important;
-  display: grid !important;
-  column-gap: 60px;
-  align-content: space-around !important;
 }
 
 .cell5 {
@@ -10914,6 +10897,13 @@ a.profile-drop:active {
 .fade-in {
   animation: fade-in 4s;
   animation-delay: 4s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.loader {
+  animation: fade-in 6s;
+  animation-delay: -2s;
   animation-fill-mode: forwards;
   opacity: 0;
 }

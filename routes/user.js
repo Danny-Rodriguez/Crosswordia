@@ -5,7 +5,7 @@ const Crossword = require("../models/Crossword")
 
 router.get("/:user", ensureAuth, async (req, res) => {
   return res.render("user", {
-    layout: "main"
+    name: req.user.firstName
   })
 })
 

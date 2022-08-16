@@ -9,6 +9,7 @@ const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fet
 router.get("/", ensureAuth, async (req, res) => {
   return res.render("home", {
     layout: "main"
+    // image: req.user.image
   })
 })
 
@@ -35,7 +36,20 @@ router.get("/delete/:id", ensureAuth, async (req, res) => {
 // @desc gallery page
 // @route Get /gallery
 router.get("/gallery", async (req, res) => {
-  return res.render("gallery")
+  return res.render("gallery", {
+    thinking: "/img/crossword-thinking.svg"
+  })
+})
+
+// @desc user page
+// @route Get /user
+router.get("/user", ensureAuth, async (req, res) => {
+  try {
+    // return res.redirect(`/user/` + req.user.id)
+    return res.redirect(`/user/` + req.user.id)
+  } catch (error) {
+    return console.error(error)
+  }
 })
 
 router.post("/crossword", ensureAuth, async (req, res) => {
@@ -55,21 +69,6 @@ router.post("/crossword", ensureAuth, async (req, res) => {
   }
 })
 
-router.get("/profile", ensureAuth, async (req, res) => {
-  var firstName = req.user.firstName
-  var image = req.user.image
-  var profileObj = { firstName, image }
-  return res.json(profileObj)
-})
-
-router.post("/user", ensureAuth, async (req, res) => {
-  try {
-    return res.redirect(`/user/` + req.user.id)
-  } catch (error) {
-    return console.error(error)
-  }
-})
-
 router.post("/dictionary", async (req, res) => {
   let word = JSON.stringify(req.body.word)
   let dictApi = process.env.DICTIONARYAPI_KEY
@@ -83,5 +82,12 @@ router.post("/dictionary", async (req, res) => {
     return console.error("/dictionary error: " + error)
   }
 })
+
+// router.all("*", (req, res) => {
+//   res.status(404)
+//   return res.render("error/404", {
+//     layout: "mainGuest"
+//   })
+// })
 
 module.exports = router
