@@ -1,8 +1,8 @@
 const table = document.getElementById("table")
 const userArea = document.getElementById("userArea")
-
+document.getElementById("bodyId").style.background = "#f1f1f1"
+// document.querySelector(".area").style.background = "#f1f1f1"
 window.onload = () => {
-  document.getElementById("bodyId").style.background = "#f1f1f1"
   fetch(document.location.origin + document.location.pathname + "/fetch")
     .then(response => response.json())
     .then(userArr => {
@@ -12,17 +12,17 @@ window.onload = () => {
       }
       userArea.style.display = "block"
       table.style.display = "block"
-      let tBodyUser = document.getElementById("tBodyUser")
+      const tBodyUser = document.getElementById("tBodyUser")
       console.log(userArr)
       for (let i = userArr.length - 1; i >= 0; i--) {
-        var trUserCrossword = document.createElement("tr")
+        const trUserCrossword = document.createElement("tr")
         trUserCrossword.className = "trUserCrossword"
         // trUserCrossword.id = `${i + 1}`
 
         function DateF() {
           let tdUserCrossword = document.createElement("td")
-          let dateC = new Date(userArr[i].createdAt)
-          let options = {
+          const dateC = new Date(userArr[i].createdAt)
+          const options = {
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
@@ -54,7 +54,7 @@ window.onload = () => {
         function LinkF() {
           let tdUserCrossword = document.createElement("td")
           tdUserCrossword.className = "tdLink"
-          let tdAnchor = document.createElement("a")
+          const tdAnchor = document.createElement("a")
           let linkIcon = document.createElement("i")
           linkIcon.className = "bi bi-link-45deg tdLinkIcon"
           tdAnchor.href = `${document.location.origin + "/solve/" + userArr[i]._id}`
@@ -68,7 +68,7 @@ window.onload = () => {
         function DeleteF() {
           let tdUserCrossword = document.createElement("td")
           tdUserCrossword.className = "tdDelete"
-          let tdDeleteAnchor = document.createElement("a")
+          const tdDeleteAnchor = document.createElement("a")
           let deleteIcon = document.createElement("i")
           deleteIcon.className = "bi bi-trash deleteIcon"
           tdDeleteAnchor.className = "btn btn-outline-danger tdDeleteAnchor"

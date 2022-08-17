@@ -3,11 +3,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style type="text/css">#thinking{width: 150px;}</style>
+    <style type="text/css">.viewArea{margin-top: 3em;flex: 1;z-index: 1;}</style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    {{! <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> }}
+    {{!-- <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> --}}
     <link rel="preload" href="/img/crossword.svg" as="image" />
-    {{! <link rel="preload" href="/img/crossword-thinking.svg" as="image" /> }}
+    {{!-- <link rel="preload" href="/img/crossword-thinking.svg" as="image" /> --}}
     <link rel="shortcut icon" href="/img/crossword.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
     <link rel="shortcut icon" href="/img/crossword-darkmode.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
     <link rel="mask-icon" href="/img/crossword.svg" color="black" />
@@ -42,12 +42,9 @@
 
     </nav>
 
-    <section class="viewarea" id="viewarea" style="flex: 1; z-index: 1;">
-      <div class="container theBody">
+    <section class="viewArea">
 
         {{{body}}}
-
-      </div>
 
     </section>
 
@@ -64,7 +61,6 @@
       <li> <img src="/img/crossword.svg" alt="" draggable="false" style="width: -moz-available; width: -webkit-fill-available" ; /></li>
     </ul>
 
-    {{!-- <div id="footer" class="footerInitial" style="z-index: 1; left: 3px;"> <p> Copyright &copy; <script>document.write(new Date().getFullYear())</script> Danny Alfredo Rodriguez All Rights Reserved </p></div> --}}
-    <div id="footer" class="footerInitial" style="z-index: 1; left: 3px;"> <p> Copyright &copy; {{footer}} Danny Alfredo Rodriguez All Rights Reserved </p></div>
+    <div id="footer" class="footerInitial" style="z-index: 1; left: 3px;"> <p> Copyright &copy; {{footer}} Danny Alfredo Rodriguez All Rights Reserved | <a href="/about">About</a></p></div>
   </body>
 </html>

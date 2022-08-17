@@ -1,12 +1,13 @@
-<h1 id="chooseH1" class="lead" style="display: flex; justify-content:space-around; margin-top: 1.4em">Choose your Crossword Size</h1>
-<div class="sizeButtons" style="width: 100%; display: flex; justify-content:center; margin-top: 0.4em;">
+<style type="text/css">.lead.d-flex.justify-content-around{margin-top: 1.4em;} .sizeButtons{margin-top: 0.4em;}</style>
+<h1 id="chooseH1" class="lead d-flex justify-content-around">Choose your Crossword Size</h1>
+<div class="sizeButtons d-flex justify-content-center">
   <button class="button-28" role="button">5x5</button>
   <button class="button-28" role="button">10x10</button>
   <button class="button-28" role="button">15x15</button>
 </div>
 
-<div class="wrapper">
-  <div id="thesaurus" style="display: none">
+<div class="wrapper d-flex">
+  <div id="thesaurus" style="display: none; width: min-content;">
     <h1 style="font-family: cursive;">Thesaurus</h1>
     <form id="word-form">
       <label for="word" style="font-size: xx-small;">Input a Word</label>
@@ -15,14 +16,16 @@
     </form>
     <ul id="listDict" style="margin-top: 0.5em;"></ul>
   </div>
-  <div class="grid" id="crossGrid" style="display:none;     margin-right: 1em; margin-left: 1em;"></div>
+  <div class="grid" id="crossGrid" style="display:none; margin-right: 1em; margin-left: 1em;"></div>
   <div id="boxAndFinish" style="display: none; flex-direction: column;">
     <button id="clickMode" class="button-50" role="button" style="width: 11.94em;">Add a Box</button>
     <button id="hintBtn" class="button-50-b box" role="button" style="margin-top: 0.5em;">Finish and Create Hints</button>
   </div>
   <div id="hints" class="hintsCreate" style="width: min-content;">
-    <div id="hints-input-across"><h3 id="h3-across" class="text-center"></h3></div>
-    <div id="hints-input-down"><h3 id="h3-down" class="text-center"></h3></div>
+    <div class="onlyHints">
+      <div id="hints-input-across"><h3 id="h3-across" class="text-center"></h3></div>
+      <div id="hints-input-down"><h3 id="h3-down" class="text-center"></h3></div>
+    </div>
     <button id="hintSubmit" class="button-82-pushable" role="button" style="display:none">
       <span class="button-82-shadow"></span>
       <span class="button-82-edge"></span>

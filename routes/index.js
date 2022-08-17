@@ -35,7 +35,7 @@ router.get("/delete/:id", ensureAuth, async (req, res) => {
 
 // @desc gallery page
 // @route Get /gallery
-router.get("/gallery", async (req, res) => {
+router.get("/gallery", ensureAuth, async (req, res) => {
   return res.render("gallery", {
     thinking: "/img/crossword-thinking.svg"
   })

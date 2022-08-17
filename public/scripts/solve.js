@@ -1,5 +1,5 @@
-var userUrl
-var selectedCell = undefined
+let userUrl
+let selectedCell = undefined
 const alphabet = /^[a-z]*$/i
 const crossGrid = document.getElementById("crossGrid")
 const footer = document.getElementById("footer")
@@ -14,20 +14,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     let hints = crossword.hints
     let solution = crossword.solution
 
-    var cellSize = 50
+    let cellSize
     if (size === 5) {
       cellSize = 100
-      // let footer = document.getElementById("footer")
+
       footer.className = "footerCrossword"
     }
     if (size === 10) {
-      cellSize = 80
-      // let footer = document.getElementById("footer")
+      cellSize = 75
+
       footer.className = "footerCrossword"
     }
     if (size === 15) {
       cellSize = 50
-      // let footer = document.getElementById("footer")
+
       footer.className = "footerCrossword"
     }
 
@@ -35,7 +35,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     crossGrid.style.gridTemplateRows = `repeat(${size}, ${cellSize}px)`
     crossGrid.style.border = `5px solid black`
 
-    for (var i = 0; i < size * size; i++) {
+    for (let i = 0; i < size * size; i++) {
       let cell = document.createElement("div")
       cell.className = `cell${size} position-relative`
       cell.id = `${i + 1}`
@@ -95,7 +95,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
           }
         }
         // This for loop selects the next cell across
-        for (var i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
+        for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
           let nextCell = document.getElementById(`${i}`)
           if (nextCell.style.background === "white" || nextCell.style.background === "") {
             selectedCell.style.background = "white"
@@ -107,7 +107,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
         //* Preserves hint number if letter is erased
       } else if (event.key === "Backspace") {
         let foundPrev = false
-        for (var i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
+        for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
           let prevCell = document.getElementById(`${i}`)
           if (prevCell.style.background === "white" || prevCell.style.background === "") {
             selectedCell.style.background = "white"
@@ -158,10 +158,10 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     })
 
     // Adding hints
-    var hintDiv = document.getElementById("hints")
-    var hintAcross = document.getElementById("hints-across")
-    var hintDown = document.getElementById("hints-down")
-    for (var key in hints) {
+    const hintDiv = document.getElementById("hints")
+    const hintAcross = document.getElementById("hints-across")
+    const hintDown = document.getElementById("hints-down")
+    for (let key in hints) {
       let value = hints[key]
       let cell = document.getElementById(`${value.cellId}`)
 
@@ -184,11 +184,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
       }
     }
     // Check my answer
-    var checkBtn = document.getElementById("check")
+    const checkBtn = document.querySelector(".button-19")
     checkBtn.addEventListener("click", () => {
       let solutionStr = ""
-      for (var k = 1; k <= size * size; k++) {
-        let tempCell = document.getElementById(`${k}`)
+      for (let i = 1; i <= size * size; i++) {
+        let tempCell = document.getElementById(`${i}`)
         if (tempCell.style.background === "black") {
           solutionStr += "!"
         } else {

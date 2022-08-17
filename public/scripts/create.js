@@ -1,5 +1,5 @@
-let clickMode = document.getElementById("clickMode")
-let alphabet = /^[a-z]*$/i
+const clickMode = document.getElementById("clickMode")
+const alphabet = /^[a-z]*$/i
 let selectedCell = undefined
 let size = undefined
 let hintMapper = {}
@@ -10,7 +10,7 @@ let theUrl
 // creates grid based on size
 function drawGrid() {
   const footer = document.getElementById("footer")
-  let cellSize = 50
+  let cellSize
   if (size === 5) {
     cellSize = 100
   }
@@ -31,7 +31,7 @@ function drawGrid() {
   crossGrid.style.border = `5px solid black`
 
   for (let i = 0; i < size * size; i++) {
-    let cell = document.createElement("div")
+    const cell = document.createElement("div")
     cell.className = `cell${size} position-relative`
     cell.id = `${i + 1}`
     cell.addEventListener("click", event => {
@@ -56,31 +56,21 @@ function drawGrid() {
 }
 
 const sizeButtons = document.getElementsByClassName("sizeButtons")[0].children
-const chooseH1 = document.getElementById("chooseH1")
-// const preSize = document.getElementById("preSize")
-// const editorSize = document.getElementById("editorSize")
 for (let i = 0; i < sizeButtons.length; i++) {
-  let child = sizeButtons[i]
+  const child = sizeButtons[i]
   child.addEventListener("click", event => {
+    document.getElementById("chooseH1").style.setProperty("display", "none", "important")
     if (child.innerText === "5x5") {
       size = 5
-      chooseH1.style.display = "none"
-      // preSize.style.display = "none"
     }
     if (child.innerText === "10x10") {
       size = 10
-      chooseH1.style.display = "none"
-      // preSize.style.display = "none"
     }
     if (child.innerText === "15x15") {
       size = 15
-      chooseH1.style.display = "none"
-      // preSize.style.display = "none"
     }
-    const thesaurus = document.getElementById("thesaurus")
-    thesaurus.style.display = "block"
-    const boxAndFinish = document.getElementById("boxAndFinish")
-    boxAndFinish.style.display = "flex"
+    document.getElementById("thesaurus").style.display = "block"
+    document.getElementById("boxAndFinish").style.display = "flex"
     crossGrid.style.display = "grid"
 
     drawGrid()
@@ -187,36 +177,36 @@ hintButton.addEventListener("click", event => {
   }
 
   let crossGrid = document.getElementById("crossGrid")
-  if (crossGrid.children.length === 0) {
-    GrowlNotification.notify({
-      title: "Whoops!",
-      description: "You gotta choose a crossword size first!",
-      image: {
-        visible: true,
-        customImage: "../img/warning-outline.svg"
-      },
-      type: "warning",
-      position: "top-center",
-      closeTimeout: 3000
-    })
-    return
-  }
-  for (let i = 0; i < crossGrid.childNodes.length; i++) {
-    if (crossGrid.childNodes[i].innerText === "" && crossGrid.childNodes[i].style.background !== "black") {
-      GrowlNotification.notify({
-        title: "Whoops!",
-        description: "You forgot to fill out the whole crossword!",
-        image: {
-          visible: true,
-          customImage: "../img/warning-outline.svg"
-        },
-        type: "warning",
-        position: "top-center",
-        closeTimeout: 3000
-      })
-      return
-    }
-  }
+  // if (crossGrid.children.length === 0) {
+  //   GrowlNotification.notify({
+  //     title: "Whoops!",
+  //     description: "You gotta choose a crossword size first!",
+  //     image: {
+  //       visible: true,
+  //       customImage: "../img/warning-outline.svg"
+  //     },
+  //     type: "warning",
+  //     position: "top-center",
+  //     closeTimeout: 3000
+  //   })
+  //   return
+  // }
+  // for (let i = 0; i < crossGrid.childNodes.length; i++) {
+  //   if (crossGrid.childNodes[i].innerText === "" && crossGrid.childNodes[i].style.background !== "black") {
+  //     GrowlNotification.notify({
+  //       title: "Whoops!",
+  //       description: "You forgot to fill out the whole crossword!",
+  //       image: {
+  //         visible: true,
+  //         customImage: "../img/warning-outline.svg"
+  //       },
+  //       type: "warning",
+  //       position: "top-center",
+  //       closeTimeout: 3000
+  //     })
+  //     return
+  //   }
+  // }
 
   const hintsAcross = document.getElementById("hints-input-across")
   const hintsDown = document.getElementById("hints-input-down")
@@ -225,7 +215,8 @@ hintButton.addEventListener("click", event => {
   isEditMode = false
   // hide unnecessary buttons
   clickMode.style.display = "none"
-  document.querySelector(".sizeButtons").style.display = "none"
+  // document.querySelector(".sizeButtons").style.display = "none"
+  document.querySelector(".sizeButtons").style.setProperty("display", "none", "important")
   document.querySelector(".wrapper").style.marginTop = "inherit"
   hintButton.style.display = "none"
   // iterating over each hint and updating page
@@ -284,33 +275,33 @@ hintButton.addEventListener("click", event => {
       }
     }
 
-    for (const key in hintMapper) {
-      if (hintMapper[key].acrossHint === "" || hintMapper[key].downHint === "") {
-        GrowlNotification.notify({
-          title: "Whoops!",
-          description: "You forgot to fill out all the hints!",
-          image: {
-            visible: true,
-            customImage: "../img/warning-outline.svg"
-          },
-          type: "warning",
-          position: "top-center",
-          closeTimeout: 3000
-        })
-        return
-      }
-    }
+    // for (const key in hintMapper) {
+    //   if (hintMapper[key].acrossHint === "" || hintMapper[key].downHint === "") {
+    //     GrowlNotification.notify({
+    //       title: "Whoops!",
+    //       description: "You forgot to fill out all the hints!",
+    //       image: {
+    //         visible: true,
+    //         customImage: "../img/warning-outline.svg"
+    //       },
+    //       type: "warning",
+    //       position: "top-center",
+    //       closeTimeout: 3000
+    //     })
+    //     return
+    //   }
+    // }
 
-    GrowlNotification.notify({
-      title: "Submitted Sucessfully!",
-      image: {
-        visible: true,
-        customImage: "../img/info-outline.svg"
-      },
-      type: "info",
-      position: "top-center",
-      closeTimeout: 3000
-    })
+    // GrowlNotification.notify({
+    //   title: "Submitted Sucessfully!",
+    //   image: {
+    //     visible: true,
+    //     customImage: "../img/info-outline.svg"
+    //   },
+    //   type: "info",
+    //   position: "top-center",
+    //   closeTimeout: 3000
+    // })
 
     let solutionStr = ""
     for (let k = 1; k <= size * size; k++) {
@@ -343,7 +334,11 @@ hintButton.addEventListener("click", event => {
     document.location = `${theUrl}`
   })
   const hintsForm = document.getElementById("hints")
+  if (size === 15) {
+    document.querySelector(".onlyHints").style.display = "flex"
+  }
   hintsForm.appendChild(submitBtn)
+  // document.getElementsByClassName("onlyHints").style.display = "flex"
 })
 
 function handleHints() {
