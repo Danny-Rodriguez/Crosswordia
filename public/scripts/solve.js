@@ -3,8 +3,8 @@ let selectedCell = undefined
 const alphabet = /^[a-z]*$/i
 const crossGrid = document.getElementById("crossGrid")
 const footer = document.getElementById("footer")
-const titlePage = document.getElementById("titlePage")
-titlePage.innerText = "Solve my Crossword!"
+// const titlePage = document.getElementById("titlePage")
+// titlePage.innerText = "Solve my Crossword!"
 const correct = document.getElementById("correct")
 
 await fetch(document.location.origin + document.location.pathname + "/fetch")

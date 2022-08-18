@@ -10103,6 +10103,11 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+:root {
+  --fade4s: fade-in 4s forwards;
+  --zero: 0;
+}
+
 html,
 body {
   -moz-osx-font-smoothing: grayscale;
@@ -10118,24 +10123,34 @@ body {
   background: linear-gradient(to right, hsl(210deg, 96%, 40%), hsl(210deg, 49%, 42%));
 }
 
-.dropdownM {
+.navbar-links {
+  --25px: 25px;
+  margin-right: 5em;
+}
+
+.smallIcons {
+  width: var(--25px);
+  height: var(--25px);
+}
+
+.dropdown {
   position: relative;
   display: inline-block;
   background: "";
 }
 
-.dropdownM:hover {
+.dropdown:hover {
   background-color: hsl(216deg, 74%, 41%);
 }
 
-.dropdown-contentM {
+.dropdown-content {
   background-color: #f1f1f1;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   visibility: hidden; /* hides sub-menu */
-  opacity: 0;
+  opacity: var(--zero);
   position: absolute;
   top: 100%;
-  left: 0;
+  left: var(--zero);
   width: 100%;
   text-align: center;
   z-index: -1;
@@ -10144,18 +10159,19 @@ body {
   text-align: center;
 }
 
-.dropdown-contentM a {
+.dropdown-content > a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  font-size: small;
 }
 
-.dropdown-contentM a:hover {
+.dropdown-content > a:hover {
   background-color: #ddd;
 }
 
-.dropdownM:hover .dropdown-contentM {
+.dropdown:hover .dropdown-content {
   visibility: visible; /* shows sub-menu */
   opacity: 1;
   z-index: 1;
@@ -10237,14 +10253,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-}
-
-#hints-input-across {
-  margin-bottom: 1em;
-}
-
-#hints-input-down {
-  margin-bottom: 1em;
+  width: min-content;
 }
 
 #userArea {
@@ -10297,6 +10306,7 @@ a {
 
 .nav-link {
   color: #fff;
+  padding: 5px;
   display: inline-flex;
   align-items: center;
 }
@@ -10331,9 +10341,12 @@ a.profile-drop:active {
   transition: background-color -1s;
 }
 
+a.profile-drop > div {
+  padding-right: inherit;
+}
+
 #gallery {
   color: hsl(0deg, 0%, 100%) !important;
-  padding: 5px;
   padding-right: initial;
   background-color: "";
   transition: 2s;
@@ -10353,25 +10366,9 @@ a.profile-drop:active {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
-.navbar-toggler {
-  margin-right: 5em;
-}
-
-.navbar-collapse {
-  margin-right: 5em;
-}
-
-.navbar-right {
-  margin-right: 5em;
-}
-
-#navbar-dropdown {
-  padding: 5px;
-}
-
 .footerInitial {
   position: relative;
-  bottom: 0;
+  bottom: var(--zero);
   text-align: center;
 }
 
@@ -10403,7 +10400,7 @@ a.profile-drop:active {
   font-weight: 700;
   letter-spacing: 0.8px;
   line-height: 20px;
-  margin: 0;
+  margin: var(--zero);
   outline: none;
   overflow: visible;
   padding: 13px 16px !important;
@@ -10427,10 +10424,10 @@ a.profile-drop:active {
   border-width: 0 0 4px;
   bottom: -4px;
   content: "";
-  left: 0;
+  left: var(--zero);
   position: absolute;
-  right: 0;
-  top: 0;
+  right: var(--zero);
+  top: var(--zero);
   z-index: -1;
 }
 
@@ -10448,128 +10445,6 @@ a.profile-drop:active {
   cursor: auto;
 }
 
-/* button 22 */
-.button-22 {
-  align-items: center;
-  appearance: button;
-  background-color: #0276ff;
-  border-radius: 8px;
-  border-style: none;
-  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
-  font-family: "RM Neue", sans-serif;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-  padding: 10px 21px;
-  text-align: center;
-  text-transform: none;
-  transition: color 0.13s ease-in-out, background 0.13s ease-in-out, opacity 0.13s ease-in-out, box-shadow 0.13s ease-in-out;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-22:active {
-  background-color: #006ae8;
-}
-
-.button-22:hover {
-  background-color: #1c84ff;
-}
-
-/* button 58 */
-.button-58 {
-  align-items: center;
-  background-color: hsl(216deg, 100%, 50%);
-  border: 2px solid hsl(216deg, 100%, 50%);
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  fill: #000;
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  height: 48px;
-  justify-content: center;
-  letter-spacing: -0.8px;
-  line-height: 24px;
-  min-width: 140px;
-  outline: 0;
-  padding: 0 17px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-58:focus {
-  color: #171e29;
-}
-
-.button-58:hover {
-  background-color: #3385ff;
-  border-color: #3385ff;
-  fill: #06f;
-}
-
-.button-58:active {
-  background-color: #3385ff;
-  border-color: #3385ff;
-  fill: #06f;
-}
-
-@media (min-width: 768px) {
-  .button-58 {
-    min-width: 170px;
-  }
-}
-/* button 66 */
-.button-66 {
-  background-color: hsl(216deg, 100%, 52%);
-  border-radius: 4px;
-  border: 0;
-  box-shadow: rgba(1, 60, 136, 0.5) 0 -1px 3px 0 inset, rgba(0, 44, 97, 0.1) 0 3px 6px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inherit;
-  font-family: "Space Grotesk", -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24px;
-  margin: 0;
-  min-height: 56px;
-  min-width: 120px;
-  padding: 16px 20px;
-  position: relative;
-  text-align: center;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  transition: all 0.2s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.button-66:hover {
-  background-color: #065dd8;
-  transform: translateY(-2px);
-}
-
-@media (min-width: 768px) {
-  .button-66 {
-    padding: 16px 44px;
-    min-width: 150px;
-  }
-}
 /* button 50 */
 .button-50 {
   appearance: button;
@@ -10646,35 +10521,12 @@ a.profile-drop:active {
     padding: 12px 50px;
   }
 }
-/* button 43 */
-.button-43 {
-  background-image: linear-gradient(-180deg, #37aee2 0%, #1e96c8 100%);
-  border-radius: 0.5rem;
-  box-sizing: border-box;
-  color: #ffffff;
-  width: auto !important;
-  font-size: 16px;
-  justify-content: center;
-  padding: 16;
-  text-decoration: none;
-  width: 100%;
-  border: 0;
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-43:hover {
-  background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
-}
-
 /* button 82 */
 .button-82-pushable {
   position: relative;
   border: none;
   background: transparent;
-  padding: 0;
+  padding: var(--zero);
   cursor: pointer;
   outline-offset: 4px;
   transition: filter 250ms;
@@ -10685,8 +10537,8 @@ a.profile-drop:active {
 
 .button-82-shadow {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--zero);
+  left: var(--zero);
   width: 100%;
   height: 100%;
   border-radius: 12px;
@@ -10698,8 +10550,8 @@ a.profile-drop:active {
 
 .button-82-edge {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--zero);
+  left: var(--zero);
   width: 100%;
   height: 100%;
   border-radius: 12px;
@@ -10754,65 +10606,66 @@ a.profile-drop:active {
   outline: none;
 }
 
-#build {
-  animation: fade-in 4s;
+.login-page > div p {
+  animation: var(--fade4s);
+  opacity: var(--zero);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+.login-page > div p img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  width: 205px;
+  height: 205px;
+}
+.login-page > div p:nth-child(1) {
   animation-delay: 0.5s;
-  animation-fill-mode: forwards;
-  opacity: 0;
 }
-
-#save {
-  animation: fade-in 4s;
+.login-page > div p:nth-child(2) {
   animation-delay: 2s;
-  animation-fill-mode: forwards;
-  opacity: 0;
 }
-
-#challenge {
-  animation: fade-in 4s;
+.login-page > div p:nth-child(3) {
   animation-delay: 3.5s;
-  animation-fill-mode: forwards;
-  opacity: 0;
 }
-
-#getStarted {
-  animation: fade-in 4s;
+.login-page > div p:nth-child(4) {
   animation-delay: 5s;
-  animation-fill-mode: forwards;
-  opacity: 0;
-}
-
-#solveCheer {
-  animation: fade-in 4s;
-  animation-delay: 2.5s;
-  animation-fill-mode: forwards;
-  opacity: 0;
 }
 
 .login-page > a.btn.btn-primary {
-  animation: fade-in 4s;
+  animation: var(--fade4s);
   animation-delay: 6s;
-  animation-fill-mode: forwards;
-  opacity: 0;
+  opacity: var(--zero);
+  width: max-content;
+}
+.login-page > a.btn.btn-primary img {
+  width: 45px;
+  height: 45px;
+}
+
+#solveCheer {
+  animation: var(--fade4s);
+  animation-delay: 2.5s;
+  opacity: var(--zero);
 }
 
 .fade-in {
-  animation: fade-in 4s;
+  animation: var(--fade4s);
   animation-delay: 4s;
-  animation-fill-mode: forwards;
-  opacity: 0;
+  opacity: var(--zero);
 }
 
 .loader {
-  animation: fade-in 5s;
+  animation: fade-in 5s forwards;
   animation-delay: -1s;
-  animation-fill-mode: forwards;
-  opacity: 0;
+  opacity: var(--zero);
 }
 
 @keyframes fade-in {
   from {
-    opacity: 0;
+    opacity: var(--zero);
   }
   to {
     opacity: 1;
@@ -10825,7 +10678,7 @@ a.profile-drop:active {
 
 @keyframes slideDown {
   from {
-    opacity: 0;
+    opacity: var(--zero);
     transform: translateY(-100%);
     transition-timing-function: ease-out;
   }
@@ -10833,18 +10686,6 @@ a.profile-drop:active {
     opacity: 1;
   }
 }
-#leadText p {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: default;
-}
-#leadText p img {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
 /* button 50 */
 .button-50-b {
   appearance: button;
@@ -10882,7 +10723,7 @@ a.profile-drop:active {
 
 .button-50-b:active {
   box-shadow: rgba(0, 0, 0, 0.125) 0 3px 5px inset;
-  outline: 0;
+  outline: var(--zero);
 }
 
 .button-50-b:not([disabled]):active {

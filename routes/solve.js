@@ -14,7 +14,8 @@ router.get("/:id", ensureAuth2, async (req, res, next) => {
   }
   if (ensureAuth2) {
     return res.render("solve", {
-      layout: "main"
+      layout: "main",
+      title: "Solve | Crosswordia"
     })
   }
 })

@@ -22,7 +22,7 @@ function drawGrid() {
     cellSize = 50
     footer.className = "footerCrossword"
   }
-  let crossGrid = document.getElementById("crossGrid")
+  const crossGrid = document.getElementById("crossGrid")
   while (crossGrid.firstChild) {
     crossGrid.removeChild(crossGrid.firstChild)
   }
@@ -69,8 +69,9 @@ for (let i = 0; i < sizeButtons.length; i++) {
     if (child.innerText === "15x15") {
       size = 15
     }
-    document.getElementById("thesaurus").style.display = "block"
-    document.getElementById("boxAndFinish").style.display = "flex"
+    // document.getElementById("thesaurus").style.display = "block"
+    document.getElementById("thesaurus").className = "d-block"
+    document.getElementById("boxAndFinish").className = "d-flex flex-column"
     crossGrid.style.display = "grid"
 
     drawGrid()
@@ -253,7 +254,7 @@ hintButton.addEventListener("click", event => {
   }
 
   let submitBtn = document.getElementById("hintSubmit")
-  submitBtn.style.display = "block"
+  submitBtn.className = "button-82-pushable"
   submitBtn.addEventListener("click", async () => {
     let hintValuesAcross = hintsAcross.children
     for (let g = 1; g < hintValuesAcross.length; g++) {

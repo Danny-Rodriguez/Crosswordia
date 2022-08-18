@@ -8,8 +8,8 @@ const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fet
 // @route Get /
 router.get("/", ensureAuth, async (req, res) => {
   return res.render("home", {
-    layout: "main"
-    // image: req.user.image
+    layout: "main",
+    title: "Create | Crosswordia"
   })
 })
 
@@ -17,7 +17,8 @@ router.get("/", ensureAuth, async (req, res) => {
 // @route Get /login
 router.get("/login", async (req, res) => {
   return res.render("login", {
-    layout: "mainGuest"
+    layout: "mainGuest",
+    title: "Login | Crosswordia"
   })
 })
 
@@ -37,7 +38,8 @@ router.get("/delete/:id", ensureAuth, async (req, res) => {
 // @route Get /gallery
 router.get("/gallery", ensureAuth, async (req, res) => {
   return res.render("gallery", {
-    thinking: "/img/crossword-thinking.svg"
+    thinking: "/img/crossword-thinking.svg",
+    title: "Gallery | Crosswordia"
   })
 })
 

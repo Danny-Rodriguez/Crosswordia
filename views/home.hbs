@@ -1,32 +1,32 @@
-<style type="text/css">.lead.d-flex.justify-content-around{margin-top: 1.4em;} .sizeButtons{margin-top: 0.4em;}</style>
-<h1 id="chooseH1" class="lead d-flex justify-content-around">Choose your Crossword Size</h1>
-<div class="sizeButtons d-flex justify-content-center">
+<style type="text/css">#thesaurus,#word,#boxAndFinish{max-width: 172px;} #thesaurus > h1{font-family: cursive;} label{font-size: xx-small;}</style>
+<h1 id="chooseH1" class="lead d-flex justify-content-around mt-4">Choose your Crossword Size</h1>
+<div class="sizeButtons d-flex justify-content-center mt-2">
   <button class="button-28" role="button">5x5</button>
   <button class="button-28" role="button">10x10</button>
   <button class="button-28" role="button">15x15</button>
 </div>
 
 <div class="wrapper d-flex">
-  <div id="thesaurus" style="display: none; width: min-content;">
-    <h1 style="font-family: cursive;">Thesaurus</h1>
+  <div id="thesaurus" class="d-none">
+    <h1>Thesaurus</h1>
     <form id="word-form">
-      <label for="word" style="font-size: xx-small;">Input a Word</label>
-      <input id="word" type="text" style="margin-bottom: 0.5em; width: -webkit-fill-available; width: -moz-available" />
-      <button id="dictSubmit" type="button" class="btn btn-primary" style="vertical-align: baseline; width: 100%;">Search</button>
+      <label for="word">Input a Word</label>
+      <input id="word" type="text" />
+      <button id="dictSubmit" type="button" class="btn btn-primary w-100 my-2">Search</button>
     </form>
-    <ul id="listDict" style="margin-top: 0.5em;"></ul>
+    <ul id="listDict"></ul>
   </div>
-  <div class="grid" id="crossGrid" style="display:none; margin-right: 1em; margin-left: 1em;"></div>
-  <div id="boxAndFinish" style="display: none; flex-direction: column;">
-    <button id="clickMode" class="button-50" role="button" style="width: 11.94em;">Add a Box</button>
-    <button id="hintBtn" class="button-50-b box" role="button" style="margin-top: 0.5em;">Finish and Create Hints</button>
+  <div id="crossGrid" class="grid mx-3"></div>
+  <div id="boxAndFinish" class="d-none">
+    <button id="clickMode" class="button-50 mb-2" role="button">Add a Box</button>
+    <button id="hintBtn" class="button-50-b mt-2" role="button">Finish and Create Hints</button>
   </div>
-  <div id="hints" class="hintsCreate" style="width: min-content;">
+  <div id="hints" class="hintsCreate">
     <div class="onlyHints">
-      <div id="hints-input-across"><h3 id="h3-across" class="text-center"></h3></div>
-      <div id="hints-input-down"><h3 id="h3-down" class="text-center"></h3></div>
+      <div id="hints-input-across" class="mb-3"><h3 id="h3-across" class="text-center"></h3></div>
+      <div id="hints-input-down" class="mb-3"><h3 id="h3-down" class="text-center"></h3></div>
     </div>
-    <button id="hintSubmit" class="button-82-pushable" role="button" style="display:none">
+    <button id="hintSubmit" class="button-82-pushable d-none" role="button">
       <span class="button-82-shadow"></span>
       <span class="button-82-edge"></span>
       <span class="button-82-front text">

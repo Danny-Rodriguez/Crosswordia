@@ -5,7 +5,8 @@ const Crossword = require("../models/Crossword")
 
 router.get("/:user", ensureAuth, async (req, res) => {
   return res.render("user", {
-    name: req.user.firstName
+    name: req.user.firstName,
+    title: "User | Crosswordia"
   })
 })
 

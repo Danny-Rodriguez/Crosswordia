@@ -1,11 +1,11 @@
-<div class="solve d-flex justify-content-center wrap1000" style="margin-top: 1.5em">
+<div class="solve d-flex justify-content-center" style="margin-top: 1.5em">
   <div class="d-flex flex-column slideDown">
     <text id="solveCheer" class="text-center lead" style="margin-bottom: 1em;">Can You Solve This Crossword? Good Luck!</text>
     <div class="grid" id="crossGrid"></div>
 
   </div>
-
-  <div class="hints slideDown" id="hints" style="width: 100%; display: flex; justify-content:space-evenly; flex-direction: column; align-items: center;">
+  {{! style="width: 100%;" }}
+  <div class="hints slideDown d-flex flex-column justify-content-evenly align-items-center" id="hints">
     <h1 class="h1Hints text-center">Hints<img src="/img/scroll.svg" alt="" style="width: 50px; margin-right: -20px;" /></h1>
     <div class="onlyHints d-flex" style="max-width: 50vh; max-height: 70vh;">
       <div id="hints-across" class="overflow-scroll" style="width: 50%; margin: 0 1em 0 1em;"><h3 class="text-center">Across</h3></div>
