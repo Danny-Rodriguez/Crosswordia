@@ -1,17 +1,19 @@
+{{! <style type="text/css">#bodyId{background: #f1f1f1;}</style> }}
+
 <div class="loader">
 
-  <h2 id="userArea" class="lead text-center" referrerpolicy="no-referrer" style="display: none;">
+  <h2 id="userArea" class="lead text-center mt-3 d-none" referrerpolicy="no-referrer">
     Hello
     {{name}}! Here's all the crosswords you've made so far...
   </h2>
 
-  <h2 id="userAreaEmpty" class="lead text-center" referrerpolicy="no-referrer" style="display: none; margin-top: 1em;">
+  <h2 id="userAreaEmpty" class="lead text-center mt-3 d-none" referrerpolicy="no-referrer">
     Hello
     {{name}}! You haven't made any crosswords so far...
   </h2>
 
-  <div id="table" class="table-responsive" style="display: none">
-    <table class="table table-striped table-sm" style="margin-bottom:0;">
+  <div id="table" class="table-responsive d-none">
+    <table class="table table-striped table-sm">
       <thead>
         <tr>
           <th scope="col" class="thHead">Date</th>

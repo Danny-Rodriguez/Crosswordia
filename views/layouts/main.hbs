@@ -4,9 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <title id="titlePage">{{title}}</title>
-    <style type="text/css">.viewArea{margin-top: 3em;flex: 1;z-index: 1;}</style>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    {{!-- <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> --}}
+    <style type="text/css">.viewArea{z-index: 1;}</style>
+     {{!-- a[href="/about"]{ color: inherit !important; } --}}
     <link rel="preload" href="/img/crossword.svg" as="image" />
     {{!-- <link rel="preload" href="/img/crossword-thinking.svg" as="image" /> --}}
     <link rel="shortcut icon" href="/img/crossword.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
@@ -33,7 +32,7 @@
           </a>
           <div class="dropdown-content">
             <a href="/user" class="dropdown-item d-inline-flex align-items-center" role="button"><div>My Crosswords</div>
-              <img src="/img/myCrosswords-b.svg" alt="" style="width:33.5px; height:33.5px" />
+              <img src="/img/myCrosswords-b.svg" class="crossword-b" alt="My Crosswords"/>
             </a>
             <a href="/auth/logout" class="dropdown-item">Logout <i class="bi bi-box-arrow-right"></i></a>
           </div>
@@ -42,7 +41,7 @@
 
     </nav>
 
-    <section class="viewArea">
+    <section class="viewArea flex-grow-1 mt-5">
 
         {{{body}}}
 

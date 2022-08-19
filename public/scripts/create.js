@@ -70,7 +70,7 @@ for (let i = 0; i < sizeButtons.length; i++) {
       size = 15
     }
     // document.getElementById("thesaurus").style.display = "block"
-    document.getElementById("thesaurus").className = "d-block"
+    document.getElementById("thesaurus").classList.remove("d-none")
     document.getElementById("boxAndFinish").className = "d-flex flex-column"
     crossGrid.style.display = "grid"
 
@@ -339,7 +339,6 @@ hintButton.addEventListener("click", event => {
     document.querySelector(".onlyHints").style.display = "flex"
   }
   hintsForm.appendChild(submitBtn)
-  // document.getElementsByClassName("onlyHints").style.display = "flex"
 })
 
 function handleHints() {

@@ -1,23 +1,19 @@
-const table = document.getElementById("table")
-const userArea = document.getElementById("userArea")
 document.getElementById("bodyId").style.background = "#f1f1f1"
-// document.querySelector(".area").style.background = "#f1f1f1"
 window.onload = () => {
   fetch(document.location.origin + document.location.pathname + "/fetch")
     .then(response => response.json())
     .then(userArr => {
       if (userArr.length === 0) {
-        document.getElementById("userAreaEmpty").style.display = "block"
+        document.getElementById("userAreaEmpty").classList.remove("d-none")
         return
       }
-      userArea.style.display = "block"
-      table.style.display = "block"
+      document.getElementById("userArea").classList.remove("d-none")
+      document.getElementById("table").classList.remove("d-none")
       const tBodyUser = document.getElementById("tBodyUser")
       console.log(userArr)
       for (let i = userArr.length - 1; i >= 0; i--) {
         const trUserCrossword = document.createElement("tr")
         trUserCrossword.className = "trUserCrossword"
-        // trUserCrossword.id = `${i + 1}`
 
         function DateF() {
           let tdUserCrossword = document.createElement("td")
