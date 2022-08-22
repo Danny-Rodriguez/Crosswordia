@@ -1,11 +1,7 @@
 let userUrl
 let selectedCell = undefined
-const alphabet = /^[a-z]*$/i
 const crossGrid = document.getElementById("crossGrid")
 const footer = document.getElementById("footer")
-// const titlePage = document.getElementById("titlePage")
-// titlePage.innerText = "Solve my Crossword!"
-const correct = document.getElementById("correct")
 
 await fetch(document.location.origin + document.location.pathname + "/fetch")
   .then(response => response.json())
@@ -13,7 +9,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution
-
+    const alphabet = /^[a-z]*$/i
     let cellSize
     if (size === 5) {
       cellSize = 100
@@ -62,37 +58,14 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
         return
       }
       if (event.key.match(alphabet) && event.key.length === 1) {
-        if (selectedCell.innerHTML !== "") {
-          if (size === 5) {
-            selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
-          }
-          if (size === 10) {
-            selectedCell.innerHTML = `<p class="position-absolute pLetter10">${event.key.toUpperCase()}</p>`
-          }
-          if (size === 15) {
-            selectedCell.innerHTML = `<p class="position-absolute pLetter15">${event.key.toUpperCase()}</p>`
-          }
-          for (let key in hints) {
-            let value = hints[key]
-            if (value.cellId === parseInt(selectedCell.id)) {
-              let pElement = document.createElement("p")
-              pElement.style.position = "absolute"
-              pElement.className = `pNumber${size} pCell`
-              pElement.innerText = `${key}`
-              // console.log("line 82")
-              selectedCell.appendChild(pElement)
-            }
-          }
+        const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
+        if (pLetterText && pLetterText !== "") {
+          pLetterText.textContent = `${event.key.toUpperCase()}`
         } else {
-          if (size === 5) {
-            selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
-          }
-          if (size === 10) {
-            selectedCell.innerHTML = `<p class="position-absolute pLetter10">${event.key.toUpperCase()}</p>`
-          }
-          if (size === 15) {
-            selectedCell.innerHTML = `<p class="position-absolute pLetter15">${event.key.toUpperCase()}</p>`
-          }
+          const pLetter = document.createElement("p")
+          pLetter.className = `position-absolute pLetter${size}`
+          pLetter.textContent = `${event.key.toUpperCase()}`
+          selectedCell.prepend(pLetter)
         }
         // This for loop selects the next cell across
         for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
@@ -104,6 +77,16 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
             break
           }
         }
+        // This for loop selects the next cell down
+        // for (let i = parseInt(selectedCell.id) + size; i <= size * size; i = i + size) {
+        //   let nextCell = document.getElementById(`${i}`)
+        //   if (nextCell.style.background === "white" || nextCell.style.background === "") {
+        //     selectedCell.style.background = "white"
+        //     selectedCell = nextCell
+        //     selectedCell.style.background = "yellow"
+        //     break
+        //   }
+        // }
         //* Preserves hint number if letter is erased
       } else if (event.key === "Backspace") {
         let foundPrev = false
@@ -111,22 +94,22 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
           let prevCell = document.getElementById(`${i}`)
           if (prevCell.style.background === "white" || prevCell.style.background === "") {
             selectedCell.style.background = "white"
-            if (selectedCell.innerText !== "") {
-              selectedCell.innerText = ""
+            if (selectedCell.textContent !== "") {
+              selectedCell.textContent = ""
               for (let key in hints) {
                 let value = hints[key]
                 if (value.cellId === parseInt(selectedCell.id)) {
                   let pElement = document.createElement("p")
-                  pElement.style.position = "absolute"
+                  // pElement.style.position = "absolute"
                   pElement.className = `pNumber${size} pCell`
-                  pElement.innerText = `${key}`
+                  pElement.textContent = `${key}`
                   // console.log("line 123")
                   selectedCell.appendChild(pElement)
                   break
                 }
               }
             } else {
-              selectedCell.innerText = ""
+              selectedCell.textContent = ""
             }
             selectedCell = prevCell
             selectedCell.style.background = "yellow"
@@ -136,22 +119,22 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
         }
         // could not find previous cell
         if (!foundPrev) {
-          if (selectedCell.innerText !== "") {
-            selectedCell.innerText = ""
+          if (selectedCell.textContent !== "") {
+            selectedCell.textContent = ""
             for (let key in hints) {
               let value = hints[key]
               if (value.cellId === parseInt(selectedCell.id)) {
                 let pElement = document.createElement("p")
-                pElement.style.position = "absolute"
+                // pElement.style.position = "absolute"
                 pElement.className = `pNumber${size} pCell`
-                pElement.innerText = `${key}`
+                pElement.textContent = `${key}`
                 selectedCell.appendChild(pElement)
                 // console.log("line 149")
                 break
               }
             }
           } else {
-            selectedCell.innerText = ""
+            selectedCell.textContent = ""
           }
         }
       }
@@ -167,19 +150,19 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
 
       //* Constructs initial Hint Numbers
       let pElement = document.createElement("p")
-      pElement.style.position = "absolute"
+      // pElement.style.position = "absolute"
       pElement.className = `pNumber${size} pCell`
-      pElement.innerText = key
+      pElement.textContent = key
       cell.appendChild(pElement)
 
       if (value.isWordAcross) {
         let pAcross = document.createElement("p")
-        pAcross.innerText = `${key} - ${value.acrossHint}`
+        pAcross.textContent = `${key} - ${value.acrossHint}`
         hintAcross.appendChild(pAcross)
       }
       if (value.isWordDown) {
         let pDown = document.createElement("p")
-        pDown.innerText = `${key} - ${value.downHint}`
+        pDown.textContent = `${key} - ${value.downHint}`
         hintDown.appendChild(pDown)
       }
     }
@@ -192,25 +175,24 @@ await fetch(document.location.origin + document.location.pathname + "/fetch")
         if (tempCell.style.background === "black") {
           solutionStr += "!"
         } else {
-          solutionStr += tempCell.innerText.charAt(0)
+          solutionStr += tempCell.textContent.charAt(0)
         }
       }
-
-      for (let i = 0; i < crossGrid.childNodes.length; i++) {
-        if (crossGrid.childNodes[i].innerText === "" && crossGrid.childNodes[i].style.background !== "black") {
-          GrowlNotification.notify({
-            title: "Whoops!",
-            description: "You forgot to fill out the whole crossword!",
-            image: {
-              visible: true,
-              customImage: "../img/warning-outline.svg"
-            },
-            type: "warning",
-            position: "top-center",
-            closeTimeout: 3000
-          })
-          return
-        }
+      console.log(solutionStr)
+      const solutionNotAllowed = /([0-9]+)/
+      if (solutionNotAllowed.exec(solutionStr) || solutionStr.length !== solution.length) {
+        GrowlNotification.notify({
+          title: "Whoops!",
+          description: "You forgot to fill out the whole crossword!",
+          image: {
+            visible: true,
+            customImage: "../img/warning-outline.svg"
+          },
+          type: "warning",
+          position: "top-center",
+          closeTimeout: 3000
+        })
+        return
       }
 
       if (solution === solutionStr) {

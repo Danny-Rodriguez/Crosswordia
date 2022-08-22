@@ -39,16 +39,16 @@ function drawGrid() {
         return
       }
       //* Did not change button color
-      if (clickMode.innerText === "Add a Box") {
+      if (clickMode.textContent === "Add a Box") {
         cell.style.background = "yellow"
 
         if (selectedCell != undefined && selectedCell !== cell) {
           selectedCell.style.background = "white"
         }
         selectedCell = cell
-      } else if (clickMode.innerText === "Activate Typing") {
+      } else if (clickMode.textContent === "Activate Typing") {
         cell.style.background = "black"
-        cell.innerText = ""
+        cell.textContent = ""
       }
     })
     crossGrid.append(cell)
@@ -60,13 +60,13 @@ for (let i = 0; i < sizeButtons.length; i++) {
   const child = sizeButtons[i]
   child.addEventListener("click", event => {
     document.getElementById("chooseH1").style.setProperty("display", "none", "important")
-    if (child.innerText === "5x5") {
+    if (child.textContent === "5x5") {
       size = 5
     }
-    if (child.innerText === "10x10") {
+    if (child.textContent === "10x10") {
       size = 10
     }
-    if (child.innerText === "15x15") {
+    if (child.textContent === "15x15") {
       size = 15
     }
     // document.getElementById("thesaurus").style.display = "block"
@@ -81,13 +81,13 @@ for (let i = 0; i < sizeButtons.length; i++) {
 //* This changed the color
 clickMode.addEventListener("click", event => {
   // changing modes
-  if (clickMode.innerText === "Add a Box") {
-    clickMode.innerText = "Activate Typing"
+  if (clickMode.textContent === "Add a Box") {
+    clickMode.textContent = "Activate Typing"
     clickMode.className = "button-50-w"
     // unselecting the cell
     selectedCell.style.background = "white"
-  } else if (clickMode.innerText === "Activate Typing") {
-    clickMode.innerText = "Add a Box"
+  } else if (clickMode.textContent === "Activate Typing") {
+    clickMode.textContent = "Add a Box"
     clickMode.className = "button-50"
   }
   selectedCell = undefined
@@ -99,15 +99,11 @@ window.addEventListener("keydown", event => {
     return
   }
   if (wordInput !== document.activeElement && event.key.match(alphabet) && event.key.length === 1) {
-    if (size === 5) {
-      selectedCell.innerHTML = `<p class="position-absolute pLetter5">${event.key.toUpperCase()}</p>`
-    }
-    if (size === 10) {
-      selectedCell.innerHTML = `<p class="position-absolute pLetter10">${event.key.toUpperCase()}</p>`
-    }
-    if (size === 15) {
-      selectedCell.innerHTML = `<p class="position-absolute pLetter15">${event.key.toUpperCase()}</p>`
-    }
+    const pLetter = document.createElement("p")
+    pLetter.className = `position-absolute pLetter${size}`
+    pLetter.textContent = `${event.key.toUpperCase()}`
+    selectedCell.appendChild(pLetter)
+
     // This for loop selects the next cell across
     for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
       let nextCell = document.getElementById(`${i}`)
@@ -126,7 +122,7 @@ window.addEventListener("keydown", event => {
       let prevCell = document.getElementById(`${i}`)
       if (prevCell.style.background === "white" || prevCell.style.background === "") {
         selectedCell.style.background = "white"
-        selectedCell.innerText = ""
+        selectedCell.textContent = ""
         selectedCell = prevCell
         selectedCell.style.background = "yellow"
         foundPrev = true
@@ -135,7 +131,7 @@ window.addEventListener("keydown", event => {
     }
     // This is for the first cell
     if (!foundPrev) {
-      selectedCell.innerText = ""
+      selectedCell.textContent = ""
     }
   }
 })
@@ -144,7 +140,7 @@ const dictSubmit = document.getElementById("dictSubmit")
 dictSubmit.addEventListener("click", async event => {
   event.preventDefault()
   const word = document.getElementById("word")
-
+  const listDict = document.getElementById("listDict")
   const toFetch = await fetch(`/dictionary`, {
     method: "POST",
     body: JSON.stringify({
@@ -162,8 +158,28 @@ dictSubmit.addEventListener("click", async event => {
     })
     .then(function (data) {
       let dataArr = data[0].meta.syns.flat().slice(0, 10)
-      const listDict = document.getElementById("listDict")
-      listDict.innerHTML = dataArr.map(i => `<li>${i}</li>`).join("")
+      console.log(dataArr)
+
+      //** Helper Function
+      function createDictionaryList(entry) {
+        const li = document.createElement("li")
+        li.textContent = entry
+        return li
+      }
+
+      function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild)
+        }
+      }
+
+      if (listDict.childElementCount >= 10) {
+        removeAllChildNodes(listDict)
+      }
+
+      for (let i = 0; i < dataArr.length; i++) {
+        listDict.appendChild(createDictionaryList(`${dataArr[i]}`))
+      }
     })
     .catch(function (error) {
       console.warn("Something went wrong.", error)
@@ -178,36 +194,22 @@ hintButton.addEventListener("click", event => {
   }
 
   let crossGrid = document.getElementById("crossGrid")
-  // if (crossGrid.children.length === 0) {
-  //   GrowlNotification.notify({
-  //     title: "Whoops!",
-  //     description: "You gotta choose a crossword size first!",
-  //     image: {
-  //       visible: true,
-  //       customImage: "../img/warning-outline.svg"
-  //     },
-  //     type: "warning",
-  //     position: "top-center",
-  //     closeTimeout: 3000
-  //   })
-  //   return
-  // }
-  // for (let i = 0; i < crossGrid.childNodes.length; i++) {
-  //   if (crossGrid.childNodes[i].innerText === "" && crossGrid.childNodes[i].style.background !== "black") {
-  //     GrowlNotification.notify({
-  //       title: "Whoops!",
-  //       description: "You forgot to fill out the whole crossword!",
-  //       image: {
-  //         visible: true,
-  //         customImage: "../img/warning-outline.svg"
-  //       },
-  //       type: "warning",
-  //       position: "top-center",
-  //       closeTimeout: 3000
-  //     })
-  //     return
-  //   }
-  // }
+  for (let i = 0; i < crossGrid.childNodes.length; i++) {
+    if (crossGrid.childNodes[i].textContent === "" && crossGrid.childNodes[i].style.background !== "black") {
+      GrowlNotification.notify({
+        title: "Whoops!",
+        description: "You forgot to fill out the whole crossword!",
+        image: {
+          visible: true,
+          customImage: "../img/warning-outline.svg"
+        },
+        type: "warning",
+        position: "top-center",
+        closeTimeout: 3000
+      })
+      return
+    }
+  }
 
   const hintsAcross = document.getElementById("hints-input-across")
   const hintsDown = document.getElementById("hints-input-down")
@@ -228,7 +230,7 @@ hintButton.addEventListener("click", event => {
     let pElement = document.createElement("p")
     pElement.style.position = "absolute"
     pElement.className = `pNumber${size} pCell`
-    pElement.innerText = `${i}`
+    pElement.textContent = `${i}`
     cell.appendChild(pElement)
     // add a hint for submission
     if (hintObj.isWordAcross) {
@@ -236,9 +238,6 @@ hintButton.addEventListener("click", event => {
       hintInput.setAttribute("type", "text")
       hintInput.setAttribute("name", `${i}:across`)
       hintInput.setAttribute("placeholder", `${i} Across`)
-      // hintsAcross.appendChild("<h3>Across</h3>")
-      let h3across = document.getElementById("h3-across")
-      h3across.innerText = "Across"
       hintsAcross.appendChild(hintInput)
     }
     if (hintObj.isWordDown) {
@@ -246,19 +245,17 @@ hintButton.addEventListener("click", event => {
       hintInput.setAttribute("type", "text")
       hintInput.setAttribute("name", `${i}:down`)
       hintInput.setAttribute("placeholder", `${i} Down`)
-      // hintsDown.innerHTML = "<h3>Down</h3>"
-      let h3down = document.getElementById("h3-down")
-      h3down.innerText = "Down"
       hintsDown.appendChild(hintInput)
     }
   }
+  const hintsForm = document.getElementById("hints")
+  hintsForm.classList.remove("d-none")
 
   let submitBtn = document.getElementById("hintSubmit")
-  submitBtn.className = "button-82-pushable"
   submitBtn.addEventListener("click", async () => {
     let hintValuesAcross = hintsAcross.children
-    for (let g = 1; g < hintValuesAcross.length; g++) {
-      let hintValue = hintValuesAcross[g]
+    for (let i = 1; i < hintValuesAcross.length; i++) {
+      let hintValue = hintValuesAcross[i]
       let hintInfo = hintValue.name.split(":")
       let hintNumber = parseInt(hintInfo[0])
       if (hintInfo[1] === "across") {
@@ -267,8 +264,8 @@ hintButton.addEventListener("click", event => {
     }
 
     let hintValuesDown = hintsDown.children
-    for (let n = 1; n < hintValuesDown.length; n++) {
-      let hintValue = hintValuesDown[n]
+    for (let i = 1; i < hintValuesDown.length; i++) {
+      let hintValue = hintValuesDown[i]
       let hintInfo = hintValue.name.split(":")
       let hintNumber = parseInt(hintInfo[0])
       if (hintInfo[1] === "down") {
@@ -276,41 +273,41 @@ hintButton.addEventListener("click", event => {
       }
     }
 
-    // for (const key in hintMapper) {
-    //   if (hintMapper[key].acrossHint === "" || hintMapper[key].downHint === "") {
-    //     GrowlNotification.notify({
-    //       title: "Whoops!",
-    //       description: "You forgot to fill out all the hints!",
-    //       image: {
-    //         visible: true,
-    //         customImage: "../img/warning-outline.svg"
-    //       },
-    //       type: "warning",
-    //       position: "top-center",
-    //       closeTimeout: 3000
-    //     })
-    //     return
-    //   }
-    // }
+    for (const key in hintMapper) {
+      if (hintMapper[key].acrossHint === "" || hintMapper[key].downHint === "") {
+        GrowlNotification.notify({
+          title: "Whoops!",
+          description: "You forgot to fill out all the hints!",
+          image: {
+            visible: true,
+            customImage: "../img/warning-outline.svg"
+          },
+          type: "warning",
+          position: "top-center",
+          closeTimeout: 3000
+        })
+        return
+      }
+    }
 
-    // GrowlNotification.notify({
-    //   title: "Submitted Sucessfully!",
-    //   image: {
-    //     visible: true,
-    //     customImage: "../img/info-outline.svg"
-    //   },
-    //   type: "info",
-    //   position: "top-center",
-    //   closeTimeout: 3000
-    // })
+    GrowlNotification.notify({
+      title: "Submitted Sucessfully!",
+      image: {
+        visible: true,
+        customImage: "../img/info-outline.svg"
+      },
+      type: "info",
+      position: "top-center",
+      closeTimeout: 3000
+    })
 
     let solutionStr = ""
-    for (let k = 1; k <= size * size; k++) {
-      let tempCell = document.getElementById(`${k}`)
+    for (let i = 1; i <= size * size; i++) {
+      let tempCell = document.getElementById(`${i}`)
       if (tempCell.style.background === "black") {
         solutionStr += "!"
       } else {
-        solutionStr += tempCell.innerText.charAt(0)
+        solutionStr += tempCell.textContent.charAt(0)
       }
     }
     const example = {
@@ -334,7 +331,6 @@ hintButton.addEventListener("click", event => {
       })
     document.location = `${theUrl}`
   })
-  const hintsForm = document.getElementById("hints")
   if (size === 15) {
     document.querySelector(".onlyHints").style.display = "flex"
   }

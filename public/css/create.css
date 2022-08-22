@@ -10120,6 +10120,67 @@ body {
   flex-direction: column;
 }
 
+#thesaurus,
+#word,
+#boxAndFinish {
+  max-width: 172px;
+}
+
+#thesaurus > h1, #thesaurus > .h1 {
+  font-family: cursive;
+}
+
+#word-form > label {
+  font-size: xx-small;
+}
+
+div.lead.m-3 H1.text-center {
+  font-size: 15em;
+}
+div.lead.m-3 p.text-center {
+  margin-top: -1.5em;
+}
+div.lead.m-3 a.text-center.btn.btn-primary.m-auto {
+  display: block;
+  width: max-content;
+}
+
+.px-lg-5 {
+  max-width: 1270px;
+}
+
+#thinking {
+  width: 150px;
+  height: 150px;
+  margin-left: -0.2em;
+}
+
+.display-4 {
+  margin-bottom: -0.6em;
+}
+
+.bi-arrow-up-circle:hover {
+  color: #495057;
+}
+
+.h1Hints > img {
+  width: 50px;
+  margin-right: -20px;
+}
+
+.onlyHints {
+  max-width: 50vh;
+  max-height: 70vh;
+}
+
+.viewArea {
+  z-index: 1;
+}
+
+.login-page {
+  padding: 1.9em;
+}
+
 .banner {
   background: linear-gradient(to right, hsl(210deg, 96%, 40%), hsl(210deg, 49%, 42%));
 }

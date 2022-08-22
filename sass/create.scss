@@ -1,47 +1,15 @@
 // import bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
-// @import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
-
-// @media (max-width: 1000px) {
-//   .wrap1000 {
-//     flex-wrap: wrap !important;
-//   }
-//   .footerCrossword {
-//     position: sticky;
-//     bottom: 0;
-//     // width: 100%;
-//     text-align: center;
-//   }
-//   .hintsCreate {
-//     flex-direction: row !important;
-//   }
-// }
-
-// .wrapper {
-//   // display: grid;
-//   // grid-auto-flow: column;
-//   display: flex;
-// }
-
-// #thesaurus {
-//   display: flex;
-//   flex-direction: column;
-//   width: min-content;
-// }
 
 // Custom variables
-
 :root {
   --fade4s: fade-in 4s forwards;
   --zero: 0;
   --none: none;
-  // --transition: transition: 2s;
 }
 
 html,
 body {
-  // margin: 0;
-  // background-color: #f1f1f1;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   // font-family: Roboto, sans-serif;
@@ -51,6 +19,68 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+#thesaurus,
+#word,
+#boxAndFinish {
+  max-width: 172px;
+}
+#thesaurus > h1 {
+  font-family: cursive;
+}
+
+#word-form > label {
+  font-size: xx-small;
+}
+
+div.lead.m-3 {
+  H1.text-center {
+    font-size: 15em;
+  }
+  p.text-center {
+    margin-top: -1.5em;
+  }
+  a.text-center.btn.btn-primary.m-auto {
+    display: block;
+    width: max-content;
+  }
+}
+
+.px-lg-5 {
+  max-width: 1270px;
+}
+
+#thinking {
+  width: 150px;
+  height: 150px;
+  margin-left: -0.2em;
+}
+
+.display-4 {
+  margin-bottom: -0.6em;
+}
+
+.bi-arrow-up-circle:hover {
+  color: #495057;
+}
+
+.h1Hints > img {
+  width: 50px;
+  margin-right: -20px;
+}
+
+.onlyHints {
+  max-width: 50vh;
+  max-height: 70vh;
+}
+
+.viewArea {
+  z-index: 1;
+}
+
+.login-page {
+  padding: 1.9em;
 }
 
 .banner {

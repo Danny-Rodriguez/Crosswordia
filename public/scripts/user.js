@@ -25,7 +25,7 @@ window.onload = () => {
             hour: "2-digit",
             minute: "2-digit"
           }
-          tdUserCrossword.innerText = new Intl.DateTimeFormat("en-US", options).format(dateC)
+          tdUserCrossword.textContent = new Intl.DateTimeFormat("en-US", options).format(dateC)
           tdUserCrossword.className = "tdDate"
           trUserCrossword.appendChild(tdUserCrossword)
         }
@@ -33,7 +33,7 @@ window.onload = () => {
 
         function SizeF() {
           let tdUserCrossword = document.createElement("td")
-          tdUserCrossword.innerText = `${userArr[i].size}x${userArr[i].size}`
+          tdUserCrossword.textContent = `${userArr[i].size}x${userArr[i].size}`
           tdUserCrossword.className = "tdSize"
           trUserCrossword.appendChild(tdUserCrossword)
         }
@@ -41,7 +41,7 @@ window.onload = () => {
 
         function SolutionF() {
           let tdUserCrossword = document.createElement("td")
-          tdUserCrossword.innerText = userArr[i].solution
+          tdUserCrossword.textContent = userArr[i].solution
           tdUserCrossword.className = "tdSolution"
           trUserCrossword.appendChild(tdUserCrossword)
         }
@@ -54,7 +54,7 @@ window.onload = () => {
           let linkIcon = document.createElement("i")
           linkIcon.className = "bi bi-link-45deg tdLinkIcon"
           tdAnchor.href = `${document.location.origin + "/solve/" + userArr[i]._id}`
-          tdAnchor.innerText = "Go to Crossword"
+          tdAnchor.textContent = "Go to Crossword"
           tdAnchor.appendChild(linkIcon)
           tdUserCrossword.appendChild(tdAnchor)
           trUserCrossword.appendChild(tdUserCrossword)
