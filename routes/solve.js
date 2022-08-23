@@ -1,42 +1,30 @@
 const express = require("express")
-const { ensureAuth, ensureAuth2 } = require("../middleware/auth")
 const router = express.Router()
 const Crossword = require("../models/Crossword")
 
-router.get("/:id", ensureAuth2, async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
+  let layoutValue
+  req.isAuthenticated() ? (layoutValue = "main") : (layoutValue = "mainGuest")
+
   try {
     let crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
   } catch (error) {
     res.status(404)
     return res.render("error/404", {
-      layout: "mainGuest"
+      layout: layoutValue,
+      title: "404 | Solve"
     })
   }
-  if (ensureAuth2) {
-    return res.render("solve", {
-      layout: "main",
-      title: "Solve | Crosswordia"
-    })
-  }
-})
 
-router.get("/:id/fetch", async (req, res) => {
-  try {
-    var crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
-  } catch (error) {
-    res.status(404)
-    return res.render("error/404", {
-      layout: "mainGuest"
-    })
-  }
-  return res.json(crosswordEntry)
-})
-
-router.all("*", (req, res) => {
-  res.status(404)
-  return res.render("error/404", {
-    layout: "mainGuest"
+  return res.render("solve", {
+    layout: layoutValue,
+    title: "Solve | Crosswordia"
   })
+})
+
+router.post("/:id/fetch", async (req, res) => {
+  let crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
+  return res.json(crosswordEntry)
 })
 
 module.exports = router

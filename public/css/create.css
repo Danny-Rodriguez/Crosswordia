@@ -10317,7 +10317,6 @@ div.lead.m-3 a.text-center.btn.btn-primary.m-auto {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
   width: min-content;
 }
 

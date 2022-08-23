@@ -47,7 +47,6 @@ router.get("/gallery", ensureAuth, async (req, res) => {
 // @route Get /user
 router.get("/user", ensureAuth, async (req, res) => {
   try {
-    // return res.redirect(`/user/` + req.user.id)
     return res.redirect(`/user/` + req.user.id)
   } catch (error) {
     return console.error(error)
@@ -56,14 +55,13 @@ router.get("/user", ensureAuth, async (req, res) => {
 
 router.post("/crossword", ensureAuth, async (req, res) => {
   try {
-    var toPost = {
-      // googleId: req.user.googleId,
+    let toPost = {
       user: req.user.id,
       size: req.body.size,
       solution: req.body.solution,
       hints: req.body.hints
     }
-    var newCrossword = await Crossword.create(toPost)
+    let newCrossword = await Crossword.create(toPost)
 
     return res.redirect(`/solve/` + newCrossword._id)
   } catch (error) {

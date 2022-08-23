@@ -3,9 +3,20 @@ let selectedCell = undefined
 const crossGrid = document.getElementById("crossGrid")
 const footer = document.getElementById("footer")
 
-await fetch(document.location.origin + document.location.pathname + "/fetch")
-  .then(response => response.json())
+await fetch(document.location.origin + document.location.pathname + "/fetch", {
+  method: "POST",
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+  .then(response => {
+    if (response.ok) {
+      return response.json()
+    }
+    return Promise.reject(response)
+  })
   .then(crossword => {
+    console.log(crossword)
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution

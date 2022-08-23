@@ -1,6 +1,12 @@
 document.getElementById("bodyId").style.background = "#f1f1f1"
 window.onload = () => {
-  fetch(document.location.origin + document.location.pathname + "/fetch")
+  // fetch(document.location.origin + document.location.pathname + "/fetch")
+  fetch(document.location.origin + document.location.pathname + "/fetch", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
     .then(response => response.json())
     .then(userArr => {
       if (userArr.length === 0) {
@@ -10,7 +16,7 @@ window.onload = () => {
       document.getElementById("userArea").classList.remove("d-none")
       document.getElementById("table").classList.remove("d-none")
       const tBodyUser = document.getElementById("tBodyUser")
-      console.log(userArr)
+      // console.log(userArr)
       for (let i = userArr.length - 1; i >= 0; i--) {
         const trUserCrossword = document.createElement("tr")
         trUserCrossword.className = "trUserCrossword"

@@ -332,7 +332,8 @@ hintButton.addEventListener("click", event => {
     document.location = `${theUrl}`
   })
   if (size === 15) {
-    document.querySelector(".onlyHints").style.display = "flex"
+    document.querySelector(".onlyHints").classList.add("d-flex")
+    hintsForm.classList.remove("justify-content-around")
   }
   hintsForm.appendChild(submitBtn)
 })

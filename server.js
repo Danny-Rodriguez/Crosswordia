@@ -10,7 +10,6 @@ const connectDB = require("./config/db")
 const router = express.Router()
 
 const bodyParser = require("body-parser")
-const Confirmation = require("./models/Confirmation")
 
 // Load config
 dotenv.config({ path: "./config/config.env" })
@@ -26,12 +25,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 3000
-
-//test
-router.post("/user", (req, res) => {
-  console.log("server.js line 39: " + req.body)
-  res.send(req.body)
-})
 
 app.engine(
   ".hbs",
@@ -79,9 +72,12 @@ app.use("/crossword", require("./routes/index"))
 app.use("/dictionary", require("./routes/index"))
 app.use("/gallery", require("./routes/index"))
 app.all("*", (req, res) => {
+  let layoutValue
+  req.isAuthenticated() ? (layoutValue = "main") : (layoutValue = "mainGuest")
   res.status(404)
   res.render("error/404", {
-    layout: "mainGuest"
+    layout: layoutValue,
+    title: "404 | Crosswordia"
   })
 })
 

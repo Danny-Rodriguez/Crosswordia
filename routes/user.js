@@ -10,7 +10,7 @@ router.get("/:user", ensureAuth, async (req, res) => {
   })
 })
 
-router.get("/:user/fetch", ensureAuth, async (req, res) => {
+router.post("/:user/fetch", ensureAuth, async (req, res) => {
   let crosswordEntry = await Crossword.find({ user: req.user }).lean()
   // console.log("routes/user.js ", crosswordEntry)
   return res.json(crosswordEntry)
