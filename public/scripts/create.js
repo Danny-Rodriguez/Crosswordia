@@ -69,7 +69,6 @@ for (let i = 0; i < sizeButtons.length; i++) {
     if (child.textContent === "15x15") {
       size = 15
     }
-    // document.getElementById("thesaurus").style.display = "block"
     document.getElementById("thesaurus").classList.remove("d-none")
     document.getElementById("boxAndFinish").className = "d-flex flex-column"
     crossGrid.style.display = "grid"
@@ -83,12 +82,12 @@ clickMode.addEventListener("click", event => {
   // changing modes
   if (clickMode.textContent === "Add a Box") {
     clickMode.textContent = "Activate Typing"
-    clickMode.className = "button-50-w"
+    clickMode.className = "button-50 btn50-white mb-2"
     // unselecting the cell
     selectedCell.style.background = "white"
   } else if (clickMode.textContent === "Activate Typing") {
     clickMode.textContent = "Add a Box"
-    clickMode.className = "button-50"
+    clickMode.className = "button-50 btn50-black mb-2"
   }
   selectedCell = undefined
 })
@@ -98,41 +97,64 @@ window.addEventListener("keydown", event => {
   if (selectedCell === undefined) {
     return
   }
-  if (wordInput !== document.activeElement && event.key.match(alphabet) && event.key.length === 1) {
-    const pLetter = document.createElement("p")
-    pLetter.className = `position-absolute pLetter${size}`
-    pLetter.textContent = `${event.key.toUpperCase()}`
-    selectedCell.appendChild(pLetter)
-
-    // This for loop selects the next cell across
-    for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
-      let nextCell = document.getElementById(`${i}`)
-      if (nextCell.style.background === "white" || nextCell.style.background === "") {
-        selectedCell.style.background = "white"
-        selectedCell = nextCell
-        selectedCell.style.background = "yellow"
-        break
+  // if (wordInput !== document.activeElement && event.key.match(alphabet) && event.key.length === 1) {
+  if (wordInput !== document.activeElement) {
+    if (event.key.match(alphabet) && event.key.length === 1) {
+      const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
+      if (pLetterText && pLetterText !== "") {
+        pLetterText.textContent = `${event.key.toUpperCase()}`
+      } else {
+        const pLetter = document.createElement("p")
+        pLetter.className = `position-absolute pLetter${size}`
+        pLetter.textContent = `${event.key.toUpperCase()}`
+        selectedCell.appendChild(pLetter)
       }
-    }
-  } else if (wordInput !== document.activeElement) {
-    // } else if (wordInput !== document.activeElement && event.code === "Backspace") {
-    // console.log(event.repeat)
-    let foundPrev = false
-    for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
-      let prevCell = document.getElementById(`${i}`)
-      if (prevCell.style.background === "white" || prevCell.style.background === "") {
-        selectedCell.style.background = "white"
+      // This for loop selects the next cell across
+      for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
+        let nextCell = document.getElementById(`${i}`)
+        if (nextCell.style.background === "white" || nextCell.style.background === "") {
+          selectedCell.style.background = "white"
+          selectedCell = nextCell
+          selectedCell.style.background = "yellow"
+          break
+        }
+      }
+      // } else if (wordInput !== document.activeElement) {
+      // } else if (wordInput !== document.activeElement && event.code === "Backspace") {
+    } else if (event.code === "Backspace") {
+      // } else if (event.which === 37) {
+      // } else if (event.which === 8) {
+      // console.log(event.repeat)
+      let foundPrev = false
+      for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
+        let prevCell = document.getElementById(`${i}`)
+        if (prevCell.style.background === "white" || prevCell.style.background === "") {
+          selectedCell.style.background = "white"
+          selectedCell.textContent = ""
+          selectedCell = prevCell
+          selectedCell.style.background = "yellow"
+          foundPrev = true
+          break
+        }
+      }
+      // This is for the first cell
+      if (!foundPrev) {
         selectedCell.textContent = ""
-        selectedCell = prevCell
-        selectedCell.style.background = "yellow"
-        foundPrev = true
-        break
       }
     }
-    // This is for the first cell
-    if (!foundPrev) {
-      selectedCell.textContent = ""
-    }
+    // if (event.which === 37) {
+    //   for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
+    //     let prevCell = document.getElementById(`${i}`)
+    //     if (prevCell) {
+    //       // selectedCell.style.background = "white"
+    //       // selectedCell.textContent = ""
+    //       selectedCell = prevCell
+    //       selectedCell.style.background = "yellow"
+    //       foundPrev = true
+    //       break
+    //     }
+    //   }
+    // }
   }
 })
 
@@ -160,13 +182,13 @@ dictSubmit.addEventListener("click", async event => {
       let dataArr = data[0].meta.syns.flat().slice(0, 10)
       console.log(dataArr)
 
-      //** Helper Function
+      //* Helper Function
       function createDictionaryList(entry) {
         const li = document.createElement("li")
         li.textContent = entry
         return li
       }
-
+      //* Helper Function
       function removeAllChildNodes(parent) {
         while (parent.firstChild) {
           parent.removeChild(parent.firstChild)

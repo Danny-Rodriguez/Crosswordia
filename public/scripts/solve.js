@@ -1,5 +1,6 @@
 let userUrl
 let selectedCell = undefined
+let typeDown = false
 const crossGrid = document.getElementById("crossGrid")
 const footer = document.getElementById("footer")
 
@@ -52,10 +53,52 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         continue
       }
 
-      cell.addEventListener("click", event => {
-        cell.style.background = "yellow"
+      // for before yellow: let i = size * Math.floor(cell.id / size) + 1
+      // edge case for right end: size * Math.floor(cell.id / size) - size + 1
+      //Todo Get rid of previous orange line when moving to next line
+      // if cell.id % size === 0, use for loop again. Consider helpering it
 
-        if (selectedCell != undefined && selectedCell !== cell) {
+      cell.addEventListener("click", event => {
+        let prevCell = document.getElementById(`${i + 1}`)
+        prevCell.classList.add("prevCell")
+        console.log(prevCell)
+        for (let i = 0; i < crossGrid.childNodes.length; i++) {
+          if (crossGrid.childNodes[i].style.background === "orange") {
+            crossGrid.childNodes[i].style.background = "white"
+          }
+        }
+        if (cell.style.background === "yellow") {
+          typeDown = !typeDown
+        }
+        cell.style.background = "yellow"
+        let maxId = size * Math.floor(cell.id / size) + size
+        if (typeDown === false) {
+          for (let i = parseInt(cell.id); i < crossGrid.childNodes.length; i++) {
+            if (cell.id % size === 0) {
+              break
+            }
+
+            if (i >= maxId) {
+              break
+            }
+
+            if (crossGrid.childNodes[i].style.background === "black") {
+              continue
+            }
+            crossGrid.childNodes[i].style.background = "orange"
+          }
+        }
+
+        if (typeDown === true) {
+          for (let i = parseInt(cell.id) + size - 1; i < crossGrid.childNodes.length; i += size) {
+            if (crossGrid.childNodes[i].style.background === "black") {
+              continue
+            }
+            crossGrid.childNodes[i].style.background = "orange"
+          }
+        }
+
+        if (selectedCell != undefined && selectedCell !== cell && selectedCell.style.background !== "orange") {
           selectedCell.style.background = "white"
         }
         selectedCell = cell
@@ -78,27 +121,50 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           pLetter.textContent = `${event.key.toUpperCase()}`
           selectedCell.prepend(pLetter)
         }
-        // This for loop selects the next cell across
-        for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
-          let nextCell = document.getElementById(`${i}`)
-          if (nextCell.style.background === "white" || nextCell.style.background === "") {
-            selectedCell.style.background = "white"
-            selectedCell = nextCell
-            selectedCell.style.background = "yellow"
-            break
+
+        //* This for loop selects the next cell across
+        if (typeDown === false) {
+          for (let i = parseInt(selectedCell.id) + 1; i <= crossGrid.childNodes.length; i++) {
+            let nextCell = document.getElementById(`${i}`)
+            if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
+              selectedCell.style.background = "white"
+              selectedCell = nextCell
+              selectedCell.style.background = "yellow"
+              let maxId = size * Math.floor(selectedCell.id / size) + size
+              for (let i = parseInt(selectedCell.id); i < crossGrid.childNodes.length; i++) {
+                if (selectedCell.id % size === 0) {
+                  break
+                }
+
+                if (i >= maxId) {
+                  break
+                }
+
+                if (crossGrid.childNodes[i].style.background === "black") {
+                  continue
+                }
+                crossGrid.childNodes[i].style.background = "orange"
+              }
+              break
+            }
           }
         }
-        // This for loop selects the next cell down
-        // for (let i = parseInt(selectedCell.id) + size; i <= size * size; i = i + size) {
-        //   let nextCell = document.getElementById(`${i}`)
-        //   if (nextCell.style.background === "white" || nextCell.style.background === "") {
-        //     selectedCell.style.background = "white"
-        //     selectedCell = nextCell
-        //     selectedCell.style.background = "yellow"
-        //     break
-        //   }
-        // }
+
+        //* This for loop selects the next cell down
+        if (typeDown === true) {
+          for (let i = parseInt(selectedCell.id) + size; i <= size * size; i = i + size) {
+            let nextCell = document.getElementById(`${i}`)
+            if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
+              selectedCell.style.background = "white"
+              selectedCell = nextCell
+              selectedCell.style.background = "yellow"
+              break
+            }
+          }
+        }
+
         //* Preserves hint number if letter is erased
+        //either delete all orange or preferebly it follows your cursor back
       } else if (event.key === "Backspace") {
         let foundPrev = false
         for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
@@ -111,7 +177,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 let value = hints[key]
                 if (value.cellId === parseInt(selectedCell.id)) {
                   let pElement = document.createElement("p")
-                  // pElement.style.position = "absolute"
                   pElement.className = `pNumber${size} pCell`
                   pElement.textContent = `${key}`
                   // console.log("line 123")
@@ -136,7 +201,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               let value = hints[key]
               if (value.cellId === parseInt(selectedCell.id)) {
                 let pElement = document.createElement("p")
-                // pElement.style.position = "absolute"
                 pElement.className = `pNumber${size} pCell`
                 pElement.textContent = `${key}`
                 selectedCell.appendChild(pElement)
@@ -161,7 +225,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
       //* Constructs initial Hint Numbers
       let pElement = document.createElement("p")
-      // pElement.style.position = "absolute"
       pElement.className = `pNumber${size} pCell`
       pElement.textContent = key
       cell.appendChild(pElement)

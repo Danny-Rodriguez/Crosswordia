@@ -10277,6 +10277,10 @@ div.lead.m-3 a.text-center.btn.btn-primary.m-auto {
   background: white;
 }
 
+.prevCell {
+  background: orange;
+}
+
 .pCell {
   left: 10% !important;
   top: 0% !important;
@@ -10515,7 +10519,6 @@ a.profile-drop > div {
 /* button 50 */
 .button-50 {
   appearance: button;
-  background-color: hsl(0deg, 0%, 0%);
   background-image: var(--none);
   border: 1px solid #000;
   border-radius: 4px;
@@ -10540,53 +10543,38 @@ a.profile-drop > div {
   white-space: nowrap;
 }
 
-.button-50-w {
-  appearance: button;
+.btn50-black {
+  background-color: hsl(0deg, 0%, 0%);
+}
+
+.btn50-white {
   background-color: hsl(0deg, 0%, 100%);
-  background-image: var(--none);
-  border: 1px solid #000;
-  border-radius: 4px;
   box-shadow: hsl(0deg, 0%, 0%) 4px 4px 0 0, hsl(0deg, 0%, 0%) 4px 4px 0 1px;
-  box-sizing: border-box;
   color: hsl(0deg, 0%, 0%);
-  cursor: pointer;
-  display: inline-block;
-  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  margin: 0 5px 10px 0;
-  overflow: visible;
-  padding: 12px 40px;
-  text-align: center;
-  text-transform: var(--none);
-  touch-action: manipulation;
-  user-select: var(--none);
-  -webkit-user-select: var(--none);
-  vertical-align: middle;
-  white-space: nowrap;
 }
 
-.button-50:focus,
-.button-50:hover {
-  text-decoration: var(--none);
+.btn50-blue {
+  background-color: hsl(216deg, 100%, 50%);
+  padding: 9.5px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
-.button-50:not([disabled]):active {
+.btn50-black:not([disabled]):active {
   box-shadow: hsl(0deg, 0%, 100%) 2px 2px 0 0, hsl(0deg, 0%, 0%) 2px 2px 0 1px;
   transform: translate(2px, 2px);
 }
 
-.button-50-w:not([disabled]):active {
+.btn50-white:not([disabled]):active {
   box-shadow: hsl(0deg, 0%, 0%) 2px 2px 0 0, hsl(0deg, 0%, 100%) 2px 2px 0 1px;
   transform: translate(2px, 2px);
 }
 
-@media (min-width: 768px) {
-  .button-50 {
-    padding: 12px 50px;
-  }
+.btn50-blue:not([disabled]):active {
+  box-shadow: hsl(0deg, 0%, 100%) 2px 2px 0 0, hsl(0deg, 0%, 0%) 2px 2px 0 1px;
+  transform: translate(2px, 2px);
 }
+
 /* button 82 */
 .button-82-pushable {
   position: relative;
@@ -10755,51 +10743,6 @@ a.profile-drop > div {
     opacity: 1;
   }
 }
-/* button 50 */
-.button-50-b {
-  appearance: button;
-  background-color: hsl(216deg, 100%, 50%);
-  background-image: var(--none);
-  border: 1px solid #000;
-  border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  margin: 0 5px 10px 0;
-  overflow: visible;
-  padding: 9.5px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
-  text-transform: var(--none);
-  touch-action: manipulation;
-  user-select: var(--none);
-  -webkit-user-select: var(--none);
-  vertical-align: middle;
-  white-space: nowrap;
-}
-
-.button-50-b:focus,
-.button-50-b:hover {
-  text-decoration: var(--none);
-}
-
-.button-50-b:active {
-  box-shadow: rgba(0, 0, 0, 0.125) 0 3px 5px inset;
-  outline: var(--zero);
-}
-
-.button-50-b:not([disabled]):active {
-  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
-  transform: translate(2px, 2px);
-}
-
 /* CSS */
 .button-28 {
   appearance: var(--none);
