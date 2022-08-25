@@ -17,7 +17,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     return Promise.reject(response)
   })
   .then(crossword => {
-    console.log(crossword)
+    // console.log(crossword)
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution
@@ -59,9 +59,9 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       // if cell.id % size === 0, use for loop again. Consider helpering it
 
       cell.addEventListener("click", event => {
-        let prevCell = document.getElementById(`${i + 1}`)
-        prevCell.classList.add("prevCell")
-        console.log(prevCell)
+        // let prevCell = document.getElementById(`${i + 1}`)
+        // prevCell.classList.add("prevCell")
+        // console.log(prevCell)
         for (let i = 0; i < crossGrid.childNodes.length; i++) {
           if (crossGrid.childNodes[i].style.background === "orange") {
             crossGrid.childNodes[i].style.background = "white"
@@ -71,24 +71,60 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           typeDown = !typeDown
         }
         cell.style.background = "yellow"
+        //? Consider making this a conditional like startingIndex. Ternary?
         let maxId = size * Math.floor(cell.id / size) + size
+        // let maxId = size * Math.floor(cell.id / size)
+        let startingIndex
+        if (cell.id % size === 0) {
+          startingIndex = parseInt(cell.id) - size
+        } else {
+          startingIndex = size * Math.floor(cell.id / size)
+        }
         if (typeDown === false) {
-          for (let i = parseInt(cell.id); i < crossGrid.childNodes.length; i++) {
+          // for (let i = parseInt(cell.id); i < crossGrid.childNodes.length; i++) {
+          // for (let i = size * Math.floor(cell.id / size); i < crossGrid.childNodes.length; i++) {
+          for (let i = startingIndex; i < crossGrid.childNodes.length; i++) {
+            //! Clean this up or refactor
+            // if (cell.id % size === 0) {
+            //   // continue
+            //   for (let i = parseInt(cell.id) - size; i < crossGrid.childNodes.length; i++) {
+            //     if (crossGrid.childNodes[i].style.background === "black") {
+            //       continue
+            //     }
+            //     if (crossGrid.childNodes[i].style.background === "yellow") {
+            //       break
+            //     }
+            //     crossGrid.childNodes[i].style.background = "orange"
+            //   }
+            //   // break
+            // }
+            //? Consider making this a conditional like startingIndex. Ternary?
             if (cell.id % size === 0) {
-              break
+              if (i >= maxId - size) {
+                break
+              }
             }
 
             if (i >= maxId) {
               break
             }
-
+            // || crossGrid.childNodes[i].style.background === "yellow"
             if (crossGrid.childNodes[i].style.background === "black") {
+              continue
+            }
+            if (crossGrid.childNodes[i].style.background === "yellow") {
+              if (crossGrid.childNodes[i] !== cell) {
+                crossGrid.childNodes[i].style.background = "orange"
+              }
+              // crossGrid.childNodes[i].style.background = "orange"
               continue
             }
             crossGrid.childNodes[i].style.background = "orange"
           }
         }
-
+        //Todo: Needs to backfill with orange when typeDown === true
+        //Todo: Add backspace support, both directions
+        //Todo: Hints
         if (typeDown === true) {
           for (let i = parseInt(cell.id) + size - 1; i < crossGrid.childNodes.length; i += size) {
             if (crossGrid.childNodes[i].style.background === "black") {
@@ -97,8 +133,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             crossGrid.childNodes[i].style.background = "orange"
           }
         }
-
+        // && selectedCell.style.background !== "yellow"
         if (selectedCell != undefined && selectedCell !== cell && selectedCell.style.background !== "orange") {
+          if (selectedCell.style.background === "yellow") {
+            selectedCell.style.background = "orange"
+          }
           selectedCell.style.background = "white"
         }
         selectedCell = cell
