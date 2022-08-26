@@ -6,6 +6,7 @@
   --fade4s: fade-in 4s forwards;
   --zero: 0;
   --none: none;
+  --100: 100%;
 }
 
 html,
@@ -118,9 +119,9 @@ div.lead.m-3 {
   visibility: hidden; /* hides sub-menu */
   opacity: var(--zero);
   position: absolute;
-  top: 100%;
+  top: var(--100);
   left: var(--zero);
-  width: 100%;
+  width: var(--100);
   text-align: center;
   z-index: -1;
   transform: translateY(-2em);
@@ -191,32 +192,38 @@ div.lead.m-3 {
 
 .pNumber5 {
   font-size: 20;
+  user-select: var(--none);
 }
 
 .pNumber10 {
   font-size: 15;
+  user-select: var(--none);
 }
 
 .pNumber15 {
   font-size: 10;
+  user-select: var(--none);
 }
 
 .pLetter5 {
   text-align: center;
-  width: 100%;
+  width: var(--100);
   margin-top: 0.85rem;
+  user-select: var(--none);
 }
 
 .pLetter10 {
   text-align: center;
-  width: 100%;
+  width: var(--100);
   margin-top: 0.78rem;
+  user-select: var(--none);
 }
 
 .pLetter15 {
   text-align: center;
-  width: 100%;
+  width: var(--100);
   margin-top: 0.85rem;
+  user-select: var(--none);
 }
 
 .hintsCreate {
@@ -274,7 +281,7 @@ a:not(.tdLink > a, .tdDeleteAnchor) {
 }
 
 .nav-link {
-  color: #fff !important;
+  color: hsl(0, 0%, 100%) !important;
   padding: 5px;
   display: inline-flex;
   align-items: center;
@@ -386,7 +393,7 @@ a.profile-drop > div {
   -webkit-user-select: var(--none);
   vertical-align: middle;
   white-space: nowrap;
-  width: 100%;
+  width: var(--100);
 }
 
 .button-19:after {
@@ -495,8 +502,8 @@ a.profile-drop > div {
   position: absolute;
   top: var(--zero);
   left: var(--zero);
-  width: 100%;
-  height: 100%;
+  width: var(--100);
+  height: var(--100);
   border-radius: 12px;
   background: hsl(0deg 0% 0% / 0.25);
   will-change: transform;
@@ -508,8 +515,8 @@ a.profile-drop > div {
   position: absolute;
   top: var(--zero);
   left: var(--zero);
-  width: 100%;
-  height: 100%;
+  width: var(--100);
+  height: var(--100);
   border-radius: 12px;
   background: linear-gradient(to left, hsl(210deg, 90%, 20%) 0%, hsl(210deg, 100%, 40%) 8%, hsl(210deg, 100%, 40%) 92%, hsl(210deg, 90%, 20%) 100%);
 }
@@ -675,7 +682,7 @@ a.profile-drop > div {
   user-select: var(--none);
   -webkit-user-select: var(--none);
   touch-action: manipulation;
-  width: 100%;
+  width: var(--100);
   width: 5.6879875em;
   will-change: transform;
 }
