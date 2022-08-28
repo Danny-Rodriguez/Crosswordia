@@ -10,3 +10,4 @@ config.env
 Todo.md
 Errors.md
 Challenges.md
+.prettierignore

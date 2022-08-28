@@ -3,6 +3,7 @@ let selectedCell = undefined
 let typeDown = false
 const crossGrid = document.getElementById("crossGrid")
 const footer = document.getElementById("footer")
+const nodes = crossGrid.childNodes
 
 await fetch(document.location.origin + document.location.pathname + "/fetch", {
   method: "POST",
@@ -53,35 +54,30 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         continue
       }
 
-      // for before yellow: let i = size * Math.floor(cell.id / size) + 1
-      // edge case for right end: size * Math.floor(cell.id / size) - size + 1
-
-      // if cell.id % size === 0, use for loop again. Consider helpering it
-
-      //Todo: implement helper function
-      cell.addEventListener("click", event => {
-        for (let i = 0; i < crossGrid.childNodes.length; i++) {
-          if (crossGrid.childNodes[i].style.background === "orange") {
-            crossGrid.childNodes[i].style.background = "white"
+      function cellColorChanger2(startingIndex, endIndex, increment, inputCell, typeDown) {
+        for (let i = startingIndex; i < endIndex; i++) {
+          let nodeCell = document.getElementById(`${i}`)
+          if (nodeCell && nodeCell.style.background === "black") {
+            break
+          }
+          if (nodeCell && nodeCell.style.background === "yellow") {
+            if (nodeCell !== inputCell) {
+              nodeCell.style.background = "orange"
+            }
+            continue
+          }
+          if (nodeCell) {
+            nodeCell.style.background = "orange"
           }
         }
-        if (cell.style.background === "yellow") {
-          typeDown = !typeDown
-        }
-        cell.style.background = "yellow"
-        let maxId = size * Math.floor(cell.id / size) + size
+      }
 
-        if (typeDown === false) {
-          let startingIndex
-          //! Consider making this a conditional like startingIndex. Ternary?
-          if (cell.id % size === 0) {
-            startingIndex = parseInt(cell.id) - size
-          } else {
-            startingIndex = size * Math.floor(cell.id / size)
-          }
-
-          for (let i = startingIndex; i < crossGrid.childNodes.length; i++) {
-            if (cell.id % size === 0) {
+      function cellColorChanger(startingIndex, increment, inputCell, typeDown) {
+        let maxId = size * Math.floor(inputCell.id / size) + size
+        for (let i = startingIndex; i < nodes.length; i += increment) {
+          // console.log(typeDown)
+          if (typeDown === false) {
+            if (inputCell.id % size === 0) {
               if (i >= maxId - size) {
                 break
               }
@@ -90,36 +86,147 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             if (i >= maxId) {
               break
             }
-            if (crossGrid.childNodes[i].style.background === "black") {
-              continue
+          }
+          // stops orange lining until black
+          // if (nodes[i].style.background === "yellow") {
+          //   continue
+          //   if (nodes[i].style.background === "black") {
+          //     // continue
+          //     break
+          //   }
+          // }
+          // if (nodes[i].style.background === "black") {
+          //   const end = parseInt(nodes[i].id) - 1
+          //   for (let j = 0; j < end; j++) {
+          //     let cell = document.getElementById(`${j}`)
+          //     console.log(cell)
+          //     if (cell.style.background === "orange") {
+          //       cell.style.background = "white"
+          //     }
+          //   }
+          //   // continue
+          //   break
+          // }
+          if (nodes[i].style.background === "black") {
+            break
+          }
+          if (nodes[i].style.background === "yellow") {
+            if (nodes[i] !== inputCell) {
+              nodes[i].style.background = "orange"
             }
-            if (crossGrid.childNodes[i].style.background === "yellow") {
-              if (crossGrid.childNodes[i] !== cell) {
-                crossGrid.childNodes[i].style.background = "orange"
+            continue
+          }
+          nodes[i].style.background = "orange"
+        }
+      }
+
+      //Todo: implement helper function
+      //* Makes whole row or column orange when clicked
+      cell.addEventListener("click", event => {
+        for (let i = 0; i < nodes.length; i++) {
+          if (nodes[i].style.background === "orange") {
+            nodes[i].style.background = "white"
+          }
+        }
+
+        if (cell.style.background === "yellow") {
+          typeDown = !typeDown
+        }
+        cell.style.background = "yellow"
+
+        if (typeDown === false) {
+          //@ Orange forwards -->
+          // let maxId = size * Math.floor(cell.id / size) + size
+          for (let i = cell.id - 1; i < nodes.length && i >= 0; i++) {
+            // if (nodes[i] === cell) {
+            //   nodes[i].style.background === "yellow"
+            // }
+
+            // if (nodes[i] !== cell) {
+            //   nodes[i].style.background === "orange"
+            // }
+
+            if (nodes[i].id % size === 0) {
+              if (nodes[i] === cell) {
+                nodes[i].style.background = "yellow"
+              }
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
+              }
+              break
+            }
+
+            if (nodes[i].style.background === "black") {
+              break
+            }
+            if (nodes[i].style.background === "yellow") {
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
               }
               continue
             }
-            crossGrid.childNodes[i].style.background = "orange"
+            nodes[i].style.background = "orange"
+          }
+
+          //@ Orange Backwards <--
+          for (let i = cell.id - 1; i < nodes.length && i >= 0; i--) {
+            if (nodes[i].id % size === 1) {
+              if (nodes[i] === cell) {
+                nodes[i].style.background = "yellow"
+              }
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
+              }
+              break
+            }
+
+            if (nodes[i].style.background === "black") {
+              break
+            }
+
+            if (nodes[i].style.background === "yellow") {
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
+              }
+              continue
+            }
+            nodes[i].style.background = "orange"
           }
         }
         //Todo: Hints
         if (typeDown === true) {
-          let startingIndex = parseInt(cell.id)
-          while (startingIndex > size) {
-            startingIndex -= size
-            // console.log(startingIndex)
-          }
-          for (let i = startingIndex - 1; i < crossGrid.childNodes.length; i += size) {
-            if (crossGrid.childNodes[i].style.background === "black") {
-              continue
+          // let startingIndexDown = parseInt(cell.id)
+          // while (startingIndexDown > size) {
+          //   startingIndexDown -= size
+          // }
+          // startingIndexDown--
+
+          //@ Orange Down v
+          for (let i = cell.id - 1; i < nodes.length; i += size) {
+            if (nodes[i].style.background === "black") {
+              break
             }
-            if (crossGrid.childNodes[i].style.background === "yellow") {
-              if (crossGrid.childNodes[i] !== cell) {
-                crossGrid.childNodes[i].style.background = "orange"
+            if (nodes[i].style.background === "yellow") {
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
               }
               continue
             }
-            crossGrid.childNodes[i].style.background = "orange"
+            nodes[i].style.background = "orange"
+          }
+
+          //@ Orange Up ^
+          for (let i = cell.id - 1; i < nodes.length && i >= 0; i -= size) {
+            if (nodes[i].style.background === "black") {
+              break
+            }
+            if (nodes[i].style.background === "yellow") {
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
+              }
+              continue
+            }
+            nodes[i].style.background = "orange"
           }
         }
         if (selectedCell != undefined && selectedCell !== cell && selectedCell.style.background !== "orange") {
@@ -132,14 +239,15 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       })
       crossGrid.append(cell)
     }
-    // Adds letter to box with hint number
+
+    //* Adds letter to box with hint number
     window.addEventListener("keydown", event => {
-      // cell.addEventListener("keydown", event => {
       if (selectedCell === undefined) {
         return
       }
 
       //^ Helper Function
+      //@Use this const right here!
       const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
       function create_pLetter(pLetterText) {
         if (pLetterText && pLetterText !== "") {
@@ -160,29 +268,43 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           return
         }
         create_pLetter(pLetterText)
-        //* This for loop selects the next cell across
+        //!
+
+        // let increment
+        // if (typeDown === false) {
+        //   handleOrangeYellow(1)
+        // }
+
+        // if (typeDown === true) {
+        //   handleOrangeYellow(size)
+        // }
+        // handleOrangeYellow(increment)
+        ///* This for loop selects the next cell across
+
         if (typeDown === false) {
-          for (let i = parseInt(selectedCell.id) + 1; i <= crossGrid.childNodes.length; i++) {
+          for (let i = parseInt(selectedCell.id) + 1; i <= nodes.length; i += 1) {
             let nextCell = document.getElementById(`${i}`)
+            if (nextCell.style.background === "black") {
+              break
+            }
             if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
-              // selectedCell.style.background = "white"
               selectedCell.style.background = "orange"
               selectedCell = nextCell
               selectedCell.style.background = "yellow"
-              let maxId = size * Math.floor(selectedCell.id / size) + size
-
-              //Todo: Add more Todo's to code. It's your work, be proud
               break
             }
           }
         }
 
-        //* This for loop selects the next cell down
+        ///* This for loop selects the next cell down
+
         if (typeDown === true) {
-          for (let i = parseInt(selectedCell.id) + size; i <= size * size; i = i + size) {
+          for (let i = parseInt(selectedCell.id) + size; i <= size * size; i += size) {
             let nextCell = document.getElementById(`${i}`)
+            if (nextCell.style.background === "black") {
+              break
+            }
             if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
-              // selectedCell.style.background = "white"
               selectedCell.style.background = "orange"
               selectedCell = nextCell
               selectedCell.style.background = "yellow"
@@ -198,22 +320,25 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           let foundPrev = false
           for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
             let prevCell = document.getElementById(`${i}`)
-            // if (prevCell.style.background === "white" || prevCell.style.background === "orange" || prevCell.style.background === "") {
+            if (selectedCell.id % size === 1) {
+              if (selectedCell.querySelector(`.pLetter${size}`)) {
+                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+                break
+              }
+              break
+            }
+
+            if (prevCell.style.background === "black") {
+              break
+            }
+
             if (prevCell.style.background !== "black") {
               //@ Prevents overflow of orange boxes unto previous row
-              if (selectedCell.id % size === 1) {
+              if (selectedCell.querySelector(`.pLetter${size}`) && selectedCell.id % size === 1) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
                 return
               }
-              // if (prevCell.style.background === "white") {
-              //   selectedCell.style.background = "white"
-              // } else if (prevCell.style.background === "orange") {
-              //   prevCell.style.background = "orange"
-              // }
-              // selectedCell.style.background = "white"
-              // selectedCell.firstChild
               selectedCell.style.background = "orange"
-              // console.log(selectedCell.firstChild.textContent.match(/[a-zA-Z]/g))
 
               if (selectedCell.querySelector(`.pLetter${size}`)) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
@@ -224,9 +349,10 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               break
             }
           }
-          if (!foundPrev) {
-            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-          }
+          //!
+          // if (!foundPrev) {
+          //   selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+          // }
         }
         if (typeDown === true) {
           let foundPrev = false
@@ -234,20 +360,22 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             // console.log(i)
             let prevCell = document.getElementById(`${i + 1 - size}`)
             // console.log(prevCell)
+            if (prevCell && prevCell.style.background === "black") {
+              break
+            }
             if (prevCell && prevCell.style.background !== "black") {
               selectedCell.style.background = "orange"
 
               if (selectedCell.querySelector(`.pLetter${size}`)) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
               }
-              // selectedCell.querySelector(`.pLetter${size}`).textContent = ""
               selectedCell = prevCell
               selectedCell.style.background = "yellow"
               foundPrev = true
               break
             }
           }
-          if (!foundPrev) {
+          if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
             selectedCell.querySelector(`.pLetter${size}`).textContent = ""
           }
         }
