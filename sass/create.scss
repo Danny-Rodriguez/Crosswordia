@@ -66,15 +66,42 @@ div.lead.m-3 {
   color: #495057;
 }
 
+// #hints-across {
+//   scrollbar-color: red yellow !important;
+// }
+
+.h1Hints {
+  margin-bottom: -20px;
+}
+
 .h1Hints > img {
   width: 50px;
-  margin-right: -20px;
+  // margin-right: -20px;
+  // margin-right: -5px;
 }
 
 .onlyHints {
   max-width: 50vh;
   max-height: 70vh;
+  max-height: 65vh;
 }
+
+.AcrossDown {
+  margin-bottom: -20px;
+}
+
+.AcrossDown h3:first-child {
+  padding-right: 6em;
+}
+
+.AcrossDown h3:last-child {
+  padding-right: 1em;
+}
+
+// .onlyHintsChildren {
+//   max-width: 50vh;
+//   max-height: 70vh;
+// }
 
 .viewArea {
   z-index: 1;
