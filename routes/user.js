@@ -4,9 +4,12 @@ const router = express.Router()
 const Crossword = require("../models/Crossword")
 
 router.get("/:user", ensureAuth, async (req, res) => {
+  let crosswordEntry = await Crossword.find({ user: req.user }).lean()
+  // console.log(crosswordEntry)
   return res.render("user", {
     name: req.user.firstName,
-    title: "User | Crosswordia"
+    title: "User | Crosswordia",
+    cross: crosswordEntry
   })
 })
 

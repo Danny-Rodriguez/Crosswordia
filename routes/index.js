@@ -62,7 +62,7 @@ router.post("/crossword", ensureAuth, async (req, res) => {
       hints: req.body.hints
     }
     let newCrossword = await Crossword.create(toPost)
-
+    // console.log(res.redirect(`/solve/` + newCrossword._id))
     return res.redirect(`/solve/` + newCrossword._id)
   } catch (error) {
     return console.error(error)

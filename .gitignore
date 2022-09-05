@@ -1,5 +1,4 @@
 /node_modules
-/helpers
 *.env
 .env
 config.env
@@ -12,3 +11,4 @@ Errors.md
 Challenges.md
 .prettierignore
 .txt
+user.hbs

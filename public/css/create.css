@@ -10355,12 +10355,6 @@ div.lead.m-3 a.text-center.btn.btn-primary.m-auto {
   padding: 1em;
 }
 
-.tdDate {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .tdSolution {
   max-width: 11em;
   overflow: hidden;

@@ -26,9 +26,13 @@ app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 3000
 
+//Handbars Helpers
+const { dateF, linkF } = require("./helpers/hbs")
+
 app.engine(
   ".hbs",
   exphbs.engine({
+    helpers: { dateF, linkF },
     defaultLayout: "main",
     extname: "hbs"
   })
