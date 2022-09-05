@@ -1,4 +1,6 @@
 const clickMode = document.getElementById("clickMode")
+const crossGrid = document.getElementById("crossGrid")
+const nodes = crossGrid.childNodes
 const alphabet = /^[a-z]*$/i
 let selectedCell = undefined
 let size = undefined
@@ -6,6 +8,7 @@ let hintMapper = {}
 let totalHints = 0
 let isEditMode = true
 let theUrl
+let typeDown = false
 
 // creates grid based on size
 function drawGrid() {
@@ -22,7 +25,7 @@ function drawGrid() {
     cellSize = 50
     footer.className = "footerCrossword"
   }
-  const crossGrid = document.getElementById("crossGrid")
+
   while (crossGrid.firstChild) {
     crossGrid.removeChild(crossGrid.firstChild)
   }
@@ -35,14 +38,144 @@ function drawGrid() {
     cell.className = `cell${size} position-relative`
     cell.id = `${i + 1}`
     cell.addEventListener("click", event => {
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].style.background === "orange") {
+          nodes[i].style.background = "white"
+        }
+      }
       if (!isEditMode) {
         return
       }
       //* Did not change button color
       if (clickMode.textContent === "Add a Box") {
+        if (cell.style.background === "yellow") {
+          typeDown = !typeDown
+        }
         cell.style.background = "yellow"
 
-        if (selectedCell != undefined && selectedCell !== cell) {
+        if (typeDown === false) {
+          //@ Orange forwards -->
+          for (let i = cell.id - 1; i < nodes.length && i >= 0; i++) {
+            if (nodes[i].id % size === 0) {
+              if (nodes[i] === cell) {
+                nodes[i].style.background = "yellow"
+              }
+              if (nodes[i] !== cell && nodes[i].style.background !== "black") {
+                nodes[i].style.background = "orange"
+              }
+              break
+            }
+
+            if (nodes[i].style.background === "black") {
+              break
+            }
+            if (nodes[i].style.background === "yellow") {
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
+              }
+              continue
+            }
+            nodes[i].style.background = "orange"
+          }
+
+          //@ Orange Backwards <--
+          for (let i = cell.id - 1; i < nodes.length && i >= 0; i--) {
+            let pAcrossComp
+            let nextNode = nodes[i + 1]
+            if (nodes[i].id % size === 1) {
+              if (nodes[i] === cell) {
+                nodes[i].style.background = "yellow"
+              }
+              if (nodes[i] !== cell && nodes[i].style.background !== "black") {
+                nodes[i].style.background = "orange"
+              }
+              // if (nodes[i].hasChildNodes()) {
+              //   let pAcross = document.getElementById(`A${nodes[i].lastChild.textContent}`)
+              //   pAcross.style.background = "yellow"
+              //   pAcross.style.borderRadius = "5px"
+              //   pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
+              //   prevHint = pAcross
+              //   // prevHints[0] = pAcross
+              // }
+              break
+            }
+
+            if (nodes[i].style.background === "black") {
+              // if (!nextNode.hasChildNodes()) {
+              //   continue
+              // } else {
+              //   let pAcross = document.getElementById(`A${nextNode.lastChild.textContent}`)
+              //   pAcross.style.background = "yellow"
+              //   pAcross.style.borderRadius = "5px"
+              //   pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
+              //   prevHint = pAcross
+              // }
+              break
+            }
+
+            if (nodes[i].style.background === "yellow") {
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
+              }
+              continue
+            }
+            nodes[i].style.background = "orange"
+          }
+        }
+
+        if (typeDown === true) {
+          //@ Orange Down v
+          for (let i = cell.id - 1; i < nodes.length && i >= 0; i += size) {
+            // console.log(cell.id)
+            if (nodes[i].style.background === "black") {
+              break
+            }
+            if (nodes[i].style.background === "yellow") {
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
+              }
+              continue
+            }
+            nodes[i].style.background = "orange"
+          }
+
+          //@ Orange Up ^
+          for (let i = cell.id - 1; i < nodes.length && i >= 0; i -= size) {
+            // let nextNode = nodes[i + size]
+            // if (nodes[i].id <= size) {
+            //   let pDown = document.getElementById(`D${nodes[i].lastChild.textContent}`)
+            //   pDown.style.background = "yellow"
+            //   pDown.style.borderRadius = "5px"
+            //   pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
+            //   prevHint = pDown
+            // }
+
+            if (nodes[i].style.background === "black") {
+              // if (!nextNode.hasChildNodes()) {
+              //   continue
+              // } else {
+              //   let pDown = document.getElementById(`D${nextNode.lastChild.textContent}`)
+              //   pDown.style.background = "yellow"
+              //   pDown.style.borderRadius = "5px"
+              //   pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
+              //   prevHint = pDown
+              // }
+              break
+            }
+            if (nodes[i].style.background === "yellow") {
+              if (nodes[i] !== cell) {
+                nodes[i].style.background = "orange"
+              }
+              continue
+            }
+            nodes[i].style.background = "orange"
+          }
+        }
+
+        if (selectedCell != undefined && selectedCell !== cell && selectedCell.style.background !== "orange") {
+          if (selectedCell.style.background === "yellow") {
+            selectedCell.style.background = "orange"
+          }
           selectedCell.style.background = "white"
         }
         selectedCell = cell
@@ -79,12 +212,19 @@ for (let i = 0; i < sizeButtons.length; i++) {
 
 //* This changed the color
 clickMode.addEventListener("click", event => {
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i].style.background === "orange") {
+      nodes[i].style.background = "white"
+    }
+  }
   // changing modes
   if (clickMode.textContent === "Add a Box") {
     clickMode.textContent = "Activate Typing"
     clickMode.className = "button-50 btn50-white mb-2"
     // unselecting the cell
-    selectedCell.style.background = "white"
+    if (selectedCell) {
+      selectedCell.style.background = "white"
+    }
   } else if (clickMode.textContent === "Activate Typing") {
     clickMode.textContent = "Add a Box"
     clickMode.className = "button-50 btn50-black mb-2"
@@ -97,64 +237,129 @@ window.addEventListener("keydown", event => {
   if (selectedCell === undefined) {
     return
   }
-  // if (wordInput !== document.activeElement && event.key.match(alphabet) && event.key.length === 1) {
+
+  //^ Helper Function
+  const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
+  function create_pLetter(pLetterText) {
+    if (pLetterText && pLetterText !== "") {
+      pLetterText.textContent = `${event.key.toUpperCase()}`
+    } else {
+      const pLetter = document.createElement("p")
+      pLetter.className = `position-absolute pLetter${size}`
+      pLetter.textContent = `${event.key.toUpperCase()}`
+      selectedCell.appendChild(pLetter)
+    }
+  }
+
   if (wordInput !== document.activeElement) {
     if (event.key.match(alphabet) && event.key.length === 1) {
-      const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
-      if (pLetterText && pLetterText !== "") {
-        pLetterText.textContent = `${event.key.toUpperCase()}`
-      } else {
-        const pLetter = document.createElement("p")
-        pLetter.className = `position-absolute pLetter${size}`
-        pLetter.textContent = `${event.key.toUpperCase()}`
-        selectedCell.appendChild(pLetter)
+      //@ Prevents overflow of orange boxes unto next row
+      if (typeDown === false && selectedCell.id % size === 0) {
+        create_pLetter(pLetterText)
+        return
       }
-      // This for loop selects the next cell across
-      for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
-        let nextCell = document.getElementById(`${i}`)
-        if (nextCell.style.background === "white" || nextCell.style.background === "") {
-          selectedCell.style.background = "white"
-          selectedCell = nextCell
-          selectedCell.style.background = "yellow"
-          break
+      create_pLetter(pLetterText)
+
+      //* This for loop selects the next cell across
+      if (typeDown === false) {
+        for (let i = parseInt(selectedCell.id) + 1; i <= size * size; i++) {
+          let nextCell = document.getElementById(`${i}`)
+          if (nextCell.style.background === "black") {
+            break
+          }
+          if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
+            selectedCell.style.background = "orange"
+            selectedCell = nextCell
+            selectedCell.style.background = "yellow"
+            break
+          }
         }
       }
-      // } else if (wordInput !== document.activeElement) {
-      // } else if (wordInput !== document.activeElement && event.code === "Backspace") {
-    } else if (event.code === "Backspace") {
-      // } else if (event.which === 37) {
-      // } else if (event.which === 8) {
-      // console.log(event.repeat)
-      let foundPrev = false
-      for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
-        let prevCell = document.getElementById(`${i}`)
-        if (prevCell.style.background === "white" || prevCell.style.background === "") {
-          selectedCell.style.background = "white"
-          selectedCell.textContent = ""
-          selectedCell = prevCell
-          selectedCell.style.background = "yellow"
-          foundPrev = true
-          break
+
+      //* This for loop selects the next cell down
+      if (typeDown === true) {
+        for (let i = parseInt(selectedCell.id) + size; i <= nodes.length; i += size) {
+          let nextCell = document.getElementById(`${i}`)
+          if (nextCell.style.background === "black") {
+            break
+          }
+          if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
+            selectedCell.style.background = "orange"
+            selectedCell = nextCell
+            selectedCell.style.background = "yellow"
+            break
+          }
         }
       }
-      // This is for the first cell
-      if (!foundPrev) {
-        selectedCell.textContent = ""
+    } else if (event.key === "Backspace") {
+      if (typeDown === false) {
+        let foundPrev = false
+        for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
+          let prevCell = document.getElementById(`${i}`)
+          if (selectedCell.id % size === 1) {
+            if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+              break
+            }
+            break
+          }
+
+          if (prevCell.style.background === "black") {
+            //* replaces !foundPrev. Could lead to error?
+            if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+            }
+            break
+          }
+
+          if (prevCell.style.background !== "black") {
+            //@ Prevents overflow of orange boxes unto previous row
+            if (selectedCell.querySelector(`.pLetter${size}`) && selectedCell.id % size === 1) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+              return
+            }
+            selectedCell.style.background = "orange"
+
+            if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+            }
+            selectedCell = prevCell
+            selectedCell.style.background = "yellow"
+            foundPrev = true
+            break
+          }
+        }
+        if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
+          selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+        }
+      }
+      if (typeDown === true) {
+        let foundPrev = false
+        for (let i = parseInt(selectedCell.id) - 1; i >= 1; i -= size) {
+          let prevCell = document.getElementById(`${i + 1 - size}`)
+          if (prevCell && prevCell.style.background === "black") {
+            if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+            }
+            break
+          }
+          if (prevCell && prevCell.style.background !== "black") {
+            selectedCell.style.background = "orange"
+
+            if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+            }
+            selectedCell = prevCell
+            selectedCell.style.background = "yellow"
+            foundPrev = true
+            break
+          }
+        }
+        if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
+          selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+        }
       }
     }
-    // if (event.which === 37) {
-    //   for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
-    //     let prevCell = document.getElementById(`${i}`)
-    //     if (prevCell) {
-    //       // selectedCell.style.background = "white"
-    //       // selectedCell.textContent = ""
-    //       selectedCell = prevCell
-    //       selectedCell.style.background = "yellow"
-    //       foundPrev = true
-    //       break
-    //     }
-    //   }
-    // }
   }
 })
 
@@ -215,7 +420,7 @@ hintButton.addEventListener("click", event => {
     selectedCell = undefined
   }
 
-  let crossGrid = document.getElementById("crossGrid")
+  // let crossGrid = document.getElementById("crossGrid")
   for (let i = 0; i < crossGrid.childNodes.length; i++) {
     if (crossGrid.childNodes[i].textContent === "" && crossGrid.childNodes[i].style.background !== "black") {
       GrowlNotification.notify({

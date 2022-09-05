@@ -151,11 +151,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             nodes[i].style.background = "orange"
           }
         }
-        //Todo: Hints
+
         if (typeDown === true) {
           //@ Orange Down v
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i += size) {
-            console.log(cell.id)
+            // console.log(cell.id)
             if (nodes[i].style.background === "black") {
               break
             }
@@ -172,25 +172,28 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i -= size) {
             let nextNode = nodes[i + size]
             if (nodes[i].id <= size) {
-              let pDown = document.getElementById(`D${nodes[i].lastChild.textContent}`)
-              pDown.style.background = "yellow"
-              pDown.style.borderRadius = "5px"
-              pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
-              prevHint = pDown
-            }
+              if (nodes[i].style.background === "black") {
+                if (!nextNode.hasChildNodes()) {
+                  continue
+                } else {
+                  let pDown = document.getElementById(`D${nextNode.lastChild.textContent}`)
+                  pDown.style.background = "yellow"
+                  pDown.style.borderRadius = "5px"
+                  pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
+                  prevHint = pDown
+                }
+                break
+              }
 
-            if (nodes[i].style.background === "black") {
-              if (!nextNode.hasChildNodes()) {
-                continue
-              } else {
-                let pDown = document.getElementById(`D${nextNode.lastChild.textContent}`)
+              let pDown = document.getElementById(`D${nodes[i].lastChild.textContent}`)
+              if (pDown) {
                 pDown.style.background = "yellow"
                 pDown.style.borderRadius = "5px"
                 pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                 prevHint = pDown
               }
-              break
             }
+
             if (nodes[i].style.background === "yellow") {
               if (nodes[i] !== cell) {
                 nodes[i].style.background = "orange"
@@ -222,13 +225,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
       function create_pLetter(pLetterText) {
         if (pLetterText && pLetterText !== "") {
-          // return (pLetterText.textContent = `${event.key.toUpperCase()}`)
           pLetterText.textContent = `${event.key.toUpperCase()}`
         } else {
           const pLetter = document.createElement("p")
           pLetter.className = `position-absolute pLetter${size}`
           pLetter.textContent = `${event.key.toUpperCase()}`
-          // return selectedCell.prepend(pLetter)
           selectedCell.prepend(pLetter)
         }
       }
@@ -257,9 +258,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         }
 
         ///* This for loop selects the next cell down
-
         if (typeDown === true) {
-          for (let i = parseInt(selectedCell.id) + size; i <= size * size; i += size) {
+          for (let i = parseInt(selectedCell.id) + size; i <= nodes.length; i += size) {
             let nextCell = document.getElementById(`${i}`)
             if (nextCell.style.background === "black") {
               break
@@ -312,17 +312,15 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               break
             }
           }
-          //!
-          // if (!foundPrev) {
-          //   selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-          // }
+          //! No longer needed it seems, test more
+          if (!foundPrev) {
+            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+          }
         }
         if (typeDown === true) {
           let foundPrev = false
           for (let i = parseInt(selectedCell.id) - 1; i >= 1; i -= size) {
-            // console.log(i)
             let prevCell = document.getElementById(`${i + 1 - size}`)
-            // console.log(prevCell)
             if (prevCell && prevCell.style.background === "black") {
               if (selectedCell.querySelector(`.pLetter${size}`)) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
@@ -341,9 +339,9 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               break
             }
           }
-          // if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
-          //   selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-          // }
+          if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
+            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+          }
         }
       }
     })
