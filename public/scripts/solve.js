@@ -170,6 +170,9 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
           //@ Orange Up ^
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i -= size) {
+            if (nodes[i].style.background === "black") {
+              break
+            }
             let nextNode = nodes[i + size]
             if (nodes[i].id <= size) {
               if (nodes[i].style.background === "black") {
@@ -184,6 +187,10 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 }
                 break
               }
+
+              // if (nodes[i].style.background === "black") {
+              //   break
+              // }
 
               let pDown = document.getElementById(`D${nodes[i].lastChild.textContent}`)
               if (pDown) {

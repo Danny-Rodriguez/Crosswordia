@@ -53,6 +53,14 @@ router.get("/user", ensureAuth, async (req, res) => {
   }
 })
 
+// @desc about page
+//@ route Get /about
+router.get("/about", async (req, res) => {
+  return res.render("about", {
+    title: "About | Crosswordia"
+  })
+})
+
 router.post("/crossword", ensureAuth, async (req, res) => {
   try {
     let toPost = {

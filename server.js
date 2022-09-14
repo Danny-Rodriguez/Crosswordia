@@ -75,6 +75,7 @@ app.use("/user", require("./routes/user"))
 app.use("/crossword", require("./routes/index"))
 app.use("/dictionary", require("./routes/index"))
 app.use("/gallery", require("./routes/index"))
+app.use("/about", require("./routes/index"))
 app.all("*", (req, res) => {
   let layoutValue
   req.isAuthenticated() ? (layoutValue = "main") : (layoutValue = "mainGuest")

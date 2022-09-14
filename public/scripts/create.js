@@ -420,23 +420,23 @@ hintButton.addEventListener("click", event => {
     selectedCell = undefined
   }
 
-  // let crossGrid = document.getElementById("crossGrid")
-  // for (let i = 0; i < crossGrid.childNodes.length; i++) {
-  //   if (crossGrid.childNodes[i].textContent === "" && crossGrid.childNodes[i].style.background !== "black") {
-  //     GrowlNotification.notify({
-  //       title: "Whoops!",
-  //       description: "You forgot to fill out the whole crossword!",
-  //       image: {
-  //         visible: true,
-  //         customImage: "../img/warning-outline.svg"
-  //       },
-  //       type: "warning",
-  //       position: "top-center",
-  //       closeTimeout: 3000
-  //     })
-  //     return
-  //   }
-  // }
+  let crossGrid = document.getElementById("crossGrid")
+  for (let i = 0; i < crossGrid.childNodes.length; i++) {
+    if (crossGrid.childNodes[i].textContent === "" && crossGrid.childNodes[i].style.background !== "black") {
+      GrowlNotification.notify({
+        title: "Whoops!",
+        description: "You forgot to fill out the whole crossword!",
+        image: {
+          visible: true,
+          customImage: "../img/warning-outline.svg"
+        },
+        type: "warning",
+        position: "top-center",
+        closeTimeout: 3000
+      })
+      return
+    }
+  }
 
   const hintsAcross = document.getElementById("hints-input-across")
   const hintsDown = document.getElementById("hints-input-down")
@@ -500,33 +500,33 @@ hintButton.addEventListener("click", event => {
       }
     }
 
-    // for (const key in hintMapper) {
-    //   if (hintMapper[key].acrossHint === "" || hintMapper[key].downHint === "") {
-    //     GrowlNotification.notify({
-    //       title: "Whoops!",
-    //       description: "You forgot to fill out all the hints!",
-    //       image: {
-    //         visible: true,
-    //         customImage: "../img/warning-outline.svg"
-    //       },
-    //       type: "warning",
-    //       position: "top-center",
-    //       closeTimeout: 3000
-    //     })
-    //     return
-    //   }
-    // }
+    for (const key in hintMapper) {
+      if (hintMapper[key].acrossHint === "" || hintMapper[key].downHint === "") {
+        GrowlNotification.notify({
+          title: "Whoops!",
+          description: "You forgot to fill out all the hints!",
+          image: {
+            visible: true,
+            customImage: "../img/warning-outline.svg"
+          },
+          type: "warning",
+          position: "top-center",
+          closeTimeout: 3000
+        })
+        return
+      }
+    }
 
-    // GrowlNotification.notify({
-    //   title: "Submitted Sucessfully!",
-    //   image: {
-    //     visible: true,
-    //     customImage: "../img/info-outline.svg"
-    //   },
-    //   type: "info",
-    //   position: "top-center",
-    //   closeTimeout: 3000
-    // })
+    GrowlNotification.notify({
+      title: "Submitted Sucessfully!",
+      image: {
+        visible: true,
+        customImage: "../img/info-outline.svg"
+      },
+      type: "info",
+      position: "top-center",
+      closeTimeout: 3000
+    })
 
     let solutionStr = ""
     for (let i = 1; i <= size * size; i++) {
