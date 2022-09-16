@@ -15,7 +15,7 @@ router.get("/", ensureAuth, async (req, res) => {
 
 // @desc login page
 // @route Get /login
-router.get("/login", async (req, res) => {
+router.get("/login", ensureGuest, async (req, res) => {
   return res.render("login", {
     layout: "mainGuest",
     title: "Login | Crosswordia"

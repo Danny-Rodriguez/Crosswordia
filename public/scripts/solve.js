@@ -109,6 +109,9 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
           //@ Orange Backwards <--
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i--) {
+            if (nodes[i].style.background === "black") {
+              break
+            }
             let pAcrossComp
             let nextNode = nodes[i + 1]
             if (nodes[i].id % size === 1) {
@@ -320,7 +323,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             }
           }
           //! No longer needed it seems, test more
-          if (!foundPrev) {
+          if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
             selectedCell.querySelector(`.pLetter${size}`).textContent = ""
           }
         }
