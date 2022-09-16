@@ -123,11 +123,12 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               }
               if (nodes[i].hasChildNodes()) {
                 let pAcross = document.getElementById(`A${nodes[i].lastChild.textContent}`)
-                pAcross.style.background = "yellow"
-                pAcross.style.borderRadius = "5px"
-                pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
-                prevHint = pAcross
-                // prevHints[0] = pAcross
+                if (pAcross) {
+                  pAcross.style.background = "yellow"
+                  pAcross.style.borderRadius = "5px"
+                  pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
+                  prevHint = pAcross
+                }
               }
               break
             }
