@@ -1,0 +1,44 @@
+<head>
+  <style type="text/css">
+    #chooseH1 { animation: fade-in 4s forwards; animation-delay: 2.5s; opacity: 0; } .sizeButtons > button { opacity: 0; animation: loading 2s ease-in forwards; } .sizeButtons button:nth-child(1) { animation-delay: 0.25s; } .sizeButtons button:nth-child(2) { animation-delay: 0.6s; } .sizeButtons button:nth-child(3) { animation-delay: 0.9s; } @keyframes loading { 0% { opacity: 0; transform: scale(0, 0); } 100% { opacity: 1; transform: scale(1, 1); } }
+  </style>
+</head>
+
+<h1 id="chooseH1" class="lead d-flex justify-content-around mt-4">Choose your Crossword Size</h1>
+<div class="sizeButtons d-flex justify-content-center mt-2">
+  <button class="button-28" role="button">5x5</button>
+  <button class="button-28" role="button">10x10</button>
+  <button class="button-28" role="button">15x15</button>
+</div>
+
+<div class="wrapper d-flex">
+  <div id="thesaurus" class="d-none">
+    <h1>Thesaurus</h1>
+    <form id="word-form">
+      <label for="word">Input a Word</label>
+      <input id="word" type="text" />
+      <button id="dictSubmit" type="button" class="btn btn-primary w-100 my-2">Search</button>
+    </form>
+    <ul id="listDict"></ul>
+  </div>
+  <div id="crossGrid" class="grid mx-3"></div>
+  <div id="boxAndFinish" class="d-none">
+    <button id="clickMode" class="button-50 btn50-black mb-2" role="button">Add a Box</button>
+    <button id="hintBtn" class="button-50 btn50-blue mt-2" role="button">Finish and Create Hints</button>
+  </div>
+  <div id="hints" class="hintsCreate justify-content-around d-none">
+    <div class="onlyHints">
+      <div id="hints-input-across" class="mb-3"><h3 class="text-center">Across</h3></div>
+      <div id="hints-input-down" class="mb-3"><h3 class="text-center">Down</h3></div>
+    </div>
+    <button id="hintSubmit" class="button-82-pushable" role="button">
+      <span class="button-82-shadow"></span>
+      <span class="button-82-edge"></span>
+      <span class="button-82-front text">
+        Submit
+      </span>
+    </button>
+  </div>
+</div>
+
+<script src="/scripts/create.js" type="module"></script>

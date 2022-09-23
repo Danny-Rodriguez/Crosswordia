@@ -1,3 +1,9 @@
+<head>
+  <style type="text/css">
+    .h1Hints { margin-bottom: -20px; } .h1Hints > img { width: 50px; height: 50px; } .slideDown { animation: slideDown 2.5s; animation-fill-mode: forwards; opacity: 0; animation-delay: 0.5s} @keyframes slideDown { 0% { opacity: 0; transform: translateY(-100%); transition-timing-function: ease-out; } 100% { opacity: 1; } }
+  </style>
+</head>
+
 <div class="solve d-flex justify-content-center mt-4">
   <div class="d-flex flex-column slideDown">
     <text id="solveCheer" class="text-center lead mb-3">Can You Solve This Crossword? Good Luck!</text>
@@ -6,7 +12,7 @@
   </div>
 
   <div class="hints slideDown d-flex flex-column justify-content-evenly align-items-center" id="hints">
-    <h1 class="h1Hints text-center">Hints<img src="/img/scroll.svg" alt="scrollIcon" /></h1>
+    <h1 class="h1Hints text-center">Hints<img src="/img/scroll.svg" alt="scrollIcon" width="50" height="50" /></h1>
     <div class="d-flex AcrossDown">
       <h3>Across</h3>
       <h3>Down</h3>
@@ -17,6 +23,7 @@
     </div>
 
     <button class="button-19" role="button">Check my Answer</button>
+    <button class="revealBtn button-18" role="button">Reveal Highlighted Cells</button>
   </div>
 
 </div>

@@ -34,7 +34,9 @@ app.engine(
   exphbs.engine({
     helpers: { dateF, linkF },
     defaultLayout: "main",
-    extname: "hbs"
+    extname: "hbs",
+    layoutsDir: __dirname + "/views/layouts/",
+    partialsDir: __dirname + "/views/partials/"
   })
 )
 app.set("view engine", ".hbs")
@@ -68,6 +70,7 @@ app.use(express.static(path.join(__dirname, "public")))
 
 //Routes
 app.use("/", require("./routes/index"))
+app.use("/create", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/solve", require("./routes/solve"))
 app.use("/login", require("./routes/index"))

@@ -4,9 +4,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <title id="titlePage">{{title}}</title>
-     {{!-- a[href="/about"]{ color: inherit !important; } --}}
-    <link rel="preload" href="/img/crossword.svg" as="image" />
-    {{!-- <link rel="preload" href="/img/crossword-thinking.svg" as="image" /> --}}
     <link rel="shortcut icon" href="/img/crossword.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
     <link rel="shortcut icon" href="/img/crossword-darkmode.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
     <link rel="mask-icon" href="/img/crossword.svg" color="black" />
@@ -46,19 +43,8 @@
 
     </section>
 
-      <ul class="circles">
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-        <li><img src="/img/crossword.svg" draggable="false" /></li>
-      </ul>
+{{> _floatingSquares}}
 
-    <div id="footer" class="footerInitial"> <p> Copyright &copy; {{footer}} Danny Alfredo Rodriguez All Rights Reserved | <a href="/about">About</a></p></div>
+{{> _footer}}
   </body>
 </html>

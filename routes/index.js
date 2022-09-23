@@ -9,6 +9,16 @@ const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fet
 router.get("/", ensureAuth, async (req, res) => {
   return res.render("home", {
     layout: "main",
+    title: "Home | Crosswordia",
+    name: req.user.firstName
+  })
+})
+
+// @desc create page
+// @route Get /create
+router.get("/create", ensureAuth, async (req, res) => {
+  return res.render("create", {
+    layout: "main",
     title: "Create | Crosswordia"
   })
 })

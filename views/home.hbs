@@ -1,38 +1,53 @@
-<h1 id="chooseH1" class="lead d-flex justify-content-around mt-4">Choose your Crossword Size</h1>
-<div class="sizeButtons d-flex justify-content-center mt-2">
-  <button class="button-28" role="button">5x5</button>
-  <button class="button-28" role="button">10x10</button>
-  <button class="button-28" role="button">15x15</button>
-</div>
+<head>
+  <style type="text/css">
+    .row > div:hover {transform: scale(1.05);} img{width:193; height:193;} .fitC{max-width: fit-content} .rounded-pill{color:aliceblue} .g-4.fade-in{animation-delay: 1.5s;} .mt-4.fade-in{animation-delay: 0s;}
+  </style>
+</head>
 
-<div class="wrapper d-flex">
-  <div id="thesaurus" class="d-none">
-    <h1>Thesaurus</h1>
-    <form id="word-form">
-      <label for="word">Input a Word</label>
-      <input id="word" type="text" />
-      <button id="dictSubmit" type="button" class="btn btn-primary w-100 my-2">Search</button>
-    </form>
-    <ul id="listDict"></ul>
-  </div>
-  <div id="crossGrid" class="grid mx-3"></div>
-  <div id="boxAndFinish" class="d-none">
-    <button id="clickMode" class="button-50 btn50-black mb-2" role="button">Add a Box</button>
-    <button id="hintBtn" class="button-50 btn50-blue mt-2" role="button">Finish and Create Hints</button>
-  </div>
-  <div id="hints" class="hintsCreate justify-content-around d-none">
-    <div class="onlyHints">
-      <div id="hints-input-across" class="mb-3"><h3 class="text-center">Across</h3></div>
-      <div id="hints-input-down" class="mb-3"><h3 class="text-center">Down</h3></div>
+<h1 class="lead d-flex justify-content-around mt-4 fade-in">Hello {{name}}, what do you want to do?</h1>
+
+<div class="row row-cols-1 row-cols-md-2 g-4 fade-in">
+  {{! <div class="card-group"> }}
+  <div class="col">
+    <div class="card h-100">
+      <a href="/gallery">
+        <div class="bg-white rounded text-center"><img src="/img/crossword-thinking.svg" alt="crossword" width="193" height="193" />
+          {{! <div class="p-4"> }}
+          <div class="card-body">
+            <p class="card-text small text-muted mb-0 fitC">Try out the crosswords that have already been made for me</p>
+            <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
+              Go to Gallery
+              {{! <p class="card-text small mb-0 mx-auto">Go to Gallery</p> }}
+            </div>
+          </div>
+          {{! <div class="card-footer"> }}
+
+          {{! </div> }}
+          {{! </div> }}
+        </div>
+      </a>
     </div>
-    <button id="hintSubmit" class="button-82-pushable" role="button">
-      <span class="button-82-shadow"></span>
-      <span class="button-82-edge"></span>
-      <span class="button-82-front text">
-        Submit
-      </span>
-    </button>
   </div>
-</div>
 
-<script src="/scripts/create.js" type="module"></script>
+  <div class="col">
+    <div class="card h-100">
+      <a href="/create">
+        <div class="bg-white rounded text-center"><img src="/img/create-crossword.svg" alt="crossword" width="193" height="193" />
+          {{! <div class="p-4"> }}
+          <div class="card-body">
+            <p class="card-text small text-muted mb-0">Make my own crosswords and share them with friends and family</p>
+            <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
+              Go to Create Page
+              {{! <p class="small mb-0 mx-auto">Go to Create Page</p> }}
+            </div>
+          </div>
+          {{! <div class="card-footer"> }}
+
+          {{! </div> }}
+          {{! </div> }}
+        </div>
+      </a>
+    </div>
+  </div>
+  {{! </div> }}
+</div>
