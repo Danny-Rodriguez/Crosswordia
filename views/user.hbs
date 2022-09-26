@@ -1,6 +1,6 @@
 <head>
   <style type="text/css">
-    #bodyId{background:#f1f1f1;}
+    #bodyId{background:#f1f1f1;} a.mt-3 {color: aliceblue !important;}
   </style>
 </head>
 
@@ -31,10 +31,13 @@
 
 {{else}}
 
-  <h2 id="userAreaEmpty" class="lead text-center mt-3" referrerpolicy="no-referrer">
-    Hello
-    {{name}}! You haven't made any crosswords so far...
-  </h2>
+  <div class="d-flex flex-column align-items-center">
+    <h2 id="userAreaEmpty" class="lead text-center mt-3" referrerpolicy="no-referrer">
+      Hello
+      {{name}}! You haven't made any crosswords so far...
+    </h2>
+    <a href="/create" class="text-center btn btn-primary mt-3">Create Your Own Crossword!</a>
+  </div>
 {{/if}}
 
 <script type="text/javascript">

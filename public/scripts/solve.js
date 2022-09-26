@@ -44,6 +44,12 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       let cell = document.createElement("div")
       cell.className = `cell${size} position-relative`
       cell.id = `${i + 1}`
+      // const testClass = document.createElement("p")
+      // testClass.className = "testClass"
+      // cell.append(testClass)
+      const pLetter = document.createElement("p")
+      pLetter.className = `position-absolute pLetter${size}`
+      cell.prepend(pLetter)
       if (solution.charAt(i) === "!") {
         cell.style.background = "black"
         crossGrid.append(cell)
@@ -58,6 +64,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         }
         if (prevCompHint !== undefined) {
           prevCompHint.style.textDecoration = ""
+          prevCompHint.style.setProperty("-webkit-text-decoration", "")
         }
         for (let i = 0; i < nodes.length; i++) {
           if (nodes[i].style.background === "orange") {
@@ -74,7 +81,9 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           let vertComp = cell
           if (document.getElementById(`D${vertComp?.lastChild?.textContent}`)) {
             let pDown = document.getElementById(`D${vertComp.lastChild.textContent}`)
-            pDown.style.textDecoration = "underline orange"
+            // pDown.style.textDecoration = "underline orange"
+            pDown.style.setProperty("text-decoration", "underline orange")
+            pDown.style.setProperty("-webkit-text-decoration", "underline orange")
             pDown.scrollIntoView({ behavior: "auto", block: "nearest", inline: "start" })
             prevCompHint = pDown
           }
@@ -160,7 +169,9 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           let vertComp = cell
           if (document.getElementById(`A${vertComp?.lastChild?.textContent}`)) {
             let pAcross = document.getElementById(`A${vertComp.lastChild.textContent}`)
-            pAcross.style.textDecoration = "underline orange"
+            // pAcross.style.textDecoration = "underline orange"
+            pAcross.style.setProperty("text-decoration", "underline orange")
+            pAcross.style.setProperty("-webkit-text-decoration", "underline orange")
             pAcross.scrollIntoView({ behavior: "auto", block: "nearest", inline: "start" })
             prevCompHint = pAcross
           }
@@ -253,14 +264,21 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       //^ Helper Function
       //@Use this const right here!
       const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
+      // function create_pLetter(pLetterText) {
+      //   if (pLetterText && pLetterText !== "") {
+      //     pLetterText.textContent = `${event.key.toUpperCase()}`
+      //   } else {
+      //     const pLetter = document.createElement("p")
+      //     pLetter.className = `position-absolute pLetter${size}`
+      //     pLetter.textContent = `${event.key.toUpperCase()}`
+      //     selectedCell.prepend(pLetter)
+      //   }
+      // }
       function create_pLetter(pLetterText) {
-        if (pLetterText && pLetterText !== "") {
+        if (pLetterText !== "") {
           pLetterText.textContent = `${event.key.toUpperCase()}`
         } else {
-          const pLetter = document.createElement("p")
-          pLetter.className = `position-absolute pLetter${size}`
-          pLetter.textContent = `${event.key.toUpperCase()}`
-          selectedCell.prepend(pLetter)
+          pLetterText.textContent = `${event.key.toUpperCase()}`
         }
       }
       if (event.key.match(alphabet) && event.key.length === 1) {
@@ -310,32 +328,33 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
             let prevCell = document.getElementById(`${i}`)
             if (selectedCell.id % size === 1) {
-              if (selectedCell.querySelector(`.pLetter${size}`)) {
-                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-                break
-              }
+              // if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
               break
+              // }
+              // break
             }
 
             if (prevCell.style.background === "black") {
               //* replaces !foundPrev. Could lead to error?
-              if (selectedCell.querySelector(`.pLetter${size}`)) {
-                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              }
+              // if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+              // }
               break
             }
 
             if (prevCell.style.background !== "black") {
               //@ Prevents overflow of orange boxes unto previous row
-              if (selectedCell.querySelector(`.pLetter${size}`) && selectedCell.id % size === 1) {
+              // if (selectedCell.querySelector(`.pLetter${size}`) && selectedCell.id % size === 1) {
+              if (selectedCell.id % size === 1) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
                 return
               }
               selectedCell.style.background = "orange"
 
-              if (selectedCell.querySelector(`.pLetter${size}`)) {
-                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              }
+              // if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+              // }
               selectedCell = prevCell
               selectedCell.style.background = "yellow"
               foundPrev = true
@@ -352,23 +371,24 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           for (let i = parseInt(selectedCell.id) - 1; i >= 1; i -= size) {
             let prevCell = document.getElementById(`${i + 1 - size}`)
             if (prevCell && prevCell.style.background === "black") {
-              if (selectedCell.querySelector(`.pLetter${size}`)) {
-                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              }
+              // if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+              // }
               break
             }
             if (prevCell && prevCell.style.background !== "black") {
               selectedCell.style.background = "orange"
 
-              if (selectedCell.querySelector(`.pLetter${size}`)) {
-                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              }
+              // if (selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+              // }
               selectedCell = prevCell
               selectedCell.style.background = "yellow"
               foundPrev = true
               break
             }
           }
+          //! Test
           if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
             selectedCell.querySelector(`.pLetter${size}`).textContent = ""
           }
@@ -462,11 +482,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     revealBtn.addEventListener("click", () => {
       for (let i = 0; i < nodes.length; i++) {
         if (nodes[i].style.background === "orange" || nodes[i].style.background === "yellow") {
-          if (!nodes[i].classList.contains(`pLetter${size}`)) {
-            const pLetter = document.createElement("p")
-            pLetter.className = `position-absolute pLetter${size}`
-            nodes[i].prepend(pLetter)
-          }
+          // if (!nodes[i].classList.contains(`pLetter${size}`)) {
+          //   const pLetter = document.createElement("p")
+          //   pLetter.className = `position-absolute pLetter${size}`
+          //   nodes[i].prepend(pLetter)
+          // }
           nodes[i].firstChild.textContent = solution.charAt(i)
         }
       }

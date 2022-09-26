@@ -3,18 +3,6 @@
   padding: 0px;
 }
 
-.context {
-  width: 100%;
-  position: absolute;
-  top: 50vh;
-}
-
-.context h1 {
-  text-align: center;
-  color: #fff;
-  font-size: 50px;
-}
-
 .area {
   background: hsl(210deg 78% 70%);
   width: 100%;

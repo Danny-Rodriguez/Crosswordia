@@ -53,12 +53,6 @@ div.lead.m-3 {
   max-width: 1270px;
 }
 
-#thinking {
-  width: 150px;
-  height: 150px;
-  margin-left: -0.2em;
-}
-
 .display-4 {
   margin-bottom: -0.6em;
 }
@@ -66,10 +60,6 @@ div.lead.m-3 {
 .bi-arrow-up-circle:hover {
   color: #495057;
 }
-
-// #hints-across {
-//   scrollbar-color: red yellow !important;
-// }
 
 .onlyHints {
   max-width: 50vh;
@@ -89,31 +79,12 @@ div.lead.m-3 {
   padding-right: 1em;
 }
 
-// .onlyHintsChildren {
-//   max-width: 50vh;
-//   max-height: 70vh;
-// }
-
-.viewArea {
-  z-index: 1;
-}
-
 .login-page {
   padding: 1.9em;
 }
 
 .banner {
   background: linear-gradient(to right, hsl(210, 96%, 40%), hsl(210, 49%, 42%));
-}
-
-.navbar-links {
-  --25px: 25px;
-  margin-right: 5em;
-}
-
-.smallIcons {
-  width: var(--25px);
-  height: var(--25px);
 }
 
 .crossword-b {
@@ -296,13 +267,6 @@ a:not(.tdLink > a, .tdDeleteAnchor) {
 
 .navbar {
   background: linear-gradient(40deg, #45cafc, #303f9f) !important;
-}
-
-.nav-link {
-  color: hsl(0, 0%, 100%) !important;
-  padding: 5px;
-  display: inline-flex;
-  align-items: center;
 }
 
 .navbar-brand {

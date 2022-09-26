@@ -3,14 +3,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+    .dropdown-content {visibility: hidden;}
+    section{z-index: 1;} .navbar-links {margin-right: 5em;}
+    .box-shadow {box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;}
+    .user-link {color: hsl(0, 0%, 100%) !important; padding: 5px; display: inline-flex;align-items: center;} .navbar-links {margin-right: 5em;} .smallIcons {width: 25px;height: 25px;} .navbar-links > a {padding-right: initial;} .navbar-links > a:hover,.navbar-links > a:active {background-color: hsl(216deg, 74%, 41%); transition: background-color -1s;}
+</style>
     <title id="titlePage">{{title}}</title>
-    <link rel="shortcut icon" href="/img/crossword.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
-    <link rel="shortcut icon" href="/img/crossword-darkmode.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
-    <link rel="mask-icon" href="/img/crossword.svg" color="black" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
-    <link rel="stylesheet" type="text/css" href="/css/create.css?v=1" />
-    <link rel="stylesheet" href="/css/floatingSquares.css" />
-    <link rel="stylesheet" type="text/css" href="/css/colored-theme.min.css" />
+    <link rel="shortcut icon" href="/img/crossword.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="/img/crossword-darkmode.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" referrerpolicy="no-referrer" />
+    <link rel="mask-icon" href="/img/crossword.svg" color="black" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="/css/create.css?v=1" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/floatingSquares.css" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="/css/colored-theme.min.css" referrerpolicy="no-referrer"/>
     <script src="/scripts/growl-notification.min.js" type="module"></script>
   </head>
   <body id="bodyId" class="area">
@@ -18,17 +24,18 @@
       <a href="/" class="navbar-brand">Welcome to Crosswordia!</a>
 
       <div class="navbar-links">
-        <a id="gallery" href="/gallery" class="nav-link justify-content-between box-shadow" role="button"><div>Gallery</div>
-          <img class="smallIcons" src="/img/crossword.svg" alt="Gallery" />
+        <a href="/create" class="user-link justify-content-between box-shadow" role="button">Create <img class="smallIcons" src="/img/create-crossword.svg" referrerpolicy="no-referrer" alt="crossword" width="25" height="25" /></a>
+        <a id="gallery" href="/gallery" class="user-link justify-content-between box-shadow" role="button">Gallery
+          <img class="smallIcons" src="/img/crossword.svg" referrerpolicy="no-referrer" alt="Gallery" />
         </a>
         <div class="dropdown">
-          <a class="profile-drop nav-link dropdown-toggle justify-content-between box-shadow" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="profile-drop user-link dropdown-toggle justify-content-between box-shadow" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div>My Dashboard</div>
             <img src="{{image}}" alt="avatar" referrerpolicy="no-referrer" class="smallIcons rounded-circle" width="25" height="25" />
           </a>
           <div class="dropdown-content">
             <a href="/user" class="dropdown-item d-inline-flex align-items-center" role="button"><div>My Crosswords</div>
-              <img src="/img/myCrosswords-b.svg" class="crossword-b" alt="My Crosswords" width="33.5" height="33.5"/>
+              <img src="/img/myCrosswords-b.svg" referrerpolicy="no-referrer" class="crossword-b" alt="My Crosswords" width="33.5" height="33.5"/>
             </a>
             <a href="/auth/logout" class="dropdown-item">Logout <i class="bi bi-box-arrow-right"></i></a>
           </div>
@@ -37,7 +44,7 @@
 
     </nav>
 
-    <section class="viewArea flex-grow-1 mt-5">
+    <section class="flex-grow-1 mt-5">
 
         {{{body}}}
 

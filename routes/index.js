@@ -48,7 +48,6 @@ router.get("/delete/:id", ensureAuth, async (req, res) => {
 // @route Get /gallery
 router.get("/gallery", ensureAuth, async (req, res) => {
   return res.render("gallery", {
-    thinking: "/img/crossword-thinking.svg",
     title: "Gallery | Crosswordia"
   })
 })
