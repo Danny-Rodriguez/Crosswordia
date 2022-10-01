@@ -1,17 +1,18 @@
 <head>
   <style type="text/css">
-    .h1Hints { margin-bottom: -20px; } .h1Hints > img { width: 50px; height: 50px; } .slideDown { animation: slideDown 2.5s; animation-fill-mode: forwards; opacity: 0; animation-delay: 0.5s} @keyframes slideDown { 0% { opacity: 0; transform: translateY(-100%); transition-timing-function: ease-out; } 100% { opacity: 1; } }
+    #thesaurus {margin-right: 1vw;} .onlyHints {max-width: 50vh; max-height: 50vh;} h3 {padding-top: 1em; padding-bottom: 1em;} .h1Hints { margin-bottom: -20px; } .h1Hints > img { width: 50px; height: 50px; } .slideDown { animation: slideDown 2.5s; animation-fill-mode: forwards; opacity: 0; -webkit-opacity: 0; animation-delay: 0.5s} @keyframes slideDown { 0% {opacity: 0; -webkit-opacity: 0; transform: translateY(-100%); transition-timing-function: ease-out; } 100% {opacity: 0; -webkit-opacity: 1;} }
   </style>
 </head>
 
-<div class="solve d-flex justify-content-center mt-4">
-  <div class="d-flex flex-column slideDown">
+<div class="solve d-flex justify-content-center mt-4 slideDown">
+
+      {{> _thesaurus}}
+  <div class="d-flex flex-column">
     <text id="solveCheer" class="text-center lead mb-3">Can You Solve This Crossword? Good Luck!</text>
     <div class="grid" id="crossGrid"></div>
-
   </div>
 
-  <div class="hints slideDown d-flex flex-column justify-content-evenly align-items-center" id="hints">
+  <div class="hints d-flex flex-column justify-content-evenly align-items-center" id="hints">
     <h1 class="h1Hints text-center">Hints<img src="/img/scroll.svg" referrerpolicy="no-referrer" alt="scrollIcon" width="50" height="50" /></h1>
     <div class="d-flex AcrossDown">
       <h3>Across</h3>
@@ -22,7 +23,7 @@
       <div id="hints-down" class="overflow-scroll mx-3 w-50"></div>
     </div>
 
-    <button class="button-19" role="button">Check my Answer</button>
+    <button class="button-19 my-2" role="button">Check my Answer</button>
     <button class="revealBtn button-18" role="button">Reveal Highlighted Cells</button>
   </div>
 
@@ -30,7 +31,6 @@
 <div class="text-center lead mb-3 mt-3 fade-in">Share Your Crossword!</div>
 <div class="a2a_kit a2a_kit_size_32 a2a_default_style mb-3 fade-in">
   <a class="a2a_button_copy_link"></a>
-  <a class="a2a_button_facebook"></a>
   <a class="a2a_button_twitter"></a>
   <a class="a2a_button_email"></a>
   <a class="a2a_button_google_gmail"></a>
@@ -38,4 +38,5 @@
   <a class="a2a_button_sms"></a>
 </div>
 <script async src="https://static.addtoany.com/menu/page.js"></script>
+<script src="/scripts/helper.js"></script>
 <script src="/scripts/solve.js" type="module"></script>

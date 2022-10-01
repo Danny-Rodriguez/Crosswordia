@@ -26,11 +26,13 @@ function drawGrid() {
     footer.className = "footerCrossword"
   }
 
-  while (crossGrid.firstChild) {
-    crossGrid.removeChild(crossGrid.firstChild)
-  }
-  crossGrid.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`
-  crossGrid.style.gridTemplateRows = `repeat(${size}, ${cellSize}px)`
+  removeAllChildNodes(crossGrid)
+  crossGrid.classList.remove(`gridSize5`)
+  crossGrid.classList.remove(`gridSize10`)
+  crossGrid.classList.remove(`gridSize15`)
+  crossGrid.classList.add(`gridSize${size}`)
+  // crossGrid.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`
+  // crossGrid.style.gridTemplateRows = `repeat(${size}, ${cellSize}px)`
   crossGrid.style.border = `5px solid black`
 
   for (let i = 0; i < size * size; i++) {
@@ -47,7 +49,7 @@ function drawGrid() {
         return
       }
       //* Did not change button color
-      if (clickMode.textContent === "Add a Box") {
+      if (clickMode.textContent === "Blackout Cells") {
         if (cell.style.background === "yellow") {
           typeDown = !typeDown
         }
@@ -89,27 +91,10 @@ function drawGrid() {
               if (nodes[i] !== cell && nodes[i].style.background !== "black") {
                 nodes[i].style.background = "orange"
               }
-              // if (nodes[i].hasChildNodes()) {
-              //   let pAcross = document.getElementById(`A${nodes[i].lastChild.textContent}`)
-              //   pAcross.style.background = "yellow"
-              //   pAcross.style.borderRadius = "5px"
-              //   pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
-              //   prevHint = pAcross
-              //   // prevHints[0] = pAcross
-              // }
               break
             }
 
             if (nodes[i].style.background === "black") {
-              // if (!nextNode.hasChildNodes()) {
-              //   continue
-              // } else {
-              //   let pAcross = document.getElementById(`A${nextNode.lastChild.textContent}`)
-              //   pAcross.style.background = "yellow"
-              //   pAcross.style.borderRadius = "5px"
-              //   pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
-              //   prevHint = pAcross
-              // }
               break
             }
 
@@ -141,25 +126,7 @@ function drawGrid() {
 
           //@ Orange Up ^
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i -= size) {
-            // let nextNode = nodes[i + size]
-            // if (nodes[i].id <= size) {
-            //   let pDown = document.getElementById(`D${nodes[i].lastChild.textContent}`)
-            //   pDown.style.background = "yellow"
-            //   pDown.style.borderRadius = "5px"
-            //   pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
-            //   prevHint = pDown
-            // }
-
             if (nodes[i].style.background === "black") {
-              // if (!nextNode.hasChildNodes()) {
-              //   continue
-              // } else {
-              //   let pDown = document.getElementById(`D${nextNode.lastChild.textContent}`)
-              //   pDown.style.background = "yellow"
-              //   pDown.style.borderRadius = "5px"
-              //   pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
-              //   prevHint = pDown
-              // }
               break
             }
             if (nodes[i].style.background === "yellow") {
@@ -193,6 +160,7 @@ for (let i = 0; i < sizeButtons.length; i++) {
   const child = sizeButtons[i]
   child.addEventListener("click", event => {
     document.getElementById("chooseH1").style.setProperty("display", "none", "important")
+    // removeAllChildNodes(crossGrid)
     if (child.textContent === "5x5") {
       size = 5
     }
@@ -203,6 +171,7 @@ for (let i = 0; i < sizeButtons.length; i++) {
       size = 15
     }
     document.getElementById("thesaurus").classList.remove("d-none")
+    // document.getElementById("thesaurus").className = "d-block"
     document.getElementById("boxAndFinish").className = "d-flex flex-column"
     crossGrid.style.display = "grid"
 
@@ -218,7 +187,7 @@ clickMode.addEventListener("click", event => {
     }
   }
   // changing modes
-  if (clickMode.textContent === "Add a Box") {
+  if (clickMode.textContent === "Blackout Cells") {
     clickMode.textContent = "Activate Typing"
     clickMode.className = "button-50 btn50-white mb-2"
     // unselecting the cell
@@ -226,7 +195,7 @@ clickMode.addEventListener("click", event => {
       selectedCell.style.background = "white"
     }
   } else if (clickMode.textContent === "Activate Typing") {
-    clickMode.textContent = "Add a Box"
+    clickMode.textContent = "Blackout Cells"
     clickMode.className = "button-50 btn50-black mb-2"
   }
   selectedCell = undefined
@@ -363,55 +332,7 @@ window.addEventListener("keydown", event => {
   }
 })
 
-const dictSubmit = document.getElementById("dictSubmit")
-dictSubmit.addEventListener("click", async event => {
-  event.preventDefault()
-  const word = document.getElementById("word")
-  const listDict = document.getElementById("listDict")
-  const toFetch = await fetch(`/dictionary`, {
-    method: "POST",
-    body: JSON.stringify({
-      word: word.value
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
-  })
-    .then(function (response) {
-      if (response.ok) {
-        return response.json()
-      }
-      return Promise.reject(response)
-    })
-    .then(function (data) {
-      let dataArr = data[0].meta.syns.flat().slice(0, 10)
-      console.log(dataArr)
-
-      //* Helper Function
-      function createDictionaryList(entry) {
-        const li = document.createElement("li")
-        li.textContent = entry
-        return li
-      }
-      //* Helper Function
-      function removeAllChildNodes(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild)
-        }
-      }
-
-      if (listDict.childElementCount >= 10) {
-        removeAllChildNodes(listDict)
-      }
-
-      for (let i = 0; i < dataArr.length; i++) {
-        listDict.appendChild(createDictionaryList(`${dataArr[i]}`))
-      }
-    })
-    .catch(function (error) {
-      console.warn("Something went wrong.", error)
-    })
-})
+dictionary()
 
 let hintButton = document.getElementById("hintBtn")
 hintButton.addEventListener("click", event => {
@@ -420,20 +341,12 @@ hintButton.addEventListener("click", event => {
     selectedCell = undefined
   }
 
-  let crossGrid = document.getElementById("crossGrid")
-  for (let i = 0; i < crossGrid.childNodes.length; i++) {
-    if (crossGrid.childNodes[i].textContent === "" && crossGrid.childNodes[i].style.background !== "black") {
-      GrowlNotification.notify({
-        title: "Whoops!",
-        description: "You forgot to fill out the whole crossword!",
-        image: {
-          visible: true,
-          customImage: "../img/warning-outline.svg"
-        },
-        type: "warning",
-        position: "top-center",
-        closeTimeout: 3000
-      })
+  for (let i = 0; i < nodes.length; i++) {
+    if (nodes[i].style.background === "orange") {
+      nodes[i].style.background = "white"
+    }
+    if (nodes[i].textContent === "" && nodes[i].style.background !== "black") {
+      forgotToFill()
       return
     }
   }
