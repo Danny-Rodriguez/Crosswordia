@@ -1,5 +1,9 @@
 //@ Helper Functions and other reusable code blocks
 
+function create_pLetter(pLetterText) {
+  pLetterText.textContent = `${event.key.toUpperCase()}`
+}
+
 function forgotToFill() {
   GrowlNotification.notify({
     title: "Whoops!",

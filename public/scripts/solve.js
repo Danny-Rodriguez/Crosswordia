@@ -1,4 +1,3 @@
-let userUrl
 let selectedCell = undefined
 let typeDown = false
 const crossGrid = document.getElementById("crossGrid")
@@ -25,38 +24,18 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     let hints = crossword.hints
     let solution = crossword.solution
     const alphabet = /^[a-z]*$/i
-    let cellSize
-    if (size === 5) {
-      cellSize = 100
-      // cellSize = 70
-    }
-    if (size === 10) {
-      // cellSize = 75
-      cellSize = 50
-    }
-    if (size === 15) {
-      // cellSize = 50
-      cellSize = 30
-    }
 
     document.getElementById("thesaurus").classList.remove("d-none")
     crossGrid.classList.add(`gridSize${size}`)
-
-    // crossGrid.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`
-    // crossGrid.style.gridTemplateRows = `repeat(${size}, ${cellSize}px)`
     crossGrid.style.border = `5px solid black`
-    // crossGrid.style.display = "grid"
 
     for (let i = 0; i < size * size; i++) {
       let cell = document.createElement("div")
       cell.className = `cell${size} position-relative`
       cell.id = `${i + 1}`
-      // const testClass = document.createElement("p")
-      // testClass.className = "testClass"
-      // cell.append(testClass)
       const pLetter = document.createElement("p")
-      // pLetter.setAttribute("contenteditable", "true")
       pLetter.className = `position-absolute pLetter${size}`
+      // pLetter.setAttribute("contenteditable", "true")
       cell.prepend(pLetter)
       if (solution.charAt(i) === "!") {
         cell.style.background = "black"
@@ -68,7 +47,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       //* Makes whole row or column orange when clicked
       cell.addEventListener("click", event => {
         // crossGrid.focus()
-        // console.log(pLetter)
         pLetter.style.visibility = "visible"
         pLetter.focus()
         if (prevHint !== undefined) {
@@ -126,14 +104,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
           //@ Orange Backwards <--
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i--) {
-            // if (nodes[i].style.background === "black") {
-            //   break
-            // }
             let nextNode = nodes[i + 1]
             if (nodes[i].style.background === "black") {
-              // if (!nextNode.hasChildNodes()) {
-              //   continue
-              // } else {
               //* Highlights Hints
               if (document.getElementById(`A${nextNode?.lastChild?.textContent}`)) {
                 let pAcross = document.getElementById(`A${nextNode.lastChild.textContent}`)
@@ -142,7 +114,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                 prevHint = pAcross
               }
-              // }
               break
             }
 
@@ -232,10 +203,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 break
               }
 
-              //! Test this
-              // if (nodes[i].style.background === "black") {
-              //   break
-              // }
               if (document.getElementById(`D${nodes[i]?.lastChild?.textContent}`)) {
                 let pDown = document.getElementById(`D${nodes[i].lastChild.textContent}`)
                 if (pDown) {
@@ -275,15 +242,10 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       }
 
       //^ Helper Function
-      //@Use this const right here!
       const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
-      function create_pLetter(pLetterText) {
-        if (pLetterText !== "") {
-          pLetterText.textContent = `${event.key.toUpperCase()}`
-        } else {
-          pLetterText.textContent = `${event.key.toUpperCase()}`
-        }
-      }
+      // function create_pLetter(pLetterText) {
+      //   pLetterText.textContent = `${event.key.toUpperCase()}`
+      // }
 
       if (wordInput !== document.activeElement) {
         if (event.key.match(alphabet) && event.key.length === 1) {
@@ -333,33 +295,25 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
               let prevCell = document.getElementById(`${i}`)
               if (selectedCell.id % size === 1) {
-                // if (selectedCell.querySelector(`.pLetter${size}`)) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
                 break
-                // }
-                // break
               }
 
               if (prevCell.style.background === "black") {
                 //* replaces !foundPrev. Could lead to error?
-                // if (selectedCell.querySelector(`.pLetter${size}`)) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-                // }
                 break
               }
 
               if (prevCell.style.background !== "black") {
                 //@ Prevents overflow of orange boxes unto previous row
-                // if (selectedCell.querySelector(`.pLetter${size}`) && selectedCell.id % size === 1) {
                 if (selectedCell.id % size === 1) {
                   selectedCell.querySelector(`.pLetter${size}`).textContent = ""
                   return
                 }
                 selectedCell.style.background = "orange"
 
-                // if (selectedCell.querySelector(`.pLetter${size}`)) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-                // }
                 selectedCell = prevCell
                 selectedCell.style.background = "yellow"
                 foundPrev = true
@@ -376,17 +330,13 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             for (let i = parseInt(selectedCell.id) - 1; i >= 1; i -= size) {
               let prevCell = document.getElementById(`${i + 1 - size}`)
               if (prevCell && prevCell.style.background === "black") {
-                // if (selectedCell.querySelector(`.pLetter${size}`)) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-                // }
                 break
               }
               if (prevCell && prevCell.style.background !== "black") {
                 selectedCell.style.background = "orange"
 
-                // if (selectedCell.querySelector(`.pLetter${size}`)) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-                // }
                 selectedCell = prevCell
                 selectedCell.style.background = "yellow"
                 foundPrev = true
@@ -478,11 +428,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     revealBtn.addEventListener("click", () => {
       for (let i = 0; i < nodes.length; i++) {
         if (nodes[i].style.background === "orange" || nodes[i].style.background === "yellow") {
-          // if (!nodes[i].classList.contains(`pLetter${size}`)) {
-          //   const pLetter = document.createElement("p")
-          //   pLetter.className = `position-absolute pLetter${size}`
-          //   nodes[i].prepend(pLetter)
-          // }
           nodes[i].firstChild.textContent = solution.charAt(i)
         }
       }

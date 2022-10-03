@@ -1547,7 +1547,8 @@ a.profile-drop > div {
   outline: var(--none);
 }
 
-.login-page > div p {
+.login-page > div div,
+p {
   animation: var(--fade4s);
   opacity: var(--zero);
   -moz-user-select: var(--none);
@@ -1562,13 +1563,13 @@ a.profile-drop > div {
   width: 205px;
   height: 205px;
 }
-.login-page > div p:nth-child(1) {
+.login-page > div div:nth-child(1) {
   animation-delay: 0.5s;
 }
-.login-page > div p:nth-child(2) {
+.login-page > div div:nth-child(2) {
   animation-delay: 2s;
 }
-.login-page > div p:nth-child(3) {
+.login-page > div div:nth-child(3) {
   animation-delay: 3.5s;
 }
 .login-page > div p:nth-child(4) {
@@ -1779,17 +1780,6 @@ a.profile-drop > div {
     display: none;
   }
 
-  /*👉 #crossGrid.gridSize5 {
-    margin-left: 3.5vw;
-  }👈*/
-
-  /*👉  #crossGrid.gridSize10 {
-    ➡ margin-left: 2.7vw !important; ⬅
-    ➡ margin-left: 2.5vw !important; ⬅
-    ➡ margin-left: 2.6vw !important; ⬅ ➡10.14px ⬅
-    margin-left: calc(2.5vw * (9 / 16)) !important;
-  }👈*/
-
   .pNumber10.pCell {
     left: 4% !important;
     top: -4% !important;
@@ -1844,17 +1834,24 @@ a.profile-drop > div {
     font-size: 15px;
   }
 
-  /*👉  @media (max-width: 740px) {
-    .gridSize5 {
-      grid-template-columns: repeat(5, 68px) !important;
-      grid-template-rows: repeat(5, 68px) !important;
-    }
+  .card-text {
+    white-space: inherit !important;
+  }
+  .row.row-cols-1.row-cols-md-2.g-4.fade-in {
+    max-width: fit-content;
+    margin-bottom: 2vh;
+  }
+  /*👉  .login-page {
+    padding: 0.9em;
   }👈*/
-  /*👉  html,
-  body {
-    max-width: 100%;
-    overflow-x: hidden;
-  }👈*/
+  .login-page img {
+    width: 179px;
+    height: 179px;
+  }
+  #footer {
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
 }
 
 /*👉@media (max-width: 667px) {

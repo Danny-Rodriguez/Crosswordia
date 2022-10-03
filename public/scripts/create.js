@@ -10,19 +10,10 @@ let isEditMode = true
 let theUrl
 let typeDown = false
 
-// creates grid based on size
+//* creates grid based on size
 function drawGrid() {
   const footer = document.getElementById("footer")
-  let cellSize
-  if (size === 5) {
-    cellSize = 100
-  }
-  if (size === 10) {
-    cellSize = 75
-    footer.className = "footerCrossword"
-  }
-  if (size === 15) {
-    cellSize = 50
+  if (size === 10 || size === 15) {
     footer.className = "footerCrossword"
   }
 
@@ -31,14 +22,16 @@ function drawGrid() {
   crossGrid.classList.remove(`gridSize10`)
   crossGrid.classList.remove(`gridSize15`)
   crossGrid.classList.add(`gridSize${size}`)
-  // crossGrid.style.gridTemplateColumns = `repeat(${size}, ${cellSize}px)`
-  // crossGrid.style.gridTemplateRows = `repeat(${size}, ${cellSize}px)`
   crossGrid.style.border = `5px solid black`
 
   for (let i = 0; i < size * size; i++) {
     const cell = document.createElement("div")
     cell.className = `cell${size} position-relative`
     cell.id = `${i + 1}`
+    //# Refactoring -->
+    const pLetter = document.createElement("p")
+    pLetter.className = `position-absolute pLetter${size}`
+    cell.prepend(pLetter)
     cell.addEventListener("click", event => {
       for (let i = 0; i < nodes.length; i++) {
         if (nodes[i].style.background === "orange") {
@@ -209,16 +202,6 @@ window.addEventListener("keydown", event => {
 
   //^ Helper Function
   const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
-  function create_pLetter(pLetterText) {
-    if (pLetterText && pLetterText !== "") {
-      pLetterText.textContent = `${event.key.toUpperCase()}`
-    } else {
-      const pLetter = document.createElement("p")
-      pLetter.className = `position-absolute pLetter${size}`
-      pLetter.textContent = `${event.key.toUpperCase()}`
-      selectedCell.appendChild(pLetter)
-    }
-  }
 
   if (wordInput !== document.activeElement) {
     if (event.key.match(alphabet) && event.key.length === 1) {
@@ -266,32 +249,24 @@ window.addEventListener("keydown", event => {
         for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
           let prevCell = document.getElementById(`${i}`)
           if (selectedCell.id % size === 1) {
-            if (selectedCell.querySelector(`.pLetter${size}`)) {
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              break
-            }
+            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
             break
           }
 
           if (prevCell.style.background === "black") {
-            //* replaces !foundPrev. Could lead to error?
-            if (selectedCell.querySelector(`.pLetter${size}`)) {
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-            }
+            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
             break
           }
 
           if (prevCell.style.background !== "black") {
             //@ Prevents overflow of orange boxes unto previous row
-            if (selectedCell.querySelector(`.pLetter${size}`) && selectedCell.id % size === 1) {
+            if (selectedCell.id % size === 1) {
               selectedCell.querySelector(`.pLetter${size}`).textContent = ""
               return
             }
             selectedCell.style.background = "orange"
 
-            if (selectedCell.querySelector(`.pLetter${size}`)) {
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-            }
+            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
             selectedCell = prevCell
             selectedCell.style.background = "yellow"
             foundPrev = true
@@ -307,17 +282,13 @@ window.addEventListener("keydown", event => {
         for (let i = parseInt(selectedCell.id) - 1; i >= 1; i -= size) {
           let prevCell = document.getElementById(`${i + 1 - size}`)
           if (prevCell && prevCell.style.background === "black") {
-            if (selectedCell.querySelector(`.pLetter${size}`)) {
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-            }
+            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
             break
           }
           if (prevCell && prevCell.style.background !== "black") {
             selectedCell.style.background = "orange"
 
-            if (selectedCell.querySelector(`.pLetter${size}`)) {
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-            }
+            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
             selectedCell = prevCell
             selectedCell.style.background = "yellow"
             foundPrev = true
@@ -362,7 +333,7 @@ hintButton.addEventListener("click", event => {
   document.querySelector(".sizeButtons").style.setProperty("display", "none", "important")
   document.querySelector(".wrapper").style.marginTop = "inherit"
   hintButton.style.display = "none"
-  // iterating over each hint and updating page
+  //* iterating over each hint and updating page
   for (let i = 1; i <= totalHints; i++) {
     let hintObj = hintMapper[i]
     // update cell with hint Number
