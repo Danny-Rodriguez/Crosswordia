@@ -1018,12 +1018,6 @@ button:not(:disabled),
     padding-left: 3rem !important;
   }
 }
-:root {
-  --fade4s: fade-in 4s forwards;
-  --zero: 0;
-  --none: none;
-  --100: 100%;
-}
 
 html,
 body {
@@ -1036,10 +1030,6 @@ body {
   flex-direction: column;
 }
 
-/*👉#thesaurus {
-  margin-right: 1vw;
-}
-👈*/
 #thesaurus,
 #word,
 #boxAndFinish {
@@ -1066,12 +1056,6 @@ body {
 .bi-arrow-up-circle:hover {
   color: #495057;
 }
-
-/*👉.onlyHints {
-  max-width: 50vh;
-  max-height: 70vh;
-  max-height: 65vh;
-}👈*/
 
 .AcrossDown {
   margin-bottom: -20px;
@@ -1147,6 +1131,7 @@ body {
 .grid {
   display: grid;
   grid-gap: 1px;
+  align-self: flex-start;
   background: black;
   max-width: fit-content;
   /* aspect-ratio: 1; */
@@ -1188,7 +1173,7 @@ body {
 }
 
 .pNumber5 {
-  font-size: 20;
+  font-size: 20px;
   /* font-size: 1.25rem; */
   user-select: var(--none);
 }
@@ -1206,7 +1191,7 @@ body {
 }
 
 .pNumber15 {
-  font-size: 10;
+  font-size: 10px;
   /* font-size: 1.25rem; */
   user-select: var(--none);
 }
@@ -1302,19 +1287,6 @@ a:not(.tdLink > a, .tdDeleteAnchor) {
 .navbar-brand:hover {
   color: rgb(0, 105, 255) !important;
 }
-
-/*👉a.profile-drop,
-a.profile-drop:focus {
-  color: hsl(0deg, 0%, 100%) !important;
-  background-color: "";
-  transition: 2s;
-}👈*/
-
-/*👉a.profile-drop:hover,
-a.profile-drop:active {
-  background-color: hsl(216deg, 74%, 41%);
-  transition: background-color -1s;
-}👈*/
 
 a.profile-drop > div {
   padding-right: inherit;
@@ -1547,69 +1519,6 @@ a.profile-drop > div {
   outline: var(--none);
 }
 
-.login-page > div div,
-p {
-  animation: var(--fade4s);
-  opacity: var(--zero);
-  -moz-user-select: var(--none);
-  -webkit-user-select: var(--none);
-  user-select: var(--none);
-  cursor: default;
-}
-.login-page > div p img {
-  -moz-user-select: var(--none);
-  -webkit-user-select: var(--none);
-  user-select: var(--none);
-  width: 205px;
-  height: 205px;
-}
-.login-page > div div:nth-child(1) {
-  animation-delay: 0.5s;
-}
-.login-page > div div:nth-child(2) {
-  animation-delay: 2s;
-}
-.login-page > div div:nth-child(3) {
-  animation-delay: 3.5s;
-}
-.login-page > div p:nth-child(4) {
-  animation-delay: 5s;
-}
-
-.login-page > a.btn.btn-primary {
-  animation: var(--fade4s);
-  animation-delay: 6s;
-  opacity: var(--zero);
-  width: max-content;
-}
-.login-page > a.btn.btn-primary img {
-  width: 45px;
-  height: 45px;
-}
-.login-page > a.btn.btn-primary div {
-  padding-right: 0.2em;
-}
-
-#solveCheer {
-  animation: var(--fade4s);
-  animation-delay: 2.5s;
-  opacity: var(--zero);
-}
-
-.fade-in {
-  animation: var(--fade4s);
-  animation-delay: 4s;
-  opacity: var(--zero);
-}
-
-@keyframes fade-in {
-  from {
-    opacity: var(--zero);
-  }
-  to {
-    opacity: 1;
-  }
-}
 /* CSS */
 .button-28 {
   appearance: var(--none);
@@ -1755,11 +1664,6 @@ p {
 }
 
 @media (max-width: 754px) {
-  /*👉  .fade-in {
-    animation: none !important;
-    opacity: 1 !important;
-  }👈*/
-
   .navbar {
     flex-direction: column;
   }
@@ -1841,9 +1745,6 @@ p {
     max-width: fit-content;
     margin-bottom: 2vh;
   }
-  /*👉  .login-page {
-    padding: 0.9em;
-  }👈*/
   .login-page img {
     width: 179px;
     height: 179px;
@@ -1852,15 +1753,9 @@ p {
     margin-left: 1vw;
     margin-right: 1vw;
   }
+  .lead.m-3 > H1.text-center {
+    font-size: 150px !important;
+  }
 }
-
-/*👉@media (max-width: 667px) {
-  #crossGrid.gridSize5 {
-    margin-left: 0;
-  }
-  #crossGrid.gridSize10 {
-    margin-left: 0 !important;
-  }
-}👈*/
 
 /*# sourceMappingURL=create.css.map */

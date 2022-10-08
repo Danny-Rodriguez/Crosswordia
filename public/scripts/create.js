@@ -33,6 +33,11 @@ function drawGrid() {
     pLetter.className = `position-absolute pLetter${size}`
     cell.prepend(pLetter)
     cell.addEventListener("click", event => {
+      if (cell.style.background === "black") {
+        const pLetter = document.createElement("p")
+        pLetter.className = `position-absolute pLetter${size}`
+        cell.prepend(pLetter)
+      }
       for (let i = 0; i < nodes.length; i++) {
         if (nodes[i].style.background === "orange") {
           nodes[i].style.background = "white"
@@ -166,7 +171,7 @@ for (let i = 0; i < sizeButtons.length; i++) {
     document.getElementById("thesaurus").classList.remove("d-none")
     // document.getElementById("thesaurus").className = "d-block"
     document.getElementById("boxAndFinish").className = "d-flex flex-column"
-    crossGrid.style.display = "grid"
+    // crossGrid.style.display = "grid"
 
     drawGrid()
   })
