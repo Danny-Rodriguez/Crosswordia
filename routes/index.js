@@ -65,7 +65,10 @@ router.get("/user", ensureAuth, async (req, res) => {
 // @desc about page
 //@ route Get /about
 router.get("/about", async (req, res) => {
+  let layoutValue
+  req.isAuthenticated() ? (layoutValue = "main") : (layoutValue = "mainGuest")
   return res.render("about", {
+    layout: layoutValue,
     title: "About | Crosswordia"
   })
 })

@@ -316,11 +316,30 @@ hintButton.addEventListener("click", event => {
     selectedCell.style.background = "white"
     selectedCell = undefined
   }
-
+  let blackCells = 0
   for (let i = 0; i < nodes.length; i++) {
     if (nodes[i].style.background === "orange") {
       nodes[i].style.background = "white"
     }
+
+    if (nodes[i].style.background === "black") {
+      blackCells++
+    }
+    if (blackCells === size) {
+      GrowlNotification.notify({
+        title: "Whoops!",
+        description: "That doesn't look like a functional crossword!",
+        image: {
+          visible: true,
+          customImage: "../img/warning-outline.svg"
+        },
+        type: "warning",
+        position: "top-center",
+        closeTimeout: 3000
+      })
+      return
+    }
+
     if (nodes[i].textContent === "" && nodes[i].style.background !== "black") {
       forgotToFill()
       return
