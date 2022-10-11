@@ -1,7 +1,9 @@
 <head>
   <style type="text/css">
-    #thesaurus {margin-right: 1vw;} .onlyHints {max-width: 50vh; max-height: 50vh;} h3 {padding-top: 1em; padding-bottom: 1em;} .h1Hints { margin-bottom: -20px; } .h1Hints > img { width: 50px; height: 50px; } .slideDown { animation: slideDown 2.5s; animation-fill-mode: forwards; opacity: 0; -webkit-opacity: 0; animation-delay: 0.5s} @keyframes slideDown { 0% {opacity: 0; -webkit-opacity: 0; transform: translateY(-100%); transition-timing-function: ease-out; } 100% {opacity: 0; -webkit-opacity: 1;} }
+    #thesaurus {margin-right: 1vw;} .onlyHints {max-width: 50vh; max-height: 50vh;} h3 {padding-top: 1em; padding-bottom: 1em;} .h1Hints { margin-bottom: -20px; } .h1Hints > img { width: 50px; height: 50px; } .slideDown { animation: slideDown 2.5s; animation-fill-mode: forwards; opacity: 0; -webkit-opacity: 0; animation-delay: 0.5s} @keyframes slideDown { 0% {opacity: 0; -webkit-opacity: 0; transform: translateY(-100%); transition-timing-function: ease-out; } 100% {opacity: 0; -webkit-opacity: 1;} } .currentHint{background: aliceblue;}
   </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/simpleKeyboard.css" referrerpolicy="no-referrer" />
 </head>
 
 <div class="solve d-flex justify-content-center mt-4 slideDown">
@@ -12,7 +14,7 @@
     <div class="grid" id="crossGrid"></div>
   </div>
 
-  <div class="hints d-flex flex-column justify-content-evenly align-items-center" id="hints">
+  <div class="hints d-hints flex-column justify-content-evenly align-items-center" id="hints">
     <h1 class="h1Hints text-center">Hints<img src="/img/scroll.svg" referrerpolicy="no-referrer" alt="scrollIcon" width="50" height="50" /></h1>
     <div class="d-flex AcrossDown">
       <h3>Across</h3>
@@ -26,6 +28,11 @@
     <button class="button-19 my-2" role="button">Check my Answer</button>
     <button class="revealBtn button-18" role="button">Reveal Highlighted Cells</button>
   </div>
+
+<div class="d-keyboard flex-column">
+  <div class="currentHint text-center">Tap a cell to get started!</div>
+  <div class="simple-keyboard"></div>
+</div>
 
 </div>
 <div class="text-center lead mb-3 mt-3 fade-in">Share Your Crossword!</div>
@@ -41,3 +48,6 @@
 <script async src="https://static.addtoany.com/menu/page.js"></script>
 <script src="/scripts/helper.js"></script>
 <script src="/scripts/solve.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+<script src="/scripts/simpleKeyboard.js"></script>
+{{!-- <script type="text/javascript">let pie = "yum"</script> --}}

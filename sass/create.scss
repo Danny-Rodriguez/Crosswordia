@@ -781,6 +781,14 @@ button:not(:disabled),
   overflow: scroll !important;
 }
 
+.d-hints {
+  display: flex !important;
+}
+
+.d-keyboard {
+  display: none !important;
+}
+
 .d-flex {
   display: flex !important;
 }
@@ -1748,9 +1756,11 @@ a.profile-drop > div {
   #solveCheer {
     display: none;
   }
-  .text-center.lead.mb-3.mt-3.fade-in {
-    display: none;
-  }
+  // .text-center.lead.mb-3.mt-3.fade-in {
+  //   display: block !important;
+  //   animation: none !important;
+  //   opacity: 1;
+  // }
   .a2a_kit.a2a_kit_size_32.a2a_default_style.mb-3.fade-in {
     margin-top: 0.5em;
   }
@@ -1779,5 +1789,11 @@ a.profile-drop > div {
   }
   .lead.m-3 > H1.text-center {
     font-size: 150px !important;
+  }
+  .d-hints {
+    display: none !important;
+  }
+  .d-keyboard {
+    display: block !important;
   }
 }

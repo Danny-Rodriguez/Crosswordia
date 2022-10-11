@@ -9,6 +9,9 @@ let totalHints = 0
 let isEditMode = true
 let theUrl
 let typeDown = false
+let page = "solve"
+
+layoutChooser(page)
 
 //* creates grid based on size
 function drawGrid() {
