@@ -1,7 +1,6 @@
 let selectedCell = undefined
 let typeDown = false
 const crossGrid = document.getElementById("crossGrid")
-// const footer = document.getElementById("footer")
 const nodes = crossGrid.childNodes
 const hintAcross = document.getElementById("hints-across")
 let prevHint = undefined
@@ -9,9 +8,6 @@ let prevCompHint = undefined
 const currentHintMobile = document.querySelector(".currentHint")
 let prevHintMobile = undefined
 let keyDown
-// let page = "solve"
-
-// layoutChooser(page)
 
 await fetch(document.location.origin + document.location.pathname + "/fetch", {
   method: "POST",
@@ -26,7 +22,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     return Promise.reject(response)
   })
   .then(crossword => {
-    layoutChooser()
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution

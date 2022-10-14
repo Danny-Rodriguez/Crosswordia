@@ -36,7 +36,7 @@ let keyboard = new Keyboard({
   }
 })
 
-console.log(keyboard)
+// console.log(keyboard)
 
 function onKeyPress(button) {
   window.dispatchEvent(

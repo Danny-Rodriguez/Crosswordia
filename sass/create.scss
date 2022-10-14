@@ -689,6 +689,10 @@ button:not(:disabled),
   border-top-right-radius: calc(0.25rem - 1px);
 }
 
+.card-left {
+  margin-bottom: 21px !important;
+}
+
 .card-group > .card {
   margin-bottom: 0.75rem;
 }
@@ -1647,10 +1651,10 @@ a.profile-drop > div {
   color: rgba(0, 0, 0, 0.3);
 }
 
-#hints {
-  margin-left: auto;
-  -moz-margin-left: 1vw;
-}
+// #hints {
+//   margin-left: auto;
+//   -moz-margin-left: 1vw;
+// }
 
 #dictSubmit {
   border-radius: 5px;
@@ -1780,9 +1784,16 @@ newColors {
     align-items: center;
     max-width: initial;
     margin-top: 1em;
+    margin-left: 0;
+  }
+  #boxAndFinish > button {
+    width: 167px;
   }
   .hintsCreate {
     margin: auto;
+  }
+  .h1Hints {
+    margin-top: 1vh;
   }
 }
 
@@ -1978,5 +1989,8 @@ newColors {
   }
   #boxAndFinish {
     display: none !important;
+  }
+  .card-left {
+    margin-bottom: 0 !important;
   }
 }
