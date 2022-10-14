@@ -1,4 +1,5 @@
 /node_modules
+/views/homeOld.hbs
 public/css/createInProgress.css
 *.env
 .env

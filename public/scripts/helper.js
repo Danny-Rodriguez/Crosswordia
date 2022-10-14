@@ -1,7 +1,8 @@
 //@ Helper Functions and other reusable code blocks
 
-function create_pLetter(pLetterText) {
-  pLetterText.textContent = `${event.key.toUpperCase()}`
+function create_pLetter(pLetterText, button) {
+  pLetterText.textContent = `${event.key.toUpperCase()}` || button.toUpperCase()
+  // pLetterText.textContent = button.toUpperCase()
 }
 
 function forgotToFill() {

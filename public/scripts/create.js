@@ -10,6 +10,41 @@ let isEditMode = true
 let theUrl
 let typeDown = false
 
+let hintButton = document.getElementById("hintBtn")
+document.querySelector(".hg-button-reveal > span").textContent = "Box ◾"
+
+const revealBtn = document.querySelector(".hg-button-reveal")
+
+const checkBtn = document.querySelector(".hg-button-check > span")
+checkBtn.textContent = "Finish"
+
+// document.querySelector(".hg-button-check").addEventListener("click", () => {
+document.querySelector(".hg-button-check").addEventListener("click", () => {
+  hintButton.click()
+})
+
+revealBtn.addEventListener("click", () => {
+  clickMode.click()
+  if (clickMode.textContent === "Blackout Cells") {
+    revealBtn.textContent = "Box ◾"
+  } else {
+    // revealBtn.textContent = "Type◽"
+    revealBtn.textContent = "Box ◽"
+    // revealBtn.textContent = "Type▫"
+  }
+})
+
+const toggleBtn = document.querySelectorAll(".creaDir, .hg-button-toggleVert")
+toggleBtn.forEach(btn => {
+  btn.addEventListener("click", () => {
+    for (let i = 0; i < nodes.length; i++) {
+      if (nodes[i].style.background === "yellow") {
+        nodes[i].click()
+      }
+    }
+  })
+})
+
 //* creates grid based on size
 function drawGrid() {
   const footer = document.getElementById("footer")
@@ -153,11 +188,14 @@ function drawGrid() {
   }
 }
 
+const touchKeyboard = document.querySelector(".kbd")
 const sizeButtons = document.getElementsByClassName("sizeButtons")[0].children
 for (let i = 0; i < sizeButtons.length; i++) {
   const child = sizeButtons[i]
   child.addEventListener("click", event => {
     document.getElementById("chooseH1").style.setProperty("display", "none", "important")
+    touchKeyboard.classList.remove("d-none")
+    touchKeyboard.classList.add("d-keyboard")
     // removeAllChildNodes(crossGrid)
     if (child.textContent === "5x5") {
       size = 5
@@ -248,7 +286,7 @@ window.addEventListener("keydown", event => {
           }
         }
       }
-    } else if (event.key === "Backspace") {
+    } else if (event.key === "Backspace" || event.key === "{backspace}") {
       if (typeDown === false) {
         let foundPrev = false
         for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
@@ -310,7 +348,7 @@ window.addEventListener("keydown", event => {
 
 dictionary()
 
-let hintButton = document.getElementById("hintBtn")
+// let hintButton = document.getElementById("hintBtn")
 hintButton.addEventListener("click", event => {
   if (selectedCell !== undefined) {
     selectedCell.style.background = "white"
@@ -349,25 +387,39 @@ hintButton.addEventListener("click", event => {
   const hintsAcross = document.getElementById("hints-input-across")
   const hintsDown = document.getElementById("hints-input-down")
 
+  const toggleBtn = document.querySelectorAll(".hg-button-toggleVert")
+  toggleBtn.forEach(btn => {
+    btn.addEventListener("click", () => {
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].style.background === "yellow") {
+          nodes[i].click()
+        }
+      }
+    })
+  })
+
   handleHints()
   isEditMode = false
   // hide unnecessary buttons
   clickMode.style.display = "none"
   // document.querySelector(".sizeButtons").style.display = "none"
   document.querySelector(".sizeButtons").style.setProperty("display", "none", "important")
-  document.querySelector(".wrapper").style.marginTop = "inherit"
+  document.querySelector(".wrapper").style.marginTop = "3.5vh"
   hintButton.style.display = "none"
+  // document.getElementById("boxAndFinish").className = "d-none"
+  document.querySelector(".creaDir").style.setProperty("display", "none", "important")
+  touchKeyboard.style.setProperty("display", "none", "important")
   //* iterating over each hint and updating page
   for (let i = 1; i <= totalHints; i++) {
     let hintObj = hintMapper[i]
-    // update cell with hint Number
+    //* update cell with hint Number
     let cell = document.getElementById(`${hintObj.cellId}`)
     let pElement = document.createElement("p")
     pElement.style.position = "absolute"
     pElement.className = `pNumber${size} pCell`
     pElement.textContent = `${i}`
     cell.appendChild(pElement)
-    // add a hint for submission
+    //* add a hint for submission
     if (hintObj.isWordAcross) {
       let hintInput = document.createElement("input")
       hintInput.setAttribute("type", "text")
