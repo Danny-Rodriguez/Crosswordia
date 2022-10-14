@@ -8,7 +8,7 @@
 }👈*/
 
 .simple-keyboard {
-  max-width: 500px;
+  /* max-width: 500px; */
   margin: 0 auto;
   border-radius: 0;
 }
@@ -21,6 +21,10 @@
 .simple-keyboard.hg-theme-default .hg-button[data-skbtnuid^="numbers-"] {
   width: 33%;
   max-width: none;
+}
+
+.hg-theme-default {
+  padding: 1vw;
 }
 
 .simple-keyboard .hg-button-numbers {

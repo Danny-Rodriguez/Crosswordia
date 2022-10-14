@@ -18,11 +18,11 @@
   </head>
   <body id="bodyId" class="area">
     <nav class="navbar navbar-light bg-light justify-content-between py-2 fixed-top">
-      <a href="/" class="navbar-brand">Welcome to Crosswordia!</a>
+      <a href="/" class="navbar-brand" title="Home">Welcome to Crosswordia!</a>
 
       <div class="navbar-links">
-        <a href="/create" class="user-link justify-content-between box-shadow" role="button">Create <img class="smallIcons" src="/img/create-crossword.svg" referrerpolicy="no-referrer" alt="crossword" width="25" height="25" /></a>
-        <a id="gallery" href="/gallery" class="user-link justify-content-between box-shadow" role="button">Gallery
+        <a href="/create" class="user-link justify-content-between box-shadow" role="button" title="Make your own crossword!">Create <img class="smallIcons" src="/img/create-crossword.svg" referrerpolicy="no-referrer" alt="crossword" width="25" height="25" /></a>
+        <a id="gallery" href="/gallery" class="user-link justify-content-between box-shadow" role="button" title="Check out our hande-selected crosswords for you to solve!">Gallery
           <img class="smallIcons" src="/img/crossword.svg" referrerpolicy="no-referrer" alt="Gallery" />
         </a>
         <div class="dropdown">
@@ -31,7 +31,7 @@
             <img src="{{image}}" alt="avatar" referrerpolicy="no-referrer" class="smallIcons rounded-circle" width="25" height="25" />
           </a>
           <div class="dropdown-content">
-            <a href="/user" class="dropdown-item d-inline-flex align-items-center" role="button"><div>My Crosswords</div>
+            <a href="/user" class="dropdown-item d-inline-flex align-items-center" role="button" title="Review the crosswords you made!"><div>My Crosswords</div>
               <img src="/img/myCrosswords-b.svg" referrerpolicy="no-referrer" class="crossword-b" alt="My Crosswords" width="33.5" height="33.5"/>
             </a>
             <a href="/auth/logout" class="dropdown-item">Logout <i class="bi bi-box-arrow-right"></i></a>
@@ -44,6 +44,8 @@
     <section class="flex-grow-1 mt-5">
 
         {{{body}}}
+
+        {{!-- {{> _footer}} --}}
 
     </section>
 

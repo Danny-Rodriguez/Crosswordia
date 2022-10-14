@@ -1,7 +1,7 @@
 let selectedCell = undefined
 let typeDown = false
 const crossGrid = document.getElementById("crossGrid")
-const footer = document.getElementById("footer")
+// const footer = document.getElementById("footer")
 const nodes = crossGrid.childNodes
 const hintAcross = document.getElementById("hints-across")
 let prevHint = undefined
@@ -9,9 +9,9 @@ let prevCompHint = undefined
 const currentHintMobile = document.querySelector(".currentHint")
 let prevHintMobile = undefined
 let keyDown
-let page = "solve"
+// let page = "solve"
 
-layoutChooser(page)
+// layoutChooser(page)
 
 await fetch(document.location.origin + document.location.pathname + "/fetch", {
   method: "POST",
@@ -26,6 +26,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     return Promise.reject(response)
   })
   .then(crossword => {
+    layoutChooser()
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution
@@ -57,14 +58,15 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         // pLetter.focus()
         if (prevHint !== undefined) {
           prevHint.style.background = ""
-          // currentHintMobile.textContent = "No word in this direction"
+          // prevHint.style.border = "none"
         }
         if (prevCompHint !== undefined) {
           prevCompHint.style.textDecoration = ""
           prevCompHint.style.setProperty("-webkit-text-decoration", "")
         }
         if (prevHintMobile !== undefined) {
-          prevHintMobile.textContent = "Looks like there's no word in this direction!"
+          // prevHintMobile.textContent = "Looks like there's no word in this direction!"
+          prevHintMobile.textContent = "No word in this direction! Try tapping ↺"
         }
         for (let i = 0; i < nodes.length; i++) {
           if (nodes[i].style.background === "orange") {
@@ -120,6 +122,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               if (document.getElementById(`A${nextNode?.lastChild?.textContent}`)) {
                 let pAcross = document.getElementById(`A${nextNode.lastChild.textContent}`)
                 pAcross.style.background = "yellow"
+                pAcross.style.border = "1px solid"
                 pAcross.style.borderRadius = "5px"
                 pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                 prevHint = pAcross
@@ -142,6 +145,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 let pAcross = document.getElementById(`A${nodes[i].lastChild.textContent}`)
                 if (pAcross) {
                   pAcross.style.background = "yellow"
+                  pAcross.style.border = "1px solid"
                   pAcross.style.borderRadius = "5px"
                   pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                   prevHint = pAcross
@@ -197,6 +201,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               if (document.getElementById(`D${nextNode?.lastChild?.textContent}`)) {
                 let pDown = document.getElementById(`D${nextNode.lastChild.textContent}`)
                 pDown.style.background = "yellow"
+                pDown.style.border = "1px solid"
                 pDown.style.borderRadius = "5px"
                 pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                 prevHint = pDown
@@ -215,6 +220,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                   if (document.getElementById(`D${nextNode.lastChild.textContent}`)) {
                     let pDown = document.getElementById(`D${nextNode.lastChild.textContent}`)
                     pDown.style.background = "yellow"
+                    pDown.style.border = "1px solid"
                     pDown.style.borderRadius = "5px"
                     pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                     prevHint = pDown
@@ -229,6 +235,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 let pDown = document.getElementById(`D${nodes[i].lastChild.textContent}`)
                 if (pDown) {
                   pDown.style.background = "yellow"
+                  pDown.style.border = "1px solid"
                   pDown.style.borderRadius = "5px"
                   pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                   prevHint = pDown
@@ -408,7 +415,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
     // Check my answer
     // const checkBtn = document.querySelector(".button-19")
-    const checkBtn = document.querySelectorAll(".button-19, .hg-button-check")
+    const checkBtn = document.querySelectorAll(".checkBtn, .hg-button-check")
     checkBtn.forEach(btn => {
       btn.addEventListener("click", () => {
         let solutionStr = ""
@@ -465,24 +472,22 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         }
       })
     })
-    const toggleBtn = document.querySelector(".hg-button-toggleVert")
+    // const toggleBtn = document.querySelector(".hg-button-toggleVert")
+    const toggleBtn = document.querySelectorAll(".hg-button-toggleVert, .h1Hints")
     // let toggleBtn = document.querySelector(".hg-rows > div:nth-child(3) > div:first-child")
     // async function toggle() {
     //   return (toggleBtn = document.querySelector(".hg-rows > div:nth-child(3) > div:first-child"))
     // }
     // const toggleBtn = document.querySelectorAll(".hg-button-toggleVert, .hg-button-toggleHor") //! It's the default
-    // toggleBtn.forEach(btn => {
-    toggleBtn.addEventListener("click", () => {
-      // toggler()
-      for (let i = 0; i < nodes.length; i++) {
-        if (nodes[i].style.background === "yellow") {
-          // nodes[i].dispatchEvent(new MouseEvent("click"))
-          nodes[i].click()
-          // break
+    toggleBtn.forEach(btn => {
+      btn.addEventListener("click", () => {
+        for (let i = 0; i < nodes.length; i++) {
+          if (nodes[i].style.background === "yellow") {
+            nodes[i].click()
+          }
         }
-      }
+      })
     })
-    // })
 
     for (let i = 0; i < hintAcross.children.length; i++) {
       //# Try mirroring this

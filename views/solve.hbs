@@ -1,38 +1,57 @@
 <head>
   <style type="text/css">
-    #thesaurus {margin-right: 1vw;} .onlyHints {max-width: 50vh; max-height: 50vh;} h3 {padding-top: 1em; padding-bottom: 1em;} .h1Hints { margin-bottom: -20px; } .h1Hints > img { width: 50px; height: 50px; } .slideDown { animation: slideDown 2.5s; animation-fill-mode: forwards; opacity: 0; -webkit-opacity: 0; animation-delay: 0.5s} @keyframes slideDown { 0% {opacity: 0; -webkit-opacity: 0; transform: translateY(-100%); transition-timing-function: ease-out; } 100% {opacity: 0; -webkit-opacity: 1;} } .currentHint{background: aliceblue;}
+    #thesaurus {margin-right: 1vw;} .onlyHints {max-width: 50vh; } h3 {padding-top: 1em; padding-bottom: 1em;} .ADH > img { width: 50px; height: 50px; } .button-18 > h3 {padding-top: 0; padding-bottom: 0; margin-bottom: 0;} .currentHint{background: aliceblue; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;} .gridWidth {max-width: fit-content;} .solveBtns > img {width: 16px; height: 16px;} .h1Hints {border-radius: 5px;}
   </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
-    <link rel="stylesheet" type="text/css" href="/css/simpleKeyboard.css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css" />
+  <link rel="stylesheet" type="text/css" href="/css/simpleKeyboard.css" referrerpolicy="no-referrer" />
 </head>
 
 <div class="solve d-flex justify-content-center mt-4 slideDown">
-
-      {{> _thesaurus}}
-  <div class="d-flex flex-column">
+  {{> _thesaurus}}
+  <div class="d-flex flex-column gridWidth">
     <text id="solveCheer" class="text-center lead mb-3">Can You Solve This Crossword? Good Luck!</text>
     <div class="grid" id="crossGrid"></div>
+    <div class="d-keyboard flex-column">
+      <div class="currentHint text-center">Tap a cell to get started!</div>
+      <div class="simple-keyboard"></div>
+    </div>
   </div>
 
-  <div class="hints d-hints flex-column justify-content-evenly align-items-center" id="hints">
-    <h1 class="h1Hints text-center">Hints<img src="/img/scroll.svg" referrerpolicy="no-referrer" alt="scrollIcon" width="50" height="50" /></h1>
-    <div class="d-flex AcrossDown">
-      <h3>Across</h3>
-      <h3>Down</h3>
-    </div>
-    <div class="onlyHints d-flex">
-      <div id="hints-across" class="overflow-scroll mx-3 w-50"></div>
-      <div id="hints-down" class="overflow-scroll mx-3 w-50"></div>
+  <div class="hints d-hints flex-column justify-content-center align-items-center" id="hints">
+    <div class="h1Hints button-18" role="button" title="Flip the typing direction!"><h3>Hints ↺</h3></div>
+    <div class="onlyHints d-flex flex-column">
+      <div class="d-flex">
+      <div class="d-flex flex-column w-50">
+        <h3 class="ADH mx-3 text-center">Across<img src="/img/scroll.svg" referrerpolicy="no-referrer" alt="scrollIcon" width="50" height="50" /></h3>
+        <div id="hints-across" class="overflow-scroll mx-3"></div>
+        {{! <div class="solveBtns text-center button-18 h1Hints" role="button">Change Direction ↺</div> }}
+      </div>
+      <div class="d-flex flex-column w-50">
+        <h3 class="ADH mx-3 text-center hDown">Down<img src="/img/scroll.svg" referrerpolicy="no-referrer" alt="scrollIcon" width="50" height="50" /></h3>
+        <div id="hints-down" class="overflow-scroll mx-3"></div>
+        {{! <div class="solveBtns revealBtn text-center button-18" role="button">Reveal Highlighted&nbsp;<img src="/img/danger-outline.svg" referrerpolicy="no-referrer" alt="scrollIcon" width="16" height="16" /></div> }}
+      </div>
+      </div>
+      <div class="d-flex btnSolve">
+        <div class="solveBtns text-center button-18 h1Hints w-50" role="button">Change Direction ↺</div>
+        <div class="solveBtns revealBtn text-center button-18 w-50" role="button">Reveal Highlighted&nbsp;<img src="/img/danger-outline.svg" referrerpolicy="no-referrer" alt="scrollIcon" width="16" height="16" /></div>
+      </div>
     </div>
 
-    <button class="button-19 my-2" role="button">Check my Answer</button>
-    <button class="revealBtn button-18" role="button">Reveal Highlighted Cells</button>
+    {{! <div class="d-flex btnSolve">
+  <div class="solveBtns text-center button-18 h1Hints" role="button">Change Direction ↺</div>
+  <div class="solveBtns revealBtn text-center button-18" role="button">Reveal Highlighted&nbsp;<img src="/img/danger-outline.svg" referrerpolicy="no-referrer" alt="scrollIcon" width="16" height="16" /></div>
+    </div> }}
+
+    {{! <button class="button-19 my-2" role="button" title="See if you got the crossword right!">Check my Answer</button>}}
+    {{! <button class="revealBtn button-18" role="button" title="If you need help with a word!" style="margin-top: 1em;">Reveal Highlighted Cells</button> }}
+    <button class="checkBtn button-18" role="button" title="If you need help with a word!" style="margin-top: 1em;">Check My Answer</button>
   </div>
 
-<div class="d-keyboard flex-column">
+  {{! <div class="d-keyboard flex-column">
   <div class="currentHint text-center">Tap a cell to get started!</div>
   <div class="simple-keyboard"></div>
-</div>
+</div> }}
 
 </div>
 <div class="text-center lead mb-3 mt-3 fade-in">Share Your Crossword!</div>
@@ -45,9 +64,11 @@
   <a class="a2a_button_reddit"></a>
   <a class="a2a_button_sms"></a>
 </div>
+<div class="fade-in">
+</div>
+
 <script async src="https://static.addtoany.com/menu/page.js"></script>
 <script src="/scripts/helper.js"></script>
 <script src="/scripts/solve.js" type="module"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
 <script src="/scripts/simpleKeyboard.js"></script>
-{{!-- <script type="text/javascript">let pie = "yum"</script> --}}
