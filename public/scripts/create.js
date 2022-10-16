@@ -1,5 +1,6 @@
 const clickMode = document.getElementById("clickMode")
 const crossGrid = document.getElementById("crossGrid")
+let name = document.getElementById("name")
 const nodes = crossGrid.childNodes
 const alphabet = /^[a-z]*$/i
 let selectedCell = undefined
@@ -14,11 +15,11 @@ let hintButton = document.getElementById("hintBtn")
 document.querySelector(".hg-button-reveal > span").textContent = "Box ◾"
 
 const revealBtn = document.querySelector(".hg-button-reveal")
+revealBtn.style.setProperty("background", "aliceblue", "important")
 
 const checkBtn = document.querySelector(".hg-button-check > span")
 checkBtn.textContent = "Finish"
 
-// document.querySelector(".hg-button-check").addEventListener("click", () => {
 document.querySelector(".hg-button-check").addEventListener("click", () => {
   hintButton.click()
 })
@@ -498,6 +499,7 @@ hintButton.addEventListener("click", event => {
       }
     }
     const example = {
+      name: name.value,
       size: size,
       solution: solutionStr,
       hints: hintMapper

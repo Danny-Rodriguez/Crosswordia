@@ -3,6 +3,7 @@ let typeDown = false
 const crossGrid = document.getElementById("crossGrid")
 const nodes = crossGrid.childNodes
 const hintAcross = document.getElementById("hints-across")
+let solveCheer = document.getElementById("solveCheer")
 let prevHint = undefined
 let prevCompHint = undefined
 const currentHintMobile = document.querySelector(".currentHint")
@@ -22,10 +23,17 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     return Promise.reject(response)
   })
   .then(crossword => {
+    let name = crossword.name
     let size = crossword.size
     let hints = crossword.hints
     let solution = crossword.solution
     const alphabet = /^[a-z]*$/i
+
+    // console.log(crossword)
+
+    const revealBtnMobile = document.querySelector(".hg-button-reveal")
+    revealBtnMobile.style.setProperty("background", "#0a66c2", "important")
+    revealBtnMobile.style.setProperty("color", "aliceblue", "important")
 
     document.getElementById("thesaurus").classList.remove("d-none")
     crossGrid.classList.add(`gridSize${size}`)
@@ -45,6 +53,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         continue
       }
 
+      if (name) solveCheer.textContent = name
+
       //Todo: implement helper function
       //* Makes whole row or column orange when clicked
       cell.addEventListener("click", event => {
@@ -61,7 +71,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         }
         if (prevHintMobile !== undefined) {
           // prevHintMobile.textContent = "Looks like there's no word in this direction!"
-          prevHintMobile.textContent = "No word in this direction! Try tapping ↺"
+          prevHintMobile.textContent = "No word in this direction! Try tapping ↺ or 🟨"
         }
         for (let i = 0; i < nodes.length; i++) {
           if (nodes[i].style.background === "orange") {
@@ -467,13 +477,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         }
       })
     })
-    // const toggleBtn = document.querySelector(".hg-button-toggleVert")
     const toggleBtn = document.querySelectorAll(".hg-button-toggleVert, .h1Hints")
-    // let toggleBtn = document.querySelector(".hg-rows > div:nth-child(3) > div:first-child")
-    // async function toggle() {
-    //   return (toggleBtn = document.querySelector(".hg-rows > div:nth-child(3) > div:first-child"))
-    // }
-    // const toggleBtn = document.querySelectorAll(".hg-button-toggleVert, .hg-button-toggleHor") //! It's the default
     toggleBtn.forEach(btn => {
       btn.addEventListener("click", () => {
         for (let i = 0; i < nodes.length; i++) {
