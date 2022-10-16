@@ -45,7 +45,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       cell.id = `${i + 1}`
       const pLetter = document.createElement("p")
       pLetter.className = `position-absolute pLetter${size}`
-      // pLetter.setAttribute("contenteditable", "true")
       cell.prepend(pLetter)
       if (solution.charAt(i) === "!") {
         cell.style.background = "black"
@@ -58,9 +57,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       //Todo: implement helper function
       //* Makes whole row or column orange when clicked
       cell.addEventListener("click", event => {
-        // crossGrid.focus()
         pLetter.style.visibility = "visible"
-        // pLetter.focus()
         if (prevHint !== undefined) {
           prevHint.style.background = ""
           // prevHint.style.border = "none"
@@ -70,7 +67,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           prevCompHint.style.setProperty("-webkit-text-decoration", "")
         }
         if (prevHintMobile !== undefined) {
-          // prevHintMobile.textContent = "Looks like there's no word in this direction!"
           prevHintMobile.textContent = "No word in this direction! Try tapping ↺ or 🟨"
         }
         for (let i = 0; i < nodes.length; i++) {
@@ -88,7 +84,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           let vertComp = cell
           if (document.getElementById(`D${vertComp?.lastChild?.textContent}`)) {
             let pDown = document.getElementById(`D${vertComp.lastChild.textContent}`)
-            // pDown.style.textDecoration = "underline orange"
             pDown.style.setProperty("text-decoration", "underline orange")
             pDown.style.setProperty("-webkit-text-decoration", "underline orange")
             pDown.scrollIntoView({ behavior: "auto", block: "nearest", inline: "start" })
@@ -131,7 +126,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 pAcross.style.borderRadius = "5px"
                 pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                 prevHint = pAcross
-                // const currentHint = document.querySelector(".currentHint")
                 currentHintMobile.textContent = "A" + pAcross.textContent
                 prevHintMobile = currentHintMobile
               }
@@ -176,7 +170,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           let vertComp = cell
           if (document.getElementById(`A${vertComp?.lastChild?.textContent}`)) {
             let pAcross = document.getElementById(`A${vertComp.lastChild.textContent}`)
-            // pAcross.style.textDecoration = "underline orange"
             pAcross.style.setProperty("text-decoration", "underline orange")
             pAcross.style.setProperty("-webkit-text-decoration", "underline orange")
             pAcross.scrollIntoView({ behavior: "auto", block: "nearest", inline: "start" })
@@ -210,7 +203,6 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 pDown.style.borderRadius = "5px"
                 pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" })
                 prevHint = pDown
-                // const currentHint = document.querySelector(".currentHint")
                 currentHintMobile.textContent = "D" + pDown.textContent
                 prevHintMobile = currentHintMobile
               }
@@ -279,26 +271,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
       //^ Helper Function
       const pLetterText = selectedCell.querySelector(`.pLetter${size}`)
-      // function create_pLetter(pLetterText) {
-      //   pLetterText.textContent = `${event.key.toUpperCase()}`
-      // }
 
       if (wordInput !== document.activeElement) {
         if (event.key.match(alphabet) && event.key.length === 1) {
           //@ Prevents overflow of orange boxes unto next row
           if (typeDown === false && selectedCell.id % size === 0) {
             create_pLetter(pLetterText)
-            // onKeyPress()
             return
           }
           create_pLetter(pLetterText)
-          // onKeyPress()
 
           //* This for loop selects the next cell across
           if (typeDown === false) {
             for (let i = parseInt(selectedCell.id) + 1; i <= nodes.length; i += 1) {
               let nextCell = document.getElementById(`${i}`)
-              console.log(i)
               if (nextCell.style.background === "black") {
                 break
               }
@@ -359,7 +345,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 break
               }
             }
-            //! No longer needed it seems, test more
+            //!
             if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
               selectedCell.querySelector(`.pLetter${size}`).textContent = ""
             }
@@ -489,21 +475,32 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     })
 
     for (let i = 0; i < hintAcross.children.length; i++) {
-      //# Try mirroring this
       hintAcross.children[i].addEventListener("click", () => {
-        typeDown = false
         let idClick = document.getElementById(`N${hintAcross.children[i].id.slice(1)}`)
-        if (hintAcross.children[i].style.background !== "yellow") {
+        if (hintAcross.children[i].style.textDecoration !== "underline orange") {
+          typeDown = false
+          if (hintAcross.children[i].style.background !== "yellow") {
+            idClick.click()
+          }
+        }
+        if (hintAcross.children[i].style.textDecoration === "underline orange") {
           idClick.click()
+          hintAcross.children[i].click()
         }
       })
     }
     for (let i = 0; i < hintDown.children.length; i++) {
       hintDown.children[i].addEventListener("click", () => {
-        typeDown = true
         let idClick = document.getElementById(`N${hintDown.children[i].id.slice(1)}`)
-        if (hintDown.children[i].style.background !== "yellow") {
+        if (hintDown.children[i].style.textDecoration !== "underline orange") {
+          typeDown = true
+          if (hintDown.children[i].style.background !== "yellow") {
+            idClick.click()
+          }
+        }
+        if (hintDown.children[i].style.textDecoration === "underline orange") {
           idClick.click()
+          hintDown.children[i].click()
         }
       })
     }

@@ -669,7 +669,7 @@ button:not(:disabled),
 }
 
 .navbar-links > a,
-.navbar-links > div {
+.dropdown > a {
   border: 1px solid hsl(210deg, 89%, 18%);
   border-radius: 5px;
 }
@@ -1827,6 +1827,7 @@ newColors {
   }
 }
 @media (max-width: 820px) {
+  // @media (max-height: 820px) {
   .gridSize5 {
     grid-template-columns: repeat(5, 100px);
   }
@@ -1856,6 +1857,7 @@ newColors {
   }
 }
 @media (max-width: 754px) {
+  // @media (max-height: 754px) {
   .navbar {
     flex-direction: column;
   }
@@ -1966,5 +1968,65 @@ newColors {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+}
+
+@media (max-height: 667px) {
+  .flex-grow-1.mt-5 {
+    margin-top: 2rem !important;
+    // margin-top: 0 !important;
+  }
+  .login-page {
+    padding-top: 0;
+  }
+  .login-page img {
+    width: 150px;
+    height: 150px;
+  }
+  // .login-page p {
+  //   font-size: 16px;
+  // }
+  .navbar.py-2 {
+    padding-top: 0.25rem !important;
+    // padding-bottom: 0.25rem !important;
+  }
+  .navbar-brand {
+    font-size: xx-small;
+    padding: 2.5px;
+  }
+  .user-link {
+    padding: 2.5px;
+  }
+  .navbar-links {
+    margin-right: 0em;
+    margin-top: 0;
+  }
+  .navbar-links > a,
+  .dropdown > a {
+    font-size: xx-small;
+  }
+  .smallIcons {
+    width: 12.5px !important;
+    height: 12.5px !important;
+  }
+  .navbar {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-evenly !important;
+  }
+  // #chooseH1 {
+  //   margin-top: -1rem !important;
+  // }
+  .sizeButtons.mt-2 {
+    margin-top: 5px !important;
+  }
+  .dropdown-content > a {
+    padding: 12px 16px;
+    text-decoration: var(--none);
+    font-size: xx-small;
+    justify-content: center;
+  }
+  .crossword-b {
+    display: none;
   }
 }
