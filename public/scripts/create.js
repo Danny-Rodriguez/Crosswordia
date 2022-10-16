@@ -1,6 +1,6 @@
 const clickMode = document.getElementById("clickMode")
 const crossGrid = document.getElementById("crossGrid")
-let name = document.getElementById("name")
+const name = document.getElementById("name")
 const nodes = crossGrid.childNodes
 const alphabet = /^[a-z]*$/i
 let selectedCell = undefined

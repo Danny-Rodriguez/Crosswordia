@@ -1751,6 +1751,33 @@ newColors {
   grid-template-columns: repeat(15, 35px);
 }
 
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  // scrollbar-color: blue orange;
+  scrollbar-color: var(--bs-gray);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: orange;
+  background: var(--bs-blue);
+  background: hsl(210deg 78% 70%);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: gray;
+  background-color: var(--bs-gray);
+  border-radius: 20px;
+  // border: 3px solid orange;
+  border: 3px solid hsl(210deg 78% 70%);
+}
+
 @media (max-width: 1199px) {
   #thesaurus {
     display: none !important;
@@ -1933,5 +1960,11 @@ newColors {
   }
   #userArea.mt-3 {
     margin-top: 2rem !important;
+  }
+  .tdName {
+    max-width: 8em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }

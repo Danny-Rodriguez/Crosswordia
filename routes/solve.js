@@ -24,7 +24,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/:id/fetch", async (req, res) => {
   let crosswordEntry = await Crossword.findOne({ _id: req.params.id }).lean()
-  console.log(crosswordEntry)
+  // console.log(crosswordEntry)
   return res.json(crosswordEntry)
 })
 

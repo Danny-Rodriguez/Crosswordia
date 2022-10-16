@@ -2,7 +2,6 @@
 
 function create_pLetter(pLetterText, button) {
   pLetterText.textContent = `${event.key.toUpperCase()}` || button.toUpperCase()
-  // pLetterText.textContent = button.toUpperCase()
 }
 
 function forgotToFill() {
@@ -26,12 +25,12 @@ function removeAllChildNodes(parent) {
     parent.removeChild(parent.firstChild)
   }
 }
+const word = document.getElementById("word")
 
 function dictionary() {
   const dictSubmit = document.getElementById("dictSubmit")
-  dictSubmit.addEventListener("click", async event => {
-    event.preventDefault()
-    const word = document.getElementById("word")
+  dictSubmit.addEventListener("click", async e => {
+    e.preventDefault()
     const listDict = document.getElementById("listDict")
     const toFetch = await fetch(`/dictionary`, {
       method: "POST",
@@ -59,9 +58,7 @@ function dictionary() {
           return li
         }
 
-        if (listDict.childElementCount >= 10) {
-          removeAllChildNodes(listDict)
-        }
+        removeAllChildNodes(listDict)
 
         for (let i = 0; i < dataArr.length; i++) {
           listDict.appendChild(createDictionaryList(`${dataArr[i]}`))
@@ -72,3 +69,10 @@ function dictionary() {
       })
   })
 }
+
+word.addEventListener("keydown", async e => {
+  if (event.key === "Enter") {
+    e.preventDefault()
+    dictSubmit.click()
+  }
+})

@@ -283,112 +283,112 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       //   pLetterText.textContent = `${event.key.toUpperCase()}`
       // }
 
-      // if (wordInput !== document.activeElement) {
-      if (event.key.match(alphabet) && event.key.length === 1) {
-        //@ Prevents overflow of orange boxes unto next row
-        if (typeDown === false && selectedCell.id % size === 0) {
+      if (wordInput !== document.activeElement) {
+        if (event.key.match(alphabet) && event.key.length === 1) {
+          //@ Prevents overflow of orange boxes unto next row
+          if (typeDown === false && selectedCell.id % size === 0) {
+            create_pLetter(pLetterText)
+            // onKeyPress()
+            return
+          }
           create_pLetter(pLetterText)
           // onKeyPress()
-          return
-        }
-        create_pLetter(pLetterText)
-        // onKeyPress()
 
-        //* This for loop selects the next cell across
-        if (typeDown === false) {
-          for (let i = parseInt(selectedCell.id) + 1; i <= nodes.length; i += 1) {
-            let nextCell = document.getElementById(`${i}`)
-            console.log(i)
-            if (nextCell.style.background === "black") {
-              break
-            }
-            if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
-              selectedCell.style.background = "orange"
-              selectedCell = nextCell
-              selectedCell.style.background = "yellow"
-              break
+          //* This for loop selects the next cell across
+          if (typeDown === false) {
+            for (let i = parseInt(selectedCell.id) + 1; i <= nodes.length; i += 1) {
+              let nextCell = document.getElementById(`${i}`)
+              console.log(i)
+              if (nextCell.style.background === "black") {
+                break
+              }
+              if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
+                selectedCell.style.background = "orange"
+                selectedCell = nextCell
+                selectedCell.style.background = "yellow"
+                break
+              }
             }
           }
-        }
 
-        ///* This for loop selects the next cell down
-        if (typeDown === true) {
-          for (let i = parseInt(selectedCell.id) + size; i <= nodes.length; i += size) {
-            let nextCell = document.getElementById(`${i}`)
-            if (nextCell.style.background === "black") {
-              break
-            }
-            if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
-              selectedCell.style.background = "orange"
-              selectedCell = nextCell
-              selectedCell.style.background = "yellow"
-              break
+          ///* This for loop selects the next cell down
+          if (typeDown === true) {
+            for (let i = parseInt(selectedCell.id) + size; i <= nodes.length; i += size) {
+              let nextCell = document.getElementById(`${i}`)
+              if (nextCell.style.background === "black") {
+                break
+              }
+              if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
+                selectedCell.style.background = "orange"
+                selectedCell = nextCell
+                selectedCell.style.background = "yellow"
+                break
+              }
             }
           }
-        }
 
-        //* Preserves hint number if letter is erased
-      } else if (event.key === "Backspace" || event.key === "{backspace}") {
-        if (typeDown === false) {
-          let foundPrev = false
-          for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
-            let prevCell = document.getElementById(`${i}`)
-            if (selectedCell.id % size === 1) {
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              break
-            }
-
-            if (prevCell.style.background === "black") {
-              //* replaces !foundPrev. Could lead to error?
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              break
-            }
-
-            if (prevCell.style.background !== "black") {
-              //@ Prevents overflow of orange boxes unto previous row
+          //* Preserves hint number if letter is erased
+        } else if (event.key === "Backspace" || event.key === "{backspace}") {
+          if (typeDown === false) {
+            let foundPrev = false
+            for (let i = parseInt(selectedCell.id) - 1; i >= 1; i--) {
+              let prevCell = document.getElementById(`${i}`)
               if (selectedCell.id % size === 1) {
                 selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-                return
+                break
               }
-              selectedCell.style.background = "orange"
 
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              selectedCell = prevCell
-              selectedCell.style.background = "yellow"
-              foundPrev = true
-              break
-            }
-          }
-          //! No longer needed it seems, test more
-          if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
-            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-          }
-        }
-        if (typeDown === true) {
-          let foundPrev = false
-          for (let i = parseInt(selectedCell.id) - 1; i >= 1; i -= size) {
-            let prevCell = document.getElementById(`${i + 1 - size}`)
-            if (prevCell && prevCell.style.background === "black") {
-              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              break
-            }
-            if (prevCell && prevCell.style.background !== "black") {
-              selectedCell.style.background = "orange"
+              if (prevCell.style.background === "black") {
+                //* replaces !foundPrev. Could lead to error?
+                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+                break
+              }
 
+              if (prevCell.style.background !== "black") {
+                //@ Prevents overflow of orange boxes unto previous row
+                if (selectedCell.id % size === 1) {
+                  selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+                  return
+                }
+                selectedCell.style.background = "orange"
+
+                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+                selectedCell = prevCell
+                selectedCell.style.background = "yellow"
+                foundPrev = true
+                break
+              }
+            }
+            //! No longer needed it seems, test more
+            if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
               selectedCell.querySelector(`.pLetter${size}`).textContent = ""
-              selectedCell = prevCell
-              selectedCell.style.background = "yellow"
-              foundPrev = true
-              break
             }
           }
-          //! Test
-          if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
-            selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+          if (typeDown === true) {
+            let foundPrev = false
+            for (let i = parseInt(selectedCell.id) - 1; i >= 1; i -= size) {
+              let prevCell = document.getElementById(`${i + 1 - size}`)
+              if (prevCell && prevCell.style.background === "black") {
+                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+                break
+              }
+              if (prevCell && prevCell.style.background !== "black") {
+                selectedCell.style.background = "orange"
+
+                selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+                selectedCell = prevCell
+                selectedCell.style.background = "yellow"
+                foundPrev = true
+                break
+              }
+            }
+            //! Test
+            if (!foundPrev && selectedCell.querySelector(`.pLetter${size}`)) {
+              selectedCell.querySelector(`.pLetter${size}`).textContent = ""
+            }
           }
         }
       }
-      // }
     })
 
     // Adding hints
