@@ -14,7 +14,8 @@
     <table class="table table-striped table-sm">
       <thead>
         <tr>
-          <th scope="col" class="thHead">Date</th>
+          <th scope="col" class="thHead tdDate">Date</th>
+          <th scope="col" class="thHead tdName">Name</th>
           <th scope="col" class="thHead size">Size</th>
           <th scope="col" class="thHead tdSolution">Solution</th>
           <th scope="col" class="thHead">Link</th>
@@ -23,7 +24,7 @@
       </thead>
       <tbody id="tBodyUser">
         {{#each cross}}
-          <tr class="trUserCrossword"><td class="tdDate">{{dateF this.createdAt}}</td><td class="size">{{this.size}}x{{this.size}}</td><td class="tdSolution">{{this.solution}}</td><td class="tdLink"><a href="javascript:window.location.replace(`${document.location.origin}/solve/{{this._id}}`)">Go to Crossword<i class="bi bi-link-45deg tdLinkIcon"></i></a></td><td class="tdDelete"><a onclick="growl()" href="javascript:window.location.replace(`${document.location.origin}/delete/{{this._id}}`)" class="btn btn-outline-danger tdDeleteAnchor"><i class="bi bi-trash deleteIcon"></i></a></td></tr>
+          <tr class="trUserCrossword"><td class="tdDate">{{dateF this.createdAt}}</td><td class="tdName">{{this.name}}</td><td class="size">{{this.size}}x{{this.size}}</td><td class="tdSolution">{{this.solution}}</td><td class="tdLink"><a href="javascript:window.location.replace(`${document.location.origin}/solve/{{this._id}}`)">Go to Crossword<i class="bi bi-link-45deg tdLinkIcon"></i></a></td><td class="tdDelete"><a onclick="growl()" href="javascript:window.location.replace(`${document.location.origin}/delete/{{this._id}}`)" class="btn btn-outline-danger tdDeleteAnchor"><i class="bi bi-trash deleteIcon"></i></a></td></tr>
         {{/each}}
       </tbody>
     </table>

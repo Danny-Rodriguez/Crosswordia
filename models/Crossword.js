@@ -1,6 +1,10 @@
 const mongoose = require("mongoose")
 
 const Crossword = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
   size: {
     type: Number,
     required: true

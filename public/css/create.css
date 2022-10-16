@@ -892,6 +892,11 @@ button:not(:disabled),
   margin-left: 1rem !important;
 }
 
+.my-3 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
 .mx-auto {
   margin-right: auto !important;
   margin-left: auto !important;
@@ -1280,6 +1285,13 @@ body {
 }
 
 .tdSolution {
+  max-width: 11em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tdName {
   max-width: 11em;
   overflow: hidden;
   white-space: nowrap;
@@ -1833,7 +1845,8 @@ newColors {
     margin-top: 0.3em;
   }
   .size,
-.tdSolution {
+.tdSolution,
+.tdDate {
     display: none;
   }
   .pNumber10.pCell {
@@ -1917,5 +1930,8 @@ newColors {
   }
   .sizeButtons.mt-2 {
     margin-top: 1rem !important;
+  }
+  #userArea.mt-3 {
+    margin-top: 2rem !important;
   }
 }/*# sourceMappingURL=create.css.map */

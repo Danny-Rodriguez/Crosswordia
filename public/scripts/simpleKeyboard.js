@@ -12,12 +12,12 @@ let keyboard = new Keyboard({
   },
   display: {
     // "{numbers}": "123",
-    "{reveal}": "reveal",
-    "{black}": "black",
-    "{finish}": "finish",
+    "{reveal}": "Reveal",
+    "{black}": "Black",
+    "{finish}": "Finish",
     // "{ent}": "return",
     // "{ent}": "Check",
-    "{check}": "check",
+    "{check}": "Check",
     "{escape}": "esc ⎋",
     "{tab}": "tab ⇥",
     "{backspace}": "⌫",
@@ -45,3 +45,11 @@ function onKeyPress(button) {
     })
   )
 }
+
+const toggleVert = document.querySelector(".hg-button-toggleVert")
+toggleVert.style.setProperty("background", "#45cafc", "important")
+toggleVert.style.setProperty("color", "aliceblue", "important")
+
+const checkBtn = document.querySelector(".hg-button-check")
+checkBtn.style.setProperty("background", "#0a66c2", "important")
+checkBtn.style.setProperty("color", "aliceblue", "important")

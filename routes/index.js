@@ -77,6 +77,7 @@ router.post("/crossword", ensureAuth, async (req, res) => {
   try {
     let toPost = {
       user: req.user.id,
+      name: req.body.name,
       size: req.body.size,
       solution: req.body.solution,
       hints: req.body.hints
