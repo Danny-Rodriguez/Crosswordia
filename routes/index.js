@@ -12,7 +12,7 @@ router.get("/", ensureAuth, async (req, res) => {
   //   title: "Home | Crosswordia",
   //   name: req.user.firstName
   // })
-  return res.sendFile("index.html", { root: "public" })
+  return res.sendFile("index.html", { root: "/" })
 })
 
 // @desc create page
