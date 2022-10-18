@@ -7,12 +7,12 @@ const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fet
 // @desc home page
 // @route Get /
 router.get("/", ensureAuth, async (req, res) => {
-  return res.render("home", {
-    layout: "main",
-    title: "Home | Crosswordia",
-    name: req.user.firstName
-  })
-  // return res.sendFile("/index.html")
+  // return res.render("home", {
+  //   layout: "main",
+  //   title: "Home | Crosswordia",
+  //   name: req.user.firstName
+  // })
+  return res.sendFile("index.html", { root: "public" })
 })
 
 // @desc create page
@@ -31,7 +31,7 @@ router.get("/login", ensureGuest, async (req, res) => {
   //   layout: "mainGuest",
   //   title: "Login | Crosswordia"
   // })
-  return res.sendFile("index.html", { root: "public" })
+  return res.sendFile("login.html", { root: "public" })
 })
 
 // @desc Delete function
