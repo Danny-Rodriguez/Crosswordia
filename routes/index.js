@@ -12,6 +12,7 @@ router.get("/", ensureAuth, async (req, res) => {
     title: "Home | Crosswordia",
     name: req.user.firstName
   })
+  // return res.sendFile("/index.html")
 })
 
 // @desc create page
@@ -26,10 +27,11 @@ router.get("/create", ensureAuth, async (req, res) => {
 // @desc login page
 // @route Get /login
 router.get("/login", ensureGuest, async (req, res) => {
-  return res.render("login", {
-    layout: "mainGuest",
-    title: "Login | Crosswordia"
-  })
+  // return res.render("login", {
+  //   layout: "mainGuest",
+  //   title: "Login | Crosswordia"
+  // })
+  return res.sendFile("index.html", { root: "public" })
 })
 
 // @desc Delete function
