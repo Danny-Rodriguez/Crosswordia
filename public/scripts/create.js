@@ -355,29 +355,30 @@ hintButton.addEventListener("click", event => {
     selectedCell.style.background = "white"
     selectedCell = undefined
   }
-  let blackCells = 0
+  // let blackCells = 0
   for (let i = 0; i < nodes.length; i++) {
     if (nodes[i].style.background === "orange") {
       nodes[i].style.background = "white"
     }
 
-    if (nodes[i].style.background === "black") {
-      blackCells++
-    }
-    if (blackCells === size) {
-      GrowlNotification.notify({
-        title: "Whoops!",
-        description: "That doesn't look like a functional crossword!",
-        image: {
-          visible: true,
-          customImage: "../img/warning-outline.svg"
-        },
-        type: "warning",
-        position: "top-center",
-        closeTimeout: 3000
-      })
-      return
-    }
+    // if (nodes[i].style.background === "black") {
+    //   blackCells++
+    // }
+    // if (blackCells === size * size) {
+    //   console.log(blackCells)
+    //   GrowlNotification.notify({
+    //     title: "Whoops!",
+    //     description: "That doesn't look like a functional crossword!",
+    //     image: {
+    //       visible: true,
+    //       customImage: "../img/warning-outline.svg"
+    //     },
+    //     type: "warning",
+    //     position: "top-center",
+    //     closeTimeout: 3000
+    //   })
+    //   return
+    // }
 
     if (nodes[i].textContent === "" && nodes[i].style.background !== "black") {
       forgotToFill()
@@ -441,6 +442,7 @@ hintButton.addEventListener("click", event => {
 
   let submitBtn = document.getElementById("hintSubmit")
   submitBtn.addEventListener("click", async () => {
+    // nameEnforcer()
     let hintValuesAcross = hintsAcross.children
     for (let i = 1; i < hintValuesAcross.length; i++) {
       let hintValue = hintValuesAcross[i]
@@ -459,6 +461,23 @@ hintButton.addEventListener("click", event => {
       if (hintInfo[1] === "down") {
         hintMapper[hintNumber].downHint = hintValue.value
       }
+    }
+    // const name = document.getElementById("name")
+    // nameEnforcer()
+
+    if (name.value === "") {
+      console.log("Forgot to name!")
+      return GrowlNotification.notify({
+        title: "Whoops!",
+        description: "You forgot to name the crossword!",
+        image: {
+          visible: true,
+          customImage: "../img/warning-outline.svg"
+        },
+        type: "warning",
+        position: "top-center",
+        closeTimeout: 3000
+      })
     }
 
     for (const key in hintMapper) {
