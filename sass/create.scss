@@ -1133,6 +1133,7 @@ body {
 
 .dropdown:hover {
   background-color: hsl(216deg, 74%, 41%);
+  border-radius: 5px;
 }
 
 .dropdown-content {
@@ -1161,6 +1162,7 @@ body {
 
 .dropdown-content > a:hover {
   background-color: #ddd;
+  border-radius: 5px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -1170,6 +1172,7 @@ body {
   z-index: 1;
   transform: translateY(0%);
   transition-delay: 0s, 0s, 0.3s;
+  border-radius: 5px;
 }
 
 .grid {
@@ -1752,30 +1755,32 @@ newColors {
 }
 
 /* Works on Firefox */
-* {
+#hints-across,
+#hints-down {
   scrollbar-width: thin;
-  // scrollbar-color: blue orange;
   scrollbar-color: var(--bs-gray);
 }
 
 /* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
+#hints-across::-webkit-scrollbar,
+#hints-down::-webkit-scrollbar {
   width: 12px;
 }
 
-*::-webkit-scrollbar-track {
+#hints-across::-webkit-scrollbar-track,
+#hints-down::-webkit-scrollbar-track {
   background: orange;
   background: var(--bs-blue);
-  background: hsl(210deg 78% 70%);
+  background: hsl(210deg, 78%, 70%);
   border-radius: 5px;
 }
 
-*::-webkit-scrollbar-thumb {
+#hints-across::-webkit-scrollbar-thumb,
+#hints-down::-webkit-scrollbar-thumb {
   background-color: gray;
   background-color: var(--bs-gray);
   border-radius: 20px;
-  // border: 3px solid orange;
-  border: 3px solid hsl(210deg 78% 70%);
+  border: 3px solid hsl(210deg, 78%, 70%);
 }
 
 @media (max-width: 1199px) {
@@ -1827,7 +1832,6 @@ newColors {
   }
 }
 @media (max-width: 820px) {
-  // @media (max-height: 820px) {
   .gridSize5 {
     grid-template-columns: repeat(5, 100px);
   }
@@ -1857,7 +1861,6 @@ newColors {
   }
 }
 @media (max-width: 754px) {
-  // @media (max-height: 754px) {
   .navbar {
     flex-direction: column;
   }
@@ -1970,11 +1973,9 @@ newColors {
     text-overflow: ellipsis;
   }
 }
-
 @media (max-height: 667px) {
   .flex-grow-1.mt-5 {
     margin-top: 2rem !important;
-    // margin-top: 0 !important;
   }
   .login-page {
     padding-top: 0;
@@ -1983,12 +1984,8 @@ newColors {
     width: 150px;
     height: 150px;
   }
-  // .login-page p {
-  //   font-size: 16px;
-  // }
   .navbar.py-2 {
     padding-top: 0.25rem !important;
-    // padding-bottom: 0.25rem !important;
   }
   .navbar-brand {
     font-size: xx-small;
@@ -2014,9 +2011,6 @@ newColors {
     align-items: flex-end;
     justify-content: space-evenly !important;
   }
-  // #chooseH1 {
-  //   margin-top: -1rem !important;
-  // }
   .sizeButtons.mt-2 {
     margin-top: 5px !important;
   }

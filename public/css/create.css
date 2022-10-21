@@ -103,7 +103,7 @@ h1,
 
 @media (min-width: 1200px) {
   h1,
-.h1 {
+  .h1 {
     font-size: 2.5rem;
   }
 }
@@ -114,7 +114,7 @@ h2,
 
 @media (min-width: 1200px) {
   h2,
-.h2 {
+  .h2 {
     font-size: 2rem;
   }
 }
@@ -125,7 +125,7 @@ h3,
 
 @media (min-width: 1200px) {
   h3,
-.h3 {
+  .h3 {
     font-size: 1.75rem;
   }
 }
@@ -225,17 +225,17 @@ button {
   text-transform: none;
 }
 
-[role=button] {
+[role="button"] {
   cursor: pointer;
 }
 
 button,
-[type=button] {
+[type="button"] {
   -webkit-appearance: button;
 }
 
 button:not(:disabled),
-[type=button]:not(:disabled) {
+[type="button"]:not(:disabled) {
   cursor: pointer;
 }
 
@@ -1133,6 +1133,7 @@ body {
 
 .dropdown:hover {
   background-color: hsl(216deg, 74%, 41%);
+  border-radius: 5px;
 }
 
 .dropdown-content {
@@ -1161,6 +1162,7 @@ body {
 
 .dropdown-content > a:hover {
   background-color: #ddd;
+  border-radius: 5px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -1170,6 +1172,7 @@ body {
   z-index: 1;
   transform: translateY(0%);
   transition-delay: 0s, 0s, 0.3s;
+  border-radius: 5px;
 }
 
 .grid {
@@ -1752,24 +1755,28 @@ newColors {
 }
 
 /* Works on Firefox */
-* {
+#hints-across,
+#hints-down {
   scrollbar-width: thin;
   scrollbar-color: var(--bs-gray);
 }
 
 /* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
+#hints-across::-webkit-scrollbar,
+#hints-down::-webkit-scrollbar {
   width: 12px;
 }
 
-*::-webkit-scrollbar-track {
+#hints-across::-webkit-scrollbar-track,
+#hints-down::-webkit-scrollbar-track {
   background: orange;
   background: var(--bs-blue);
   background: hsl(210deg, 78%, 70%);
   border-radius: 5px;
 }
 
-*::-webkit-scrollbar-thumb {
+#hints-across::-webkit-scrollbar-thumb,
+#hints-down::-webkit-scrollbar-thumb {
   background-color: gray;
   background-color: var(--bs-gray);
   border-radius: 20px;
@@ -1870,8 +1877,8 @@ newColors {
     margin-top: 0.3em;
   }
   .size,
-.tdSolution,
-.tdDate {
+  .tdSolution,
+  .tdDate {
     display: none;
   }
   .pNumber10.pCell {
@@ -1992,7 +1999,7 @@ newColors {
     margin-top: 0;
   }
   .navbar-links > a,
-.dropdown > a {
+  .dropdown > a {
     font-size: xx-small;
   }
   .smallIcons {
@@ -2016,4 +2023,4 @@ newColors {
   .crossword-b {
     display: none;
   }
-}/*# sourceMappingURL=create.css.map */
+} /*# sourceMappingURL=create.css.map */
