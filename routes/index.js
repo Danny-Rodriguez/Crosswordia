@@ -2,7 +2,6 @@ const express = require("express")
 const router = express.Router()
 const { ensureAuth, ensureGuest } = require("../middleware/auth")
 const Crossword = require("../models/Crossword")
-const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args))
 
 // @desc home page
 // @route Get /
@@ -75,15 +74,14 @@ router.get("/about", async (req, res) => {
 
 router.post("/crossword", ensureAuth, async (req, res) => {
   try {
-    let toPost = {
+    const toPost = {
       user: req.user.id,
       name: req.body.name,
       size: req.body.size,
       solution: req.body.solution,
       hints: req.body.hints
     }
-    let newCrossword = await Crossword.create(toPost)
-    // console.log(res.redirect(`/solve/` + newCrossword._id))
+    const newCrossword = await Crossword.create(toPost)
     return res.redirect(`/solve/` + newCrossword._id)
   } catch (error) {
     return console.error(error)
@@ -91,10 +89,10 @@ router.post("/crossword", ensureAuth, async (req, res) => {
 })
 
 router.post("/dictionary", async (req, res) => {
-  let word = JSON.stringify(req.body.word)
-  let dictApi = process.env.DICTIONARYAPI_KEY
+  const word = JSON.stringify(req.body.word)
+  const dictApi = process.env.DICTIONARYAPI_KEY
   try {
-    const toFetch = await fetch(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${dictApi}`)
+    await fetch(`https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${dictApi}`)
       .then(res => res.json())
       .then(result => {
         return res.json(result)
@@ -103,12 +101,5 @@ router.post("/dictionary", async (req, res) => {
     return console.error("/dictionary error: " + error)
   }
 })
-
-// router.all("*", (req, res) => {
-//   res.status(404)
-//   return res.render("error/404", {
-//     layout: "mainGuest"
-//   })
-// })
 
 module.exports = router
