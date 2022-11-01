@@ -4,7 +4,6 @@
   "description": "This is a fun website to create and share crosswords with your friends",
   "main": "server.js",
   "scripts": {
-    "test": "test",
     "start": "cross-env NODE_ENV=production node server",
     "dev": "cross-env NODE_ENV=development nodemon server"
   },
@@ -30,11 +29,11 @@
     "node-fetch": "^3.2.10",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
+    "cross-env": "^7.0.3",
     "path": "^0.12.7"
   },
   "devDependencies": {
     "bootstrap": "^5.1.3",
-    "cross-env": "^7.0.3",
     "nodemon": "^2.0.16"
   }
 }
