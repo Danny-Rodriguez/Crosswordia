@@ -8,16 +8,22 @@ module.exports = function (passport) {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/callback"
+        callbackURL: "/auth/google/callback",
+        scope: ["profile", "email"]
       },
-      async (accessToken, refreshToken, profile, done) => {
+      async (accessToken, refreshToken, profile, email, done) => {
+        console.log("profile", profile)
+        console.log("email", email)
         const newUser = {
           googleId: profile.id,
           displayName: profile.displayName,
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
+          // email: profile.emails !== undefined ? profile.emails[0].value : "",
+          email: profile.emails[0].value,
           image: profile.photos[0].value
         }
+        console.log(newUser)
         try {
           let user = await User.findOne({ googleId: profile.id })
           if (user) {
@@ -29,6 +35,7 @@ module.exports = function (passport) {
         } catch (err) {
           console.error(err)
         }
+        console.log(newUser)
       }
     )
   )
