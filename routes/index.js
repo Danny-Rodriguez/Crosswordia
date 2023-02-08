@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const Crossword = require("../models/Crossword");
-const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
+// const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 // @desc home page
 // @route Get /
