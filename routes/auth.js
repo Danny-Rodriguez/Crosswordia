@@ -20,7 +20,7 @@ router.get("/logout", (req, res) => {
       return next(err);
     }
   });
-  res.redirect("/login");
+  res.redirect("/gallery");
 });
 
 module.exports = router;
