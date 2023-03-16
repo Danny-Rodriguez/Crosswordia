@@ -1,6 +1,5 @@
 /node_modules
-/views/homeOld.hbs
-public/css/createInProgress.css
+/views/layouts/mainGuestOld.hbs
 *.env
 .env
 config.env
@@ -9,6 +8,7 @@ config.env
 .DS_Store
 
 Todo.md
+Todo2.md
 Errors.md
 Challenges.md
 .prettierignore
