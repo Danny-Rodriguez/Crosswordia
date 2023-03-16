@@ -7,16 +7,16 @@ module.exports = {
   ensureAuth: function (req, res, next) {
     // avoid logout when refreshing the page
     if (req.isAuthenticated()) {
-      return next()
+      return next();
     } else {
-      res.redirect("/login")
+      res.redirect("/gallery");
     }
   },
   ensureGuest: function (req, res, next) {
     if (req.isAuthenticated()) {
-      res.redirect("/")
+      res.redirect("/");
     } else {
-      return next()
+      return next();
     }
   }
-}
+};

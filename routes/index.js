@@ -4,6 +4,8 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const Crossword = require("../models/Crossword");
 const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
+let layoutValue;
+
 // @desc home page
 // @route Get /
 router.get("/", ensureAuth, async (req, res) => {
@@ -32,6 +34,15 @@ router.get("/login", ensureGuest, async (req, res) => {
   });
 });
 
+// @desc login page after clicking create
+// @route Get /login-create
+router.get("/login-create", ensureGuest, async (req, res) => {
+  return res.render("login-create", {
+    layout: "mainGuest",
+    title: "Login | Crosswordia"
+  });
+});
+
 // @desc Delete function
 // @route Get /delete(:id)
 router.get("/delete/:id", ensureAuth, async (req, res) => {
@@ -46,9 +57,11 @@ router.get("/delete/:id", ensureAuth, async (req, res) => {
 
 // @desc gallery page
 // @route Get /gallery
-router.get("/gallery", ensureAuth, async (req, res) => {
+router.get("/gallery", async (req, res) => {
+  req.isAuthenticated() ? (layoutValue = "main") : (layoutValue = "mainGuest");
   return res.render("gallery", {
-    title: "Gallery | Crosswordia"
+    title: "Gallery | Crosswordia",
+    layout: layoutValue
   });
 });
 
@@ -65,11 +78,10 @@ router.get("/user", ensureAuth, async (req, res) => {
 // @desc about page
 //@ route Get /about
 router.get("/about", async (req, res) => {
-  let layoutValue;
   req.isAuthenticated() ? (layoutValue = "main") : (layoutValue = "mainGuest");
   return res.render("about", {
-    layout: layoutValue,
-    title: "About | Crosswordia"
+    title: "About | Crosswordia",
+    layout: layoutValue
   });
 });
 
