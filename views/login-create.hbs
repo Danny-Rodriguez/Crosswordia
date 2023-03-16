@@ -1,20 +1,18 @@
 <head>
-  <style type="text/css">.mt-5{margin-top: 0rem !important;} img {width: 205px;height: 205px;}.login-page > div div, .login-page > div p {animation: var(--fade4s);opacity: var(--zero);-moz-user-select: var(--none);-webkit-user-select: var(--none);user-select: var(--none);cursor: default;}.login-page > div div:nth-child(1) {animation-delay: 0.5s;}.login-page > div div:nth-child(2) {animation-delay: 1.5s;}.login-page > div div:nth-child(3) {animation-delay: 1s;}.login-page > div p:nth-child(4) {animation-delay: 1s;}.login-page > a.btn.btn-primary {animation: var(--fade4s);animation-delay: 2.5s;opacity: var(--zero);width: max-content;}.login-page > a.btn.btn-primary img {width: 45px;height: 45px;}.login-page > a.btn.btn-primary div {padding-right: 0.2em; color: white;}#solveCheer {animation: var(--fade4s);animation-delay: 2.5s;opacity: var(--zero);} .secondLogin{animation: var(--fade4s);animation-delay: 5.5s;}</style>
+  <style type="text/css">.mt-5{margin-top: 0rem !important;} img {width: 205px;height: 205px;}.login-page > div div, .login-group > div p {animation: var(--fade4s);opacity: var(--zero);-moz-user-select: var(--none);-webkit-user-select: var(--none);user-select: var(--none);cursor: default;}.login-group > div p:nth-child(1) {animation-delay: 0.5s;}.login-group > div p:nth-child(2) {animation-delay: 2.5s;}.login-page > div div:nth-child(3) {animation-delay: 1s;}.login-page > div p:nth-child(4) {animation-delay: 1s;}.login-page > a.btn.btn-primary {animation: var(--fade4s);animation-delay: 4s;opacity: var(--zero);width: max-content;}.login-page > a.btn.btn-primary img {width: 45px;height: 45px;}.login-page > a.btn.btn-primary div {padding-right: 0.2em; color: white;}#solveCheer {animation: var(--fade4s);animation-delay: 2.5s;opacity: var(--zero);} .secondLogin{animation: var(--fade4s);animation-delay: 5.5s;}</style>
 </head>
 
 <div class="login-page login-create text-center">
 
-  <div class="lead mb-3">
-    <div class="login-group d-flex flex-column align-items-center">
+  <div class="login-group lead mb-3">
+    <div class="d-flex flex-column align-items-center">
       {{! <img src="/img/create-crossword.svg" referrerpolicy="no-referrer" draggable="false" alt="Build" width="205" height="205" /> }}
       <p draggable="false">Creating your first crossword is exciting!</p>
-      <p draggable="false" class="secondLogin">First we have to log in to create a crossword</p>
+      {{! <p draggable="false">First we have to log in to create a crossword</p> }}
+      <p draggable="false">Let's sign in so your creation is saved</p>
       {{! <img src="/img/crossword-thinking.svg" referrerpolicy="no-referrer" draggable="false" alt="Challenge" width="205" height="205" /> }}
     </div>
-    <div class="d-flex">
-      {{! <p draggable="false">First we have to log in to create a crossword</p> }}
-      {{! <img src="/img/crossword-save.svg" referrerpolicy="no-referrer" draggable="false" alt="Save" width="205" height="205" /> }}
-    </div>
+
     {{! <div class="d-flex align-items-center">
       <img src="/img/crossword-thinking.svg" referrerpolicy="no-referrer" draggable="false" alt="Challenge" width="205" height="205" />
       <p draggable="false">Challenge yourself with other's crosswords</p>
