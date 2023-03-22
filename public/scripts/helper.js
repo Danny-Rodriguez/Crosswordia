@@ -1,7 +1,7 @@
 //@ Helper Functions and other reusable code blocks
 
 function create_pLetter(pLetterText, button) {
-  pLetterText.textContent = `${event.key.toUpperCase()}` || button.toUpperCase()
+  pLetterText.textContent = `${event.key.toUpperCase()}` || button.toUpperCase();
 }
 
 function forgotToFill() {
@@ -15,23 +15,25 @@ function forgotToFill() {
     type: "warning",
     position: "top-center",
     closeTimeout: 3000
-  })
-  return
+  });
+  return;
 }
 
 //* Helper Function
 function removeAllChildNodes(parent) {
   while (parent.firstChild) {
-    parent.removeChild(parent.firstChild)
+    parent.removeChild(parent.firstChild);
   }
 }
-const word = document.getElementById("word")
+const word = document.getElementById("word");
 
 function dictionary() {
-  const dictSubmit = document.getElementById("dictSubmit")
+  const dictSubmit = document.getElementById("dictSubmit");
   dictSubmit.addEventListener("click", async e => {
-    e.preventDefault()
-    const listDict = document.getElementById("listDict")
+    e.preventDefault();
+    const listDict = document.getElementById("listDict");
+    listDict.style.setProperty("background", "aliceblue");
+    listDict.style.setProperty("border", "1px solid");
     const toFetch = await fetch(`/dictionary`, {
       method: "POST",
       body: JSON.stringify({
@@ -43,36 +45,36 @@ function dictionary() {
     })
       .then(function (response) {
         if (response.ok) {
-          return response.json()
+          return response.json();
         }
-        return Promise.reject(response)
+        return Promise.reject(response);
       })
       .then(function (data) {
-        let dataArr = data[0].meta.syns.flat().slice(0, 10)
+        let dataArr = data[0].meta.syns.flat().slice(0, 10);
         // console.log(dataArr)
 
         //* Helper Function
         function createDictionaryList(entry) {
-          const li = document.createElement("li")
-          li.textContent = entry
-          return li
+          const li = document.createElement("li");
+          li.textContent = entry;
+          return li;
         }
 
-        removeAllChildNodes(listDict)
+        removeAllChildNodes(listDict);
 
         for (let i = 0; i < dataArr.length; i++) {
-          listDict.appendChild(createDictionaryList(`${dataArr[i]}`))
+          listDict.appendChild(createDictionaryList(`${dataArr[i]}`));
         }
       })
       .catch(function (error) {
-        console.warn("Something went wrong.", error)
-      })
-  })
+        console.warn("Something went wrong.", error);
+      });
+  });
 }
 
 word.addEventListener("keydown", async e => {
   if (event.key === "Enter") {
-    e.preventDefault()
-    dictSubmit.click()
+    e.preventDefault();
+    dictSubmit.click();
   }
-})
+});

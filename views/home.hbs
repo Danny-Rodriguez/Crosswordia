@@ -3,36 +3,52 @@
     .col:hover {transform: scale(1.05);} .row {margin-left: 0; margin-right: 0;} .rounded-pill{color:aliceblue} .row.fade-in{animation-delay: 1.5s;} .mt-4.fade-in{animation-delay: 0s;} img { max-width: 100%; height: auto; }
   </style>
 </head>
-
+{{! row-cols-1 row-cols-md-2 row-cols-md-3 }}
 <h1 class="lead d-flex justify-content-around mt-4 fade-in">Hello {{name}}, what do you want to do?</h1>
+<div class="container">
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-md-3 g-4 fade-in">
-  <div class="col">
-    <div class="card h-100">
-      <a href="/gallery">
-        <div class="bg-white rounded text-center"><img src="/img/crossword-thinking.svg" referrerpolicy="no-referrer" alt="crossword" width="193" height="193" />
-          <div class="card-body d-flex flex-column">
-            <p class="card-left card-text small text-muted">Try out the premade crosswords</p>
-            <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
-              Go to Gallery
+  <div class="row row-cols-1 row-cols-md-2 row-cols-md-3 g-4 fade-in">
+    <div class="col">
+      <div class="card h-100">
+        <a href="/gallery">
+          <div class="bg-white rounded text-center"><img src="/img/crossword-thinking.svg" referrerpolicy="no-referrer" alt="crossword" width="193" height="193" />
+            <div class="col card-body d-flex flex-column">
+              <p class="card-left card-text small text-muted">Try out the premade crosswords</p>
+              <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
+                Go to Gallery
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card h-100">
-      <a href="/create">
-        <div class="bg-white rounded text-center"><img src="/img/create-crossword.svg" referrerpolicy="no-referrer" alt="crossword" width="193" height="193" />
-          <div class="card-body d-flex flex-column">
-            <p class="card-text small text-muted mb-0">Create crosswords and share them</p>
-            <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
-              Go to Create Page
+    <div class="col">
+      <div class="card h-100">
+        <a href="/create">
+          <div class="bg-white rounded text-center"><img src="/img/create-crossword.svg" referrerpolicy="no-referrer" alt="crossword" width="193" height="193" />
+            <div class="card-body d-flex flex-column">
+              <p class="card-text small text-muted mb-0">Create crosswords and share them</p>
+              <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
+                Go to Create Page
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
+    {{! <div class="col">
+      <div class="card h-100">
+        <a href="/create">
+          <div class="bg-white rounded text-center"><img src="/img/myCrosswords-w.svg" referrerpolicy="no-referrer" alt="crossword" width="193" height="193" />
+            <div class="card-body d-flex flex-column">
+              <p class="card-text small text-muted mb-0">See the crosswords I made</p>
+              <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
+                Go to My Crosswords
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div> }}
   </div>
 </div>
