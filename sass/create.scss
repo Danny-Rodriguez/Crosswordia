@@ -1114,6 +1114,11 @@ body {
 
 .login-page {
   padding: 1.9em;
+  /* padding: 4em; */
+}
+
+.login-create {
+  padding-top: 4em;
 }
 
 .banner {
@@ -1688,7 +1693,8 @@ a.profile-drop > div {
   padding-right: 0.5vw;
   border: 1px solid;
   border-radius: 5px;
-  background: hsl(210deg, 78%, 70%);
+  /* background: hsl(210deg, 78%, 70%); */
+  background: aliceblue;
 }
 
 #hints-across,
@@ -1861,6 +1867,9 @@ newColors {
   }
 }
 @media (max-width: 754px) {
+  .login-create {
+    padding-top: 8em;
+  }
   .navbar {
     flex-direction: column;
   }
@@ -1979,6 +1988,9 @@ newColors {
   }
   .login-page {
     padding-top: 0;
+  }
+  .login-create {
+    padding-top: 2em;
   }
   .login-page img {
     width: 150px;

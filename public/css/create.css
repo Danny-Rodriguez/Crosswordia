@@ -1379,6 +1379,13 @@ a.profile-drop > div {
 
 #listDict {
   background: hsl(210deg, 78%, 70%);
+  /* background: aliceblue; */
+  border-radius: 5px;
+  /* padding-left: 0.5vw; */
+  padding-top: 0.5vh;
+  padding-bottom: 0.5vh;
+  /* padding-right: 0.5vw; */
+  /* border: 1px solid; */
 }
 
 /* button 19 */
@@ -1693,7 +1700,8 @@ a.profile-drop > div {
   padding-right: 0.5vw;
   border: 1px solid;
   border-radius: 5px;
-  background: hsl(210deg, 78%, 70%);
+  /* background: hsl(210deg, 78%, 70%); */
+  background: aliceblue;
 }
 
 #hints-across,
