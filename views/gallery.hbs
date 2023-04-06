@@ -1,15 +1,15 @@
 <head>
   <style type="text/css">
-    h1 > img {width: 150px;height: 150px;margin-left: -0.2em;} .row > div:hover {transform: scale(1.05);} .card-img-top { width: 70%; height: auto; } .col-xl-3.col-md-6.mb-4 {height: 100% !important;}
+    h1 > img {width: 150px;height: 150px;margin-left: -0.2em;} .row > div:hover {transform: scale(1.05);} .card-img-top { width: 70%; height: auto; } .col-xl-3.col-md-6.mb-4 {height: 100% !important;} .gap{gap:20px} .pad-s{padding-left: 1.5em; padding-right: 1.5em;} .bwidth{width: 7em;} .gap > button{border: 1px solid black;} .gap > button:hover { filter: brightness(1.3); -webkit-filter: brightness(1.3);} @media (max-width: 639px) {.gap{gap:15px}}
   </style>
 </head>
 
 <div class="container-fluid">
   <div class="px-lg-5">
 
-    <div class="py-5">
+    <div class="py-4 mb-3 my-2">
       <div class="col-lg-12 mx-auto">
-        <div class="text-white p-5 shadow-sm rounded banner d-flex justify-content-center">
+        <div class="text-white p-5 mt-4 shadow-sm rounded banner d-flex justify-content-center">
           <div class="d-flex flex-column">
             <h1 class="display-4">Crossword Gallery<img src="/img/crossword-thinking.svg" referrerpolicy="no-referrer" alt="thinking" width="150" height="150" /></h1>
             <p class="lead">Test your skills on our Crosswords</p>
@@ -18,11 +18,20 @@
         </div>
       </div>
     </div>
+    <div class="d-flex flex-column">
+
+      <h1 class="lead d-flex justify-content-around">Filter by difficulty</h1>
+      <div class="d-flex justify-content-center mb-4 gap">
+        <button class="btn rounded-pill bg-success bwidth" role="button">Beginner</button>
+        <button class="btn rounded-pill bg-warning bwidth" role="button">Intermediate</button>
+        <button class="btn rounded-pill bg-danger bwidth" role="button">Advanced</button>
+      </div>
+    </div>
 
     <div class="row">
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="beginner col-xl-3 col-md-6 mb-4">
         <a href="/solve/6326744b721edf38f31e09b0">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">15x15</h5>
@@ -39,7 +48,7 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="beginner col-xl-3 col-md-6 mb-4">
         <a href="/solve/633656e28100708f80736bb7">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">15x15</h5>
@@ -56,7 +65,7 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="beginner col-xl-3 col-md-6 mb-4">
         <a href="/solve/6351dfcb3303d1205145bb2f">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">15x15</h5>
@@ -73,10 +82,10 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="beginner col-xl-3 col-md-6 mb-4">
         <a href="/solve/64191e86ec26b4bef609d54c">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
-            <h5 class="text-dark">5x5</h5>
+            <h5 class="text-dark">15x15</h5>
             <div class="p-4">
 
               <p class="small text-muted mb-0">Solve a holiday themed crossword in class! </p>
@@ -90,15 +99,15 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="intermediate col-xl-3 col-md-6 mb-4">
         <a href="/solve/6334da9c8100b07ddb27328d">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">5x5</h5>
             <div class="p-4">
 
               <p class="small text-muted mb-0">Alexander the Great, Texas, and a Super Hero</p>
-              <div class="d-flex align-items-center justify-content-between rounded-pill bg-success px-3 py-2 mt-4">
-                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Beginner</span></p>
+              <div class="d-flex align-items-center justify-content-between rounded-pill bg-warning px-3 py-2 mt-4">
+                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Intermediate</span></p>
               </div>
             </div>
           </div>
@@ -107,32 +116,15 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      {{! <div class="col-xl-3 col-md-6 mb-4">
-        <a href="/solve/63169940474bd8633560a419">
-          <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
-            <h5 class="text-dark">5x5</h5>
-            <div class="p-4">
-
-              <p class="small text-muted mb-0">Texting, Rabbits, cars, and Marvel Studios</p>
-              <div class="d-flex align-items-center justify-content-between rounded-pill bg-success px-3 py-2 mt-4">
-                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Beginner</span></p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div> }}
-      <!-- End -->
-
-      <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="intermediate col-xl-3 col-md-6 mb-4">
         <a href="/solve/63169dc4474bd8633560a4ad">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">5x5</h5>
             <div class="p-4">
 
               <p class="small text-muted mb-0">The Greeks and the Romans need their R&R too</p>
-              <div class="d-flex align-items-center justify-content-between rounded-pill bg-success px-3 py-2 mt-4">
-                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Beginner</span></p>
+              <div class="d-flex align-items-center justify-content-between rounded-pill bg-warning px-3 py-2 mt-4">
+                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Intermediate</span></p>
               </div>
             </div>
           </div>
@@ -141,15 +133,15 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="intermediate col-xl-3 col-md-6 mb-4">
         <a href="/solve/6316ad6b474bd8633560a5b0">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">5x5</h5>
             <div class="p-4">
 
               <p class="small text-muted mb-0">The reason why you like meditating and fire</p>
-              <div class="d-flex align-items-center justify-content-between rounded-pill bg-success px-3 py-2 mt-4">
-                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Beginner</span></p>
+              <div class="d-flex align-items-center justify-content-between rounded-pill bg-warning px-3 py-2 mt-4">
+                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Intermediate</span></p>
               </div>
             </div>
           </div>
@@ -158,15 +150,15 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="intermediate col-xl-3 col-md-6 mb-4">
         <a href="/solve/63179e60474bd8633560a5f9">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">5x5</h5>
             <div class="p-4">
 
               <p class="small text-muted mb-0">Bread, an Actor, the Military, and your favorite Burrito</p>
-              <div class="d-flex align-items-center justify-content-between rounded-pill bg-success px-3 py-2 mt-4">
-                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Beginner</span></p>
+              <div class="d-flex align-items-center justify-content-between rounded-pill bg-warning px-3 py-2 mt-4">
+                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Intermediate</span></p>
               </div>
             </div>
           </div>
@@ -175,15 +167,15 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="advanced col-xl-3 col-md-6 mb-4">
         <a href="/solve/63179f9e474bd8633560a62f">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">5x5</h5>
             <div class="p-4">
 
               <p class="small text-muted mb-0">French, Spanish, and Wonder Woman</p>
-              <div class="d-flex align-items-center justify-content-between rounded-pill bg-success px-3 py-2 mt-4">
-                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Beginner</span></p>
+              <div class="d-flex align-items-center justify-content-between rounded-pill bg-danger px-3 py-2 mt-4">
+                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Advanced</span></p>
               </div>
             </div>
           </div>
@@ -192,15 +184,15 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="advanced col-xl-3 col-md-6 mb-4">
         <a href="/solve/63169781474bd8633560a3b1">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">10x10</h5>
             <div class="p-4">
 
               <p class="small text-muted mb-0">Are you great with Celebrity Trivia? Try this out!</p>
-              <div class="d-flex align-items-center justify-content-between rounded-pill bg-warning px-3 py-2 mt-4">
-                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Intermediate</span></p>
+              <div class="d-flex align-items-center justify-content-between rounded-pill bg-danger px-3 py-2 mt-4">
+                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Advanced</span></p>
               </div>
             </div>
           </div>
@@ -209,15 +201,15 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="advanced col-xl-3 col-md-6 mb-4">
         <a href="/solve/6316a108474bd8633560a4e6">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">10x10</h5>
             <div class="p-4">
 
               <p class="small text-muted mb-0">Netflix, The Color Purple, and a Polar Bear</p>
-              <div class="d-flex align-items-center justify-content-between rounded-pill bg-warning px-3 py-2 mt-4">
-                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Intermediate</span></p>
+              <div class="d-flex align-items-center justify-content-between rounded-pill bg-danger px-3 py-2 mt-4">
+                <p class="small mb-0 mx-auto"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">Advanced</span></p>
               </div>
             </div>
           </div>
@@ -226,7 +218,7 @@
       <!-- End -->
 
       <!-- Gallery item -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      <div class="advanced col-xl-3 col-md-6 mb-4">
         <a href="/solve/62fc345aac43aa39a039f5aa">
           <div class="bg-white rounded shadow-sm text-center"><img src="/img/crossword.svg" referrerpolicy="no-referrer" alt="crossword" class="img-fluid card-img-top" width="193" height="193" />
             <h5 class="text-dark">15x15</h5>
@@ -263,3 +255,4 @@
     <div class="py-5 text-center"><a href="#" class="btn px-5 py-3 text-uppercase"><i class="bi bi-arrow-up-circle h1"></i></a></div>
   </div>
 </div>
+<script src="/scripts/gallery.js"></script>
