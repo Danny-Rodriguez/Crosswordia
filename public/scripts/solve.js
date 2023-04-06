@@ -54,7 +54,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
       if (name) solveCheer.textContent = name;
 
       //Todo: implement helper function
-      //* Makes whole row or column orange when clicked
+      //* Makes whole row or column darkorchid when clicked
       cell.addEventListener("click", event => {
         pLetter.style.visibility = "visible";
         if (prevHint !== undefined) {
@@ -69,7 +69,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           prevHintMobile.textContent = "No word in this direction! Try tapping ↺ or 🟨";
         }
         for (let i = 0; i < nodes.length; i++) {
-          if (nodes[i].style.background === "orange") {
+          if (nodes[i].style.background === "darkorchid") {
             nodes[i].style.background = "white";
           }
         }
@@ -83,20 +83,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           let vertComp = cell;
           if (document.getElementById(`D${vertComp?.lastChild?.textContent}`)) {
             let pDown = document.getElementById(`D${vertComp.lastChild.textContent}`);
-            pDown.style.setProperty("text-decoration", "underline orange");
-            pDown.style.setProperty("-webkit-text-decoration", "underline orange");
+            pDown.style.setProperty("text-decoration", "underline darkorchid");
+            pDown.style.setProperty("-webkit-text-decoration", "underline darkorchid");
             pDown.scrollIntoView({ behavior: "auto", block: "nearest", inline: "start" });
             prevCompHint = pDown;
           }
 
-          //@ Orange forwards -->
+          //@ darkorchid forwards -->
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i++) {
             if (nodes[i].id % size === 0) {
               if (nodes[i] === cell) {
                 nodes[i].style.background = "yellow";
               }
               if (nodes[i] !== cell && nodes[i].style.background !== "black") {
-                nodes[i].style.background = "orange";
+                nodes[i].style.background = "darkorchid";
               }
               break;
             }
@@ -106,14 +106,14 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             }
             if (nodes[i].style.background === "yellow") {
               if (nodes[i] !== cell) {
-                nodes[i].style.background = "orange";
+                nodes[i].style.background = "darkorchid";
               }
               continue;
             }
-            nodes[i].style.background = "orange";
+            nodes[i].style.background = "darkorchid";
           }
 
-          //@ Orange Backwards <--
+          //@ darkorchid Backwards <--
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i--) {
             let nextNode = nodes[i + 1];
             if (nodes[i].style.background === "black") {
@@ -136,7 +136,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 nodes[i].style.background = "yellow";
               }
               if (nodes[i] !== cell && nodes[i].style.background !== "black") {
-                nodes[i].style.background = "orange";
+                nodes[i].style.background = "darkorchid";
               }
               if (nodes[i].hasChildNodes()) {
                 //* Highlights Hints
@@ -156,11 +156,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
             if (nodes[i].style.background === "yellow") {
               if (nodes[i] !== cell) {
-                nodes[i].style.background = "orange";
+                nodes[i].style.background = "darkorchid";
               }
               continue;
             }
-            nodes[i].style.background = "orange";
+            nodes[i].style.background = "darkorchid";
           }
         }
 
@@ -169,28 +169,28 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           let vertComp = cell;
           if (document.getElementById(`A${vertComp?.lastChild?.textContent}`)) {
             let pAcross = document.getElementById(`A${vertComp.lastChild.textContent}`);
-            pAcross.style.setProperty("text-decoration", "underline orange");
-            pAcross.style.setProperty("-webkit-text-decoration", "underline orange");
+            pAcross.style.setProperty("text-decoration", "underline darkorchid");
+            pAcross.style.setProperty("-webkit-text-decoration", "underline darkorchid");
             pAcross.scrollIntoView({ behavior: "auto", block: "nearest", inline: "start" });
             prevCompHint = pAcross;
             currentHintMobile.textContent = "A" + pAcross.textContent;
             prevHintMobile = currentHintMobile;
           }
-          //@ Orange Down v
+          //@ darkorchid Down v
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i += size) {
             if (nodes[i].style.background === "black") {
               break;
             }
             if (nodes[i].style.background === "yellow") {
               if (nodes[i] !== cell) {
-                nodes[i].style.background = "orange";
+                nodes[i].style.background = "darkorchid";
               }
               continue;
             }
-            nodes[i].style.background = "orange";
+            nodes[i].style.background = "darkorchid";
           }
 
-          //@ Orange Up ^
+          //@ darkorchid Up ^
           for (let i = cell.id - 1; i < nodes.length && i >= 0; i -= size) {
             let nextNode = nodes[i + size];
             if (nodes[i].style.background === "black") {
@@ -243,16 +243,16 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
             if (nodes[i].style.background === "yellow") {
               if (nodes[i] !== cell) {
-                nodes[i].style.background = "orange";
+                nodes[i].style.background = "darkorchid";
               }
               continue;
             }
-            nodes[i].style.background = "orange";
+            nodes[i].style.background = "darkorchid";
           }
         }
-        if (selectedCell != undefined && selectedCell !== cell && selectedCell.style.background !== "orange") {
+        if (selectedCell != undefined && selectedCell !== cell && selectedCell.style.background !== "darkorchid") {
           if (selectedCell.style.background === "yellow") {
-            selectedCell.style.background = "orange";
+            selectedCell.style.background = "darkorchid";
           }
           selectedCell.style.background = "white";
         }
@@ -273,7 +273,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
       if (wordInput !== document.activeElement) {
         if (event.key.match(alphabet) && event.key.length === 1) {
-          //@ Prevents overflow of orange boxes unto next row
+          //@ Prevents overflow of darkorchid boxes unto next row
           if (typeDown === false && selectedCell.id % size === 0) {
             create_pLetter(pLetterText);
             return;
@@ -287,8 +287,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               if (nextCell.style.background === "black") {
                 break;
               }
-              if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
-                selectedCell.style.background = "orange";
+              if (nextCell.style.background === "white" || nextCell.style.background === "darkorchid" || nextCell.style.background === "") {
+                selectedCell.style.background = "darkorchid";
                 selectedCell = nextCell;
                 selectedCell.style.background = "yellow";
                 break;
@@ -303,8 +303,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               if (nextCell.style.background === "black") {
                 break;
               }
-              if (nextCell.style.background === "white" || nextCell.style.background === "orange" || nextCell.style.background === "") {
-                selectedCell.style.background = "orange";
+              if (nextCell.style.background === "white" || nextCell.style.background === "darkorchid" || nextCell.style.background === "") {
+                selectedCell.style.background = "darkorchid";
                 selectedCell = nextCell;
                 selectedCell.style.background = "yellow";
                 break;
@@ -330,12 +330,12 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               }
 
               if (prevCell.style.background !== "black") {
-                //@ Prevents overflow of orange boxes unto previous row
+                //@ Prevents overflow of darkorchid boxes unto previous row
                 if (selectedCell.id % size === 1) {
                   selectedCell.querySelector(`.pLetter${size}`).textContent = "";
                   return;
                 }
-                selectedCell.style.background = "orange";
+                selectedCell.style.background = "darkorchid";
 
                 selectedCell.querySelector(`.pLetter${size}`).textContent = "";
                 selectedCell = prevCell;
@@ -358,7 +358,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 break;
               }
               if (prevCell && prevCell.style.background !== "black") {
-                selectedCell.style.background = "orange";
+                selectedCell.style.background = "darkorchid";
 
                 selectedCell.querySelector(`.pLetter${size}`).textContent = "";
                 selectedCell = prevCell;
@@ -456,7 +456,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     revealBtn.forEach(btn => {
       btn.addEventListener("click", () => {
         for (let i = 0; i < nodes.length; i++) {
-          if (nodes[i].style.background === "orange" || nodes[i].style.background === "yellow") {
+          if (nodes[i].style.background === "darkorchid" || nodes[i].style.background === "yellow") {
             nodes[i].firstChild.textContent = solution.charAt(i);
           }
         }
@@ -476,13 +476,13 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     for (let i = 0; i < hintAcross.children.length; i++) {
       hintAcross.children[i].addEventListener("click", () => {
         let idClick = document.getElementById(`N${hintAcross.children[i].id.slice(1)}`);
-        if (hintAcross.children[i].style.textDecoration !== "underline orange") {
+        if (hintAcross.children[i].style.textDecoration !== "underline darkorchid") {
           typeDown = false;
           if (hintAcross.children[i].style.background !== "yellow") {
             idClick.click();
           }
         }
-        if (hintAcross.children[i].style.textDecoration === "underline orange") {
+        if (hintAcross.children[i].style.textDecoration === "underline darkorchid") {
           idClick.click();
           hintAcross.children[i].click();
         }
@@ -491,13 +491,13 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     for (let i = 0; i < hintDown.children.length; i++) {
       hintDown.children[i].addEventListener("click", () => {
         let idClick = document.getElementById(`N${hintDown.children[i].id.slice(1)}`);
-        if (hintDown.children[i].style.textDecoration !== "underline orange") {
+        if (hintDown.children[i].style.textDecoration !== "underline darkorchid") {
           typeDown = true;
           if (hintDown.children[i].style.background !== "yellow") {
             idClick.click();
           }
         }
-        if (hintDown.children[i].style.textDecoration === "underline orange") {
+        if (hintDown.children[i].style.textDecoration === "underline darkorchid") {
           idClick.click();
           hintDown.children[i].click();
         }
