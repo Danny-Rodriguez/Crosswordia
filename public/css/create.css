@@ -619,6 +619,26 @@ button:not(:disabled),
   list-style: none;
 }
 
+.icon-bg {
+  vertical-align: sub;
+}
+.small-create {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+}
+/*👉[href="/login-create"],
+[href="/gallery"] {
+  width: 82px;
+}👈*/
+
+.small-logo {
+  height: 25px;
+  width: 25px;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
 .navbar {
   position: relative;
   display: flex;
@@ -675,10 +695,14 @@ button:not(:disabled),
   border: 1px solid hsl(210deg, 89%, 18%);
   border-radius: 5px;
   background-color: #0a66c2;
+  background-color: #2491c7;
+  background-color: #0094cb;
+  height: 42px;
 }
 
 .loginBtn:hover {
   background: #2491c7 !important;
+  background: #376ba0 !important;
 }
 
 /*👉.navbar-links > a:hover {
@@ -936,6 +960,10 @@ button:not(:disabled),
 
 .mt-5 {
   margin-top: 3rem !important;
+}
+
+.mt-35 {
+  margin-top: 5rem !important;
 }
 
 .mb-0 {
@@ -1785,6 +1813,17 @@ newColors {
   grid-template-columns: repeat(15, 35px);
 }
 
+text#solveCheer {
+  background: #0a66c2;
+  max-width: fit-content;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  border: 1px solid black;
+  border-radius: 5px;
+  align-self: center;
+  color: hsl(0, 0%, 100%) !important;
+}
+
 /* Works on Firefox */
 #hints-across,
 #hints-down {
@@ -1812,6 +1851,10 @@ newColors {
   background-color: var(--bs-gray);
   border-radius: 20px;
   border: 3px solid hsl(210deg, 78%, 70%);
+}
+
+.m-s5 {
+  margin-top: 3rem !important;
 }
 
 @media (max-width: 1199px) {
@@ -1858,9 +1901,9 @@ newColors {
   .a2a_kit {
     margin-top: -6px;
   }
-  #solveCheer {
+  /*👉  #solveCheer {
     display: none;
-  }
+  }👈*/
 }
 @media (max-width: 820px) {
   .gridSize5 {
@@ -1890,6 +1933,9 @@ newColors {
   #boxAndFinish {
     display: none !important;
   }
+  .login-create {
+    padding-top: 1em !important;
+  }
 }
 @media (max-width: 754px) {
   .login-create {
@@ -1901,10 +1947,17 @@ newColors {
   .mt-5 {
     margin-top: 5rem !important;
   }
+  .mt-35 {
+    margin-top: 6rem !important;
+  }
+  .m-s5 {
+    margin-top: 6rem !important;
+  }
   .navbar-brand {
     margin-left: 0em;
     margin-right: 0em;
-    font-size: initial;
+    /* font-size: initial; */
+    background-color: #0094cb;
   }
   .navbar-links {
     margin-right: 0em;
@@ -2006,10 +2059,31 @@ newColors {
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+  /*👉  .smallIcons {
+    width: 12.5px !important;
+    height: 12.5px !important;
+  }
+  .small-create {
+    width: 12.5px !important;
+    height: 12.5px !important;
+  }👈*/
+  .small-logo {
+    /*👉 height: 12.5px;
+    width: 12.5px;👈*/
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .navbar-links > a,
+  .dropdown > a {
+    height: auto;
+  }
 }
 @media (max-height: 667px) {
   .flex-grow-1.mt-5 {
     margin-top: 2rem !important;
+  }
+  .m-s5 {
+    margin-top: 1.5rem !important;
   }
   .login-page {
     padding-top: 0;
@@ -2038,10 +2112,21 @@ newColors {
   .navbar-links > a,
   .dropdown > a {
     font-size: xx-small;
+    height: auto;
   }
   .smallIcons {
     width: 12.5px !important;
     height: 12.5px !important;
+  }
+  .small-create {
+    width: 12.5px !important;
+    height: 12.5px !important;
+  }
+  .small-logo {
+    height: 12.5px;
+    width: 12.5px;
+    margin-left: 1px;
+    margin-right: 1px;
   }
   .navbar {
     flex-direction: row;
