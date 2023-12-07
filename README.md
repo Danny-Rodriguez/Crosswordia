@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/banner.png" />
+  <img src="public/img/banner.png" />
 </p>
 
 <h1 align="center">Crosswordia</h1>
