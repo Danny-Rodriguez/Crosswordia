@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const Crossword = require("../models/Crossword");
+const User = require("../models/User");
 const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 let layoutValue;
@@ -9,11 +10,33 @@ let layoutValue;
 // @desc home page
 // @route Get /
 router.get("/", ensureAuth, async (req, res) => {
-  return res.render("home", {
-    layout: "main",
-    title: "Home | Crosswordia",
-    name: req.user.firstName
-  });
+  try {
+    // Get user with populated completed puzzles
+    const user = await User.findById(req.user.id).populate(
+      "completedPuzzles.puzzleId"
+    );
+
+    // Create stats object for the view
+    const stats = {
+      totalCompleted: user.completedPuzzles.length,
+      recentlyCompleted: user.completedPuzzles.slice(-3),
+      // Add more statistics as needed
+    };
+
+    return res.render("home", {
+      layout: "main",
+      title: "Home | Crosswordia",
+      name: req.user.firstName,
+      stats: stats
+    });
+  } catch (error) {
+    console.error(error);
+    return res.render("home", {
+      layout: "main",
+      title: "Home | Crosswordia",
+      name: req.user.firstName
+    });
+  }
 });
 
 // @desc create page

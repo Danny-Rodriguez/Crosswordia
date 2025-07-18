@@ -1,3 +1,6 @@
+// Track when user starts solving the puzzle
+let startTime = Date.now();
+
 let selectedCell = undefined;
 let typeDown = false;
 const crossGrid = document.getElementById("crossGrid");
@@ -425,6 +428,29 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         }
 
         if (solution === solutionStr) {
+          // Calculate time to complete
+          const timeToComplete = Math.floor((Date.now() - startTime) / 1000);
+          
+          // Get puzzle ID from URL
+          const puzzleId = window.location.pathname.split("/").pop();
+          
+          // Record completion if user is logged in
+          if (document.querySelector(".user-logged-in")) {
+            fetch("/user/completed-puzzle", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                puzzleId,
+                timeToComplete,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => console.log("Puzzle completion recorded"))
+              .catch((error) => console.error("Error recording completion:", error));
+          }
+          
           GrowlNotification.notify({
             title: "Well Done!",
             description: "You have solved the crossword!",
