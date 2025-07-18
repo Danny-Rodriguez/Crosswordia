@@ -1,54 +1,94 @@
 <head>
-  <style type="text/css">
-    .col:hover {transform: scale(1.05);} .row {margin-left: 0; margin-right: 0;} .rounded-pill{color:aliceblue} .row.fade-in{animation-delay: 1.5s;} .mt-4.fade-in{animation-delay: 0s;} img { max-width: 100%; height: auto; }
-  </style>
+  <link rel="stylesheet" href="/css/home.css" />
 </head>
-{{! row-cols-1 row-cols-md-2 row-cols-md-3 }}
-<h1 class="lead d-flex justify-content-around mt-4 fade-in">Hello {{name}}, what do you want to do?</h1>
-<div class="container">
 
-  <div class="row row-cols-1 row-cols-md-2 row-cols-md-3 g-4 fade-in">
+<div class="hero-container fade-in">
+  <h1 class="welcome-text">Hello {{name}}, welcome to Crosswordia!</h1>
+  <p class="lead text-white">What would you like to do today?</p>
+</div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-2 g-4 fade-in">
+    <!-- Solve Puzzles Card -->
     <div class="col">
-      <div class="card h-100">
-        <a href="/gallery">
-          <div class="bg-white rounded text-center"><img src="/img/crossword-thinking.svg" referrerpolicy="no-referrer" alt="crossword" width="193" height="193" />
-            <div class="col card-body d-flex flex-column">
-              <p class="card-left card-text small text-muted">Try out the premade crosswords</p>
-              <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
-                Go to Gallery
-              </div>
+      <a href="/gallery" class="text-decoration-none">
+        <div class="option-card">
+          <div class="card-img-container">
+            <img
+              src="/img/crossword-thinking.svg"
+              referrerpolicy="no-referrer"
+              alt="Solve puzzles"
+              width="220"
+              height="220"
+            />
+          </div>
+          <div class="card-content text-center">
+            <h3 class="card-title">Test Your Skills</h3>
+            <p class="card-description">Challenge yourself with our collection
+              of premade crosswords ranging from beginner to advanced difficulty
+              levels.</p>
+            <div class="action-button">
+              Browse Gallery
             </div>
           </div>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
+
+    <!-- Create Puzzles Card -->
     <div class="col">
-      <div class="card h-100">
-        <a href="/create">
-          <div class="bg-white rounded text-center"><img src="/img/create-crossword.svg" referrerpolicy="no-referrer" alt="crossword" width="193" height="193" />
-            <div class="card-body d-flex flex-column">
-              <p class="card-text small text-muted mb-0">Create crosswords and share them</p>
-              <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
-                Go to Create Page
-              </div>
+      <a href="/create" class="text-decoration-none">
+        <div class="option-card">
+          <div class="card-img-container">
+            <img
+              src="/img/create-crossword.svg"
+              referrerpolicy="no-referrer"
+              alt="Create puzzles"
+              width="220"
+              height="220"
+            />
+          </div>
+          <div class="card-content text-center">
+            <h3 class="card-title">Create Your Own</h3>
+            <p class="card-description">Design custom crossword puzzles with our
+              intuitive editor and share them with friends or the community.</p>
+            <div class="action-button">
+              Start Creating
             </div>
           </div>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
-    {{! <div class="col">
-      <div class="card h-100">
-        <a href="/create">
-          <div class="bg-white rounded text-center"><img src="/img/myCrosswords-w.svg" referrerpolicy="no-referrer" alt="crossword" width="193" height="193" />
-            <div class="card-body d-flex flex-column">
-              <p class="card-text small text-muted mb-0">See the crosswords I made</p>
-              <div class="small rounded-pill bg-primary px-3 py-2 mt-4">
-                Go to My Crosswords
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div> }}
   </div>
+
+  {{#if user}}
+    <!-- User Stats Section (Only shown when logged in) -->
+    <div
+      class="mt-5 pt-4 pb-4 px-4 bg-white rounded-lg shadow-sm fade-in stats-section"
+    >
+      <h3 class="mb-4 text-center">Your Crossword Journey</h3>
+      <div class="row text-center g-4">
+        <div class="col-md-4">
+          <div class="p-4 bg-light rounded stat-card">
+            <h4 class="mb-3">Puzzles Completed</h4>
+            <p class="stat-value mb-0">0</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-4 bg-light rounded stat-card">
+            <h4 class="mb-3">Puzzles Created</h4>
+            <p class="stat-value mb-0">0</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-4 bg-light rounded stat-card">
+            <h4 class="mb-3">Best Time</h4>
+            <p class="stat-value mb-0">-</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  <!-- Add substantial spacing before footer -->
+  <div class="mt-3 pt-3"></div>
 </div>
