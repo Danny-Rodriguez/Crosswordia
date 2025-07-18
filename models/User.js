@@ -23,7 +23,22 @@ const UserSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  completedPuzzles: [
+    {
+      puzzleId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Crossword"
+      },
+      completedAt: {
+        type: Date,
+        default: Date.now
+      },
+      timeToComplete: {
+        type: Number // Time in seconds
+      }
+    }
+  ]
 })
 
 module.exports = mongoose.model("User", UserSchema)

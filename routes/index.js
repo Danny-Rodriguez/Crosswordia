@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const Crossword = require("../models/Crossword");
+const User = require("../models/User");
 const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 let layoutValue;
@@ -9,11 +10,53 @@ let layoutValue;
 // @desc home page
 // @route Get /
 router.get("/", ensureAuth, async (req, res) => {
-  return res.render("home", {
-    layout: "main",
-    title: "Home | Crosswordia",
-    name: req.user.firstName
-  });
+  try {
+    // Get user with populated completed puzzles
+    const user = await User.findById(req.user.id).populate(
+      "completedPuzzles.puzzleId"
+    );
+
+    // Get puzzles created count
+    const puzzlesCreated = await Crossword.countDocuments({ user: req.user.id });
+    
+    // Calculate best time if there are completed puzzles
+    let bestTime = '-';
+    if (user.completedPuzzles && user.completedPuzzles.length > 0) {
+      // Find the minimum time to complete
+      const minTime = Math.min(...user.completedPuzzles
+        .filter(puzzle => puzzle.timeToComplete) // Filter out any undefined times
+        .map(puzzle => puzzle.timeToComplete));
+      
+      if (minTime !== Infinity) {
+        // Format time as minutes:seconds
+        const minutes = Math.floor(minTime / 60);
+        const seconds = minTime % 60;
+        bestTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      }
+    }
+    
+    // Create stats object for the view
+    const stats = {
+      totalCompleted: user.completedPuzzles ? user.completedPuzzles.length : 0,
+      recentlyCompleted: user.completedPuzzles ? user.completedPuzzles.slice(-3) : [],
+      puzzlesCreated: puzzlesCreated,
+      bestTime: bestTime
+    };
+
+    return res.render("home", {
+      layout: "main",
+      title: "Home | Crosswordia",
+      name: req.user.firstName,
+      stats: stats
+    });
+  } catch (error) {
+    console.error(error);
+    return res.render("home", {
+      layout: "main",
+      title: "Home | Crosswordia",
+      name: req.user.firstName
+    });
+  }
 });
 
 // @desc create page
