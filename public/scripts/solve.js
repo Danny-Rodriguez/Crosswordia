@@ -16,16 +16,16 @@ let keyDown;
 await fetch(document.location.origin + document.location.pathname + "/fetch", {
   method: "POST",
   headers: {
-    "Content-type": "application/json; charset=UTF-8"
-  }
+    "Content-type": "application/json; charset=UTF-8",
+  },
 })
-  .then(response => {
+  .then((response) => {
     if (response.ok) {
       return response.json();
     }
     return Promise.reject(response);
   })
-  .then(crossword => {
+  .then((crossword) => {
     let name = crossword.name;
     let size = crossword.size;
     let hints = crossword.hints;
@@ -58,7 +58,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
       //Todo: implement helper function
       //* Makes whole row or column darkorchid when clicked
-      cell.addEventListener("click", event => {
+      cell.addEventListener("click", (event) => {
         pLetter.style.visibility = "visible";
         if (prevHint !== undefined) {
           prevHint.style.background = "";
@@ -69,7 +69,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           prevCompHint.style.setProperty("-webkit-text-decoration", "");
         }
         if (prevHintMobile !== undefined) {
-          prevHintMobile.textContent = "No word in this direction! Try tapping ↺ or 🟨";
+          prevHintMobile.textContent =
+            "No word in this direction! Try tapping ↺ or 🟨";
         }
         for (let i = 0; i < nodes.length; i++) {
           if (nodes[i].style.background === "darkorchid") {
@@ -85,10 +86,19 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         if (typeDown === false) {
           let vertComp = cell;
           if (document.getElementById(`D${vertComp?.lastChild?.textContent}`)) {
-            let pDown = document.getElementById(`D${vertComp.lastChild.textContent}`);
+            let pDown = document.getElementById(
+              `D${vertComp.lastChild.textContent}`
+            );
             pDown.style.setProperty("text-decoration", "underline darkorchid");
-            pDown.style.setProperty("-webkit-text-decoration", "underline darkorchid");
-            pDown.scrollIntoView({ behavior: "auto", block: "nearest", inline: "start" });
+            pDown.style.setProperty(
+              "-webkit-text-decoration",
+              "underline darkorchid"
+            );
+            pDown.scrollIntoView({
+              behavior: "auto",
+              block: "nearest",
+              inline: "start",
+            });
             prevCompHint = pDown;
           }
 
@@ -121,12 +131,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             let nextNode = nodes[i + 1];
             if (nodes[i].style.background === "black") {
               //* Highlights Hints
-              if (document.getElementById(`A${nextNode?.lastChild?.textContent}`)) {
-                let pAcross = document.getElementById(`A${nextNode.lastChild.textContent}`);
+              if (
+                document.getElementById(`A${nextNode?.lastChild?.textContent}`)
+              ) {
+                let pAcross = document.getElementById(
+                  `A${nextNode.lastChild.textContent}`
+                );
                 pAcross.style.background = "yellow";
                 pAcross.style.border = "1px solid";
                 pAcross.style.borderRadius = "5px";
-                pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+                pAcross.scrollIntoView({
+                  behavior: "smooth",
+                  block: "nearest",
+                  inline: "start",
+                });
                 prevHint = pAcross;
                 currentHintMobile.textContent = "A" + pAcross.textContent;
                 prevHintMobile = currentHintMobile;
@@ -143,12 +161,18 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               }
               if (nodes[i].hasChildNodes()) {
                 //* Highlights Hints
-                let pAcross = document.getElementById(`A${nodes[i].lastChild.textContent}`);
+                let pAcross = document.getElementById(
+                  `A${nodes[i].lastChild.textContent}`
+                );
                 if (pAcross) {
                   pAcross.style.background = "yellow";
                   pAcross.style.border = "1px solid";
                   pAcross.style.borderRadius = "5px";
-                  pAcross.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+                  pAcross.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "start",
+                  });
                   prevHint = pAcross;
                   currentHintMobile.textContent = "A" + pAcross.textContent;
                   prevHintMobile = currentHintMobile;
@@ -171,10 +195,22 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
           //* Highlights Hints
           let vertComp = cell;
           if (document.getElementById(`A${vertComp?.lastChild?.textContent}`)) {
-            let pAcross = document.getElementById(`A${vertComp.lastChild.textContent}`);
-            pAcross.style.setProperty("text-decoration", "underline darkorchid");
-            pAcross.style.setProperty("-webkit-text-decoration", "underline darkorchid");
-            pAcross.scrollIntoView({ behavior: "auto", block: "nearest", inline: "start" });
+            let pAcross = document.getElementById(
+              `A${vertComp.lastChild.textContent}`
+            );
+            pAcross.style.setProperty(
+              "text-decoration",
+              "underline darkorchid"
+            );
+            pAcross.style.setProperty(
+              "-webkit-text-decoration",
+              "underline darkorchid"
+            );
+            pAcross.scrollIntoView({
+              behavior: "auto",
+              block: "nearest",
+              inline: "start",
+            });
             prevCompHint = pAcross;
             currentHintMobile.textContent = "A" + pAcross.textContent;
             prevHintMobile = currentHintMobile;
@@ -198,12 +234,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             let nextNode = nodes[i + size];
             if (nodes[i].style.background === "black") {
               //* Highlights Hints
-              if (document.getElementById(`D${nextNode?.lastChild?.textContent}`)) {
-                let pDown = document.getElementById(`D${nextNode.lastChild.textContent}`);
+              if (
+                document.getElementById(`D${nextNode?.lastChild?.textContent}`)
+              ) {
+                let pDown = document.getElementById(
+                  `D${nextNode.lastChild.textContent}`
+                );
                 pDown.style.background = "yellow";
                 pDown.style.border = "1px solid";
                 pDown.style.borderRadius = "5px";
-                pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+                pDown.scrollIntoView({
+                  behavior: "smooth",
+                  block: "nearest",
+                  inline: "start",
+                });
                 prevHint = pDown;
                 currentHintMobile.textContent = "D" + pDown.textContent;
                 prevHintMobile = currentHintMobile;
@@ -216,12 +260,22 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                   continue;
                 } else {
                   //* Highlights Hints
-                  if (document.getElementById(`D${nextNode.lastChild.textContent}`)) {
-                    let pDown = document.getElementById(`D${nextNode.lastChild.textContent}`);
+                  if (
+                    document.getElementById(
+                      `D${nextNode.lastChild.textContent}`
+                    )
+                  ) {
+                    let pDown = document.getElementById(
+                      `D${nextNode.lastChild.textContent}`
+                    );
                     pDown.style.background = "yellow";
                     pDown.style.border = "1px solid";
                     pDown.style.borderRadius = "5px";
-                    pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+                    pDown.scrollIntoView({
+                      behavior: "smooth",
+                      block: "nearest",
+                      inline: "start",
+                    });
                     prevHint = pDown;
                     currentHintMobile.textContent = "D" + pDown.textContent;
                     prevHintMobile = currentHintMobile;
@@ -230,13 +284,21 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
                 break;
               }
 
-              if (document.getElementById(`D${nodes[i]?.lastChild?.textContent}`)) {
-                let pDown = document.getElementById(`D${nodes[i].lastChild.textContent}`);
+              if (
+                document.getElementById(`D${nodes[i]?.lastChild?.textContent}`)
+              ) {
+                let pDown = document.getElementById(
+                  `D${nodes[i].lastChild.textContent}`
+                );
                 if (pDown) {
                   pDown.style.background = "yellow";
                   pDown.style.border = "1px solid";
                   pDown.style.borderRadius = "5px";
-                  pDown.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+                  pDown.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "start",
+                  });
                   prevHint = pDown;
                   currentHintMobile.textContent = "D" + pDown.textContent;
                   prevHintMobile = currentHintMobile;
@@ -253,7 +315,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             nodes[i].style.background = "darkorchid";
           }
         }
-        if (selectedCell != undefined && selectedCell !== cell && selectedCell.style.background !== "darkorchid") {
+        if (
+          selectedCell != undefined &&
+          selectedCell !== cell &&
+          selectedCell.style.background !== "darkorchid"
+        ) {
           if (selectedCell.style.background === "yellow") {
             selectedCell.style.background = "darkorchid";
           }
@@ -265,7 +331,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     }
 
     //* Adds letter to box with hint number
-    keyDown = window.addEventListener("keydown", event => {
+    keyDown = window.addEventListener("keydown", (event) => {
       const wordInput = document.getElementById("word");
       if (selectedCell === undefined) {
         return;
@@ -285,12 +351,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
           //* This for loop selects the next cell across
           if (typeDown === false) {
-            for (let i = parseInt(selectedCell.id) + 1; i <= nodes.length; i += 1) {
+            for (
+              let i = parseInt(selectedCell.id) + 1;
+              i <= nodes.length;
+              i += 1
+            ) {
               let nextCell = document.getElementById(`${i}`);
               if (nextCell.style.background === "black") {
                 break;
               }
-              if (nextCell.style.background === "white" || nextCell.style.background === "darkorchid" || nextCell.style.background === "") {
+              if (
+                nextCell.style.background === "white" ||
+                nextCell.style.background === "darkorchid" ||
+                nextCell.style.background === ""
+              ) {
                 selectedCell.style.background = "darkorchid";
                 selectedCell = nextCell;
                 selectedCell.style.background = "yellow";
@@ -301,12 +375,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
           ///* This for loop selects the next cell down
           if (typeDown === true) {
-            for (let i = parseInt(selectedCell.id) + size; i <= nodes.length; i += size) {
+            for (
+              let i = parseInt(selectedCell.id) + size;
+              i <= nodes.length;
+              i += size
+            ) {
               let nextCell = document.getElementById(`${i}`);
               if (nextCell.style.background === "black") {
                 break;
               }
-              if (nextCell.style.background === "white" || nextCell.style.background === "darkorchid" || nextCell.style.background === "") {
+              if (
+                nextCell.style.background === "white" ||
+                nextCell.style.background === "darkorchid" ||
+                nextCell.style.background === ""
+              ) {
                 selectedCell.style.background = "darkorchid";
                 selectedCell = nextCell;
                 selectedCell.style.background = "yellow";
@@ -335,7 +417,8 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
               if (prevCell.style.background !== "black") {
                 //@ Prevents overflow of darkorchid boxes unto previous row
                 if (selectedCell.id % size === 1) {
-                  selectedCell.querySelector(`.pLetter${size}`).textContent = "";
+                  selectedCell.querySelector(`.pLetter${size}`).textContent =
+                    "";
                   return;
                 }
                 selectedCell.style.background = "darkorchid";
@@ -409,7 +492,7 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     // Check my answer
     // const checkBtn = document.querySelector(".button-19")
     const checkBtn = document.querySelectorAll(".checkBtn, .hg-button-check");
-    checkBtn.forEach(btn => {
+    checkBtn.forEach((btn) => {
       btn.addEventListener("click", () => {
         let solutionStr = "";
         for (let i = 1; i <= size * size; i++) {
@@ -422,7 +505,10 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         }
 
         const solutionNotAllowed = /([0-9]+)/;
-        if (solutionNotAllowed.exec(solutionStr) || solutionStr.length !== solution.length) {
+        if (
+          solutionNotAllowed.exec(solutionStr) ||
+          solutionStr.length !== solution.length
+        ) {
           forgotToFill();
           return;
         }
@@ -430,12 +516,18 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         if (solution === solutionStr) {
           // Calculate time to complete
           const timeToComplete = Math.floor((Date.now() - startTime) / 1000);
-          
+
           // Get puzzle ID from URL
           const puzzleId = window.location.pathname.split("/").pop();
-          
+
           // Record completion if user is logged in
-          if (document.querySelector(".user-logged-in")) {
+          // Check for the dropdown which only exists for logged-in users
+          // console.log("User authenticated:", !!document.querySelector(".dropdown-toggle"));
+          // console.log("Puzzle ID:", puzzleId);
+          // console.log("Time to complete:", timeToComplete);
+
+          if (document.querySelector(".dropdown-toggle")) {
+            // console.log("Sending completion data to server");
             fetch("/user/completed-puzzle", {
               method: "POST",
               headers: {
@@ -448,19 +540,21 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             })
               .then((response) => response.json())
               .then((data) => console.log("Puzzle completion recorded"))
-              .catch((error) => console.error("Error recording completion:", error));
+              .catch((error) =>
+                console.error("Error recording completion:", error)
+              );
           }
-          
+
           GrowlNotification.notify({
             title: "Well Done!",
             description: "You have solved the crossword!",
             image: {
               visible: true,
-              customImage: "../img/success-outline.svg"
+              customImage: "../img/success-outline.svg",
             },
             type: "success",
             position: "top-center",
-            closeTimeout: 3000
+            closeTimeout: 3000,
           });
         } else {
           GrowlNotification.notify({
@@ -468,28 +562,35 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
             description: "That wasn't the solution, try again!",
             image: {
               visible: true,
-              customImage: "../img/danger-outline.svg"
+              customImage: "../img/danger-outline.svg",
             },
             type: "error",
             position: "top-center",
-            closeTimeout: 3000
+            closeTimeout: 3000,
           });
         }
       });
     });
 
-    const revealBtn = document.querySelectorAll(".revealBtn, .hg-button-reveal");
-    revealBtn.forEach(btn => {
+    const revealBtn = document.querySelectorAll(
+      ".revealBtn, .hg-button-reveal"
+    );
+    revealBtn.forEach((btn) => {
       btn.addEventListener("click", () => {
         for (let i = 0; i < nodes.length; i++) {
-          if (nodes[i].style.background === "darkorchid" || nodes[i].style.background === "yellow") {
+          if (
+            nodes[i].style.background === "darkorchid" ||
+            nodes[i].style.background === "yellow"
+          ) {
             nodes[i].firstChild.textContent = solution.charAt(i);
           }
         }
       });
     });
-    const toggleBtn = document.querySelectorAll(".hg-button-toggleVert, .h1Hints");
-    toggleBtn.forEach(btn => {
+    const toggleBtn = document.querySelectorAll(
+      ".hg-button-toggleVert, .h1Hints"
+    );
+    toggleBtn.forEach((btn) => {
       btn.addEventListener("click", () => {
         for (let i = 0; i < nodes.length; i++) {
           if (nodes[i].style.background === "yellow") {
@@ -501,14 +602,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
 
     for (let i = 0; i < hintAcross.children.length; i++) {
       hintAcross.children[i].addEventListener("click", () => {
-        let idClick = document.getElementById(`N${hintAcross.children[i].id.slice(1)}`);
-        if (hintAcross.children[i].style.textDecoration !== "underline darkorchid") {
+        let idClick = document.getElementById(
+          `N${hintAcross.children[i].id.slice(1)}`
+        );
+        if (
+          hintAcross.children[i].style.textDecoration !== "underline darkorchid"
+        ) {
           typeDown = false;
           if (hintAcross.children[i].style.background !== "yellow") {
             idClick.click();
           }
         }
-        if (hintAcross.children[i].style.textDecoration === "underline darkorchid") {
+        if (
+          hintAcross.children[i].style.textDecoration === "underline darkorchid"
+        ) {
           idClick.click();
           hintAcross.children[i].click();
         }
@@ -516,14 +623,20 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
     }
     for (let i = 0; i < hintDown.children.length; i++) {
       hintDown.children[i].addEventListener("click", () => {
-        let idClick = document.getElementById(`N${hintDown.children[i].id.slice(1)}`);
-        if (hintDown.children[i].style.textDecoration !== "underline darkorchid") {
+        let idClick = document.getElementById(
+          `N${hintDown.children[i].id.slice(1)}`
+        );
+        if (
+          hintDown.children[i].style.textDecoration !== "underline darkorchid"
+        ) {
           typeDown = true;
           if (hintDown.children[i].style.background !== "yellow") {
             idClick.click();
           }
         }
-        if (hintDown.children[i].style.textDecoration === "underline darkorchid") {
+        if (
+          hintDown.children[i].style.textDecoration === "underline darkorchid"
+        ) {
           idClick.click();
           hintDown.children[i].click();
         }

@@ -16,11 +16,31 @@ router.get("/", ensureAuth, async (req, res) => {
       "completedPuzzles.puzzleId"
     );
 
+    // Get puzzles created count
+    const puzzlesCreated = await Crossword.countDocuments({ user: req.user.id });
+    
+    // Calculate best time if there are completed puzzles
+    let bestTime = '-';
+    if (user.completedPuzzles && user.completedPuzzles.length > 0) {
+      // Find the minimum time to complete
+      const minTime = Math.min(...user.completedPuzzles
+        .filter(puzzle => puzzle.timeToComplete) // Filter out any undefined times
+        .map(puzzle => puzzle.timeToComplete));
+      
+      if (minTime !== Infinity) {
+        // Format time as minutes:seconds
+        const minutes = Math.floor(minTime / 60);
+        const seconds = minTime % 60;
+        bestTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      }
+    }
+    
     // Create stats object for the view
     const stats = {
-      totalCompleted: user.completedPuzzles.length,
-      recentlyCompleted: user.completedPuzzles.slice(-3),
-      // Add more statistics as needed
+      totalCompleted: user.completedPuzzles ? user.completedPuzzles.length : 0,
+      recentlyCompleted: user.completedPuzzles ? user.completedPuzzles.slice(-3) : [],
+      puzzlesCreated: puzzlesCreated,
+      bestTime: bestTime
     };
 
     return res.render("home", {
