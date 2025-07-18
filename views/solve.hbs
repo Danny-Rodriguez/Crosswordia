@@ -1,18 +1,22 @@
 <head>
-  <style type="text/css">
-    #thesaurus {margin-right: 1vw;} .onlyHints {max-width: 50vh; } h3 {padding-top: 1em; padding-bottom: 1em;} .ADH > img { width: 50px; height: 50px; } .button-18 > h3 {padding-top: 0; padding-bottom: 0; margin-bottom: 0;} .currentHint{background: aliceblue; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;} .gridWidth {max-width: fit-content;} .solveBtns > img {width: 16px; height: 16px;} .h1Hints {border-radius: 5px;}
-  </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css" />
   <link rel="stylesheet" type="text/css" href="/css/simpleKeyboard.css" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" type="text/css" href="/css/solve.css" referrerpolicy="no-referrer" />
 </head>
 
 <div class="solve d-flex justify-content-center mt-4 slideDown">
   {{> _thesaurus}}
   <div class="d-flex flex-column gridWidth">
-    <text id="solveCheer" class="text-center lead mb-3">Can You Solve This Crossword? Good Luck!</text>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <text id="solveCheer" class="lead">Can You Solve This Crossword? Good Luck!</text>
+      <div id="desktop-timer" class="desktop-timer-display">Time: 00:00</div>
+    </div>
     <div class="grid" id="crossGrid"></div>
     <div class="d-keyboard flex-column">
-      <div class="currentHint text-center">Tap a cell to get started!</div>
+      <div class="d-flex justify-content-center align-items-center hint-timer-container">
+        <div id="puzzle-timer" class="timer-display">00:00</div>
+        <div class="currentHint">Tap a cell to get started!</div>
+      </div>
       <div class="simple-keyboard"></div>
     </div>
   </div>

@@ -1,5 +1,53 @@
 // Track when user starts solving the puzzle
 let startTime = Date.now();
+let timerInterval;
+let elapsedSeconds = 0;
+
+// Function to format time as MM:SS
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+// Function to update the timer display
+function updateTimer() {
+  elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+  
+  // Update mobile timer
+  const mobileTimerDisplay = document.getElementById('puzzle-timer');
+  if (mobileTimerDisplay) {
+    mobileTimerDisplay.textContent = formatTime(elapsedSeconds);
+  }
+  
+  // Update desktop timer
+  const desktopTimerDisplay = document.getElementById('desktop-timer');
+  if (desktopTimerDisplay) {
+    desktopTimerDisplay.textContent = `Time: ${formatTime(elapsedSeconds)}`;
+  }
+}
+
+// Start the timer
+function startTimer() {
+  // Clear any existing interval
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+  
+  // Update immediately then set interval
+  updateTimer();
+  timerInterval = setInterval(updateTimer, 1000);
+}
+
+// Stop the timer
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+}
+
+// Initialize timer when page loads
+startTimer();
 
 let selectedCell = undefined;
 let typeDown = false;
@@ -514,8 +562,11 @@ await fetch(document.location.origin + document.location.pathname + "/fetch", {
         }
 
         if (solution === solutionStr) {
+          // Stop the timer when puzzle is solved
+          stopTimer();
+          
           // Calculate time to complete
-          const timeToComplete = Math.floor((Date.now() - startTime) / 1000);
+          const timeToComplete = elapsedSeconds;
 
           // Get puzzle ID from URL
           const puzzleId = window.location.pathname.split("/").pop();
