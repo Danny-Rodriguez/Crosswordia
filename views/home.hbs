@@ -2,9 +2,12 @@
   <link rel="stylesheet" href="/css/home.css" />
 </head>
 
-<div class="hero-container fade-in">
+<div class="hero-container fade-in mt-4 mb-5 pt-4 pb-4 px-4 rounded-lg shadow-sm welcome-banner">
+  <div class="welcome-icon">
+    <img src="/img/crossword-icon.svg" alt="Crossword Icon" onerror="this.src='/img/logo.png'; this.style.width='48px'; this.style.height='48px';" width="64" height="64">
+  </div>
   <h1 class="welcome-text">Hello {{name}}, welcome to Crosswordia!</h1>
-  <p class="lead text-white">What would you like to do today?</p>
+  <p class="lead">What would you like to do today?</p>
 </div>
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 g-4 fade-in">

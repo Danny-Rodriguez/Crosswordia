@@ -6,12 +6,77 @@
   margin-bottom: 2rem;
 }
 
-.welcome-text {
-  font-size: 2rem;
-  font-weight: 300;
+.welcome-banner {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf2 100%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #0a66c2;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(10, 102, 194, 0.05);
+  border-radius: 50%;
+}
+
+.welcome-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 105, 180, 0.05);
+  border-radius: 50%;
+}
+
+.lead {
+  font-size: 1.2rem;
+  color: #666;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-icon {
   margin-bottom: 1.5rem;
-  color: #fff;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  background: linear-gradient(135deg, #0a66c2, #0044a8);
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-icon img {
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.welcome-text {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #333;
+  position: relative;
+  display: inline-block;
+}
+
+.welcome-text::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #0a66c2, #ff69b4);
+  border-radius: 3px;
 }
 
 .option-card {
