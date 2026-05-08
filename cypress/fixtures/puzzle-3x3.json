@@ -1,0 +1,12 @@
+{
+  "name": "Tiny Test Puzzle",
+  "size": 3,
+  "solution": "CATARETEA",
+  "hints": {
+    "1": { "cellId": 1, "isWordAcross": true, "isWordDown": true, "acrossHint": "Feline pet", "downHint": "Feline pet again" },
+    "2": { "cellId": 2, "isWordDown": true, "downHint": "Exists (verb)" },
+    "3": { "cellId": 3, "isWordDown": true, "downHint": "British drink" },
+    "4": { "cellId": 4, "isWordAcross": true, "acrossHint": "Exist (verb)" },
+    "7": { "cellId": 7, "isWordAcross": true, "acrossHint": "British drink" }
+  }
+}
