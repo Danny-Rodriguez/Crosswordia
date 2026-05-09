@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This is a fun website to create and share crosswords with your friends",
   "main": "server.js",
+  "packageManager": "pnpm@10.28.0",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "start": "cross-env NODE_ENV=production node server",
     "dev": "cross-env NODE_ENV=development nodemon server",
     "dev:e2e": "cross-env NODE_ENV=development E2E=true nodemon server",
@@ -43,5 +45,12 @@
     "mongodb-memory-server": "^11.1.0",
     "nodemon": "^2.0.16",
     "start-server-and-test": "^2.1.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "cypress",
+      "mongodb-memory-server",
+      "nodemon"
+    ]
   }
 }
